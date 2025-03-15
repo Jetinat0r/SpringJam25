@@ -18,7 +18,8 @@ public class Roomba : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EnemyRB.linearVelocity = Vector2.right * speed * Time.deltaTime;
+        //EnemyRB.linearVelocity = Vector2.right * speed * Time.deltaTime;
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
         isGrounded = Physics2D.OverlapCircle(groundCheck.transform.position, radius, groundLayer);
         if(!isGrounded && facingRight)
         {
