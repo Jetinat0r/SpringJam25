@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocity = Vector2.zero;
 
     // Constants
-    public float grav;
+    private float grav;
     [SerializeField] private float groundAcceleration;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
