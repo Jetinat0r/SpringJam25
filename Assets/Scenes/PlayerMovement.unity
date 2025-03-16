@@ -270,11 +270,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adcf2c9f178b4544a3c027dc79121be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDeadzone: 0
+  moveDeadzone: 0.3
   canShadow: 0
   canInteract: 0
-  moveSpd: 1
+  moveSpd: 2.5
   grav: 0
+  groundAcceleration: 0
 --- !u!1 &1352756512
 GameObject:
   m_ObjectHideFlags: 0
