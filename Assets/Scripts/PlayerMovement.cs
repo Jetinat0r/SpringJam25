@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D collision;
     private SpriteRenderer sprite;
 
+    [SerializeField]
+    private LightDetector lightDetector;
+
     // Input
     private PlayerInput playerInput;
     private InputAction actionMove;
@@ -42,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     // Mutables
     public float moveSpd = 1.0f;
     private Vector2 velocity = Vector2.zero;
+    private bool inLight = false;
 
     // Constants
     private float grav;
@@ -63,6 +67,17 @@ public class PlayerMovement : MonoBehaviour
         actionShadow = playerInput.actions["Sprint"];
 
         grav = rb.gravityScale;
+
+        //Subscribe to light detector events
+        lightDetector.onLightEnter += OnEnterLight;
+        lightDetector.onLightExit += OnExitLight;
+    }
+
+    private void OnDestroy()
+    {
+        //Unsubscribe from light detector events
+        lightDetector.onLightEnter -= OnEnterLight;
+        lightDetector.onLightExit -= OnExitLight;
     }
 
     void Update()
@@ -77,6 +92,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log($"Light State: {(inLight ? "Light" : "Shadow")}");
+
         // Execute current state
         switch (currState)
         {
@@ -243,5 +260,15 @@ public class PlayerMovement : MonoBehaviour
             // TODO: Invoke interactable object's event(?)
             // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
         }
+    }
+
+    void OnEnterLight()
+    {
+        inLight = true;
+    }
+
+    void OnExitLight()
+    {
+        inLight = false;
     }
 }
