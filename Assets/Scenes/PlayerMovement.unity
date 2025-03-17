@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDeadzone: 0.3
-  canShadow: 0
+  canShadow: 1
   canInteract: 0
   moveSpd: 2.5
   groundAcceleration: 0.02
