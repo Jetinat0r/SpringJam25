@@ -148,6 +148,10 @@ public class PlayerMovement : MonoBehaviour
         Vector2 targetVelocity = new Vector2(moveX * moveSpd, rb.linearVelocity.y);
         rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, groundAcceleration);
 
+        // Flip sprite based on movement direction
+        Vector3 sprScale = sprite.transform.localScale;  // This is here to make typing easier
+        sprite.transform.localScale = new Vector3(Mathf.Sign(rb.linearVelocityX), sprScale.y, sprScale.z);
+
         if (Mathf.Abs(moveX) < moveDeadzone)
         {
             currState = PlayerStates.IdleGhost;
