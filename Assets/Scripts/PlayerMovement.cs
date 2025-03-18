@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
 
     // FSM
     private PlayerStates currState;
+
+    // C# Actions
+    public Action OnInteract;
 
     // Flags
     public bool canShadow;
@@ -153,8 +157,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (interacted && canInteract)
         {
-            // TODO: Invoke interactable object's event(?)
-            // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
+            OnInteract?.Invoke();
         }
     }
 
@@ -186,8 +189,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (interacted && canInteract)
         {
-            // TODO: Invoke interactable object's event(?)
-            // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
+            OnInteract?.Invoke();
         }
     }
 
@@ -211,8 +213,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (interacted && canInteract)
         {
-            // TODO: Invoke interactable object's event(?)
-            // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
+            OnInteract?.Invoke();
         }
     }
 
@@ -233,8 +234,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (interacted && canInteract)
         {
-            // TODO: Invoke interactable object's event(?)
-            // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
+            OnInteract?.Invoke();
         }
     }
 
@@ -257,8 +257,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (interacted && canInteract)
         {
-            // TODO: Invoke interactable object's event(?)
-            // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
+            OnInteract?.Invoke();
         }
     }
 
