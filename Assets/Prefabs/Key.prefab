@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatSpd: 1
-  incrementFactor: 0.02
-  amplitude: 0.1
+  incrementFactor: 0.1
+  amplitude: 5
 --- !u!50 &7300682267289755730
 Rigidbody2D:
   serializedVersion: 5

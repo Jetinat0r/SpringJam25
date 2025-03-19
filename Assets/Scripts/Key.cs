@@ -18,11 +18,11 @@ public class Key : MonoBehaviour
         pickupCollider = GetComponentInChildren<CapsuleCollider2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
 
         // Make sprite float
-        sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, amplitude * Mathf.Sin(floatSpd * keyTimer), sprite.transform.localPosition.z);
+        sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, amplitude * Mathf.Sin(floatSpd * keyTimer) * Time.fixedDeltaTime, sprite.transform.localPosition.z);
 
         // Update key timer to make key move along the sin wave and reset to 0 if it has made a full wave to prevent overflow
         keyTimer += incrementFactor;

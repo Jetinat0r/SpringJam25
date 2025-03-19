@@ -24,7 +24,7 @@ public class Switch : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -32,7 +32,7 @@ public class Switch : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         collision.gameObject.GetComponent<PlayerMovement>().OnInteract -= MyInteraction;
     }

@@ -8,7 +8,7 @@ public class Door : MonoBehaviour
         // TODO: Talk with some scene manager or initiate some UI thing to initiate level complete
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // TODO: Spawn interaction prompt over player head
         if (collision.gameObject.CompareTag("Player"))
@@ -26,9 +26,11 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        // TODO: Spawn interaction prompt over player
-        collision.gameObject.GetComponent<PlayerMovement>().OnInteract -= MyInteraction;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerMovement>().OnInteract -= MyInteraction;
+        }
     }
 }

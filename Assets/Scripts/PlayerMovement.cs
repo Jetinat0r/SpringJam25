@@ -90,8 +90,9 @@ public class PlayerMovement : MonoBehaviour
         // Update input values
         moveX = actionMove.ReadValue<Vector2>().x;
         moveY = actionMove.ReadValue<Vector2>().y;
-        interacted = actionInteract.WasPressedThisFrame();
-        toggledShadow = actionInteract.WasPressedThisFrame();
+
+        if (actionInteract.WasPressedThisFrame()) interacted = true;
+        if (actionInteract.WasPressedThisFrame()) toggledShadow = true;
     }
 
     // Update is called once per frame
@@ -118,6 +119,10 @@ public class PlayerMovement : MonoBehaviour
                 WalkShadow(moveX, moveY, interacted, toggledShadow);
                 break;
         }
+
+        // Reset input vars
+        interacted = false;
+        toggledShadow = false;
     }
 
     // Set/unset grounded
@@ -154,6 +159,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (toggledShadow && canShadow)
         {
+            // Zero out velocity to ensure it is reset on state change
+            rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleShadow;
         }
 
@@ -186,6 +193,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (toggledShadow && canShadow)
         {
+            // Zero out velocity to ensure it is reset on state change
+            rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleShadow;
         }
 
@@ -210,6 +219,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (toggledShadow && canShadow)
         {
+            // Zero out velocity to ensure it is reset on state change
+            rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleShadow;
         }
 
@@ -231,6 +242,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (toggledShadow && canShadow)
         {
+            // Zero out velocity to ensure it is reset on state change
+            rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleGhost;
         }
 
@@ -254,6 +267,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (toggledShadow && canShadow)
         {
+            // Zero out velocity to ensure it is reset on state change
+            rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleGhost;
         }
 
