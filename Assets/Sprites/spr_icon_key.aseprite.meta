@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9a1b52abcba3aea4db2d1f7c3f4a9392
+guid: 35abd4bd3175fb843931be4d367d8daf
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,7 +36,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 32
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638779201593205054
+  platformSettingsDirtyTick: 0
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: key
+  - name: spr_icon_key
     originalName: 
-    pivot: {x: 0.5, y: -0.033333335}
+    pivot: {x: 0.5, y: -0.071428575}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 30
-    spriteID: 0302501bff5fa0c489cd8f1b72023fd0
+      width: 8
+      height: 14
+    spriteID: 3f7cf6414916697408a32054c3a10cab
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,21 +147,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1273338697
-    name: key
+    guid: 1663396097
+    name: spr_icon_key
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: key
+    - name: spr_icon_key
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 8
+        x: 4
         y: 1
-        width: 16
-        height: 30
-      spriteId: 0302501bff5fa0c489cd8f1b72023fd0
+        width: 8
+        height: 14
+      spriteId: 3f7cf6414916697408a32054c3a10cab
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -177,32 +177,8 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
-  - name: DefaultTexturePlatform
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 16384
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 16384
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 32}
-  previousTextureSize: {x: 32, y: 64}
+  canvasSize: {x: 16, y: 16}
+  previousTextureSize: {x: 16, y: 32}

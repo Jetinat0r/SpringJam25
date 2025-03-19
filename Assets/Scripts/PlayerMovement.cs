@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     public bool canShadow;
     public bool canInteract;
     private bool grounded;
+    public bool hasKey;
 
     // Mutables
     public float moveSpd = 1.0f;
@@ -136,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // FSM functions
     void IdleGhost(float moveX, bool interacted, bool toggledShadow)
     {
         rb.gravityScale = grav;
