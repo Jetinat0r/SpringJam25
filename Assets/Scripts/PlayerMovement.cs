@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,10 +38,14 @@ public class PlayerMovement : MonoBehaviour
     // FSM
     private PlayerStates currState;
 
+    // C# Actions
+    public Action OnInteract;
+
     // Flags
     public bool canShadow;
     public bool canInteract;
     private bool grounded;
+    public bool hasKey;
 
     // Mutables
     public float moveSpd = 1.0f;
@@ -132,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // FSM functions
     void IdleGhost(float moveX, bool interacted, bool toggledShadow)
     {
         rb.gravityScale = grav;
@@ -153,8 +159,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (interacted && canInteract)
         {
-            // TODO: Invoke interactable object's event(?)
-            // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
+            OnInteract?.Invoke();
         }
     }
 
@@ -186,8 +191,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (interacted && canInteract)
         {
-            // TODO: Invoke interactable object's event(?)
-            // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
+            OnInteract?.Invoke();
         }
     }
 
@@ -211,8 +215,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (interacted && canInteract)
         {
-            // TODO: Invoke interactable object's event(?)
-            // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
+            OnInteract?.Invoke();
         }
     }
 
@@ -233,8 +236,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (interacted && canInteract)
         {
-            // TODO: Invoke interactable object's event(?)
-            // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
+            OnInteract?.Invoke();
         }
     }
 
@@ -257,8 +259,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (interacted && canInteract)
         {
-            // TODO: Invoke interactable object's event(?)
-            // NOTE: Probably an interface for all interactable objects idk we'll talk aobut it some more or somthn
+            OnInteract?.Invoke();
         }
     }
 
