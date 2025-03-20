@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     public Action OnInteract;
 
     // Flags
-    public bool canShadow;
+    private bool canShadow;
     public bool canInteract;
     private bool grounded;
     public bool hasKey;
@@ -68,8 +68,7 @@ public class PlayerMovement : MonoBehaviour
         // Set Input Bindings
         actionMove = playerInput.actions["Move"];
         actionInteract = playerInput.actions["Interact"];
-        // TODO: Rename or make new action called Shadow in place of Sprint
-        actionShadow = playerInput.actions["Sprint"];
+        actionShadow = playerInput.actions["Shadow"];
 
         grav = rb.gravityScale;
 
@@ -91,8 +90,10 @@ public class PlayerMovement : MonoBehaviour
         moveX = actionMove.ReadValue<Vector2>().x;
         moveY = actionMove.ReadValue<Vector2>().y;
 
+        canShadow = lightDetector.activeLightCollisions.Count > 0;
+
         if (actionInteract.WasPressedThisFrame()) interacted = true;
-        if (actionInteract.WasPressedThisFrame()) toggledShadow = true;
+        if (actionShadow.WasPressedThisFrame()) toggledShadow = true;
     }
 
     // Update is called once per frame

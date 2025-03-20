@@ -20,6 +20,7 @@ public class Switch : MonoBehaviour
             if (obj != null)
             {
                 // State-changing code/appropriate obj function call here
+                obj.SetActive(!obj.activeSelf);
             }
         }
     }
@@ -34,6 +35,9 @@ public class Switch : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.gameObject.GetComponent<PlayerMovement>().OnInteract -= MyInteraction;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerMovement>().OnInteract -= MyInteraction;
+        }
     }
 }
