@@ -11,6 +11,8 @@ public class LabelledSliderLinker : MonoBehaviour
     public TMP_InputField inputField;
     [SerializeField]
     public UnityEvent OnUpdate;
+    [SerializeField]
+    public float min = 0, max = 100;
 
     private float curValue;
 
@@ -21,8 +23,9 @@ public class LabelledSliderLinker : MonoBehaviour
 
     public void SetValue(System.Single _newValue)
     {
-        slider.SetValueWithoutNotify(_newValue);
-        inputField.SetTextWithoutNotify(((int)_newValue).ToString());
+        float clampedVal = Mathf.Clamp(_newValue, min, max);
+        slider.SetValueWithoutNotify(clampedVal);
+        inputField.SetTextWithoutNotify(((int)clampedVal).ToString());
         OnUpdate?.Invoke();
     }
 
@@ -38,9 +41,7 @@ public class LabelledSliderLinker : MonoBehaviour
         {
             _newValue = "0";
         }
-
-        slider.SetValueWithoutNotify(float.Parse(_newValue));
-        OnUpdate?.Invoke();
+        SetValue(float.Parse(_newValue));
     }
 
     public void OnMusicVolumeUpdate()
