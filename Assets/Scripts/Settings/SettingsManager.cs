@@ -25,9 +25,9 @@ public class SettingsManager : MonoBehaviour
     {
         LoadSettings();
 
-        resolutionDropdown.value = resolution;
         musicSlider.value = musicVolume;
         sfxSlider.value = sfxVolume;
+        resolutionDropdown.value = resolution;
     }
 
     public static void SetResolution(Int32 res)
@@ -50,14 +50,14 @@ public class SettingsManager : MonoBehaviour
         currentSettings = newSettings;
         */
 
-        SetResolution(resolution);
+        //SetResolution(resolution);
 
         Debug.Log($"LOADED: {completedLevels} {musicVolume} {sfxVolume} {resolution}");
     }
 
     public static void SaveSettings()
     {
-        Debug.Log("SAVING");
+        Debug.Log($"SAVING: {completedLevels} {musicVolume} {sfxVolume} {resolution}");
 
         PlayerPrefs.SetInt("completedLevels", completedLevels);
         PlayerPrefs.SetFloat("musicVolume", musicVolume);
