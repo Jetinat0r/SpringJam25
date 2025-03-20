@@ -24,7 +24,8 @@ public class SettingsManager : MonoBehaviour
             currentSettings = new Settings();
             SaveSettings();
         }
-        
+
+        resolutionDropdown.value = currentSettings.resolution;
     }
 
     public static void SetResolution(Int32 res)
