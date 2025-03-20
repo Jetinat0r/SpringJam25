@@ -31,6 +31,13 @@ public class MainMenuManager : MonoBehaviour
 
     private Tween curTween;
 
+    public SoundClip selectSound, backSound;
+    public SoundPlayer soundPlayer;
+
+    public LabelledSliderLinker musicSetting, sfxSetting;
+
+    private bool inSettings = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,24 +46,36 @@ public class MainMenuManager : MonoBehaviour
         anchoredSettingsPanelPos = settingsPanel.anchoredPosition;
         anchoredInstructionsPanelPos = instructionsPanel.anchoredPosition;
         anchoredCreditsPanelPos = creditsPanel.anchoredPosition;
+
+        musicSetting.SetValue(Mathf.Pow(10, SettingsManager.currentSettings.musicVolume / 20) * 100 - 0.00001f);
+        sfxSetting.SetValue(Mathf.Pow(10, SettingsManager.currentSettings.sfxVolume / 20) * 100 - 0.00001f);
     }
 
     public void MoveToMainMenu(bool _isXMove)
     {
         curTween?.Kill();
         curTween = panelContainer.DOAnchorPos(-anchoredMainPanelPos, tweenMoveTime).SetEase(tweenEaseType);
+        soundPlayer.PlaySound(backSound);
+        if (inSettings)
+        {
+            inSettings = false;
+            SettingsManager.SaveSettings();
+        }
     }
 
     public void MoveToLevelSelectPanel()
     {
         curTween?.Kill();
         curTween = panelContainer.DOAnchorPos(-anchoredLevelSelectPanelPos, tweenMoveTime).SetEase(tweenEaseType);
+        soundPlayer.PlaySound(selectSound);
     }
 
     public void MoveToSettingsPanel()
     {
         curTween?.Kill();
         curTween = panelContainer.DOAnchorPos(-anchoredSettingsPanelPos, tweenMoveTime).SetEase(tweenEaseType);
+        soundPlayer.PlaySound(selectSound);
+        inSettings = true;
     }
 
     public void MoveToInstructionsPanel()
@@ -66,6 +85,7 @@ public class MainMenuManager : MonoBehaviour
 
         curTween?.Kill();
         curTween = panelContainer.DOAnchorPos(-anchoredInstructionsPanelPos, tweenMoveTime).SetEase(tweenEaseType);
+        soundPlayer.PlaySound(selectSound);
     }
 
     public void MoveToCreditsPanel()
@@ -75,5 +95,6 @@ public class MainMenuManager : MonoBehaviour
 
         curTween?.Kill();
         curTween = panelContainer.DOAnchorPos(-anchoredCreditsPanelPos, tweenMoveTime).SetEase(tweenEaseType);
+        soundPlayer.PlaySound(selectSound);
     }
 }
