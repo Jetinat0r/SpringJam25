@@ -53,6 +53,9 @@ TagManager:
   - name: GroundLight
     uniqueID: 3451366617
     locked: 0
+  - name: Interactables
+    uniqueID: 3573927027
+    locked: 0
   - name: Player
     uniqueID: 2288622893
     locked: 0

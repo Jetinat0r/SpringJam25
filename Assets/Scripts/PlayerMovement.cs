@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
     public Action OnInteract;
 
     // Flags
-    private bool canShadow;
     public bool canInteract;
     private bool grounded;
     public bool hasKey;
@@ -89,8 +88,6 @@ public class PlayerMovement : MonoBehaviour
         // Update input values
         moveX = actionMove.ReadValue<Vector2>().x;
         moveY = actionMove.ReadValue<Vector2>().y;
-
-        canShadow = lightDetector.activeLightCollisions.Count > 0;
 
         if (actionInteract.WasPressedThisFrame()) interacted = true;
         if (actionShadow.WasPressedThisFrame()) toggledShadow = true;
@@ -146,10 +143,9 @@ public class PlayerMovement : MonoBehaviour
     // FSM functions
     void IdleGhost(float moveX, bool interacted, bool toggledShadow)
     {
-        rb.gravityScale = grav;
-
         if (!grounded)
         {
+            rb.linearVelocityX = 0f;
             currState = PlayerStates.Falling;
         }
 
@@ -158,15 +154,18 @@ public class PlayerMovement : MonoBehaviour
             currState = PlayerStates.WalkGhost;
         }
 
-        if (toggledShadow && canShadow)
+        if (toggledShadow && inLight)
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleShadow;
+
+            rb.gravityScale = 0.0f;
         }
 
         if (interacted && canInteract)
         {
+            //Debug.Log($"{OnInteract}");
             OnInteract?.Invoke();
         }
     }
@@ -189,14 +188,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (!grounded)
         {
+            rb.linearVelocityX = 0f;
             currState = PlayerStates.Falling;
         }
 
-        if (toggledShadow && canShadow)
+        if (toggledShadow && inLight)
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleShadow;
+
+            rb.gravityScale = 0.0f;
         }
 
         if (interacted && canInteract)
@@ -208,21 +210,21 @@ public class PlayerMovement : MonoBehaviour
 
     void Falling(float moveX, bool interacted, bool toggledShadow)
     {
-        rb.gravityScale = grav;
-
         // Add ability to move while falling
-        rb.linearVelocity = new Vector2(moveX * moveSpd, rb.linearVelocity.y);
+        //rb.linearVelocity = new Vector2(moveX * moveSpd, rb.linearVelocity.y);
 
         if (grounded)
         {
             currState = PlayerStates.IdleGhost;
         }
 
-        if (toggledShadow && canShadow)
+        if (toggledShadow && inLight)
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleShadow;
+
+            rb.gravityScale = 0.0f;
         }
 
         if (interacted && canInteract)
@@ -234,18 +236,18 @@ public class PlayerMovement : MonoBehaviour
 
     void IdleShadow(float moveX, float moveY, bool interacted, bool toggledShadow)
     {
-        rb.gravityScale = 0.0f;
-
         if (Mathf.Abs(moveX) > moveDeadzone || Mathf.Abs(moveY) > moveDeadzone)
         {
             currState = PlayerStates.WalkShadow;
         }
 
-        if (toggledShadow && canShadow)
+        if (toggledShadow && inLight)
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleGhost;
+
+            rb.gravityScale = grav;
         }
 
         if (interacted && canInteract)
@@ -257,8 +259,6 @@ public class PlayerMovement : MonoBehaviour
 
     void WalkShadow(float moveX, float moveY, bool interacted, bool toggledShadow)
     {
-        rb.gravityScale = 0.0f;
-
         rb.linearVelocity = new Vector2(moveX * moveSpd, moveY * moveSpd);
 
         if (Mathf.Abs(moveX) < moveDeadzone && Mathf.Abs(moveY) < moveDeadzone)
@@ -266,11 +266,13 @@ public class PlayerMovement : MonoBehaviour
             currState = PlayerStates.IdleShadow;
         }
 
-        if (toggledShadow && canShadow)
+        if (toggledShadow && inLight)
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleGhost;
+
+            rb.gravityScale = grav;
         }
 
         if (interacted && canInteract)
@@ -287,5 +289,14 @@ public class PlayerMovement : MonoBehaviour
     void OnExitLight()
     {
         inLight = false;
+
+        //If in light, fall out!
+        if(currState == PlayerStates.IdleShadow || currState == PlayerStates.WalkShadow)
+        {
+            currState = PlayerStates.IdleGhost;
+            rb.linearVelocity = Vector2.zero;
+
+            rb.gravityScale = grav;
+        }
     }
 }
