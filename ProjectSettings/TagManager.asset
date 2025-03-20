@@ -41,11 +41,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
+  - name: BackgroundDark
+    uniqueID: 1626492045
+    locked: 0
+  - name: BackgroundLight
     uniqueID: 936006715
     locked: 0
-  - name: Ground
+  - name: GroundDark
     uniqueID: 2277761851
+    locked: 0
+  - name: GroundLight
+    uniqueID: 3451366617
+    locked: 0
+  - name: Player
+    uniqueID: 2288622893
     locked: 0
   - name: LightMask
     uniqueID: 3563305641
