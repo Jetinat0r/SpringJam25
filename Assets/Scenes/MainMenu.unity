@@ -171,10 +171,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 287202395}
+    m_SelectOnDown: {fileID: 612185470}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 210473703}
   - component: {fileID: 210473702}
   m_Layer: 5
-  m_Name: LevelContainerPanel
+  m_Name: SettingsContainerPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1337,9 +1337,9 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 120513257}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 1999579011}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2936,10 +2936,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 120513257}
+    m_SelectOnDown: {fileID: 755963385}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -2970,7 +2970,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3596,12 +3596,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 612185470}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 612185470}
+    m_SelectOnRight: {fileID: 1112012006}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -4823,11 +4823,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnUp: {fileID: 1999579011}
+    m_SelectOnDown: {fileID: 755963385}
+    m_SelectOnLeft: {fileID: 612185470}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
@@ -5641,6 +5641,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 755963385}
+  musicSlider: {fileID: 120513257}
+  sfxSlider: {fileID: 612185470}
 --- !u!4 &1205113872
 Transform:
   m_ObjectHideFlags: 0
@@ -6037,12 +6039,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59addac7f4e520d4ab9a37b8b27290f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventSystem: {fileID: 1777698888}
   panelContainer: {fileID: 1479971279}
   mainPanel: {fileID: 1119023733}
+  mainPanelFirstSelected: {fileID: 158923153}
   levelSelectPanel: {fileID: 130084211}
+  levelSelectPanelFirstSelected: {fileID: 243136539}
   settingsPanel: {fileID: 436227201}
+  settingsPanelFirstSelected: {fileID: 120513255}
   instructionsPanel: {fileID: 1480615983}
+  instructionsPanelFirstSelected: {fileID: 1226273035}
   creditsPanel: {fileID: 542081557}
+  creditsPanelFirstSelected: {fileID: 1119320513}
   tweenMoveTime: 1
   tweenEaseType: 15
   selectSound: {fileID: 11400000, guid: 05160ec723370a64eb092feb9a2303a0, type: 2}
@@ -9173,6 +9181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AMCheck
       objectReference: {fileID: 0}
+    - target: {fileID: 7063382920539804017, guid: e80fcde0e5ed5a84a841be0422cd4685, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9239,7 +9251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 158923153}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1777698889
@@ -9975,11 +9987,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnUp: {fileID: 287202395}
+    m_SelectOnDown: {fileID: 1112012006}
+    m_SelectOnLeft: {fileID: 120513257}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
@@ -10519,9 +10531,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1437576556}
-  - {fileID: 1256944910}
-  - {fileID: 1777698889}
   - {fileID: 1773124425}
   - {fileID: 1947385547}
   - {fileID: 1205113872}
   - {fileID: 892930007}
+  - {fileID: 1256944910}
+  - {fileID: 1777698889}

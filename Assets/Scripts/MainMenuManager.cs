@@ -1,20 +1,34 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField]
+    public EventSystem eventSystem;
+
     [SerializeField]
     public RectTransform panelContainer;
     [SerializeField]
     public RectTransform mainPanel;
     [SerializeField]
+    public GameObject mainPanelFirstSelected;
+    [SerializeField]
     public RectTransform levelSelectPanel;
+    [SerializeField]
+    public GameObject levelSelectPanelFirstSelected;
     [SerializeField]
     public RectTransform settingsPanel;
     [SerializeField]
+    public GameObject settingsPanelFirstSelected;
+    [SerializeField]
     public RectTransform instructionsPanel;
     [SerializeField]
+    public GameObject instructionsPanelFirstSelected;
+    [SerializeField]
     public RectTransform creditsPanel;
+    [SerializeField]
+    public GameObject creditsPanelFirstSelected;
 
     [SerializeField]
     [Tooltip("Move time in seconds")]
@@ -47,8 +61,10 @@ public class MainMenuManager : MonoBehaviour
         anchoredInstructionsPanelPos = instructionsPanel.anchoredPosition;
         anchoredCreditsPanelPos = creditsPanel.anchoredPosition;
 
-        musicSetting.SetValue(Mathf.Pow(10, SettingsManager.currentSettings.musicVolume / 20) * 100 - 0.00001f);
-        sfxSetting.SetValue(Mathf.Pow(10, SettingsManager.currentSettings.sfxVolume / 20) * 100 - 0.00001f);
+        musicSetting.SetValue(Mathf.Pow(10, SettingsManager.musicVolume / 20) * 100 - 0.00001f);
+        sfxSetting.SetValue(Mathf.Pow(10, SettingsManager.sfxVolume / 20) * 100 - 0.00001f);
+
+        eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
     }
 
     public void MoveToMainMenu(bool _isXMove)
@@ -61,6 +77,8 @@ public class MainMenuManager : MonoBehaviour
             inSettings = false;
             SettingsManager.SaveSettings();
         }
+
+        eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
     }
 
     public void MoveToLevelSelectPanel()
@@ -68,6 +86,8 @@ public class MainMenuManager : MonoBehaviour
         curTween?.Kill();
         curTween = panelContainer.DOAnchorPos(-anchoredLevelSelectPanelPos, tweenMoveTime).SetEase(tweenEaseType);
         soundPlayer.PlaySound(selectSound);
+
+        eventSystem.SetSelectedGameObject(levelSelectPanelFirstSelected);
     }
 
     public void MoveToSettingsPanel()
@@ -76,6 +96,8 @@ public class MainMenuManager : MonoBehaviour
         curTween = panelContainer.DOAnchorPos(-anchoredSettingsPanelPos, tweenMoveTime).SetEase(tweenEaseType);
         soundPlayer.PlaySound(selectSound);
         inSettings = true;
+
+        eventSystem.SetSelectedGameObject(settingsPanelFirstSelected);
     }
 
     public void MoveToInstructionsPanel()
@@ -86,6 +108,8 @@ public class MainMenuManager : MonoBehaviour
         curTween?.Kill();
         curTween = panelContainer.DOAnchorPos(-anchoredInstructionsPanelPos, tweenMoveTime).SetEase(tweenEaseType);
         soundPlayer.PlaySound(selectSound);
+
+        eventSystem.SetSelectedGameObject(instructionsPanelFirstSelected);
     }
 
     public void MoveToCreditsPanel()
@@ -96,5 +120,7 @@ public class MainMenuManager : MonoBehaviour
         curTween?.Kill();
         curTween = panelContainer.DOAnchorPos(-anchoredCreditsPanelPos, tweenMoveTime).SetEase(tweenEaseType);
         soundPlayer.PlaySound(selectSound);
+
+        eventSystem.SetSelectedGameObject(creditsPanelFirstSelected);
     }
 }

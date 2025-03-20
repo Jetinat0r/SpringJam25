@@ -102,16 +102,20 @@ public class AudioManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        musicVolume = SettingsManager.musicVolume;
+        sfxVolume = SettingsManager.sfxVolume;
+        /*
         if (SettingsManager.currentSettings != null)
         {
-            musicVolume = SettingsManager.currentSettings.musicVolume;
+            
             //musicMute = SettingsManager.currentSettings.musicMute;
-            sfxVolume = SettingsManager.currentSettings.sfxVolume;
         }
         else
         {
             musicMixer.GetFloat("Volume", out musicVolume);
         }
+        */
 
         if (FindObjectsByType<AudioManager>(FindObjectsSortMode.None).Length > 1)
         {
@@ -183,8 +187,8 @@ public class AudioManager : MonoBehaviour
             if (musicVolume > -80f)
                 musicVolume -= 0.1f;
         }
-        SettingsManager.currentSettings.musicVolume = musicVolume;
-        SettingsManager.currentSettings.sfxVolume = sfxVolume;
+        SettingsManager.musicVolume = musicVolume;
+        SettingsManager.sfxVolume = sfxVolume;
 
         float pitch;
         musicMixer.GetFloat("Pitch", out pitch);
@@ -208,7 +212,7 @@ public class AudioManager : MonoBehaviour
         }
 
         // sfxVolume is a float from 0.0-1.0 but we'd want 1.0 to correspond to 10dB => *10f
-        targetSFXVolume = SettingsManager.currentSettings.sfxVolume;
+        targetSFXVolume = SettingsManager.sfxVolume;
         // TODO in case we want fade between scene changes, add this sorta thing
         //if (ChangeScene.changingScene)
         //{

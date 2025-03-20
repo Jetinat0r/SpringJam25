@@ -4,6 +4,7 @@ using UnityEngine;
 public class ProgramManager : MonoBehaviour
 {
     public static ProgramManager instance;
+    
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     public static void InitDOTween()
@@ -32,6 +33,19 @@ public class ProgramManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+
+        //LoadSettings();
+    }
+
+    private void LoadSettings()
+    {
+        
+    }
+
+    public void SaveSettings()
+    {
+        
     }
 }
