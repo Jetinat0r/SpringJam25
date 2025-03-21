@@ -230,7 +230,7 @@ MonoBehaviour:
   m_RefResolutionX: 320
   m_RefResolutionY: 288
   m_CropFrame: 0
-  m_GridSnapping: 1
+  m_GridSnapping: 2
   m_FilterMode: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
@@ -297,14 +297,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5006372858544311678, guid: 9ed254f40bf422e4f9519657f6af72c7, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5006372858544311678, guid: 9ed254f40bf422e4f9519657f6af72c7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8669701762042889888, guid: ff2c0e8be3a9fdf4e8faf18ff1e7fbc6, type: 3}
       propertyPath: m_LocalScale.x
       value: 15
@@ -357,6 +349,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5006372858544311678, guid: 9ed254f40bf422e4f9519657f6af72c7, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006372858544311678, guid: 9ed254f40bf422e4f9519657f6af72c7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -370,6 +370,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2315359441261130085, guid: 76b6e9f33f5d70d47b6040ec6568fdbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6718512894693216396, guid: 76b6e9f33f5d70d47b6040ec6568fdbf, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -496,10 +500,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 743752353798390558, guid: 4a9dd5b585fa00f44a549c5c3c9d03be, type: 3}
-      propertyPath: requiresKey
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3543057676482985727, guid: 68c19e6d16ecd0f448613a4ff4b822e6, type: 3}
       propertyPath: m_Name
       value: Door
@@ -542,6 +542,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7559290944003540553, guid: 68c19e6d16ecd0f448613a4ff4b822e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 743752353798390558, guid: 4a9dd5b585fa00f44a549c5c3c9d03be, type: 3}
+      propertyPath: requiresKey
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
