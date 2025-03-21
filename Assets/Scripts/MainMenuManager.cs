@@ -156,7 +156,7 @@ public class MainMenuManager : MonoBehaviour
     public void EnterLevel(string _levelName)
     {
         Debug.Log($"Entering level {_levelName}");
-        //SceneManager.LoadScene(_levelName);
+        SceneManager.LoadScene(_levelName);
     }
 
     public void EnterLevel(LevelButton _levelButton)
