@@ -135,8 +135,8 @@ public class AudioManager : MonoBehaviour
             instance = this;
         }
 
-        // Check for syncing
-        if (BGM2[activePlayer].isPlaying && BGM1[activePlayer].isPlaying)
+        // Check for desyncing during crossfades
+        if ((fader[0] != null || fader[1] != null) && BGM2[activePlayer].isPlaying && BGM1[activePlayer].isPlaying)
         {
             if (firstSet && BGM2[activePlayer].timeSamples != BGM1[activePlayer].timeSamples)
             {
