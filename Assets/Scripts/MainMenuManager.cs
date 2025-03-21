@@ -155,6 +155,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void EnterLevel(string _levelName)
     {
+        curTween?.Kill();
+
         Debug.Log($"Entering level {_levelName}");
         SceneManager.LoadScene(_levelName);
     }

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 enum PlayerStates
 {
@@ -28,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private InputAction actionMove;
     private InputAction actionInteract;
     private InputAction actionShadow;
+    private InputAction actionToggleMenu;
+    private InputAction actionResetLevel;
 
     private float moveX;
     private float moveY;
@@ -71,6 +74,8 @@ public class PlayerMovement : MonoBehaviour
         actionMove = playerInput.actions["Move"];
         actionInteract = playerInput.actions["Interact"];
         actionShadow = playerInput.actions["Shadow"];
+        actionToggleMenu = playerInput.actions["ToggleUI"];
+        actionResetLevel = playerInput.actions["RestartLevel"];
 
         grav = rb.gravityScale;
 
@@ -100,6 +105,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (actionInteract.WasPressedThisFrame()) interacted = true;
         if (actionShadow.WasPressedThisFrame()) toggledShadow = true;
+
+        if (actionToggleMenu.WasPressedThisFrame())
+        {
+            LevelManager.instance.ToggleMenu();
+        }
+
+        if (actionResetLevel.WasPressedThisFrame())
+        {
+            LevelManager.instance.ResetScene();
+        }
     }
 
     // Update is called once per frame

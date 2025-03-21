@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
+
+    public LevelMenuManager levelMenuManager;
 
     public string currentLevelName = "Level";
     public int currentLevelNumber = 1;
@@ -21,6 +24,11 @@ public class LevelManager : MonoBehaviour
             Destroy(instance.gameObject);
             instance = this;
         }
+    }
+
+    public void ToggleMenu()
+    {
+        levelMenuManager.ToggleMenu();
     }
 
     public void ResetScene()
@@ -43,5 +51,10 @@ public class LevelManager : MonoBehaviour
     public void NextScene()
     {
         SceneManager.LoadScene(nextLevelName);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
