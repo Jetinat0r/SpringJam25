@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private LightDetector lightDetector;
+    [SerializeField]
+    private WallDetector wallDetector;
 
     // Input
     private PlayerInput playerInput;
@@ -50,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpd = 1.0f;
     private Vector2 velocity = Vector2.zero;
     private bool inLight = false;
+    private bool onWall = false;
 
     // Constants
     private float grav;
@@ -74,6 +77,9 @@ public class PlayerMovement : MonoBehaviour
         //Subscribe to light detector events
         lightDetector.onLightEnter += OnEnterLight;
         lightDetector.onLightExit += OnExitLight;
+
+        wallDetector.onWallEnter += OnEnterWall;
+        wallDetector.onWallExit += OnExitWall;
     }
 
     private void OnDestroy()
@@ -81,6 +87,9 @@ public class PlayerMovement : MonoBehaviour
         //Unsubscribe from light detector events
         lightDetector.onLightEnter -= OnEnterLight;
         lightDetector.onLightExit -= OnExitLight;
+
+        wallDetector.onWallEnter -= OnEnterWall;
+        wallDetector.onWallExit -= OnExitWall;
     }
 
     void Update()
@@ -154,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
             currState = PlayerStates.WalkGhost;
         }
 
-        if (toggledShadow && inLight)
+        if (toggledShadow && inLight && onWall)
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
@@ -192,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
             currState = PlayerStates.Falling;
         }
 
-        if (toggledShadow && inLight)
+        if (toggledShadow && inLight && onWall)
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
@@ -218,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
             currState = PlayerStates.IdleGhost;
         }
 
-        if (toggledShadow && inLight)
+        if (toggledShadow && inLight && onWall)
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
@@ -241,7 +250,7 @@ public class PlayerMovement : MonoBehaviour
             currState = PlayerStates.WalkShadow;
         }
 
-        if (toggledShadow && inLight)
+        if (toggledShadow)
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
@@ -266,7 +275,7 @@ public class PlayerMovement : MonoBehaviour
             currState = PlayerStates.IdleShadow;
         }
 
-        if (toggledShadow && inLight)
+        if (toggledShadow)
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
@@ -290,8 +299,27 @@ public class PlayerMovement : MonoBehaviour
     {
         inLight = false;
 
-        //If in light, fall out!
+        //If top down, fall out!
         if(currState == PlayerStates.IdleShadow || currState == PlayerStates.WalkShadow)
+        {
+            currState = PlayerStates.IdleGhost;
+            rb.linearVelocity = Vector2.zero;
+
+            rb.gravityScale = grav;
+        }
+    }
+
+    void OnEnterWall()
+    {
+        onWall = true;
+    }
+
+    void OnExitWall()
+    {
+        onWall = false;
+
+        //If top down, fall out!
+        if (currState == PlayerStates.IdleShadow || currState == PlayerStates.WalkShadow)
         {
             currState = PlayerStates.IdleGhost;
             rb.linearVelocity = Vector2.zero;
