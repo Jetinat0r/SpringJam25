@@ -21,16 +21,16 @@ public class SwitchMusicOnLoad : MonoBehaviour
         {
             theAM = FindFirstObjectByType<AudioManager>();
             theAM.ChangeBGM(newTrack, newArea);
-            if (delay > 0)
-            {
-                theAM.PauseCurrent();
-                StartCoroutine(PlayMusicDelayed());
-            }
-            else
-            {
-                theAM = FindFirstObjectByType<AudioManager>();
-                theAM.ChangeBGM(newTrack, newArea);
-            }
+            //if (delay > 0)
+            //{
+            //    theAM.PauseCurrent();
+            //    StartCoroutine(PlayMusicDelayed());
+            //}
+            //else
+            //{
+            //    theAM = FindFirstObjectByType<AudioManager>();
+            //    theAM.ChangeBGM(newTrack, newArea);
+            //}
         }
     }
 

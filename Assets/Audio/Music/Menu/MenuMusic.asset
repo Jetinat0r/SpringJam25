@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0dbb07ce11e4bc40ae3eb1b248f06e1, type: 3}
   m_Name: MenuMusic
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 039186dbf40564bb4b7b21f8757e7383, type: 3}
-  BPM: 86
-  timeSignature: 6
-  timeSignatureBottom: 8
-  barsLength: 18
+  clip: {fileID: 8300000, guid: 0cb0efd5d99d94c30bc103c4f292cb08, type: 3}
+  BPM: 98.14
+  timeSignature: 3
+  timeSignatureBottom: 4
+  barsLength: 28
   area: 1

@@ -135,6 +135,20 @@ public class AudioManager : MonoBehaviour
             instance = this;
         }
 
+        // Check for syncing
+        if (BGM2[activePlayer].isPlaying && BGM1[activePlayer].isPlaying)
+        {
+            if (firstSet && BGM2[activePlayer].timeSamples != BGM1[activePlayer].timeSamples)
+            {
+                BGM1[activePlayer].timeSamples = BGM2[activePlayer].timeSamples;
+            }
+            else if (!firstSet && BGM1[activePlayer].timeSamples != BGM2[activePlayer].timeSamples)
+            {
+                BGM2[activePlayer].timeSamples = BGM1[activePlayer].timeSamples;
+            }
+        }
+
+
         //Manages looping tracks
         if (firstSet)
         {
@@ -270,7 +284,7 @@ public class AudioManager : MonoBehaviour
         if (newArea == GameArea.CURRENT) newArea = currentArea;
 
         // carry on music if area has not changed
-        bool carryOn = false; // HAHA no
+        bool carryOn = true; // HAHA no
         currentArea = newArea;
 
         //Calculate loop point
@@ -301,7 +315,7 @@ public class AudioManager : MonoBehaviour
 
             //Fade-in the new clip
             BGM2[activePlayer].clip = music.GetClip();
-            if (carryOn)
+            if (carryOn && BGM1[activePlayer].isPlaying)
             {
                 BGM2[activePlayer].timeSamples = BGM1[activePlayer].timeSamples; // syncs up time
             }
@@ -332,7 +346,7 @@ public class AudioManager : MonoBehaviour
 
             //Fade-in the new clip
             BGM1[activePlayer].clip = music.GetClip();
-            if (carryOn)
+            if (carryOn && BGM2[activePlayer].isPlaying)
             {
                 BGM1[activePlayer].timeSamples = BGM2[activePlayer].timeSamples; // syncs up time
             }

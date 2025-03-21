@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26adf86829b4d84ea3114b11ed9f424, type: 3}
   m_Name: Menu
   m_EditorClassIdentifier: 
-  children: []
+  children:
+  - {fileID: 11400000, guid: 1b1b9a04a18dd4d5a86f1a9b732aa8a3, type: 2}
