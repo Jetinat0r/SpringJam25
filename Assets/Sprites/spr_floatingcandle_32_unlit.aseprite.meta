@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d10f2be0a9ae884498b4b93fb357c821
+guid: 369e85e7b09abc940b7e07dc024b74d3
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: spr_floatingcandle_16_unlit
+  - name: Frame_0
     originalName: 
-    pivot: {x: 0.5, y: -0.07692308}
+    pivot: {x: 0.5, y: -0.13636364}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 14
-      height: 13
-    spriteID: 8c891ccd3abfb87478335b611bf20c9e
+      width: 24
+      height: 22
+    spriteID: 3a3c72f9297da694898508a80f458ec6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,17 +146,17 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.09090909}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
       x: 4
-      y: 25
-      width: 14
-      height: 13
-    spriteID: ebeafcfaed0d04742b538eca7ea65ac6
+      y: 34
+      width: 24
+      height: 22
+    spriteID: e27392feb5b0cdf4992672157a7dad17
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -164,12 +164,54 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 25}
+    uvTransform: {x: 4, y: 34}
+  - name: Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.045454547}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 36
+      y: 4
+      width: 24
+      height: 22
+    spriteID: c415ecdbb687afa4ebbbffee8aaf0ac6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 36, y: 4}
+  - name: Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: -0.09090909}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 36
+      y: 34
+      width: 24
+      height: 22
+    spriteID: f5d7bc73dd13b7649848075c48c080c4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 36, y: 34}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -787840718
-    name: spr_floatingcandle_16_unlit
+    guid: 157673664
+    name: spr_floatingcandle_32_unlit
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -178,20 +220,38 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 1
-        y: 1
-        width: 14
-        height: 13
-      spriteId: 8c891ccd3abfb87478335b611bf20c9e
+        x: 4
+        y: 3
+        width: 24
+        height: 22
+      spriteId: 3a3c72f9297da694898508a80f458ec6
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
-        x: 1
-        y: 0
-        width: 14
-        height: 13
-      spriteId: ebeafcfaed0d04742b538eca7ea65ac6
+        x: 4
+        y: 2
+        width: 24
+        height: 22
+      spriteId: e27392feb5b0cdf4992672157a7dad17
+    - name: Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 4
+        y: 1
+        width: 24
+        height: 22
+      spriteId: c415ecdbb687afa4ebbbffee8aaf0ac6
+    - name: Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 4
+        y: 2
+        width: 24
+        height: 22
+      spriteId: f5d7bc73dd13b7649848075c48c080c4
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -210,5 +270,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 16, y: 16}
-  previousTextureSize: {x: 32, y: 64}
+  canvasSize: {x: 32, y: 32}
+  previousTextureSize: {x: 64, y: 64}
