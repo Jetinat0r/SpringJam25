@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -30,11 +31,15 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     public GameObject creditsPanelFirstSelected;
 
+
     [SerializeField]
     [Tooltip("Move time in seconds")]
     public float tweenMoveTime = 1f;
     [SerializeField]
     public Ease tweenEaseType = Ease.OutQuint;
+    
+    [SerializeField]
+    public LevelButton[] levelButtons = new LevelButton[12];
 
     //Used to slide the UI around. Cached because I don't know how things work when they slide
     private Vector2 anchoredMainPanelPos;
@@ -65,6 +70,18 @@ public class MainMenuManager : MonoBehaviour
         sfxSetting.SetValue(Mathf.Pow(10, SettingsManager.sfxVolume / 20) * 100 - 0.00001f);
 
         eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
+
+        for(int i = 0; i < levelButtons.Length; i++)
+        {
+            if(SettingsManager.completedLevels >= i)
+            {
+                levelButtons[i].UnlockLevel();
+            }
+            else
+            {
+                levelButtons[i].LockLevel();
+            }
+        }
     }
 
     public void MoveToMainMenu(bool _isXMove)
@@ -122,5 +139,28 @@ public class MainMenuManager : MonoBehaviour
         soundPlayer.PlaySound(selectSound);
 
         eventSystem.SetSelectedGameObject(creditsPanelFirstSelected);
+    }
+
+    public void ContinuePlaying()
+    {
+        if(SettingsManager.completedLevels >= 12)
+        {
+            EnterLevel(levelButtons[^1].levelName);
+        }
+        else
+        {
+            EnterLevel(levelButtons[SettingsManager.completedLevels].levelName);
+        }
+    }
+
+    public void EnterLevel(string _levelName)
+    {
+        Debug.Log($"Entering level {_levelName}");
+        //SceneManager.LoadScene(_levelName);
+    }
+
+    public void EnterLevel(LevelButton _levelButton)
+    {
+        EnterLevel(_levelButton.levelName);
     }
 }
