@@ -47,6 +47,12 @@ TagManager:
   - name: BackgroundLight
     uniqueID: 936006715
     locked: 0
+  - name: WallDark
+    uniqueID: 3926224925
+    locked: 0
+  - name: WallLight
+    uniqueID: 2514937713
+    locked: 0
   - name: GroundDark
     uniqueID: 2277761851
     locked: 0
