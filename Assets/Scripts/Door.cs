@@ -3,9 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
-    public int levelNumber = 1;
-    public string nextLevel = "Level";
-
     public bool requiresKey = true;
     private PlayerMovement playerScript = null;
 
@@ -16,14 +13,7 @@ public class Door : MonoBehaviour
         {
             Debug.Log("Level Complete!");
 
-            if(SettingsManager.completedLevels < levelNumber)
-            {
-                SettingsManager.completedLevels = levelNumber;
-                SettingsManager.SaveSettings();
-            }
-
-            //TODO: Swap level
-            SceneManager.LoadScene(nextLevel);
+            LevelManager.instance.CompleteLevel();
 
             playerScript.OnInteract -= MyInteraction;
         }
