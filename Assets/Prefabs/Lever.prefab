@@ -47,6 +47,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affectedObjects: []
+  sprite: {fileID: 0}
+  active: {fileID: 0}
+  inactive: {fileID: 0}
+  on: 0
+  wallSwitch: 0
+  myAnim: {fileID: 7267059419971737419}
 --- !u!58 &3564862165903703896
 CircleCollider2D:
   m_ObjectHideFlags: 0

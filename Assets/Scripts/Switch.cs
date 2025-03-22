@@ -8,15 +8,8 @@ public class Switch : MonoBehaviour
     [SerializeField] private SpriteRenderer sprite;
     public Sprite active, inactive;
     public bool on = false, wallSwitch = false;
-    public Transform meeple;
-    Animator myAnim;
+    public Animator myAnim;
     private bool flipped = false;
-
-    public void Start()
-    {
-        meeple = this.gameObject.transform.GetChild(0);
-        myAnim = meeple.GetComponent<Animator>();
-    }
 
     public void MyInteraction()
     {
