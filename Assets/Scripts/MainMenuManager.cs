@@ -143,7 +143,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void ContinuePlaying()
     {
-        if(SettingsManager.completedLevels >= 12)
+        soundPlayer.PlaySound(selectSound);
+        if (SettingsManager.completedLevels >= 12)
         {
             EnterLevel(levelButtons[^1].levelName);
         }
