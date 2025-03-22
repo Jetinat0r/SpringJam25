@@ -8,6 +8,14 @@ public class Switch : MonoBehaviour
     [SerializeField] private SpriteRenderer sprite;
     public Sprite active, inactive;
     public bool on = false, wallSwitch = false;
+    public Transform meeple;
+    Animator myAnim;
+
+    public void Start()
+    {
+        meeple = this.gameObject.transform.GetChild(0);
+        myAnim = meeple.GetComponent<Animator>();
+    }
 
     public void MyInteraction()
     {
@@ -24,7 +32,9 @@ public class Switch : MonoBehaviour
         {
             sprite.sprite = on ? active : inactive;
         }
-
+        else{
+            myAnim.SetTrigger("leverTrig");
+        }
         // Code stub for eventual implementation of changing affected objects
         foreach (var obj in affectedObjects)
         {
