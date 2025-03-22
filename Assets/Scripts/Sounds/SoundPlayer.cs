@@ -31,7 +31,7 @@ public class SoundPlayer : MonoBehaviour
             if (transform.parent != null)
                 f += transform.parent.gameObject.name + ">";
             f += gameObject.name + "\n" + text;
-            Debug.Log(f);
+            //Debug.Log(f);
         }
     }
 

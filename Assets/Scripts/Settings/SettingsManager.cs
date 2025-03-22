@@ -52,12 +52,12 @@ public class SettingsManager : MonoBehaviour
 
         //SetResolution(resolution);
 
-        Debug.Log($"LOADED: {completedLevels} {musicVolume} {sfxVolume} {resolution}");
+        //Debug.Log($"LOADED: {completedLevels} {musicVolume} {sfxVolume} {resolution}");
     }
 
     public static void SaveSettings()
     {
-        Debug.Log($"SAVING: {completedLevels} {musicVolume} {sfxVolume} {resolution}");
+        //Debug.Log($"SAVING: {completedLevels} {musicVolume} {sfxVolume} {resolution}");
 
         PlayerPrefs.SetInt("completedLevels", completedLevels);
         PlayerPrefs.SetFloat("musicVolume", musicVolume);
