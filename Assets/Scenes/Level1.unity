@@ -809,10 +809,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.003125
+    y: 0.0034722222
+    width: 3.075
+    height: 5.3541665
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -924,14 +924,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5006372858544311678, guid: 9ed254f40bf422e4f9519657f6af72c7, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5006372858544311678, guid: 9ed254f40bf422e4f9519657f6af72c7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4255536473765347647, guid: ff2c0e8be3a9fdf4e8faf18ff1e7fbc6, type: 3}
       propertyPath: m_Name
       value: CircleLightPrefab
@@ -991,6 +983,14 @@ PrefabInstance:
     - target: {fileID: 8669701762042889888, guid: ff2c0e8be3a9fdf4e8faf18ff1e7fbc6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006372858544311678, guid: 9ed254f40bf422e4f9519657f6af72c7, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006372858544311678, guid: 9ed254f40bf422e4f9519657f6af72c7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1431,10 +1431,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 743752353798390558, guid: 4a9dd5b585fa00f44a549c5c3c9d03be, type: 3}
-      propertyPath: requiresKey
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 743752353798390558, guid: 68c19e6d16ecd0f448613a4ff4b822e6, type: 3}
       propertyPath: nextLevel
       value: Level2
@@ -1485,6 +1481,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7559290944003540553, guid: 68c19e6d16ecd0f448613a4ff4b822e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 743752353798390558, guid: 4a9dd5b585fa00f44a549c5c3c9d03be, type: 3}
+      propertyPath: requiresKey
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -14406,6 +14406,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5348135537293344242, guid: 34132f20332a66345a207a76d8038c02, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348135537293344242, guid: 34132f20332a66345a207a76d8038c02, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348135537293344242, guid: 34132f20332a66345a207a76d8038c02, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348135537293344242, guid: 34132f20332a66345a207a76d8038c02, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348135537293344242, guid: 34132f20332a66345a207a76d8038c02, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348135537293344242, guid: 34132f20332a66345a207a76d8038c02, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348135537293344242, guid: 34132f20332a66345a207a76d8038c02, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: -0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348135537293344242, guid: 34132f20332a66345a207a76d8038c02, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5774632632469359591, guid: 34132f20332a66345a207a76d8038c02, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.5

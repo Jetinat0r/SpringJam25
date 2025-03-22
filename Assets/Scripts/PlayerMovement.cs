@@ -181,6 +181,7 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(moveX) > moveDeadzone)
         {
             currState = PlayerStates.WalkGhost;
+            SetGhost();
         }
 
         if (toggledShadow && inLight && onWall)
@@ -188,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleShadow;
-
+            SetShadow();
             rb.gravityScale = 0.0f;
         }
 
@@ -215,6 +216,7 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(moveX) < moveDeadzone)
         {
             currState = PlayerStates.IdleGhost;
+            SetGhost();
         }
 
         if (!grounded)
@@ -228,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleShadow;
-
+            SetShadow();
             rb.gravityScale = 0.0f;
         }
 
@@ -249,6 +251,7 @@ public class PlayerMovement : MonoBehaviour
         if (grounded)
         {
             currState = PlayerStates.IdleGhost;
+            SetGhost();
         }
 
         if (toggledShadow && inLight && onWall)
@@ -256,7 +259,7 @@ public class PlayerMovement : MonoBehaviour
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleShadow;
-
+            SetShadow();
             rb.gravityScale = 0.0f;
         }
 
@@ -269,10 +272,9 @@ public class PlayerMovement : MonoBehaviour
 
     void IdleShadow(float moveX, float moveY, bool interacted, bool toggledShadow)
     {
-        playerShadowSprite.SetActive(true);
-        playerLightSprite.SetActive(false);
         if (Mathf.Abs(moveX) > moveDeadzone || Mathf.Abs(moveY) > moveDeadzone)
         {
+            SetShadow();
             currState = PlayerStates.WalkShadow;
         }
 
@@ -281,7 +283,7 @@ public class PlayerMovement : MonoBehaviour
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleGhost;
-
+            SetGhost();
             rb.gravityScale = grav;
         }
 
@@ -291,11 +293,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     void WalkShadow(float moveX, float moveY, bool interacted, bool toggledShadow)
     {
-        playerShadowSprite.SetActive(true);
-        playerLightSprite.SetActive(false);
         rb.linearVelocity = new Vector2(moveX * moveSpd, moveY * moveSpd);
 
         if(moveX > 0 && (moveY >= 0))
@@ -316,6 +315,7 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(moveX) < moveDeadzone && Mathf.Abs(moveY) < moveDeadzone)
         {
             currState = PlayerStates.IdleShadow;
+            SetShadow();
             playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
@@ -324,7 +324,7 @@ public class PlayerMovement : MonoBehaviour
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
             currState = PlayerStates.IdleGhost;
-
+            SetGhost();
             rb.gravityScale = grav;
         }
 
@@ -348,7 +348,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currState = PlayerStates.IdleGhost;
             rb.linearVelocity = Vector2.zero;
-
+            SetGhost();
             rb.gravityScale = grav;
         }
     }
@@ -367,8 +367,32 @@ public class PlayerMovement : MonoBehaviour
         {
             currState = PlayerStates.IdleGhost;
             rb.linearVelocity = Vector2.zero;
-
+            SetGhost();
             rb.gravityScale = grav;
+        }
+    }
+
+    void SetShadow()
+    {
+        playerShadowSprite.SetActive(true);
+        playerLightSprite.SetActive(false);
+
+        GetComponent<BoxCollider2D>().size = new Vector2(0.65f, 0.65f);
+        foreach (BoxCollider2D box in GetComponentsInChildren<BoxCollider2D>())
+        {
+            box.size = new Vector2(0.65f, 0.65f);
+        }
+    }
+
+    void SetGhost()
+    {
+        playerShadowSprite.SetActive(false);
+        playerLightSprite.SetActive(true);
+
+        GetComponent<BoxCollider2D>().size = new Vector2(0.7f, 1f);
+        foreach (BoxCollider2D box in GetComponentsInChildren<BoxCollider2D>())
+        {
+            box.size = new Vector2(0.7f, 1f);
         }
     }
 }

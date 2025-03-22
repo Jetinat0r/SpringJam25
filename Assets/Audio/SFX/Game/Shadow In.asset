@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a913750643e7984d8ea61409649b0da, type: 3}
-  m_Name: Back
+  m_Name: Shadow In
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: a1644efc6c0f5408b8cd7233db41724b, type: 3}
+  clip: {fileID: 8300000, guid: 7284f6513e8c04a68ba9a4b91105bf1b, type: 3}
