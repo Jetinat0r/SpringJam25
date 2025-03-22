@@ -6904,6 +6904,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5720174945745109045, guid: 34132f20332a66345a207a76d8038c02, type: 3}
+      propertyPath: swingAngle
+      value: -2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5774632632469359591, guid: 34132f20332a66345a207a76d8038c02, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
