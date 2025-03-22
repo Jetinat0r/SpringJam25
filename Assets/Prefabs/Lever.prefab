@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affectedObjects: []
+  soundPlayer: {fileID: 0}
 --- !u!58 &3564862165903703896
 CircleCollider2D:
   m_ObjectHideFlags: 0

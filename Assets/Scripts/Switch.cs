@@ -4,6 +4,8 @@ using UnityEngine;
 public class Switch : MonoBehaviour
 {
     public GameObject[] affectedObjects;
+    private PlayerMovement playerScript;
+
     public void MyInteraction()
     {
         /*
@@ -13,6 +15,7 @@ public class Switch : MonoBehaviour
 
         // Temp code for testing. Remove when actual 
         Debug.Log("Yup, you sure did interact with this switch!");
+        playerScript.soundPlayer.PlaySound("Game.Lever");
 
         // Code stub for eventual implementation of changing affected objects
         foreach (var obj in affectedObjects)
@@ -29,7 +32,8 @@ public class Switch : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerMovement>().OnInteract += MyInteraction;
+            playerScript = collision.gameObject.GetComponent<PlayerMovement>();
+            playerScript.OnInteract += MyInteraction;
         }
     }
 
@@ -37,7 +41,8 @@ public class Switch : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerMovement>().OnInteract -= MyInteraction;
+            playerScript = collision.gameObject.GetComponent<PlayerMovement>();
+            playerScript.OnInteract -= MyInteraction;
         }
     }
 }
