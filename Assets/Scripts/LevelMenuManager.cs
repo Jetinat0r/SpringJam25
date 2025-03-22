@@ -74,6 +74,7 @@ public class LevelMenuManager : MonoBehaviour
         soundPlayer.PlaySound("UI.Select");
         // TODO this should use a delay + screen transition
         LevelManager.instance.ReturnToMainMenu();
+        AudioManager.instance.UnPauseCurrent();
         isMenuOpen = false;
     }
 }

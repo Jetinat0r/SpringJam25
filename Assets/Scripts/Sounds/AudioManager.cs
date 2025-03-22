@@ -451,10 +451,18 @@ public class AudioManager : MonoBehaviour
         if (firstSet)
         {
             BGM1[activePlayer].Pause();
+            if (fader[0] != null)
+            {
+                BGM2[activePlayer].Pause();
+            }
         }
         else
         {
             BGM2[activePlayer].Pause();
+            if (fader[0] != null)
+            {
+                BGM1[activePlayer].Pause();
+            }
         }
         paused = true;
     }
@@ -464,10 +472,18 @@ public class AudioManager : MonoBehaviour
         if (firstSet)
         {
             BGM1[activePlayer].UnPause();
+            if (fader[0] != null)
+            {
+                BGM2[activePlayer].UnPause();
+            }
         }
         else
         {
             BGM2[activePlayer].UnPause();
+            if (fader[0] != null)
+            {
+                BGM1[activePlayer].UnPause();
+            }
         }
         paused = false;
     }
