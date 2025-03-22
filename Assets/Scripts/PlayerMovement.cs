@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Animator shadowAnimator;
+    [SerializeField]
+    private Animator spriteAnimator;
+
+    [SerializeField]
+    public SoundPlayer soundPlayer;
 
     [SerializeField]
     private LightDetector lightDetector;
@@ -63,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
     private bool inLight = false;
     private bool onWall = false;
     private bool isShadow = false;
+    private bool isDead = false;
 
     // Constants
     private float grav;
@@ -106,13 +112,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Update input values
-        moveX = actionMove.ReadValue<Vector2>().x;
-        moveY = actionMove.ReadValue<Vector2>().y;
-
-        if (actionInteract.WasPressedThisFrame()) interacted = true;
-        if (actionShadow.WasPressedThisFrame()) toggledShadow = true;
-
         if (actionToggleMenu.WasPressedThisFrame())
         {
             LevelManager.instance.ToggleMenu();
@@ -122,6 +121,15 @@ public class PlayerMovement : MonoBehaviour
         {
             LevelManager.instance.ResetScene();
         }
+
+        if (isDead) return;
+
+        // Update input values
+        moveX = actionMove.ReadValue<Vector2>().x;
+        moveY = actionMove.ReadValue<Vector2>().y;
+
+        if (actionInteract.WasPressedThisFrame()) interacted = true;
+        if (actionShadow.WasPressedThisFrame()) toggledShadow = true;
     }
 
     // Update is called once per frame
@@ -393,6 +401,7 @@ public class PlayerMovement : MonoBehaviour
         {
             shadowAnimator.Play("ShadowAnimation", 0);
         }
+        soundPlayer.PlaySound("Game.ShadowIn");
         isShadow = true;
     }
 
@@ -409,6 +418,16 @@ public class PlayerMovement : MonoBehaviour
             box.size = new Vector2(0.7f, 1f);
         }
         shadowAnimator.SetFloat("Speed", -2);
+        soundPlayer.PlaySound("Game.ShadowOut");
         isShadow = false;
+    }
+
+    public void Die()
+    {
+        isDead = true;
+        spriteAnimator.SetTrigger("die");
+        soundPlayer.PlaySound("Game.Death");
+        rb.AddForceY(400f);
+        collision.enabled = false;
     }
 }

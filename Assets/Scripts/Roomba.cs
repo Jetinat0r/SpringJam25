@@ -75,13 +75,13 @@ public class Roomba : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
 
-            StartCoroutine(WaitAndKillPlayer());
+            StartCoroutine(WaitAndKillPlayer(collision.gameObject.GetComponent<PlayerMovement>()));
         }
     }
 
-    IEnumerator WaitAndKillPlayer()
+    IEnumerator WaitAndKillPlayer(PlayerMovement player)
     {
-        myAnim.SetTrigger("Die");
+        player.Die();
         yield return new WaitForSeconds(2f); // Wait for 2 seconds
         LevelManager.instance.ResetScene();
     }
