@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Roomba : MonoBehaviour
 {
@@ -12,12 +13,15 @@ public class Roomba : MonoBehaviour
     private Vector3 home;
     public float rightDist;
     public float leftDist;
+
+    Animator myAnim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         EnemyRB = GetComponent<Rigidbody2D>();
         home = transform.position;
-        
+
+        myAnim = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -70,8 +74,15 @@ public class Roomba : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            //restart level
-            LevelManager.instance.ResetScene();
+
+            StartCoroutine(WaitAndKillPlayer());
         }
+    }
+
+    IEnumerator WaitAndKillPlayer()
+    {
+        myAnim.SetTrigger("Die");
+        yield return new WaitForSeconds(2f); // Wait for 2 seconds
+        LevelManager.instance.ResetScene();
     }
 }
