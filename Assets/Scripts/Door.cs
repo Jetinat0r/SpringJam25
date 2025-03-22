@@ -11,7 +11,7 @@ public class Door : MonoBehaviour
         // TODO: Talk with some scene manager or initiate some UI thing to initiate level complete
         if(!requiresKey || playerScript.hasKey)
         {
-            Debug.Log("Level Complete!");
+            //Debug.Log("Level Complete!");
             playerScript.Win();
             LevelManager.instance.CompleteLevel();
 
@@ -24,7 +24,7 @@ public class Door : MonoBehaviour
         // TODO: Spawn interaction prompt over player head
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Entered");
+            //Debug.Log("Entered");
 
             // This is where you'd summon the interact button prompt if we want to make it appear over their head regardless of whether or not they have a key
             PlayerMovement _playerScript = collision.gameObject.GetComponent<PlayerMovement>();
@@ -40,7 +40,7 @@ public class Door : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Exited");
+            //Debug.Log("Exited");
 
             collision.gameObject.GetComponent<PlayerMovement>().OnInteract -= MyInteraction;
             playerScript = null;

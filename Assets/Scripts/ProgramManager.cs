@@ -10,7 +10,7 @@ public class ProgramManager : MonoBehaviour
     public static void InitDOTween()
     {
         DOTween.Init(true, true, LogBehaviour.Default);
-        Debug.Log("DOTween Initialized");
+        //Debug.Log("DOTween Initialized");
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

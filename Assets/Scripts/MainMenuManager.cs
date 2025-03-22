@@ -161,7 +161,7 @@ public class MainMenuManager : MonoBehaviour
         ScreenWipe.current.WipeIn();
         ScreenWipe.current.PostWipe += () =>
         {
-            Debug.Log($"Entering level {_levelName}");
+            //Debug.Log($"Entering level {_levelName}");
             SceneManager.LoadScene(_levelName);
         };
     }

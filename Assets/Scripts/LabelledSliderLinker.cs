@@ -48,7 +48,7 @@ public class LabelledSliderLinker : MonoBehaviour
     {
         if(AudioManager.instance == null)
         {
-            Debug.LogError("WHY");
+            //Debug.LogError("WHY");
         }
         AudioManager.instance.musicVolume = Mathf.Log10(slider.value / 100f + 0.00001f) * 20;
     }

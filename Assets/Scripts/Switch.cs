@@ -19,7 +19,7 @@ public class Switch : MonoBehaviour
          */
 
         // Temp code for testing. Remove when actual 
-        Debug.Log("Yup, you sure did interact with this switch!");
+        //Debug.Log("Yup, you sure did interact with this switch!");
         playerScript.soundPlayer.PlaySound("Game.Lever");
         on = !on;
         if (wallSwitch)
@@ -34,7 +34,7 @@ public class Switch : MonoBehaviour
             }
             else if(flipped == true)
             {
-                print("DUCK");
+                //print("DUCK");
                 myAnim.SetTrigger("back");
                 flipped = false;
             }

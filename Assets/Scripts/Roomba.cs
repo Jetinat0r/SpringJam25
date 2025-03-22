@@ -35,7 +35,7 @@ public class Roomba : MonoBehaviour
             if((transform.position.x - home.x) > rightDist)
             {
                 Flip();
-                print("should flip");
+                //print("should flip");
             }
         }
         else
