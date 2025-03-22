@@ -15,7 +15,7 @@ public class SettingsManager : MonoBehaviour
     public static int completedLevels = 0;
     public static float musicVolume = -10f;
     public static float sfxVolume = -6f;
-    public static int resolution = 0;
+    public static int resolution = 2;
 
     public TMP_Dropdown resolutionDropdown;
     public Slider musicSlider;
