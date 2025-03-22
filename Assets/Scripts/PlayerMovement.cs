@@ -114,9 +114,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (actionToggleMenu.WasPressedThisFrame())
         {
-            LevelManager.instance.ToggleMenu();
-            if (LevelMenuManager.isMenuOpen) soundPlayer.PauseSound("all");
-            else soundPlayer.UnPauseSound("all");
+            LevelManager.instance.ToggleMenu(this);
         }
 
         if (LevelMenuManager.isMenuOpen) return;

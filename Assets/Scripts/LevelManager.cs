@@ -27,9 +27,9 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void ToggleMenu()
+    public void ToggleMenu(PlayerMovement player)
     {
-        levelMenuManager.ToggleMenu();
+        levelMenuManager.ToggleMenu(player);
     }
 
     public void ResetScene()

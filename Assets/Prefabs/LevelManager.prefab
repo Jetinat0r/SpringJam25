@@ -264,7 +264,6 @@ MonoBehaviour:
   currentLevelName: Level
   currentLevelNumber: 1
   nextLevelName: Level
-  uiInput: {fileID: 0}
 --- !u!1 &2857393621092605431
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +726,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventSystem: {fileID: 1719320971345836281}
   firstSelectedElement: {fileID: 4339568981808685163}
+  soundPlayer: {fileID: 0}
+  playerSoundPlayer: {fileID: 0}
+  soundPlayerPrefab: {fileID: 2106051775409183644, guid: 31f61b2904bb9a741aa14e2b2976413a, type: 3}
 --- !u!1 &7295782315275872353
 GameObject:
   m_ObjectHideFlags: 0
