@@ -86,7 +86,7 @@ public class AudioManager : MonoBehaviour
         //Set default values
         foreach (AudioSource s in BGM1)
         {
-            s.loop = false;
+            s.loop = true;
             s.playOnAwake = false;
             s.volume = 0.0f;
             s.outputAudioMixerGroup = musicMixerGroup;
@@ -94,7 +94,7 @@ public class AudioManager : MonoBehaviour
 
         foreach (AudioSource s in BGM2)
         {
-            s.loop = false;
+            s.loop = true;
             s.playOnAwake = false;
             s.volume = 0.0f;
             s.outputAudioMixerGroup = musicMixerGroup;
@@ -149,35 +149,35 @@ public class AudioManager : MonoBehaviour
         }
 
 
-        //Manages looping tracks
-        if (firstSet)
-        {
-            if (BGM1[activePlayer].clip != null && BGM1[activePlayer].time >= loopPointSeconds)
-            {
-                //BGM1[activePlayer].Stop();
-                //BGM1[activePlayer].time = 0;
-                activePlayer = 1 - activePlayer;
-                if (currentSong != null)
-                    BGM1[activePlayer].clip = currentSong.GetClip();
-                BGM1[activePlayer].volume = 1.0f;
-                BGM1[activePlayer].time = 0;
-                BGM1[activePlayer].Play();
-            }
-        }
-        else
-        {
-            if (BGM2[activePlayer].clip != null && BGM2[activePlayer].time >= loopPointSeconds)
-            {
-                //BGM2[activePlayer].Stop();
-                //BGM2[activePlayer].time = 0;
-                activePlayer = 1 - activePlayer;
-                if (currentSong != null)
-                    BGM2[activePlayer].clip = currentSong.GetClip();
-                BGM2[activePlayer].volume = 1.0f;
-                BGM2[activePlayer].time = 0;
-                BGM2[activePlayer].Play();
-            }
-        }
+        ////Manages looping tracks
+        //if (firstSet)
+        //{
+        //    if (BGM1[activePlayer].clip != null && BGM1[activePlayer].time >= loopPointSeconds)
+        //    {
+        //        //BGM1[activePlayer].Stop();
+        //        //BGM1[activePlayer].time = 0;
+        //        activePlayer = 1 - activePlayer;
+        //        if (currentSong != null)
+        //            BGM1[activePlayer].clip = currentSong.GetClip();
+        //        BGM1[activePlayer].volume = 1.0f;
+        //        BGM1[activePlayer].time = 0;
+        //        BGM1[activePlayer].Play();
+        //    }
+        //}
+        //else
+        //{
+        //    if (BGM2[activePlayer].clip != null && BGM2[activePlayer].time >= loopPointSeconds)
+        //    {
+        //        //BGM2[activePlayer].Stop();
+        //        //BGM2[activePlayer].time = 0;
+        //        activePlayer = 1 - activePlayer;
+        //        if (currentSong != null)
+        //            BGM2[activePlayer].clip = currentSong.GetClip();
+        //        BGM2[activePlayer].volume = 1.0f;
+        //        BGM2[activePlayer].time = 0;
+        //        BGM2[activePlayer].Play();
+        //    }
+        //}
 
         // Toggle muting (press M)
         //if (Input.GetKeyDown(KeyCode.M))
