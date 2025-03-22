@@ -2060,9 +2060,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.0034722222
-    width: 2.3
-    height: 2.4166667
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2440,7 +2440,7 @@ GameObject:
   - component: {fileID: 1040561646}
   - component: {fileID: 1040561645}
   - component: {fileID: 1040561644}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShadowWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
