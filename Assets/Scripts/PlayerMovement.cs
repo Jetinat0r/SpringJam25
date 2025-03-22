@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private WallDetector wallDetector;
 
+    public GameObject playerLightSprite;
+    public GameObject playerShadowSprite;
+
     // Input
     private PlayerInput playerInput;
     private InputAction actionMove;
@@ -167,6 +170,8 @@ public class PlayerMovement : MonoBehaviour
     // FSM functions
     void IdleGhost(float moveX, bool interacted, bool toggledShadow)
     {
+        playerShadowSprite.SetActive(false);
+        playerLightSprite.SetActive(true);
         if (!grounded)
         {
             rb.linearVelocityX = 0f;
@@ -196,6 +201,8 @@ public class PlayerMovement : MonoBehaviour
 
     void WalkGhost(float moveX, bool interacted, bool toggledShadow)
     {
+        playerShadowSprite.SetActive(false);
+        playerLightSprite.SetActive(true);
         rb.gravityScale = grav;
 
         Vector2 targetVelocity = new Vector2(moveX * moveSpd, rb.linearVelocity.y);
@@ -234,6 +241,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Falling(float moveX, bool interacted, bool toggledShadow)
     {
+        //playerShadowSprite.SetActive(true);
+        //playerLightSprite.SetActive(false);
         // Add ability to move while falling
         //rb.linearVelocity = new Vector2(moveX * moveSpd, rb.linearVelocity.y);
 
@@ -260,6 +269,8 @@ public class PlayerMovement : MonoBehaviour
 
     void IdleShadow(float moveX, float moveY, bool interacted, bool toggledShadow)
     {
+        playerShadowSprite.SetActive(true);
+        playerLightSprite.SetActive(false);
         if (Mathf.Abs(moveX) > moveDeadzone || Mathf.Abs(moveY) > moveDeadzone)
         {
             currState = PlayerStates.WalkShadow;
@@ -283,6 +294,8 @@ public class PlayerMovement : MonoBehaviour
 
     void WalkShadow(float moveX, float moveY, bool interacted, bool toggledShadow)
     {
+        playerShadowSprite.SetActive(true);
+        playerLightSprite.SetActive(false);
         rb.linearVelocity = new Vector2(moveX * moveSpd, moveY * moveSpd);
 
         if (Mathf.Abs(moveX) < moveDeadzone && Mathf.Abs(moveY) < moveDeadzone)
