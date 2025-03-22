@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
 
     [SerializeField]
+    private Animator shadowAnimator;
+
+    [SerializeField]
     private LightDetector lightDetector;
     [SerializeField]
     private WallDetector wallDetector;
@@ -59,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocity = Vector2.zero;
     private bool inLight = false;
     private bool onWall = false;
+    private bool isShadow = false;
 
     // Constants
     private float grav;
@@ -374,6 +378,8 @@ public class PlayerMovement : MonoBehaviour
 
     void SetShadow()
     {
+        if (isShadow) return;
+
         playerShadowSprite.SetActive(true);
         playerLightSprite.SetActive(false);
 
@@ -382,10 +388,18 @@ public class PlayerMovement : MonoBehaviour
         {
             box.size = new Vector2(0.65f, 0.65f);
         }
+        shadowAnimator.SetFloat("Speed", 2);
+        if (shadowAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0)
+        {
+            shadowAnimator.Play("ShadowAnimation", 0);
+        }
+        isShadow = true;
     }
 
     void SetGhost()
     {
+        if (!isShadow) return;
+
         playerShadowSprite.SetActive(false);
         playerLightSprite.SetActive(true);
 
@@ -394,5 +408,7 @@ public class PlayerMovement : MonoBehaviour
         {
             box.size = new Vector2(0.7f, 1f);
         }
+        shadowAnimator.SetFloat("Speed", -2);
+        isShadow = false;
     }
 }
