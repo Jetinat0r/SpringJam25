@@ -309,26 +309,36 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(moveX * moveSpd, moveY * moveSpd);
 
-        if(moveX > 0 && (moveY >= 0))
+        if(!(moveX == 0f && moveY == 0f))
         {
-            //playerShadowSprite.transform.Rotate(0, 0, 270f);
-            playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 270f);
-        }
-        else if(moveX < 0 && (moveY >= 0))
-        {
-            playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 90f);
-        }
+            float _deg = Mathf.Atan2(moveY, moveX);
 
-        if(moveY < 0)
-        {
-            playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 180f);
+            //Debug.Log($"Deg: {_deg} {moveY} {moveX}");
+
+            playerShadowSprite.transform.rotation = Quaternion.Euler(0f, 0f, (Mathf.Rad2Deg * _deg) - 90f);
+            /*
+            if(moveX > 0 && (moveY >= 0))
+            {
+                //playerShadowSprite.transform.Rotate(0, 0, 270f);
+                playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 270f);
+            }
+            else if(moveX < 0 && (moveY >= 0))
+            {
+                playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 90f);
+            }
+
+            if(moveY < 0)
+            {
+                playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 180f);
+            }
+            */
         }
 
         if (Mathf.Abs(moveX) < moveDeadzone && Mathf.Abs(moveY) < moveDeadzone)
         {
             currState = PlayerStates.IdleShadow;
             SetShadow();
-            playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+            //playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         if (toggledShadow)
