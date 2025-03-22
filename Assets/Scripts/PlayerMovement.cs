@@ -138,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (LevelMenuManager.isMenuOpen || hasWon) return;
+        if (LevelMenuManager.isMenuOpen || hasWon || isDead) return;
 
         //Debug.Log($"Light State: {(inLight ? "Light" : "Shadow")}");
 
