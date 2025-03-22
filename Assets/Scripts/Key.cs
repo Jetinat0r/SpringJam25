@@ -20,6 +20,7 @@ public class Key : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (LevelMenuManager.isMenuOpen) return;
 
         // Make sprite float
         sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, amplitude * Mathf.Sin(floatSpd * keyTimer) * Time.fixedDeltaTime, sprite.transform.localPosition.z);
@@ -37,8 +38,9 @@ public class Key : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerMovement>().hasKey = true;
-            Debug.Log("Wow! You got the key!");
+            PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+            player.hasKey = true;
+            player.soundPlayer.PlaySound("Game.Key");
             Destroy(gameObject);
         }
     }

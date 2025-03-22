@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -44,9 +45,15 @@ public class LevelManager : MonoBehaviour
             SettingsManager.SaveSettings();
         }
 
-        //TODO: Swap level
+        StartCoroutine(GoToNextLevel(1.5f));
+    }
+
+    IEnumerator GoToNextLevel(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(nextLevelName);
     }
+
 
     public void NextScene()
     {

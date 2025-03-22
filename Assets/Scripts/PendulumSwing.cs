@@ -16,6 +16,8 @@ public class PendulumSwing : MonoBehaviour
 
     void Update()
     {
+        if (LevelMenuManager.isMenuOpen) return;
+
         float angle = swingAngle * Mathf.Sin((Time.time - startTime) * swingSpeed); // Swing back and forth
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }

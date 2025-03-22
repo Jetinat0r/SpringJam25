@@ -233,13 +233,13 @@ Camera:
     serializedVersion: 2
     x: 0.003125
     y: 0.0034722222
-    width: 3.075
+    width: 3.16875
     height: 5.3541665
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -957,7 +957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1216228286100196808, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.74
+      value: -3.984306
       objectReference: {fileID: 0}
     - target: {fileID: 1216228286100196808, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: m_LocalPosition.z
