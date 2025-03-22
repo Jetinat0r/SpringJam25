@@ -454,6 +454,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Win()
     {
+        rb.linearVelocity = Vector2.zero;
         playerShadowSprite.SetActive(false);
         playerLightSprite.SetActive(true);
         spriteAnimator.SetTrigger("win");
