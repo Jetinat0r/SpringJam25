@@ -5,6 +5,17 @@ public class Switch : MonoBehaviour
 {
     public GameObject[] affectedObjects;
     private PlayerMovement playerScript;
+    [SerializeField] private SpriteRenderer sprite;
+    public Sprite active, inactive;
+    public bool on = false, wallSwitch = false;
+    public Transform meeple;
+    Animator myAnim;
+
+    public void Start()
+    {
+        meeple = this.gameObject.transform.GetChild(0);
+        myAnim = meeple.GetComponent<Animator>();
+    }
 
     public void MyInteraction()
     {
@@ -16,14 +27,21 @@ public class Switch : MonoBehaviour
         // Temp code for testing. Remove when actual 
         Debug.Log("Yup, you sure did interact with this switch!");
         playerScript.soundPlayer.PlaySound("Game.Lever");
-
+        on = !on;
+        if (wallSwitch)
+        {
+            sprite.sprite = on ? active : inactive;
+        }
+        else{
+            myAnim.SetTrigger("leverTrig");
+        }
         // Code stub for eventual implementation of changing affected objects
         foreach (var obj in affectedObjects)
         {
             if (obj != null)
             {
                 // State-changing code/appropriate obj function call here
-                obj.SetActive(!obj.activeSelf);
+                obj.SetActive(on);
             }
         }
     }

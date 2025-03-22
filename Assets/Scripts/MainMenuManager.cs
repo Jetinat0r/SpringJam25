@@ -143,7 +143,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void ContinuePlaying()
     {
-        if(SettingsManager.completedLevels >= 12)
+        soundPlayer.PlaySound(selectSound);
+        if (SettingsManager.completedLevels >= 12)
         {
             EnterLevel(levelButtons[^1].levelName);
         }
@@ -157,8 +158,12 @@ public class MainMenuManager : MonoBehaviour
     {
         curTween?.Kill();
 
-        Debug.Log($"Entering level {_levelName}");
-        SceneManager.LoadScene(_levelName);
+        ScreenWipe.current.WipeIn();
+        ScreenWipe.current.PostWipe += () =>
+        {
+            Debug.Log($"Entering level {_levelName}");
+            SceneManager.LoadScene(_levelName);
+        };
     }
 
     public void EnterLevel(LevelButton _levelButton)

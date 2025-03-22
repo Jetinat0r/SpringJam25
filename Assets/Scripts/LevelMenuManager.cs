@@ -11,6 +11,8 @@ public class LevelMenuManager : MonoBehaviour
 
     public GameObject soundPlayerPrefab;
 
+    public GameObject canvasPanel;
+
     public static bool isMenuOpen = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,7 +36,7 @@ public class LevelMenuManager : MonoBehaviour
 
     public void OpenMenu()
     {
-        gameObject.SetActive(true);
+        canvasPanel.SetActive(true);
         Time.timeScale = 0;
         AudioManager.instance.PauseCurrent();
         eventSystem.SetSelectedGameObject(firstSelectedElement);
@@ -44,7 +46,7 @@ public class LevelMenuManager : MonoBehaviour
 
     public void CloseMenu()
     {
-        gameObject.SetActive(false);
+        canvasPanel.SetActive(false);
         Time.timeScale = 1;
         AudioManager.instance.UnPauseCurrent();
         eventSystem.SetSelectedGameObject(null);
@@ -69,7 +71,7 @@ public class LevelMenuManager : MonoBehaviour
     public void ExitToMainMenu()
     {
         Time.timeScale = 1;
-        soundPlayer.PlaySound("UI.Confirm");
+        soundPlayer.PlaySound("UI.Select");
         // TODO this should use a delay + screen transition
         LevelManager.instance.ReturnToMainMenu();
         isMenuOpen = false;

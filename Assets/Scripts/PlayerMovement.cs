@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (actionToggleMenu.WasPressedThisFrame())
+        if (actionToggleMenu.WasPressedThisFrame() && ScreenWipe.over)
         {
             LevelManager.instance.ToggleMenu(this);
         }
