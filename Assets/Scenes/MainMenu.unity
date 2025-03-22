@@ -1485,7 +1485,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 3.484375}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &275066061
@@ -1512,9 +1512,9 @@ MonoBehaviour:
 
     - Aidan Brown
 
-    - SCott Serafin
+    - Scott Serafin
 
-    - Jet THompson
+    - Jet Thompson
 
     -
     Evan McRae
@@ -1535,7 +1535,9 @@ MonoBehaviour:
 
     Other
 
-    - Early gameboy font'
+    - Early GameBoy Font
+
+    - DOTween'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -8044,10 +8046,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0015625
-    y: 0.0017361111
-    width: 1.584375
-    height: 2.6770833
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
