@@ -12,7 +12,7 @@ public class Door : MonoBehaviour
         if(!requiresKey || playerScript.hasKey)
         {
             Debug.Log("Level Complete!");
-            playerScript.soundPlayer.PlaySound("Game.LevelClear");
+            playerScript.Win();
             LevelManager.instance.CompleteLevel();
 
             playerScript.OnInteract -= MyInteraction;

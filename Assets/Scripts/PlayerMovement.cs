@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
     private bool onWall = false;
     private bool isShadow = false;
     private bool isDead = false;
+    private bool hasWon = false;
 
     // Constants
     private float grav;
@@ -124,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
             LevelManager.instance.ResetScene();
         }
 
-        if (isDead) return;
+        if (isDead || hasWon) return;
 
         // Update input values
         moveX = actionMove.ReadValue<Vector2>().x;
@@ -137,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (LevelMenuManager.isMenuOpen) return;
+        if (LevelMenuManager.isMenuOpen || hasWon) return;
 
         //Debug.Log($"Light State: {(inLight ? "Light" : "Shadow")}");
 
@@ -438,10 +439,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
+        if (hasWon) return;
         isDead = true;
+        playerShadowSprite.SetActive(false);
+        playerLightSprite.SetActive(true);
         spriteAnimator.SetTrigger("die");
         soundPlayer.PlaySound("Game.Death");
         rb.AddForceY(400f);
         collision.enabled = false;
+    }
+
+    public void Win()
+    {
+        playerShadowSprite.SetActive(false);
+        playerLightSprite.SetActive(true);
+        spriteAnimator.SetTrigger("win");
+        soundPlayer.PlaySound("Game.LevelClear");
+        hasWon = true;
     }
 }
