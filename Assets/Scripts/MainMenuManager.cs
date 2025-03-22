@@ -157,8 +157,12 @@ public class MainMenuManager : MonoBehaviour
     {
         curTween?.Kill();
 
-        Debug.Log($"Entering level {_levelName}");
-        SceneManager.LoadScene(_levelName);
+        ScreenWipe.current.WipeIn();
+        ScreenWipe.current.PostWipe += () =>
+        {
+            Debug.Log($"Entering level {_levelName}");
+            SceneManager.LoadScene(_levelName);
+        };
     }
 
     public void EnterLevel(LevelButton _levelButton)

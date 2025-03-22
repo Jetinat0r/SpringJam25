@@ -34,7 +34,8 @@ public class LevelManager : MonoBehaviour
 
     public void ResetScene()
     {
-        SceneManager.LoadScene(currentLevelName);
+        ScreenWipe.current.WipeIn();
+        ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene(currentLevelName); };
     }
     
     public void CompleteLevel()
@@ -51,9 +52,9 @@ public class LevelManager : MonoBehaviour
     IEnumerator GoToNextLevel(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(nextLevelName);
+        ScreenWipe.current.WipeIn();
+        ScreenWipe.current.PostWipe += NextScene;
     }
-
 
     public void NextScene()
     {
@@ -62,6 +63,7 @@ public class LevelManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        ScreenWipe.current.WipeIn();
+        ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene("MainMenu"); } ;
     }
 }
