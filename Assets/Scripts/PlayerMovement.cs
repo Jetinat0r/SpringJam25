@@ -390,6 +390,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnExitWall()
     {
+        if(isDead) { return; }
         onWall = false;
 
         //If top down, fall out!
@@ -409,10 +410,12 @@ public class PlayerMovement : MonoBehaviour
         playerShadowSprite.SetActive(true);
         playerLightSprite.SetActive(false);
 
-        GetComponent<BoxCollider2D>().size = new Vector2(0.65f, 0.65f);
+        collision.size = new Vector2(0.65f, 0.65f);
+        collision.offset = new Vector2(0f, 0.5f);
         foreach (BoxCollider2D box in GetComponentsInChildren<BoxCollider2D>())
         {
-            box.size = new Vector2(0.65f, 0.65f);
+            box.size = collision.size;
+            box.offset = collision.offset;
         }
         shadowAnimator.SetFloat("Speed", 2);
         if (shadowAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0)
@@ -430,10 +433,12 @@ public class PlayerMovement : MonoBehaviour
         playerShadowSprite.SetActive(false);
         playerLightSprite.SetActive(true);
 
-        GetComponent<BoxCollider2D>().size = new Vector2(0.7f, 1f);
+        collision.size = new Vector2(0.7f, 0.8424748f);
+        collision.offset = new Vector2(0f, 0.4212374f);
         foreach (BoxCollider2D box in GetComponentsInChildren<BoxCollider2D>())
         {
-            box.size = new Vector2(0.7f, 1f);
+            box.size = collision.size;
+            box.offset = collision.offset;
         }
         shadowAnimator.SetFloat("Speed", -2);
         soundPlayer.PlaySound("Game.ShadowOut");
@@ -449,6 +454,7 @@ public class PlayerMovement : MonoBehaviour
         spriteAnimator.SetTrigger("die");
         soundPlayer.PlaySound("Game.Death");
         rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = grav;
         rb.AddForceY(400f);
         collision.enabled = false;
     }
