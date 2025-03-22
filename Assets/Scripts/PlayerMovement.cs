@@ -371,6 +371,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnExitLight()
     {
+        if (isDead) return;
         inLight = false;
 
         //If top down, fall out!
@@ -442,6 +443,10 @@ public class PlayerMovement : MonoBehaviour
         }
         shadowAnimator.SetFloat("Speed", -2);
         soundPlayer.PlaySound("Game.ShadowOut");
+        if (shadowAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+        {
+            shadowAnimator.Play("ShadowAnimation", 0, 1);
+        }
         isShadow = false;
     }
 
