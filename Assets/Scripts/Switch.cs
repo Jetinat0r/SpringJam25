@@ -10,6 +10,7 @@ public class Switch : MonoBehaviour
     public bool on = false, wallSwitch = false;
     public Transform meeple;
     Animator myAnim;
+    private bool flipped = false;
 
     public void Start()
     {
@@ -33,7 +34,17 @@ public class Switch : MonoBehaviour
             sprite.sprite = on ? active : inactive;
         }
         else{
-            myAnim.SetTrigger("leverTrig");
+            if(flipped == false)
+            {
+                myAnim.SetTrigger("leverTrig");
+                flipped = true;
+            }
+            else if(flipped == true)
+            {
+                print("DUCK");
+                myAnim.SetTrigger("back");
+                flipped = false;
+            }
         }
         // Code stub for eventual implementation of changing affected objects
         foreach (var obj in affectedObjects)
