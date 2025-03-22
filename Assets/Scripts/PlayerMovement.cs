@@ -298,9 +298,25 @@ public class PlayerMovement : MonoBehaviour
         playerLightSprite.SetActive(false);
         rb.linearVelocity = new Vector2(moveX * moveSpd, moveY * moveSpd);
 
+        if(moveX > 0 && (moveY >= 0))
+        {
+            //playerShadowSprite.transform.Rotate(0, 0, 270f);
+            playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 270f);
+        }
+        else if(moveX < 0 && (moveY >= 0))
+        {
+            playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 90f);
+        }
+
+        if(moveY < 0)
+        {
+            playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 180f);
+        }
+
         if (Mathf.Abs(moveX) < moveDeadzone && Mathf.Abs(moveY) < moveDeadzone)
         {
             currState = PlayerStates.IdleShadow;
+            playerShadowSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         if (toggledShadow)
