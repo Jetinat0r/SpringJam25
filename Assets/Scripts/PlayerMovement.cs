@@ -162,6 +162,9 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
 
+        // Relay falling state to animator
+        spriteAnimator.SetBool("isFalling", currState == PlayerStates.Falling);
+
         // Reset input vars
         interacted = false;
         toggledShadow = false;

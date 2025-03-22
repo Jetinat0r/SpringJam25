@@ -60,10 +60,10 @@ public class LevelMenuManager : MonoBehaviour
     public void RestartLevel()
     {
         soundPlayer.PlaySound("UI.Select");
+        CloseMenu();
+        Time.timeScale = 1;
         // TODO this should use a delay + screen transition
         LevelManager.instance.ResetScene();
-        Time.timeScale = 1;
-        CloseMenu();
     }
 
     public void ExitToMainMenu()
@@ -72,5 +72,6 @@ public class LevelMenuManager : MonoBehaviour
         soundPlayer.PlaySound("UI.Confirm");
         // TODO this should use a delay + screen transition
         LevelManager.instance.ReturnToMainMenu();
+        isMenuOpen = false;
     }
 }
