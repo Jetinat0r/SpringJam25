@@ -448,6 +448,7 @@ public class PlayerMovement : MonoBehaviour
         playerLightSprite.SetActive(true);
         spriteAnimator.SetTrigger("die");
         soundPlayer.PlaySound("Game.Death");
+        rb.linearVelocity = Vector2.zero;
         rb.AddForceY(400f);
         collision.enabled = false;
     }
