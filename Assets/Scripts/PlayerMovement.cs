@@ -390,6 +390,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnExitWall()
     {
+        if(isDead) { return; }
         onWall = false;
 
         //If top down, fall out!
@@ -449,6 +450,7 @@ public class PlayerMovement : MonoBehaviour
         spriteAnimator.SetTrigger("die");
         soundPlayer.PlaySound("Game.Death");
         rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = grav;
         rb.AddForceY(400f);
         collision.enabled = false;
     }
