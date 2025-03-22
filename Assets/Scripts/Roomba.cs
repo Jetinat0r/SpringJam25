@@ -27,6 +27,8 @@ public class Roomba : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (LevelMenuManager.isMenuOpen) return;
+
         if (facingRight)
         {
             EnemyRB.MovePosition(transform.position + Vector3.right * speed * Time.deltaTime);

@@ -12,7 +12,7 @@ public class Door : MonoBehaviour
         if(!requiresKey || playerScript.hasKey)
         {
             Debug.Log("Level Complete!");
-
+            playerScript.soundPlayer.PlaySound("Game.LevelClear");
             LevelManager.instance.CompleteLevel();
 
             playerScript.OnInteract -= MyInteraction;
@@ -28,7 +28,6 @@ public class Door : MonoBehaviour
 
             // This is where you'd summon the interact button prompt if we want to make it appear over their head regardless of whether or not they have a key
             PlayerMovement _playerScript = collision.gameObject.GetComponent<PlayerMovement>();
-
             if (_playerScript != null)
             {
                 _playerScript.OnInteract += MyInteraction;

@@ -114,7 +114,7 @@ public class SoundPlayer : MonoBehaviour
 
     public void PauseSound(string path = null)
     {
-        if (path == null)
+        if (path == null || path == "all")
         {
             foreach (AudioSource source in sources)
             {
@@ -154,7 +154,7 @@ public class SoundPlayer : MonoBehaviour
 
     public void UnPauseSound(string path = null)
     {
-        if (path == null)
+        if (path == null || path == "all")
         {
             foreach (AudioSource source in sources)
             {

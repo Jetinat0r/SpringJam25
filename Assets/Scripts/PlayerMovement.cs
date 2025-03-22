@@ -115,7 +115,11 @@ public class PlayerMovement : MonoBehaviour
         if (actionToggleMenu.WasPressedThisFrame())
         {
             LevelManager.instance.ToggleMenu();
+            if (LevelMenuManager.isMenuOpen) soundPlayer.PauseSound("all");
+            else soundPlayer.UnPauseSound("all");
         }
+
+        if (LevelMenuManager.isMenuOpen) return;
 
         if (actionResetLevel.WasPressedThisFrame())
         {
@@ -135,6 +139,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (LevelMenuManager.isMenuOpen) return;
+
         //Debug.Log($"Light State: {(inLight ? "Light" : "Shadow")}");
 
         // Execute current state
