@@ -52,7 +52,7 @@ public class Switch : MonoBehaviour
             if (obj != null)
             {
                 // State-changing code/appropriate obj function call here
-                obj.SetActive(on);
+                obj.SetActive(!obj.activeSelf);
             }
         }
     }
