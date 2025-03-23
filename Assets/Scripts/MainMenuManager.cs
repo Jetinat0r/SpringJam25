@@ -158,6 +158,7 @@ public class MainMenuManager : MonoBehaviour
     {
         curTween?.Kill();
 
+        soundPlayer.PlaySound(selectSound);
         ScreenWipe.current.WipeIn();
         ScreenWipe.current.PostWipe += () =>
         {
