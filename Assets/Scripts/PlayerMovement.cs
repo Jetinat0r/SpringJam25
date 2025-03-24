@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (LevelMenuManager.isMenuOpen) return;
 
-        if (actionResetLevel.WasPressedThisFrame())
+        if (actionResetLevel.WasPressedThisFrame() && ScreenWipe.over)
         {
             LevelManager.instance.ResetScene();
         }
