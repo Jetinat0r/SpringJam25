@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleUI",
+                    "type": "Button",
+                    "id": "9b63cf53-7eb8-4cde-8163-e1c0770045a4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -190,6 +199,28 @@
                 },
                 {
                     "name": "",
+                    "id": "7c1dda27-1f68-44f9-9f79-d9b296f29a66",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6ddc7ef-3ecb-42f9-93f4-d24fc2a068b3",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1c04ea5f-b012-41d1-a6f7-02e963b52893",
                     "path": "<Keyboard>/x",
                     "interactions": "",
@@ -319,6 +350,15 @@
                     "name": "RestartLevel",
                     "type": "Button",
                     "id": "2ddf94f8-c07a-41a2-af52-e46c3bf3d7f9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetProgress",
+                    "type": "Button",
+                    "id": "263ee13e-4d2a-4fa3-adc6-e8197369b2d0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -787,6 +827,39 @@
                     "action": "RestartLevel",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "206974a4-94b3-4414-aa77-6dd42416e7f6",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetProgress",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "3e68d920-823c-4f19-8e04-752668777576",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetProgress",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "2ff3456a-8dc4-4ead-9e6c-4c2cbfeee215",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetProgress",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

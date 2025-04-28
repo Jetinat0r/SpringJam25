@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
@@ -57,6 +58,10 @@ public class MainMenuManager : MonoBehaviour
 
     private bool inSettings = false;
 
+    [SerializeField]
+    private PlayerInput debugInput;
+    private InputAction resetProgress;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -74,6 +79,32 @@ public class MainMenuManager : MonoBehaviour
         for(int i = 0; i < levelButtons.Length; i++)
         {
             if(SettingsManager.completedLevels >= i)
+            {
+                levelButtons[i].UnlockLevel();
+            }
+            else
+            {
+                levelButtons[i].LockLevel();
+            }
+        }
+
+        resetProgress = debugInput.actions["ResetProgress"];
+        resetProgress.Enable();
+        resetProgress.started += ResetProgress;
+    }
+
+    private void OnDestroy()
+    {
+        resetProgress.started -= ResetProgress;
+    }
+
+    public void ResetProgress(InputAction.CallbackContext _context)
+    {
+        SettingsManager.completedLevels = 0;
+        SettingsManager.SaveSettings();
+        for (int i = 0; i < levelButtons.Length; i++)
+        {
+            if (SettingsManager.completedLevels >= i)
             {
                 levelButtons[i].UnlockLevel();
             }
