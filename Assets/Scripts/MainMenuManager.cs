@@ -62,6 +62,10 @@ public class MainMenuManager : MonoBehaviour
     private PlayerInput debugInput;
     private InputAction resetProgress;
 
+    [SerializeField]
+    [Tooltip("Allows Right Shift + R to Reset all progress. Save for Debug and Showcase builds!")]
+    public bool allowProgressDeletion = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -100,6 +104,11 @@ public class MainMenuManager : MonoBehaviour
 
     public void ResetProgress(InputAction.CallbackContext _context)
     {
+        if (!allowProgressDeletion)
+        {
+            return;
+        }
+
         SettingsManager.completedLevels = 0;
         SettingsManager.SaveSettings();
         for (int i = 0; i < levelButtons.Length; i++)
