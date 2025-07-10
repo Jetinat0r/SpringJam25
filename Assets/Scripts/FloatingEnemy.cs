@@ -71,6 +71,7 @@ public class FloatingEnemy : MonoBehaviour
 
         // Small rotation for a floating effect
         transform.Rotate(0, 0, Mathf.Sin(Time.time * rotationSpeed) * Time.deltaTime * 5f);
+        //transform.position = new Vector3(transform.position.x, transform.position.y + (Mathf.Sin(Time.time * rotationSpeed) * 0.001f), transform.position.z);//.Rotate(0, 0, Mathf.Sin(Time.time * rotationSpeed) * Time.deltaTime * 5f);
 
         // Check if close to target, then pick a new one
         if (Vector3.Distance(transform.position, targetPosition) < 0.05f)

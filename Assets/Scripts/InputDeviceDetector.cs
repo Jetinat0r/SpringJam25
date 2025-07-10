@@ -16,6 +16,8 @@ public class InputDeviceDetector : MonoBehaviour
     public GameObject xboxControl;
     [SerializeField]
     public GameObject playstationControl;
+    [SerializeField]
+    public GameObject defaultControl;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,9 +54,9 @@ public class InputDeviceDetector : MonoBehaviour
         nintendoControl.SetActive(false);
         xboxControl.SetActive(false);
         playstationControl.SetActive(false);
+        defaultControl.SetActive(false);
 
         _activeDevice = _activeDevice.ToLower();
-        Debug.Log(_activeDevice.Contains("xinput"));
 
         if (_activeDevice.Contains("keyboard"))
         {
@@ -74,7 +76,7 @@ public class InputDeviceDetector : MonoBehaviour
         }
         else
         {
-            keyboardControl.SetActive(true);
+            defaultControl.SetActive(true);
         }
     }
 }
