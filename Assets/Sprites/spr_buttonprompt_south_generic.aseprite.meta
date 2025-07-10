@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 439c692cbc33bbe4d89e42ad6d0d4bb5
+guid: cf97d405b35fb8643939986481723509
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638876915358930978
+  platformSettingsDirtyTick: 638876915824758532
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,7 +123,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: spr_buttonprompt_down
+  - name: spr_buttonprompt_south_generic
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -135,7 +135,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: 19282ea52a652734f99afb3c1a12edd2
+    spriteID: 69ee250d62caa89439e6b5037ed62732
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,13 +147,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -2014627747
-    name: spr_buttonprompt_down
+    guid: -1315565352
+    name: spr_buttonprompt_south_generic
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_buttonprompt_down
+    - name: spr_buttonprompt_south_generic
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -161,7 +161,7 @@ ScriptedImporter:
         y: 0
         width: 16
         height: 16
-      spriteId: 19282ea52a652734f99afb3c1a12edd2
+      spriteId: 69ee250d62caa89439e6b5037ed62732
     linkedCells: []
     parentIndex: -1
   platformSettings:

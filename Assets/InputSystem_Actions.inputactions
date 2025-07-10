@@ -177,6 +177,17 @@
                 },
                 {
                     "name": "",
+                    "id": "84b1f243-0298-4617-9d71-381bf37a8600",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f2e9ba44-c423-42a7-ad56-f20975884794",
                     "path": "<Keyboard>/z",
                     "interactions": "",
