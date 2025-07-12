@@ -135,6 +135,7 @@ public class MainMenuManager : MonoBehaviour
             SettingsManager.SaveSettings();
         }
 
+        MenuPanelWatcher.instance.activePanel = MenuPanel.MAIN;
         eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
     }
 
@@ -144,6 +145,7 @@ public class MainMenuManager : MonoBehaviour
         curTween = panelContainer.DOAnchorPos(-anchoredLevelSelectPanelPos, tweenMoveTime).SetEase(tweenEaseType);
         soundPlayer.PlaySound(selectSound);
 
+        MenuPanelWatcher.instance.activePanel = MenuPanel.LEVELS;
         eventSystem.SetSelectedGameObject(levelSelectPanelFirstSelected);
     }
 
@@ -154,6 +156,7 @@ public class MainMenuManager : MonoBehaviour
         soundPlayer.PlaySound(selectSound);
         inSettings = true;
 
+        MenuPanelWatcher.instance.activePanel = MenuPanel.SETTINGS;
         eventSystem.SetSelectedGameObject(settingsPanelFirstSelected);
     }
 
@@ -166,6 +169,7 @@ public class MainMenuManager : MonoBehaviour
         curTween = panelContainer.DOAnchorPos(-anchoredInstructionsPanelPos, tweenMoveTime).SetEase(tweenEaseType);
         soundPlayer.PlaySound(selectSound);
 
+        MenuPanelWatcher.instance.activePanel = MenuPanel.INSTRUCTIONS;
         eventSystem.SetSelectedGameObject(instructionsPanelFirstSelected);
     }
 
@@ -178,6 +182,7 @@ public class MainMenuManager : MonoBehaviour
         curTween = panelContainer.DOAnchorPos(-anchoredCreditsPanelPos, tweenMoveTime).SetEase(tweenEaseType);
         soundPlayer.PlaySound(selectSound);
 
+        MenuPanelWatcher.instance.activePanel = MenuPanel.CREDITS;
         eventSystem.SetSelectedGameObject(creditsPanelFirstSelected);
     }
 
@@ -210,5 +215,10 @@ public class MainMenuManager : MonoBehaviour
     public void EnterLevel(LevelButton _levelButton)
     {
         EnterLevel(_levelButton.levelName);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

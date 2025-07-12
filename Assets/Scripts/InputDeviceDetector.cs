@@ -48,7 +48,7 @@ public class InputDeviceDetector : MonoBehaviour
 
     public void SwapControls(string _activeDevice)
     {
-        Debug.Log(_activeDevice);
+        //Debug.Log(_activeDevice);
 
         keyboardControl.SetActive(false);
         nintendoControl.SetActive(false);
