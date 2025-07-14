@@ -14,6 +14,9 @@ public class LevelMenuManager : MonoBehaviour
     public GameObject canvasPanel;
 
     public static bool isMenuOpen = false;
+    public static bool isMenuClosedThisFrame = false;
+    //Player death or victory to avoid race conditions
+    public static bool playerOverride = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +26,7 @@ public class LevelMenuManager : MonoBehaviour
 
     public void ToggleMenu(PlayerMovement player)
     {
+        if (playerOverride) return;
         playerSoundPlayer = player.soundPlayer;
         if (!isMenuOpen)
         {
@@ -46,6 +50,8 @@ public class LevelMenuManager : MonoBehaviour
 
     public void CloseMenu()
     {
+        isMenuClosedThisFrame = true;
+
         canvasPanel.SetActive(false);
         Time.timeScale = 1;
         AudioManager.instance.UnPauseCurrent();
@@ -61,6 +67,8 @@ public class LevelMenuManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        EventSystem.current.gameObject.SetActive(false);
+
         soundPlayer.PlaySound("UI.Select");
         CloseMenu();
         Time.timeScale = 1;
@@ -70,6 +78,8 @@ public class LevelMenuManager : MonoBehaviour
 
     public void ExitToMainMenu()
     {
+        EventSystem.current.gameObject.SetActive(false);
+
         Time.timeScale = 1;
         soundPlayer.PlaySound("UI.Select");
         // TODO this should use a delay + screen transition

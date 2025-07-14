@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
@@ -99,6 +100,8 @@ public class PlayerMovement : MonoBehaviour
 
         wallDetector.onWallEnter += OnEnterWall;
         wallDetector.onWallExit += OnExitWall;
+
+        LevelMenuManager.playerOverride = false;
     }
 
     private void OnDestroy()
@@ -126,10 +129,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (isDead || hasWon) return;
+        if (LevelMenuManager.isMenuClosedThisFrame)
+        {
+            LevelMenuManager.isMenuClosedThisFrame = false;
+            return;
+        }
 
         // Update input values
         moveX = actionMove.ReadValue<Vector2>().x;
         moveY = actionMove.ReadValue<Vector2>().y;
+        //Debug.Log($"MOVE: {moveX}, {moveY}");
 
         if (actionInteract.WasPressedThisFrame()) interacted = true;
         if (actionShadow.WasPressedThisFrame()) toggledShadow = true;
@@ -292,6 +301,8 @@ public class PlayerMovement : MonoBehaviour
 
     void IdleShadow(float moveX, float moveY, bool interacted, bool toggledShadow)
     {
+        rb.linearVelocity = Vector2.zero;
+
         if (Mathf.Abs(moveX) > moveDeadzone || Mathf.Abs(moveY) > moveDeadzone)
         {
             SetShadow();
@@ -453,6 +464,7 @@ public class PlayerMovement : MonoBehaviour
     public void Die()
     {
         if (hasWon) return;
+        LevelMenuManager.playerOverride = true;
         isDead = true;
         playerShadowSprite.SetActive(false);
         playerLightSprite.SetActive(true);
@@ -466,6 +478,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Win()
     {
+        LevelMenuManager.playerOverride = true;
         rb.linearVelocity = Vector2.zero;
         playerShadowSprite.SetActive(false);
         playerLightSprite.SetActive(true);

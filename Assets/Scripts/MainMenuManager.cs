@@ -109,6 +109,11 @@ public class MainMenuManager : MonoBehaviour
             return;
         }
 
+        ResetProgress();
+    }
+
+    public void ResetProgress()
+    {
         SettingsManager.completedLevels = 0;
         SettingsManager.SaveSettings();
         for (int i = 0; i < levelButtons.Length; i++)
@@ -202,6 +207,8 @@ public class MainMenuManager : MonoBehaviour
     public void EnterLevel(string _levelName)
     {
         curTween?.Kill();
+
+        EventSystem.current.gameObject.SetActive(false);
 
         soundPlayer.PlaySound(selectSound);
         ScreenWipe.current.WipeIn();
