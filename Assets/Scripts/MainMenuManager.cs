@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -226,6 +229,17 @@ public class MainMenuManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        soundPlayer.PlaySound(backSound);
+        AudioManager.instance.FadeOutCurrent();
+        ScreenWipe.current.WipeIn();
+        ScreenWipe.current.PostWipe += () =>
+        {
+            //Debug.Log($"Entering level {_levelName}");
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        };
     }
 }
