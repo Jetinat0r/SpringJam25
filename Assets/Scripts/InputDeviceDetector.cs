@@ -1,8 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Switch;
-using UnityEngine.InputSystem.XInput;
-using UnityEngine.InputSystem.DualShock;
 
 public class InputDeviceDetector : MonoBehaviour
 {

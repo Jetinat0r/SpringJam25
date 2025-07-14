@@ -72,6 +72,9 @@ public class MainMenuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 1;
+
         anchoredMainPanelPos = mainPanel.anchoredPosition;
         anchoredLevelSelectPanelPos = levelSelectPanel.anchoredPosition;
         anchoredSettingsPanelPos = settingsPanel.anchoredPosition;
@@ -117,6 +120,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ResetProgress()
     {
+        soundPlayer.PlaySound(backSound);
         SettingsManager.completedLevels = 0;
         SettingsManager.SaveSettings();
         for (int i = 0; i < levelButtons.Length; i++)

@@ -5418,7 +5418,7 @@ MonoBehaviour:
     you encounter a wall in light.\n\nAs a ghost, you can move left and right, but
     when you become a shadow, you can move in any direction! \n\nFlip levers to turn
     on and off spotlights. Collect keys to enter doors and progress through levels.
-    Avoid those risky roombas!"
+    Avoid those vicious vacuums!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -5453,7 +5453,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -7371,7 +7371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90ca5e62d3505748afa144723fd260b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentPanel: 0
+  parentPanel: 1
   selectable: {fileID: 0}
 --- !u!114 &970725549
 MonoBehaviour:
@@ -10161,7 +10161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90ca5e62d3505748afa144723fd260b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentPanel: 1
+  parentPanel: 0
   selectable: {fileID: 0}
 --- !u!114 &1239248486
 MonoBehaviour:
