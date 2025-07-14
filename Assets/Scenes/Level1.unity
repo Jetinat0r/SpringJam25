@@ -3311,6 +3311,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: DEFAULT_spr_buttonprompt_south_generic
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: cf97d405b35fb8643939986481723509, type: 3}
+      propertyPath: m_SortingLayer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: cf97d405b35fb8643939986481723509, type: 3}
+      propertyPath: m_SortingOrder
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: cf97d405b35fb8643939986481723509, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2006344403
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: cf97d405b35fb8643939986481723509, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
