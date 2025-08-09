@@ -141,6 +141,14 @@ public class PlayerMovement : MonoBehaviour
         // Update input values
         moveX = actionMove.ReadValue<Vector2>().x;
         moveY = actionMove.ReadValue<Vector2>().y;
+
+        // Cancel and de-normalize vertical inputs as a ghost
+        if (!isShadow && moveX != 0)
+        {
+            float mag = new Vector2(moveX, moveY).magnitude;
+            moveX = Mathf.Sign(moveX) * mag;
+        }
+        
         //Debug.Log($"MOVE: {moveX}, {moveY}");
 
         if (actionInteract.WasPressedThisFrame()) interacted = true;
