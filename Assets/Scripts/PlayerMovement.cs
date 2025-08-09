@@ -76,6 +76,9 @@ public class PlayerMovement : MonoBehaviour
     private float grav;
     [SerializeField] private float groundAcceleration;
 
+    // Physics Materials
+    [SerializeField] private PhysicsMaterial2D slippery, friction;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -177,14 +180,32 @@ public class PlayerMovement : MonoBehaviour
         // Reset input vars
         interacted = false;
         toggledShadow = false;
+
+        // Set physics material for proper friction behavior
+        if (!grounded && !isShadow)
+        {
+            rb.sharedMaterial = slippery;
+        }
+        else
+        {
+            rb.sharedMaterial = friction;
+        }
     }
 
     // Set/unset grounded
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
+        grounded = false;
         if (collision.gameObject.layer == 6)
         {
-            grounded = true;
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                if (contact.normal == Vector2.up)
+                {
+                    grounded = true;
+                    return;
+                }
+            }
         }
     }
 

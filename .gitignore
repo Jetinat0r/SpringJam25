@@ -73,3 +73,5 @@ crashlytics-build.properties
 
 # Annoying thing for mac
 .DS_Store
+
+.vscode/
