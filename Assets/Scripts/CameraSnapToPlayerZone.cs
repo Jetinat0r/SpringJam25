@@ -18,6 +18,8 @@ public class CameraSnapToPlayerZone : MonoBehaviour
 
     private void Update()
     {
+        if (LevelMenuManager.playerOverride) return;
+        
         // Only move screen in distinct zones, snap to current zone (2D Zelda)
         Vector3 targetPos = new Vector3(Mathf.RoundToInt(target.position.x / zoneSize.x) * zoneSize.x, Mathf.RoundToInt(target.position.y / zoneSize.y) * zoneSize.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, targetPos, scrollSpeed);
