@@ -32,13 +32,13 @@ public class SettingsManager : MonoBehaviour
 
     public static void SetResolution(Int32 res)
     {
+        resolution = res;
         if (FullScreenDetector.fullscreen) return;
         int x = 320 * (int)Math.Pow(2, res);
         int y = 288 * (int)Math.Pow(2, res);
 #if !PLATFORM_WEBGL
         Screen.SetResolution(x, y, false);
 #endif
-        resolution = res;
     }
 
     public static void LoadSettings()
