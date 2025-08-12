@@ -512,7 +512,7 @@ public class PlayerMovement : MonoBehaviour
         playerShadowSprite.SetActive(false);
         playerLightSprite.SetActive(true);
         spriteAnimator.SetTrigger("win");
-        soundPlayer.PlaySound("Game.LevelClear");
+        soundPlayer.PlaySound("Game.LevelClear", 0.6f);
         hasWon = true;
     }
 }
