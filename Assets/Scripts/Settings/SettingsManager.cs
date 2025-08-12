@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Json;
 using UnityEngine.InputSystem;
 using System;
 using TMPro;
+using Steamworks;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
@@ -32,6 +33,10 @@ public class SettingsManager : MonoBehaviour
 
     public static void SetResolution(Int32 res)
     {
+        if (SteamManager.Initialized && SteamUtils.IsSteamRunningOnSteamDeck())
+        {
+            res = 2; // force high res on steamdeck sorry :(
+        }
         resolution = res;
         if (FullScreenDetector.fullscreen) return;
         int x = 320 * (int)Math.Pow(2, res);
