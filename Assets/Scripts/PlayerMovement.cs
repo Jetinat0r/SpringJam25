@@ -208,7 +208,7 @@ public class PlayerMovement : MonoBehaviour
         {
             foreach (ContactPoint2D contact in collision.contacts)
             {
-                if (contact.normal == Vector2.up)
+                if (Mathf.Abs((contact.normal - Vector2.up).magnitude) <= 0.001f)
                 {
                     grounded = true;
                     return;
