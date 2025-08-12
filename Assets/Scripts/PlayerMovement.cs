@@ -208,7 +208,7 @@ public class PlayerMovement : MonoBehaviour
         {
             foreach (ContactPoint2D contact in collision.contacts)
             {
-                if (contact.normal == Vector2.up)
+                if (Mathf.Abs((contact.normal - Vector2.up).magnitude) <= 0.001f)
                 {
                     grounded = true;
                     return;
@@ -512,7 +512,7 @@ public class PlayerMovement : MonoBehaviour
         playerShadowSprite.SetActive(false);
         playerLightSprite.SetActive(true);
         spriteAnimator.SetTrigger("win");
-        soundPlayer.PlaySound("Game.LevelClear");
+        soundPlayer.PlaySound("Game.LevelClear", 0.6f);
         hasWon = true;
     }
 }
