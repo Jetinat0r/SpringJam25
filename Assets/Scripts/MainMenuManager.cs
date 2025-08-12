@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -19,9 +20,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     public GameObject mainPanelFirstSelected;
     [SerializeField]
-    public RectTransform levelSelectPanel;
+    public List<RectTransform> levelSelectPanels;
     [SerializeField]
-    public GameObject levelSelectPanelFirstSelected;
+    public List<GameObject> levelSelectPanelFirstSelecteds;
     [SerializeField]
     public RectTransform settingsPanel;
     [SerializeField]
@@ -43,11 +44,11 @@ public class MainMenuManager : MonoBehaviour
     public Ease tweenEaseType = Ease.OutQuint;
     
     [SerializeField]
-    public LevelButton[] levelButtons = new LevelButton[12];
+    public LevelButton[] levelButtons = new LevelButton[32];
 
     //Used to slide the UI around. Cached because I don't know how things work when they slide
     private Vector2 anchoredMainPanelPos;
-    private Vector2 anchoredLevelSelectPanelPos;
+    private readonly List<Vector2> anchoredLevelSelectPanelPoses = new();
     private Vector2 anchoredSettingsPanelPos;
     private Vector2 anchoredInstructionsPanelPos;
     private Vector2 anchoredCreditsPanelPos;
@@ -76,7 +77,10 @@ public class MainMenuManager : MonoBehaviour
         QualitySettings.vSyncCount = 1;
 
         anchoredMainPanelPos = mainPanel.anchoredPosition;
-        anchoredLevelSelectPanelPos = levelSelectPanel.anchoredPosition;
+        foreach (RectTransform panel in levelSelectPanels)
+        {
+            anchoredLevelSelectPanelPoses.Add(panel.anchoredPosition);
+        }
         anchoredSettingsPanelPos = settingsPanel.anchoredPosition;
         anchoredInstructionsPanelPos = instructionsPanel.anchoredPosition;
         anchoredCreditsPanelPos = creditsPanel.anchoredPosition;
@@ -151,14 +155,14 @@ public class MainMenuManager : MonoBehaviour
         eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
     }
 
-    public void MoveToLevelSelectPanel()
+    public void MoveToLevelSelectPanel(int num = 0)
     {
         curTween?.Kill();
-        curTween = panelContainer.DOAnchorPos(-anchoredLevelSelectPanelPos, tweenMoveTime).SetEase(tweenEaseType);
+        curTween = panelContainer.DOAnchorPos(-anchoredLevelSelectPanelPoses[num], tweenMoveTime).SetEase(tweenEaseType);
         soundPlayer.PlaySound(selectSound);
 
         MenuPanelWatcher.instance.activePanel = MenuPanel.LEVELS;
-        eventSystem.SetSelectedGameObject(levelSelectPanelFirstSelected);
+        eventSystem.SetSelectedGameObject(levelSelectPanelFirstSelecteds[num]);
     }
 
     public void MoveToSettingsPanel()
