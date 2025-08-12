@@ -17,6 +17,8 @@ public class LevelMenuManager : MonoBehaviour
     public static bool isMenuClosedThisFrame = false;
     //Player death or victory to avoid race conditions
     public static bool playerOverride = false;
+    //Don't allow pausing mid room scroll transition
+    public static bool roomScrollTransitionOverride = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +28,7 @@ public class LevelMenuManager : MonoBehaviour
 
     public void ToggleMenu(PlayerMovement player)
     {
-        if (playerOverride) return;
+        if (playerOverride || roomScrollTransitionOverride) return;
         playerSoundPlayer = player.soundPlayer;
         if (!isMenuOpen)
         {

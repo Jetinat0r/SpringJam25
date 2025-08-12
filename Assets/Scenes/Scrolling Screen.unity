@@ -301,9 +301,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.153125
     y: 0
-    width: 1
+    width: 0.6944445
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -420,9 +420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a2f854933f82d49b800256b1e9e2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 525950088}
+  target: {fileID: 1431758641}
   zoneSize: {x: 10, y: 9}
-  scrollSpeed: 0.05
+  scrollTime: 0.75
 --- !u!1001 &353157593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -570,11 +570,6 @@ GameObject:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6485261965720258989, guid: 34132f20332a66345a207a76d8038c02, type: 3}
   m_PrefabInstance: {fileID: 12623719}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &525950088 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1861802092930290197, guid: 6fd12ad700f3fa641a8b7152246bf6d1, type: 3}
-  m_PrefabInstance: {fileID: 599054510}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &552027392
 GameObject:
@@ -2217,7 +2212,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1861802092930290197, guid: 6fd12ad700f3fa641a8b7152246bf6d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.625
+      value: 3.90625
       objectReference: {fileID: 0}
     - target: {fileID: 1861802092930290197, guid: 6fd12ad700f3fa641a8b7152246bf6d1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3263,6 +3258,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68c19e6d16ecd0f448613a4ff4b822e6, type: 3}
+--- !u!4 &1431758641 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5778771310185363040, guid: 6fd12ad700f3fa641a8b7152246bf6d1, type: 3}
+  m_PrefabInstance: {fileID: 599054510}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1466612682
 PrefabInstance:
   m_ObjectHideFlags: 0
