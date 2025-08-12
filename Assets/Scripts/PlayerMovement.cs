@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     public bool canInteract;
     private bool grounded;
     public bool hasKey;
+    private bool checkIsForcedOutShadow = false;
 
     // Mutables
     public float moveSpd = 1.0f;
@@ -161,6 +162,16 @@ public class PlayerMovement : MonoBehaviour
         if (LevelMenuManager.isMenuOpen || hasWon || isDead) return;
 
         //Debug.Log($"Light State: {(inLight ? "Light" : "Shadow")}");
+        if (checkIsForcedOutShadow)
+        {
+            checkIsForcedOutShadow = false;
+
+            if (!onWall || !inLight)
+            {
+                ExitShadow();
+            }
+            //else we're in shadow and don't do anything
+        }
 
         // Execute current state
         switch (currState)
@@ -414,14 +425,7 @@ public class PlayerMovement : MonoBehaviour
         if (isDead) return;
         inLight = false;
 
-        //If top down, fall out!
-        if(currState == PlayerStates.IdleShadow || currState == PlayerStates.WalkShadow)
-        {
-            currState = PlayerStates.IdleGhost;
-            rb.linearVelocity = Vector2.zero;
-            SetGhost();
-            rb.gravityScale = grav;
-        }
+        checkIsForcedOutShadow = true;
     }
 
     void OnEnterWall()
@@ -434,6 +438,11 @@ public class PlayerMovement : MonoBehaviour
         if(isDead) { return; }
         onWall = false;
 
+        checkIsForcedOutShadow = true;
+    }
+
+    void ExitShadow()
+    {
         //If top down, fall out!
         if (currState == PlayerStates.IdleShadow || currState == PlayerStates.WalkShadow)
         {
