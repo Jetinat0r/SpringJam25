@@ -21,7 +21,7 @@ public class CameraSnapToPlayerZone : MonoBehaviour
         }
 
         //currentZone = new Vector2Int(Mathf.RoundToInt(target.position.x / zoneSize.x), Mathf.RoundToInt(target.position.y / zoneSize.y));
-        currentZone = (new Vector2(MathUtils.GetClosestEvenDivisor(target.position.x, zoneSize.x) / zoneSize.x, MathUtils.GetClosestEvenDivisor(target.position.y, zoneSize.y) / zoneSize.y)).ToVector2Int();
+        currentZone = new Vector2(MathUtils.GetClosestEvenDivisor(target.position.x, zoneSize.x) / zoneSize.x, MathUtils.GetClosestEvenDivisor(target.position.y, zoneSize.y) / zoneSize.y).ToVector2Int();
         Vector2 _newPos = currentZone * zoneSize;
         transform.position = new Vector3(_newPos.x, _newPos.y, transform.position.z);
     }
@@ -31,7 +31,7 @@ public class CameraSnapToPlayerZone : MonoBehaviour
         if (LevelMenuManager.playerOverride) return;
 
         // Only move screen in distinct zones, snap to current zone (2D Zelda / Metroid)
-        Vector2Int _newZone = (new Vector2(MathUtils.GetClosestEvenDivisor(target.position.x, zoneSize.x) / zoneSize.x, MathUtils.GetClosestEvenDivisor(target.position.y, zoneSize.y) / zoneSize.y)).ToVector2Int();
+        Vector2Int _newZone = new Vector2(MathUtils.GetClosestEvenDivisor(target.position.x, zoneSize.x) / zoneSize.x, MathUtils.GetClosestEvenDivisor(target.position.y, zoneSize.y) / zoneSize.y).ToVector2Int();
         if (_newZone != currentZone)
         {
             currentZone = _newZone;

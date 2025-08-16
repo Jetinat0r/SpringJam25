@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -72,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isShadow = false;
     private bool isDead = false;
     private bool hasWon = false;
+    private bool isPushing = false;
 
     // Constants
     private float grav;
@@ -200,6 +202,31 @@ public class PlayerMovement : MonoBehaviour
         interacted = false;
         toggledShadow = false;
 
+        // Ground/box push check
+        grounded = false;
+        isPushing = false;
+        List<ContactPoint2D> contacts = new();
+        rb.GetContacts(contacts);
+        foreach (ContactPoint2D contact in contacts)
+        {
+            // TODO: Amend this check for other ground collidable objects
+            if (contact.collider.gameObject.layer == 6 || contact.collider.gameObject.layer == 10)
+            {
+                if (Mathf.Abs((contact.normal - Vector2.up).magnitude) <= 0.001f)
+                {
+                    grounded = true;
+                }
+            }
+            if (contact.collider.gameObject.layer == 10)
+            {
+                if (Mathf.Abs((contact.normal - Vector2.right).magnitude) <= 0.001f || Mathf.Abs((contact.normal - Vector2.left).magnitude) <= 0.001f)
+                {
+                    isPushing = true;
+                }
+            }
+        }
+        spriteAnimator.SetBool("isPushing", isPushing);
+
         // Set physics material for proper friction behavior
         if (!grounded && !isShadow)
         {
@@ -208,42 +235,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.sharedMaterial = friction;
-        }
-    }
-
-    // Set/unset grounded
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Box")
-        {
-            spriteAnimator.SetBool("isPushing", true);
-            return;
-        }
-        grounded = false;
-        if (collision.gameObject.layer == 6)
-        {
-            foreach (ContactPoint2D contact in collision.contacts)
-            {
-                if (Mathf.Abs((contact.normal - Vector2.up).magnitude) <= 0.001f)
-                {
-                    grounded = true;
-                    return;
-                }
-            }
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Box")
-        {
-            spriteAnimator.SetBool("isPushing", false);
-            return;
-        }
-
-        if (collision.gameObject.layer == 6)
-        {
-            grounded = false;
         }
     }
 
