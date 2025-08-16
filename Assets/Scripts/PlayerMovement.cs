@@ -214,6 +214,11 @@ public class PlayerMovement : MonoBehaviour
     // Set/unset grounded
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (collision.gameObject.name == "Box")
+        {
+            spriteAnimator.SetBool("isPushing", true);
+            return;
+        }
         grounded = false;
         if (collision.gameObject.layer == 6)
         {
@@ -230,6 +235,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        if (collision.gameObject.name == "Box")
+        {
+            spriteAnimator.SetBool("isPushing", false);
+            return;
+        }
+
         if (collision.gameObject.layer == 6)
         {
             grounded = false;
