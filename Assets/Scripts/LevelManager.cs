@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class LevelManager : MonoBehaviour
 {
@@ -13,10 +14,11 @@ public class LevelManager : MonoBehaviour
     public int currentLevelNumber = 1;
 
     public string nextLevelName = "Level";
+    public Tilemap tilemap;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }

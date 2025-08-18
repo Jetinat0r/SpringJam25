@@ -121,3 +121,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockwise: 1
   speed: 1
+  cwTile: {fileID: 11400000, guid: 82afe58eaaa4ac3488310d82a921749f, type: 2}
+  ccwTile: {fileID: 11400000, guid: ec5bdaf8201c6024fa8c2929c6184dbe, type: 2}
