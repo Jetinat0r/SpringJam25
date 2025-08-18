@@ -3,8 +3,8 @@ using UnityEngine.Tilemaps;
 
 public class ConveyorBelt : MonoBehaviour
 {
-    [SerializeField] private bool clockwise = true;
-    [SerializeField] private float speed = 1.0f;
+    public bool clockwise = true;
+    public float speed = 1.0f;
     private Rigidbody2D rb;
     [SerializeField] private TileBase cwTile, ccwTile;
     private float startTime;
@@ -18,7 +18,7 @@ public class ConveyorBelt : MonoBehaviour
     private void Update()
     {
         // TODO: Remove, only used for testing
-        if (Time.time - startTime > 1f)
+        if (Time.time - startTime > 5f)
         {
             FlipBelt();
             startTime = Time.time;

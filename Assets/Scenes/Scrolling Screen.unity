@@ -301,10 +301,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.18750001
+    x: 0.013802084
     y: 0
-    width: 0.62500006
-    height: 1
+    width: 0.13888891
+    height: 0.22222222
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -3332,6 +3332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
+      propertyPath: tilemap
+      value: 
+      objectReference: {fileID: 5280433029220250236}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: nextLevelName
       value: MainMenu

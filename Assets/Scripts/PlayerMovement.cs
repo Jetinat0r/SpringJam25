@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Mutables
     public float moveSpd = 1.0f;
+    public float spdBoost = 0.0f;
     private Vector2 velocity = Vector2.zero;
     private bool inLight = false;
     private bool onWall = false;
@@ -205,16 +206,24 @@ public class PlayerMovement : MonoBehaviour
         // Ground/box push check
         grounded = false;
         isPushing = false;
+        spdBoost = 0;
         List<ContactPoint2D> contacts = new();
         rb.GetContacts(contacts);
         foreach (ContactPoint2D contact in contacts)
         {
             // TODO: Amend this check for other ground collidable objects
-            if (contact.collider.gameObject.layer == 6 || contact.collider.gameObject.layer == 10)
+            if (contact.collider.gameObject.layer == 6 || contact.collider.gameObject.layer == 10 || contact.collider.gameObject.layer == 11)
             {
                 if (Mathf.Abs((contact.normal - Vector2.up).magnitude) <= 0.001f)
                 {
                     grounded = true;
+                    if (contact.collider.gameObject.TryGetComponent(out ConveyorBelt belt) && currState == PlayerStates.WalkGhost)
+                    {
+                        if ((belt.clockwise && moveX > 0) || (!belt.clockwise && moveX < 0))
+                        {
+                            spdBoost = belt.speed;
+                        }
+                    }
                 }
             }
             if (contact.collider.gameObject.layer == 10)
@@ -277,7 +286,7 @@ public class PlayerMovement : MonoBehaviour
         playerLightSprite.SetActive(true);
         rb.gravityScale = grav;
 
-        Vector2 targetVelocity = new Vector2(moveX * moveSpd, rb.linearVelocity.y);
+        Vector2 targetVelocity = new Vector2(moveX * (moveSpd + spdBoost), rb.linearVelocity.y);
         rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, groundAcceleration);
 
         // Flip sprite based on movement direction

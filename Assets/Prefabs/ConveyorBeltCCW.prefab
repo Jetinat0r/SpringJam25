@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3194058413865139190}
   - component: {fileID: 5624579740078559171}
   - component: {fileID: 2083463069254832573}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: ConveyorBeltCCW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
