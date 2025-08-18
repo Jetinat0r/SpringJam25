@@ -223,6 +223,10 @@ public class PlayerMovement : MonoBehaviour
                         {
                             spdBoost = belt.speed;
                         }
+                        else if ((belt.clockwise && moveX < 0) || (!belt.clockwise && moveX > 0))
+                        {
+                            spdBoost = -belt.speed / 2;
+                        }
                     }
                 }
             }
