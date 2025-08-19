@@ -230,11 +230,17 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             }
-            if (contact.collider.gameObject.layer == 10)
+            // Detect pushing boxes
+            if (contact.collider.gameObject.layer == 10 && (currState == PlayerStates.WalkGhost || currState == PlayerStates.WalkShadow))
             {
-                if (Mathf.Abs((contact.normal - Vector2.right).magnitude) <= 0.001f || Mathf.Abs((contact.normal - Vector2.left).magnitude) <= 0.001f)
+                // Only works if touching the left or right side
+                if ((moveX < 0 && Mathf.Abs((contact.normal - Vector2.right).magnitude) <= 0.001f) || (moveX > 0 && Mathf.Abs((contact.normal - Vector2.left).magnitude) <= 0.001f))
                 {
-                    isPushing = true;
+                    // Only works if touching below the top
+                    if (contact.point.y < contact.collider.bounds.extents.y + contact.collider.bounds.center.y - 0.01f)
+                    {
+                        isPushing = true;
+                    }
                 }
             }
         }
@@ -295,6 +301,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Flip sprite based on movement direction
         Vector3 sprScale = sprite.transform.localScale;  // This is here to make typing easier
+        // TODO: This is not a good check! Has a right bias
         sprite.transform.localScale = new Vector3(Mathf.Sign(rb.linearVelocityX), sprScale.y, sprScale.z);
 
         if (Mathf.Abs(moveX) < moveDeadzone)

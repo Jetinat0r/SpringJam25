@@ -27,7 +27,6 @@ public class ConveyorBelt : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // TODO: Player forces
         Vector2 position = rb.position;
         if (clockwise)
         {
@@ -46,6 +45,6 @@ public class ConveyorBelt : MonoBehaviour
     public void FlipBelt()
     {
         clockwise = !clockwise;
-        LevelManager.instance.tilemap.SetTile(LevelManager.instance.tilemap.WorldToCell(transform.position), clockwise ? cwTile : ccwTile);
+        LevelManager.instance.conveyorTilemap.SetTile(LevelManager.instance.conveyorTilemap.WorldToCell(transform.position), clockwise ? cwTile : ccwTile);
     }
 }

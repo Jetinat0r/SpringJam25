@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     public int currentLevelNumber = 1;
 
     public string nextLevelName = "Level";
-    public Tilemap tilemap;
+    public Tilemap conveyorTilemap;
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         ScreenWipe.current.WipeIn();
         ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene(currentLevelName); };
     }
-    
+
     public void CompleteLevel()
     {
         if (SettingsManager.completedLevels < currentLevelNumber)
@@ -66,6 +66,6 @@ public class LevelManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         ScreenWipe.current.WipeIn();
-        ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene("MainMenu"); } ;
+        ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene("MainMenu"); };
     }
 }
