@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Conveyor Belt CCW
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -7073110359072914169, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-  m_DefaultGameObject: {fileID: 6473461939702629203, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
+  m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
     - {fileID: -7073110359072914169, guid: cec4c092b92c001488180b8b61ede554, type: 3}
     - {fileID: -5999132610181422918, guid: cec4c092b92c001488180b8b61ede554, type: 3}
     - {fileID: -3884477281039024349, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-    m_GameObject: {fileID: 6473461939702629203, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
+    m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 10
     m_MaxAnimationSpeed: 10
     m_PerlinScale: 0.5
@@ -38,7 +38,7 @@ MonoBehaviour:
     - {fileID: 5097835944376697235, guid: cec4c092b92c001488180b8b61ede554, type: 3}
     - {fileID: -4807704676763458266, guid: cec4c092b92c001488180b8b61ede554, type: 3}
     - {fileID: -6051028654464453215, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-    m_GameObject: {fileID: 6473461939702629203, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
+    m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 10
     m_MaxAnimationSpeed: 10
     m_PerlinScale: 0.5
@@ -55,7 +55,7 @@ MonoBehaviour:
     - {fileID: -1881133030138643150, guid: cec4c092b92c001488180b8b61ede554, type: 3}
     - {fileID: -8035304731177095645, guid: cec4c092b92c001488180b8b61ede554, type: 3}
     - {fileID: -6266161475285700000, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-    m_GameObject: {fileID: 6473461939702629203, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
+    m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 10
     m_MaxAnimationSpeed: 10
     m_PerlinScale: 0.5
