@@ -207,4 +207,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ac2bc09d802204081da83314e48919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallThreshold: -0.01
+  slippery: {fileID: 6200000, guid: 43bc07a684bfe45f89322810a08e3ce4, type: 2}
+  friction: {fileID: 6200000, guid: 83f5deb1c6b3a4621b76822ac7a3b759, type: 2}
