@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -41,6 +42,18 @@ public class Key : MonoBehaviour
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             player.hasKey = true;
             player.soundPlayer.PlaySound("Game.Key");
+
+            Door[] doors = FindObjectsByType<Door>(FindObjectsSortMode.None);
+            foreach (Door door in doors)
+            {
+                if (door.remainingKeys.Contains(this))
+                {
+                    door.remainingKeys.Remove(this);
+                    door.UpdateKeyholes();
+                    Debug.Log("Keyholes updated");
+                }
+            }
+
             Destroy(gameObject);
         }
     }
