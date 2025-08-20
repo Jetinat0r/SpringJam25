@@ -1,9 +1,7 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -27,6 +25,7 @@ public class Door : MonoBehaviour
         Debug.Log(remainingKeys.Count);
     }
 
+#if UNITY_EDITOR
     private void OnValidate()
     {
         if (myKeys.Length > maxNumKeys)
@@ -41,11 +40,12 @@ public class Door : MonoBehaviour
             sprites = new Sprite[maxNumKeys + 1];
         }
     }
+#endif
 
     public void MyInteraction()
     {
         // TODO: Talk with some scene manager or initiate some UI thing to initiate level complete
-        if(remainingKeys.Count == 0)
+        if (remainingKeys.Count == 0)
         {
             //Debug.Log("Level Complete!");
             playerScript.Win();

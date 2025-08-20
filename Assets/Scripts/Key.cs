@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Key : MonoBehaviour
