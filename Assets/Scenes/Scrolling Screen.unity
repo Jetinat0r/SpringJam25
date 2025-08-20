@@ -399,9 +399,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: 0.58125
+    width: 0.52421874
+    height: 0.75487494
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1104,17 +1104,17 @@ CompositeCollider2D:
   - m_Collider: {fileID: 480786009}
     m_ColliderPaths:
     - - X: -10000000
-        Y: -35187500
+        Y: -35312500
       - X: -35000000
-        Y: -35187500
+        Y: -35312500
       - X: -35000000
         Y: -40000000
       - X: -10000000
         Y: -40000000
     - - X: 35000000
-        Y: -35187500
+        Y: -35312500
       - X: 10000000
-        Y: -35187500
+        Y: -35312500
       - X: 10000000
         Y: -40000000
       - X: 35000000
@@ -1122,12 +1122,12 @@ CompositeCollider2D:
   m_CompositePaths:
     m_Paths:
     - - {x: 3.499971, y: -4}
-      - {x: 3.499971, y: -3.51875}
-      - {x: 1, y: -3.5187793}
+      - {x: 3.499971, y: -3.53125}
+      - {x: 1, y: -3.5312793}
       - {x: 1.0000293, y: -4}
     - - {x: -1.0000293, y: -4}
-      - {x: -1.0000293, y: -3.51875}
-      - {x: -3.5, y: -3.5187793}
+      - {x: -1.0000293, y: -3.53125}
+      - {x: -3.5, y: -3.5312793}
       - {x: -3.499971, y: -4}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
