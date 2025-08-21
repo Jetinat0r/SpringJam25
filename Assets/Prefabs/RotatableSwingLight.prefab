@@ -292,6 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1807653175356924947}
   - component: {fileID: 457022979894456257}
+  - component: {fileID: 6086124148589477417}
   m_Layer: 0
   m_Name: SwingingLampPrefab
   m_TagString: Untagged
@@ -331,6 +332,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swingAngle: 2.5
   swingSpeed: 0.8
+--- !u!114 &6086124148589477417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762205280560866231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160458e5512fe42875117194a09b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  affectedObjs:
+  - {fileID: 2587981277733647684}
+  - {fileID: 7213876802351420023}
+  - {fileID: 1384232711827039833}
 --- !u!1 &4230676446673625788
 GameObject:
   m_ObjectHideFlags: 0

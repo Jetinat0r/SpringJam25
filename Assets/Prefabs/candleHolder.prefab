@@ -121,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6735271595836201446}
   - component: {fileID: 7141525860127119087}
+  - component: {fileID: 6365518246704577433}
   m_Layer: 0
   m_Name: candleHolder
   m_TagString: Untagged
@@ -161,6 +162,21 @@ MonoBehaviour:
   moveRadius: 0.25
   smoothTime: 1.5
   rotationSpeed: 15
+--- !u!114 &6365518246704577433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477462219131922576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160458e5512fe42875117194a09b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  affectedObjs:
+  - {fileID: 3066162575140361460}
+  - {fileID: 8827047527826754061}
 --- !u!1 &8827047527826754061
 GameObject:
   m_ObjectHideFlags: 0
