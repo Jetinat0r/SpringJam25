@@ -2740,6 +2740,14 @@ PrefabInstance:
       propertyPath: requiresKey
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 743752353798390558, guid: 68c19e6d16ecd0f448613a4ff4b822e6, type: 3}
+      propertyPath: myKeys.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 743752353798390558, guid: 68c19e6d16ecd0f448613a4ff4b822e6, type: 3}
+      propertyPath: 'myKeys.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1948847364}
     - target: {fileID: 3543057676482985727, guid: 68c19e6d16ecd0f448613a4ff4b822e6, type: 3}
       propertyPath: m_Name
       value: Door
@@ -5575,6 +5583,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34abdb5f6ce19354c8eeda0455a4cf0f, type: 3}
+--- !u!114 &1948847364 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1951224279385893684, guid: 34abdb5f6ce19354c8eeda0455a4cf0f, type: 3}
+  m_PrefabInstance: {fileID: 1948847363}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2e66d8eefeb0342b9650fabac3ffbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &755227993951155763
 Transform:
   m_ObjectHideFlags: 0

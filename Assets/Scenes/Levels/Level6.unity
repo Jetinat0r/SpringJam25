@@ -261,6 +261,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3066162575140361460, guid: 6a5d150d002441e498fa51df445173a6, type: 3}
   m_PrefabInstance: {fileID: 291748693}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &291748696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6477462219131922576, guid: 6a5d150d002441e498fa51df445173a6, type: 3}
+  m_PrefabInstance: {fileID: 291748693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &314143637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -271,20 +276,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3403333620730640440, guid: 7c91d01d3103e0e4893d0c7f11126d0f, type: 3}
       propertyPath: affectedObjects.Array.size
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3403333620730640440, guid: 7c91d01d3103e0e4893d0c7f11126d0f, type: 3}
       propertyPath: 'affectedObjects.Array.data[0]'
       value: 
-      objectReference: {fileID: 483990667}
+      objectReference: {fileID: 483990665}
     - target: {fileID: 3403333620730640440, guid: 7c91d01d3103e0e4893d0c7f11126d0f, type: 3}
       propertyPath: 'affectedObjects.Array.data[1]'
       value: 
-      objectReference: {fileID: 483990666}
+      objectReference: {fileID: 291748696}
     - target: {fileID: 3403333620730640440, guid: 7c91d01d3103e0e4893d0c7f11126d0f, type: 3}
       propertyPath: 'affectedObjects.Array.data[2]'
       value: 
-      objectReference: {fileID: 483990665}
+      objectReference: {fileID: 494550467}
     - target: {fileID: 3403333620730640440, guid: 7c91d01d3103e0e4893d0c7f11126d0f, type: 3}
       propertyPath: 'affectedObjects.Array.data[3]'
       value: 
@@ -668,17 +673,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 9554ae7a90aef0a46877e2609954923e, type: 3}
 --- !u!1 &483990665 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1384232711827039833, guid: 9554ae7a90aef0a46877e2609954923e, type: 3}
-  m_PrefabInstance: {fileID: 483990664}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &483990666 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7213876802351420023, guid: 9554ae7a90aef0a46877e2609954923e, type: 3}
-  m_PrefabInstance: {fileID: 483990664}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &483990667 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2587981277733647684, guid: 9554ae7a90aef0a46877e2609954923e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3762205280560866231, guid: 9554ae7a90aef0a46877e2609954923e, type: 3}
   m_PrefabInstance: {fileID: 483990664}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &494550466
@@ -746,6 +741,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a5d150d002441e498fa51df445173a6, type: 3}
+--- !u!1 &494550467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6477462219131922576, guid: 6a5d150d002441e498fa51df445173a6, type: 3}
+  m_PrefabInstance: {fileID: 494550466}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &552027392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3044,20 +3044,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3403333620730640440, guid: c1b776adc750d4af7ad44c43079392c5, type: 3}
       propertyPath: affectedObjects.Array.size
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3403333620730640440, guid: c1b776adc750d4af7ad44c43079392c5, type: 3}
       propertyPath: 'affectedObjects.Array.data[0]'
       value: 
-      objectReference: {fileID: 483990667}
+      objectReference: {fileID: 483990665}
     - target: {fileID: 3403333620730640440, guid: c1b776adc750d4af7ad44c43079392c5, type: 3}
       propertyPath: 'affectedObjects.Array.data[1]'
       value: 
-      objectReference: {fileID: 483990666}
+      objectReference: {fileID: 291748696}
     - target: {fileID: 3403333620730640440, guid: c1b776adc750d4af7ad44c43079392c5, type: 3}
       propertyPath: 'affectedObjects.Array.data[2]'
       value: 
-      objectReference: {fileID: 483990665}
+      objectReference: {fileID: 494550467}
     - target: {fileID: 3403333620730640440, guid: c1b776adc750d4af7ad44c43079392c5, type: 3}
       propertyPath: 'affectedObjects.Array.data[3]'
       value: 
