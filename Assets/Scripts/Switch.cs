@@ -39,6 +39,21 @@ public class Switch : MonoBehaviour
                 flipped = false;
             }
         }
+
+        foreach (GameObject obj in affectedObjects)
+        {
+            if (obj != null)
+            {
+                IToggleable _toggler;
+
+                if (obj.TryGetComponent<IToggleable>(out _toggler))
+                {
+                    _toggler.OnToggle();
+                }
+            }
+        }
+
+        /*
         // Code stub for eventual implementation of changing affected objects
         // Adding onto this pile of duct tape with more duct tape in the form of conveyor belts
         foreach (var obj in affectedObjects)
@@ -53,7 +68,7 @@ public class Switch : MonoBehaviour
                 // State-changing code/appropriate obj function call here
                 obj.SetActive(!obj.activeSelf);
             }
-        }
+        }*/
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

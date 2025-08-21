@@ -1,7 +1,8 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class ConveyorBelt : MonoBehaviour
+public class ConveyorBelt : MonoBehaviour, IToggleable
 {
     public bool clockwise = true;
     public float speed = 1.0f;
@@ -64,5 +65,10 @@ public class ConveyorBelt : MonoBehaviour
 
             pos += 0.5f;
         }
+    }
+
+    public void OnToggle()
+    {
+        FlipBelt();
     }
 }
