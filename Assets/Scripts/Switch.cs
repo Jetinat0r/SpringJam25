@@ -40,9 +40,15 @@ public class Switch : MonoBehaviour
             }
         }
         // Code stub for eventual implementation of changing affected objects
+        // Adding onto this pile of duct tape with more duct tape in the form of conveyor belts
         foreach (var obj in affectedObjects)
         {
-            if (obj != null)
+            var _beltScript = obj.GetComponent<ConveyorBelt>();
+            if (_beltScript != null)
+            {
+                _beltScript.FlipBelt();
+            }
+            else if (obj != null)
             {
                 // State-changing code/appropriate obj function call here
                 obj.SetActive(!obj.activeSelf);

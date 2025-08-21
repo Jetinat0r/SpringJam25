@@ -9,6 +9,7 @@ public class ConveyorBelt : MonoBehaviour
     private BoxCollider2D boxCollider;
     [SerializeField] private TileBase cwTile, ccwTile;
     private float startTime;
+    [SerializeField] private bool debug = false;
 
     private void Start()
     {
@@ -19,11 +20,14 @@ public class ConveyorBelt : MonoBehaviour
 
     private void Update()
     {
-        // TODO: Remove, only used for testing
-        if (Time.time - startTime > 5f)
+        if (debug)
         {
-            FlipBelt();
-            startTime = Time.time;
+            // TODO: Remove, only used for testing
+            if (Time.time - startTime > 5f)
+            {
+                FlipBelt();
+                startTime = Time.time;
+            }
         }
     }
 
