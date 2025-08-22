@@ -1,8 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PressurePad : MonoBehaviour
 {
@@ -10,7 +7,7 @@ public class PressurePad : MonoBehaviour
     private int weight = 0;
     private SpriteRenderer spriteRenderer = null;
 
-    private List<GameObject> allowedObjects;
+    private List<GameObject> allowedObjects = new List<GameObject>();
 
     private void Start()
     {
