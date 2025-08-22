@@ -44,9 +44,7 @@ public class Switch : MonoBehaviour
         {
             if (obj != null)
             {
-                IToggleable _toggler;
-
-                if (obj.TryGetComponent<IToggleable>(out _toggler))
+                if (obj.TryGetComponent(out IToggleable _toggler))
                 {
                     _toggler.OnToggle();
                 }

@@ -7,29 +7,16 @@ public class PressurePad : MonoBehaviour
     private int weight = 0;
     private SpriteRenderer spriteRenderer = null;
 
-    private List<GameObject> allowedObjects = new List<GameObject>();
-
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        // Add a list of all objects that can affect the pad.
-        Box[] _boxes = FindObjectsByType<Box>(FindObjectsSortMode.None);
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        foreach (Box box in _boxes)
-        {
-            allowedObjects.Add(box.gameObject);
-        }
-
-        allowedObjects.Add(player);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject != null)
         {
-            if (allowedObjects.Contains(collision.gameObject))
+            if (collision.gameObject.layer == 10 || collision.gameObject.CompareTag("Player"))
             {
                 int previousWeight = weight;
                 weight++;
@@ -43,7 +30,7 @@ public class PressurePad : MonoBehaviour
     {
         if (collision.gameObject != null)
         {
-            if (allowedObjects.Contains(collision.gameObject))
+            if (collision.gameObject.layer == 10 || collision.gameObject.CompareTag("Player"))
             {
                 int previousWeight = weight;
                 weight--;
@@ -89,14 +76,11 @@ public class PressurePad : MonoBehaviour
         {
             if (obj != null)
             {
-                IToggleable _toggler;
-
-                if (obj.TryGetComponent<IToggleable>(out _toggler))
+                if (obj.TryGetComponent(out IToggleable _toggler))
                 {
                     _toggler.OnToggle();
                 }
             }
         }
     }
-
 }
