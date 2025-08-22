@@ -83,6 +83,9 @@ public class PlayerMovement : MonoBehaviour
     // Physics Materials
     [SerializeField] private PhysicsMaterial2D slippery, friction;
 
+    // Singleton
+    public static PlayerMovement instance;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -109,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
         wallDetector.onWallExit += OnExitWall;
 
         LevelMenuManager.playerOverride = false;
+
+        instance = this;
     }
 
     private void OnDestroy()

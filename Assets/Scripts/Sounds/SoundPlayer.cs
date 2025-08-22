@@ -51,7 +51,7 @@ public class SoundPlayer : MonoBehaviour
 
         foreach (AudioSource source in sources)
         {
-            if (source.clip == clip && source.isPlaying)
+            if (source != null && source.gameObject.activeInHierarchy && source.clip == clip && source.isPlaying)
             {
                 if (source.time < 0.2f) return;
                 else source.Stop();
@@ -59,7 +59,7 @@ public class SoundPlayer : MonoBehaviour
         }
         for (int index = sources.Length - 1; index >= 0; index--)
         {
-            if (!sources[index].isPlaying)
+            if (sources[index] != null && sources[index].gameObject.activeInHierarchy && !sources[index].isPlaying)
             {
                 sources[index].clip = clip;
                 sources[index].loop = loop;

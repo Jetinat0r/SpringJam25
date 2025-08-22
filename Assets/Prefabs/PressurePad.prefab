@@ -93,6 +93,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affectedObjects: []
+  unpressed: {fileID: -4197657769552316828, guid: 195febd2e241bae47bce6177f801c0e5, type: 3}
+  pressed: {fileID: 7436447078833776550, guid: 195febd2e241bae47bce6177f801c0e5, type: 3}
 --- !u!1 &8144117150255049567
 GameObject:
   m_ObjectHideFlags: 0

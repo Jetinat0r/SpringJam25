@@ -6,10 +6,11 @@ public class PressurePad : MonoBehaviour
     public GameObject[] affectedObjects;
     private int weight = 0;
     private SpriteRenderer spriteRenderer = null;
+    [SerializeField] private Sprite unpressed, pressed;
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -53,20 +54,22 @@ public class PressurePad : MonoBehaviour
         {
             Debug.Log("Pad state went unchanged. Lighter, but still > 0");
         }
-        
+
         if (weight == 0)
         {
             // Pad is no longer burdened by weight. Lift it up.
             Debug.Log("Pad is now free of any and all weights.");
-
+            spriteRenderer.sprite = unpressed;
             ChangeAffectedObjects();
+            PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
         }
         else if (weight == 1 && previousWeight == 0)
         {
             // Pad is burdened by new weight. Press it down.
             Debug.Log("Pad is now weighed down.");
-
+            spriteRenderer.sprite = pressed;
             ChangeAffectedObjects();
+            PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
         }
     }
 
