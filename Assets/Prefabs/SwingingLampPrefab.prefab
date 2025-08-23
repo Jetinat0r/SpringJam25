@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 1115434426290824976}
   - component: {fileID: 9044017094814494356}
   - component: {fileID: 5348135537293344242}
+  - component: {fileID: 247493543368489648}
   m_Layer: 7
   m_Name: LongLightPrefab
   m_TagString: Untagged
@@ -282,6 +283,19 @@ PolygonCollider2D:
       - {x: 0.125, y: 1}
       - {x: -0.125, y: 1}
   m_UseDelaunayMesh: 0
+--- !u!114 &247493543368489648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6485261965720258989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424812cee0be3d44ab7ed46f0ef42100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightDirection: {x: 0, y: -1}
 --- !u!1 &7701107492513274544
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,3 +449,4 @@ MonoBehaviour:
   - {fileID: 7701107492513274544}
   - {fileID: 3254230680181210499}
   - {fileID: 6485261965720258989}
+  heldLight: {fileID: 0}
