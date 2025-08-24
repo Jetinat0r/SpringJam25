@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -25,6 +26,26 @@ public class Mirror : MonoBehaviour, IRotatable
         capsuleCollider = GetComponentInChildren<CapsuleCollider2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
+
+        switch (state)
+        {
+            case MirrorDirection.UpLeft:
+                animator.Play("mirrorRotate3");
+                capsuleCollider.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 135));
+                break;
+            case MirrorDirection.UpRight:
+                animator.Play("mirrorRotate0");
+                capsuleCollider.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 225));
+                break;
+            case MirrorDirection.DownRight:
+                animator.Play("mirrorRotate1");
+                capsuleCollider.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 315));
+                break;
+            case MirrorDirection.DownLeft:
+                animator.Play("mirrorRotate2");
+                capsuleCollider.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 45));
+                break;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -34,10 +55,8 @@ public class Mirror : MonoBehaviour, IRotatable
             // Stop firing this event if there is already an output light
             return;
         }
-        Debug.Log("Yup, something's hitting me");
         if (collision.gameObject.layer == 7 && collision.gameObject != outputLight)
         {
-            Debug.Log("Yup, that's a light that's not mine");
             ReflectLight(collision.gameObject);
         }
     }
