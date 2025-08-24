@@ -16,10 +16,15 @@ public class Mirror : MonoBehaviour, IRotatable
 
     private GameObject outputLight = null;
     private CapsuleCollider2D capsuleCollider = null;
+    private SpriteRenderer spriteRenderer = null;
+    private Animator animator = null;
 
     private void Start()
     {
-        capsuleCollider = GetComponent<CapsuleCollider2D>();
+
+        capsuleCollider = GetComponentInChildren<CapsuleCollider2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,7 +57,9 @@ public class Mirror : MonoBehaviour, IRotatable
         
         if (outputLight != null) Destroy(outputLight);
 
-        // TODO: Animator stuff and change capsule collider rotation
+        // Animator stuff and change capsule collider rotation
+
+
         // transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.localEulerAngles.z + 90));
     }
 
