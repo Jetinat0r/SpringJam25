@@ -3173,28 +3173,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2993255736945064512, guid: d80a3bd03471c7046a0f5699ca6554c1, type: 3}
   m_PrefabInstance: {fileID: 7582766538410468849}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &696006180
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696006176}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1040561641
 GameObject:
   m_ObjectHideFlags: 0
@@ -4743,6 +4721,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3474510422279184706, guid: 3953af641cfc44a2b9df699ddd7cb4ad, type: 3}
+      propertyPath: affectedObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474510422279184706, guid: 3953af641cfc44a2b9df699ddd7cb4ad, type: 3}
+      propertyPath: 'affectedObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 696006176}
     - target: {fileID: 7262956384783359809, guid: 3953af641cfc44a2b9df699ddd7cb4ad, type: 3}
       propertyPath: m_Name
       value: Crank
@@ -22516,7 +22502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6247794686570262604, guid: 7b638aafb3a8e4b85bd2d9c99b9e671b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.25
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 6247794686570262604, guid: 7b638aafb3a8e4b85bd2d9c99b9e671b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -31794,10 +31780,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2993255736945064512, guid: d80a3bd03471c7046a0f5699ca6554c1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 696006180}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d80a3bd03471c7046a0f5699ca6554c1, type: 3}
 --- !u!483693784 &7618833403341539547
 TilemapRenderer:

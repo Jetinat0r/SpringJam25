@@ -24,11 +24,16 @@ public class Mirror : MonoBehaviour, IRotatable
 
         capsuleCollider = GetComponentInChildren<CapsuleCollider2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
+        if (outputLight != null)
+        {
+            // Stop firing this event if there is already an output light
+            return;
+        }
         Debug.Log("Yup, something's hitting me");
         if (collision.gameObject.layer == 7 && collision.gameObject != outputLight)
         {
@@ -54,13 +59,16 @@ public class Mirror : MonoBehaviour, IRotatable
          * And this all returns an int, so you gotta cast it back to being an enum state
          */
         state = (MirrorDirection)(((int)state + 1) % Enum.GetNames(typeof(MirrorDirection)).Length);
-        
-        if (outputLight != null) Destroy(outputLight);
 
-        // Animator stuff and change capsule collider rotation
+        if (outputLight != null)
+        {
+            Destroy(outputLight);
+            outputLight = null;
+        }
 
-
-        // transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.localEulerAngles.z + 90));
+        // Set animator trigger and change capsule collider rotation to match new rotation of the mirror
+        animator.SetTrigger("mirrorTrig");
+        capsuleCollider.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, capsuleCollider.transform.localEulerAngles.z + 90));
     }
 
     private void ReflectLight(GameObject inputLight)
