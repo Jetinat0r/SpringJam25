@@ -1005,7 +1005,7 @@ Tilemap:
       - {fileID: 5097835944376697235, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -4807704676763458266, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -6051028654464453215, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: -8, z: 0}
@@ -31733,6 +31733,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2531200591416664321, guid: d80a3bd03471c7046a0f5699ca6554c1, type: 3}
+      propertyPath: state
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2993255736945064512, guid: d80a3bd03471c7046a0f5699ca6554c1, type: 3}
       propertyPath: m_Name
       value: Mirror
