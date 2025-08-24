@@ -32,6 +32,14 @@ public class Mirror : MonoBehaviour, IRotatable
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 7 && collision.gameObject != outputLight)
+        {
+            if (outputLight != null) Destroy(outputLight);
+        }
+    }
+
     public void OnRotate()
     {
         /*
@@ -74,17 +82,63 @@ public class Mirror : MonoBehaviour, IRotatable
                 }
                 else if (inputDirection == Vector2.right)
                 {
-                    // Light is coming from the right, so fire a new light upwards.
+                    // Light is coming from the left, so fire a new light upwards.
+                    outputLight = Instantiate(inputLight);
+                    outputLight.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                    outputLight.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 180));
                 }
 
                 // If light is coming from a different direction, ignore it, the mirror is not a state where it can reflect it
                 // Ergo, don't instantiate jack.
+
                 break;
             case MirrorDirection.UpRight:
+                if (inputDirection == Vector2.down)
+                {
+                    // Light is coming down, so fire a new light off to the right.
+                    outputLight = Instantiate(inputLight);
+                    outputLight.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                    outputLight.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                }
+                else if (inputDirection == Vector2.left)
+                {
+                    // Light is coming from the right, so fire a new light upwards.
+                    outputLight = Instantiate(inputLight);
+                    outputLight.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                    outputLight.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                }
                 break;
             case MirrorDirection.DownRight:
+                if (inputDirection == Vector2.up)
+                {
+                    // Light is coming from below, so fire a new light off to the right.
+                    outputLight = Instantiate(inputLight);
+                    outputLight.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                    outputLight.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                }
+                else if (inputDirection == Vector2.left)
+                {
+                    // Light is coming from the right, so fire a new light downwards.
+                    outputLight = Instantiate(inputLight);
+                    outputLight.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                    outputLight.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                }
                 break;
             case MirrorDirection.DownLeft:
+                if (inputDirection == Vector2.up)
+                {
+                    // Light is coming from below, so fire a new light off to the left.
+                    outputLight = Instantiate(inputLight);
+                    outputLight.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                    outputLight.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                }
+                else if (inputDirection == Vector2.right)
+                {
+                    // Light is coming from the left, so fire a new light downwards.
+                    outputLight = Instantiate(inputLight);
+                    outputLight.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                    outputLight.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                }
                 break;
         }
     }
