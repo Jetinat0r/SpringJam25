@@ -428,6 +428,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1171581960070588738, guid: e80fcde0e5ed5a84a841be0422cd4685, type: 3}
+      propertyPath: newTrack
+      value: 
+      objectReference: {fileID: 11400000, guid: c550c2e617c744de1979e1e972d7a86e, type: 2}
     - target: {fileID: 7063382920539804015, guid: e80fcde0e5ed5a84a841be0422cd4685, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.9100285
@@ -568,9 +572,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.153125
     y: 0
-    width: 1
+    width: 0.6944445
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -1280,7 +1284,7 @@ Tilemap:
       - {fileID: -1881133030138643150, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -8035304731177095645, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -6266161475285700000, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 23, y: -8, z: 0}
