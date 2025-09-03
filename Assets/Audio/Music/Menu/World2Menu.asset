@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a26adf86829b4d84ea3114b11ed9f424, type: 3}
-  m_Name: Level
+  m_Script: {fileID: 11500000, guid: c0dbb07ce11e4bc40ae3eb1b248f06e1, type: 3}
+  m_Name: World2Menu
   m_EditorClassIdentifier: 
-  children:
-  - {fileID: 11400000, guid: 44c61c252f92f476f881370fa8197c55, type: 2}
-  - {fileID: 11400000, guid: c550c2e617c744de1979e1e972d7a86e, type: 2}
+  clip: {fileID: 8300000, guid: 7c1b8d52118ff4fe5a395900828e36f3, type: 3}
+  BPM: 188.53
+  timeSignature: 12
+  timeSignatureBottom: 8
+  barsLength: 28
+  area: 1

@@ -1,21 +1,30 @@
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Vent : MonoBehaviour, IToggleable
 {
+    [SerializeField]
+    public GameObject noEntryIcon;
+
     public bool isWallVent = true;
     public bool isOpen = false;
     public Vent counterpart;
 
     private BoxCollider2D objectTrigger = null;
     private CircleCollider2D interactionRadius = null;
-    private GameObject player = null;
+    private PlayerMovement player = null;
+    
+    //List of all boxes currently touching the vent
+    //  We have to allow travel time, and can't suck in > 1 box at the same time (they'll spawn into each other)
+    public List<Box> touchingBoxes = new();
+    public List<GameObject> objectsInTransit = new();
 
     private void Start()
     {
         objectTrigger = GetComponent<BoxCollider2D>();
         interactionRadius = GetComponent<CircleCollider2D>();
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     public void OnToggle()
@@ -27,9 +36,10 @@ public class Vent : MonoBehaviour, IToggleable
 
     public void MyInteraction()
     {
-        if (counterpart != null)
+        if (isOpen && counterpart != null)
         {
-            AcceptObject(player);
+            //AcceptObject(player);
+            player.EnterVent(this);
         }
     }
 
@@ -64,13 +74,37 @@ public class Vent : MonoBehaviour, IToggleable
              */
     }
 
+    //TODO: Implement
+    //If the exit is blocked by a box, return true
+    public bool CheckIsBlocked()
+    {
+        return false;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerMovement _playerScript = collision.gameObject.GetComponent<PlayerMovement>();
-
-        if (_playerScript != null)
+        Debug.Log($"Entered {collision.name}");
+        if (collision.gameObject.CompareTag("Player"))
         {
-            _playerScript.OnInteract += this.MyInteraction;
+            //PlayerMovement _playerScript = collision.gameObject.GetComponent<PlayerMovement>();
+            //_playerScript.OnInteract += this.MyInteraction;
+            player.OnInteract += this.MyInteraction;
+
+            //TODO: No entry icon
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //PlayerMovement _playerScript = collision.gameObject.GetComponent<PlayerMovement>();
+
+            //_playerScript = collision.gameObject.GetComponent<PlayerMovement>();
+            //_playerScript.OnInteract -= MyInteraction;
+            player.OnInteract -= this.MyInteraction;
+
+            //noEntryIcon.SetActive(false);
         }
     }
 }

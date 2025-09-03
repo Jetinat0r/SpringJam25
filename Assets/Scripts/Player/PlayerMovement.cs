@@ -75,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isDead = false;
     private bool hasWon = false;
     private bool isPushing = false;
+    //The temptation to call this "isSus" is so strong, but I remain stronger
+    public bool isVenting = false;
 
     // Constants
     private float grav;
@@ -86,9 +88,17 @@ public class PlayerMovement : MonoBehaviour
     // Singleton
     public static PlayerMovement instance;
 
+    //The vent the player is actively moving through
+    //private Vent enteredVent = null;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (LevelManager.instance != null)
+        {
+            LevelManager.instance.RegisterPlayer(this);
+        }
+
         rb = GetComponent<Rigidbody2D>();
         collision = GetComponent<BoxCollider2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
@@ -128,9 +138,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isVenting) { return; }
+
         if (actionToggleMenu.WasPressedThisFrame() && ScreenWipe.over)
         {
-            LevelManager.instance.ToggleMenu(this);
+            LevelManager.instance.ToggleMenu();
         }
 
         if (LevelMenuManager.isMenuOpen) return;
@@ -160,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
         
         //Debug.Log($"MOVE: {moveX}, {moveY}");
 
+        //These things are why we can de-shadow mid camera transition lol
         if (actionInteract.WasPressedThisFrame()) interacted = true;
         if (actionShadow.WasPressedThisFrame()) toggledShadow = true;
     }
@@ -167,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (LevelMenuManager.isMenuOpen || hasWon || isDead) return;
+        if (LevelMenuManager.isMenuOpen || hasWon || isDead || isVenting) return;
 
         //Debug.Log($"Light State: {(inLight ? "Light" : "Shadow")}");
         if (checkIsForcedOutShadow)
@@ -524,6 +537,65 @@ public class PlayerMovement : MonoBehaviour
             shadowAnimator.Play("ShadowAnimation", 0, 1);
         }
         isShadow = false;
+    }
+
+    public void EnterVent(Vent _vent)
+    {
+        if (isVenting)
+        {
+            return;
+        }
+
+        if (_vent.counterpart == null)
+        {
+            //TODO:
+            //Display NO ENTRY or NO VENT symbol
+            Debug.LogError($"NO VENT COUNTERPART: {_vent.name}");
+            return;
+        }
+
+        if (_vent.CheckIsBlocked())
+        {
+            //TODO:
+            //Display NO ENTRY or BLOCKAGE symbol
+            Debug.Log($"Vent blocked {_vent.name}");
+            return;
+        }
+
+        if(!LevelManager.instance.GetVentPath(_vent, out List<int> _zonePath))
+        {
+            //TODO:
+            //Display NO ENTRY or NO PATH symbol
+            Debug.LogError($"NO VALID VENT PATH: {_vent.name}");
+            return;
+        }
+        else
+        {
+            Debug.Log(_zonePath.Count);
+        }
+
+        isVenting = true;
+
+        playerLightSprite.SetActive(false);
+        playerShadowSprite.SetActive(false);
+
+        //enteredVent = _vent;
+        rb.position = _vent.counterpart.transform.position;
+
+        CameraTarget[] _targets = FindObjectsByType<CameraTarget>(FindObjectsSortMode.None);
+        _targets[0].TakeVentPath(_zonePath, ExitVent);
+    }
+
+    public void ExitVent()
+    {
+        //TODO: Allow venting and keeping shadow state?
+        playerLightSprite.SetActive(true);
+        //playerShadowSprite.SetActive(false);
+
+        
+        //enteredVent = null;
+
+        isVenting = false;
     }
 
     public void Die()
