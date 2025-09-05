@@ -7,14 +7,14 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
     public bool clockwise = true;
     public float speed = 1.0f;
     private Rigidbody2D rb;
-    private BoxCollider2D boxCollider;
+    private EdgeCollider2D cldr;
     [SerializeField] private TileBase cwTile, ccwTile;
     private float startTime;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        cldr = GetComponent<EdgeCollider2D>();
         startTime = Time.time;
     }
 
@@ -39,8 +39,8 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
     public void FlipBelt()
     {
         clockwise = !clockwise;
-        float pos = boxCollider.bounds.min.x + 0.25f;
-        while (pos < boxCollider.bounds.max.x)
+        float pos = cldr.bounds.min.x + 0.25f;
+        while (pos < cldr.bounds.max.x)
         {
             Vector2 worldPos = new(pos, transform.position.y);
             Vector3Int tilePos = LevelManager.instance.conveyorTilemap.WorldToCell(worldPos);
