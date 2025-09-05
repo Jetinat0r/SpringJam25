@@ -29,10 +29,13 @@ public class Roomba : MonoBehaviour
     {
         if (LevelMenuManager.isMenuOpen) return;
 
+        Vector3 intendedPos;
         if (facingRight)
         {
-            EnemyRB.MovePosition(transform.position + Vector3.right * speed * Time.deltaTime);
-            if((transform.position.x - home.x) > rightDist)
+            intendedPos = transform.position + speed * Time.deltaTime * Vector3.right;
+            intendedPos.y = transform.position.y;
+            EnemyRB.MovePosition(intendedPos);
+            if ((transform.position.x - home.x) > rightDist)
             {
                 Flip();
                 //print("should flip");
@@ -40,7 +43,9 @@ public class Roomba : MonoBehaviour
         }
         else
         {
-            EnemyRB.MovePosition(transform.position + Vector3.left * speed * Time.deltaTime);
+            intendedPos = transform.position + speed * Time.deltaTime * Vector3.left;
+            intendedPos.y = transform.position.y;
+            EnemyRB.MovePosition(intendedPos);
             if ((home.x - transform.position.x) > leftDist)
             {
                 Flip();

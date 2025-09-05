@@ -10,7 +10,6 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
     private BoxCollider2D boxCollider;
     [SerializeField] private TileBase cwTile, ccwTile;
     private float startTime;
-    [SerializeField] private bool debug = false;
 
     private void Start()
     {
@@ -21,15 +20,6 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
 
     private void Update()
     {
-        if (debug)
-        {
-            // TODO: Remove, only used for testing
-            if (Time.time - startTime > 5f)
-            {
-                FlipBelt();
-                startTime = Time.time;
-            }
-        }
     }
 
     private void FixedUpdate()
@@ -38,14 +28,11 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
         if (clockwise)
         {
             rb.position += speed * Time.fixedDeltaTime * Vector2.left;
-            if (transform.localScale.x == -1) transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
         }
         else
         {
             rb.position += speed * Time.fixedDeltaTime * Vector2.right;
-            if (transform.localScale.x == 1) transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         }
-
         rb.MovePosition(position);
     }
 

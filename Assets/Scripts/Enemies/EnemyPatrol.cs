@@ -1,4 +1,6 @@
 using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyPatrol : MonoBehaviour
 {
     public Transform pointA, pointB;
@@ -12,10 +14,12 @@ public class EnemyPatrol : MonoBehaviour
     private Vector3 targetPosition;
     private bool isAttacking = false;
     private float attackTimer = 0f;
+    private Rigidbody2D rb;
 
     void Start()
     {
         targetPosition = pointA.position;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -43,8 +47,7 @@ public class EnemyPatrol : MonoBehaviour
 
     void Patrol()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, patrolSpeed * Time.deltaTime);
-
+        rb.MovePosition(Vector3.MoveTowards(transform.position, targetPosition, patrolSpeed * Time.deltaTime));
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
             targetPosition = (targetPosition == pointA.position) ? pointB.position : pointA.position;
