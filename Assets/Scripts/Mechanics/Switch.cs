@@ -74,6 +74,7 @@ public class Switch : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playerScript = collision.gameObject.GetComponent<PlayerMovement>();
+            playerScript.OnInteract -= MyInteraction;
             playerScript.OnInteract += MyInteraction;
         }
     }

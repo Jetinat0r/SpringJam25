@@ -88,6 +88,7 @@ public class Vent : MonoBehaviour, IToggleable
         {
             //PlayerMovement _playerScript = collision.gameObject.GetComponent<PlayerMovement>();
             //_playerScript.OnInteract += this.MyInteraction;
+            player.OnInteract -= this.MyInteraction;
             player.OnInteract += this.MyInteraction;
 
             //TODO: No entry icon
