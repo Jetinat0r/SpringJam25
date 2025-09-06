@@ -506,7 +506,7 @@ public class PlayerMovement : MonoBehaviour
         playerShadowSprite.SetActive(true);
         playerLightSprite.SetActive(false);
 
-        collision.size = 0.6875f * Vector2.one;
+        collision.size = 0.59375f * Vector2.one;
         collision.offset = 0.5f * Vector2.up;
 
         lightCollision.size = collision.size;
