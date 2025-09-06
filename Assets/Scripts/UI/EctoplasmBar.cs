@@ -18,7 +18,7 @@ public class EctoplasmBar : MonoBehaviour
     [SerializeField] private SpriteRenderer barFillSprite;
     [SerializeField] private SpriteRenderer waveSprite;
 
-    [SerializeField] private float maxTime = 5f;
+    private float maxTime;
     private float timeRemaining;
     private float maxCapacity = 100f;
     private float currentAmount;
@@ -44,6 +44,7 @@ public class EctoplasmBar : MonoBehaviour
         }
 
         // Always start bar at full
+        maxTime = LevelManager.instance.ectoplasmTime;
         timeRemaining = maxTime;
     }
 

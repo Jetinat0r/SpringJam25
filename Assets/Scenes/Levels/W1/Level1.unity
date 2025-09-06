@@ -1236,10 +1236,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1869645048475868702, guid: 6fd12ad700f3fa641a8b7152246bf6d1, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3602924235035216481, guid: 6fd12ad700f3fa641a8b7152246bf6d1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3878,6 +3874,10 @@ PrefabInstance:
     - target: {fileID: 772254032233611564, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: m_Name
       value: LevelManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
+      propertyPath: ectoplasmTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: nextLevelName
