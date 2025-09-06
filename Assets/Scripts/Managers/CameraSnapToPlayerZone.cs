@@ -32,7 +32,8 @@ public class CameraSnapToPlayerZone : MonoBehaviour
         transform.position = new Vector3(_newPos.x, _newPos.y, transform.position.z);
     }
 
-    private void FixedUpdate()
+    //Can't be FixedUpdate as it won't run while venting bc venting sets timeScale to 0 and that stops FixedUpdate :P
+    private void Update()
     {
         if (LevelMenuManager.playerOverride) return;
 

@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isPushing = false;
     //The temptation to call this "isSus" is so strong, but I remain stronger
     public bool isVenting = false;
+    private float oldTimeScale = 1f;
 
     // Constants
     private float grav;
@@ -575,6 +576,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         isVenting = true;
+        oldTimeScale = Time.timeScale;
+        Time.timeScale = 0f;
 
         playerLightSprite.SetActive(false);
         playerShadowSprite.SetActive(false);
@@ -592,9 +595,10 @@ public class PlayerMovement : MonoBehaviour
         playerLightSprite.SetActive(true);
         //playerShadowSprite.SetActive(false);
 
-        
+
         //enteredVent = null;
 
+        Time.timeScale = oldTimeScale;
         isVenting = false;
     }
 

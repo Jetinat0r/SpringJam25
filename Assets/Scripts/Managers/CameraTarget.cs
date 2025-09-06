@@ -35,6 +35,7 @@ public class CameraTarget : MonoBehaviour
     public void TakeVentPath(List<int> _directions, Action _onCompletePath = null)
     {
         Sequence _ventSequence = DOTween.Sequence(transform);
+        _ventSequence.SetUpdate(true);
         _ventSequence.AppendInterval(ventSecondsPerScreen);
         Vector3 _targetPos = transform.position;
         foreach (int d in _directions)
