@@ -51,8 +51,8 @@ public class Roomba : MonoBehaviour
                 Flip();
             }
         }
-       
-        
+
+
         //if(!isGrounded && facingRight)
         //{
         //    Flip();
@@ -79,17 +79,9 @@ public class Roomba : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
-
-            StartCoroutine(WaitAndKillPlayer(collision.gameObject.GetComponent<PlayerMovement>()));
+            PlayerMovement.instance.Die();
         }
-    }
-
-    IEnumerator WaitAndKillPlayer(PlayerMovement player)
-    {
-        player.Die();
-        yield return new WaitForSeconds(2f); // Wait for 2 seconds
-        LevelManager.instance.ResetScene();
     }
 }

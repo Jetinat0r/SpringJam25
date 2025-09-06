@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -153,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (LevelMenuManager.isMenuOpen) return;
 
-        if (actionResetLevel.WasPressedThisFrame() && ScreenWipe.over)
+        if (actionResetLevel.WasPressedThisFrame() && ScreenWipe.over && !isDead && !hasWon)
         {
             LevelManager.instance.ResetScene();
         }
@@ -610,7 +611,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
-        if (hasWon) return;
+        if (hasWon || LevelManager.isResetting || isDead) return;
         LevelMenuManager.playerOverride = true;
         isDead = true;
         playerShadowSprite.SetActive(false);
@@ -621,10 +622,12 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = grav;
         rb.AddForceY(400f);
         collision.enabled = false;
+        LevelManager.instance.ResetSceneIn(2f);
     }
 
     public void Win()
     {
+        if (isDead || LevelManager.isResetting) return;
         LevelMenuManager.playerOverride = true;
         rb.linearVelocity = Vector2.zero;
         playerShadowSprite.SetActive(false);
@@ -632,5 +635,6 @@ public class PlayerMovement : MonoBehaviour
         spriteAnimator.SetTrigger("win");
         soundPlayer.PlaySound("Game.LevelClear", 0.6f);
         hasWon = true;
+        LevelManager.instance.CompleteLevel();
     }
 }

@@ -49,7 +49,6 @@ public class Door : MonoBehaviour
         {
             //Debug.Log("Level Complete!");
             playerScript.Win();
-            LevelManager.instance.CompleteLevel();
 
             playerScript.OnInteract -= MyInteraction;
         }
