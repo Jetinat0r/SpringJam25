@@ -542,7 +542,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.4212374}
+  m_Offset: {x: 0, y: 0.40625}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -552,7 +552,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7, y: 0.8424748}
+  m_Size: {x: 0.6875, y: 0.8125}
   m_EdgeRadius: 0
 --- !u!114 &5176345915675117287
 MonoBehaviour:
@@ -596,6 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adcf2c9f178b4544a3c027dc79121be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallCollision: {fileID: 5369957947101826068}
+  lightCollision: {fileID: 6558853819604637425}
   shadowAnimator: {fileID: 3386691716089538568}
   spriteAnimator: {fileID: 3929304532203540616}
   soundPlayer: {fileID: 1697655805019272159}
@@ -891,7 +893,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7, y: 1}
+  m_Size: {x: 0.6875, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &2214600833561632674
 MonoBehaviour:
@@ -1237,7 +1239,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7, y: 1}
+  m_Size: {x: 0.6875, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7903626929523204868
 MonoBehaviour:

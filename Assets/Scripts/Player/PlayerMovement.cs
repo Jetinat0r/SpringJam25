@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     // Components
     private Rigidbody2D rb;
     private BoxCollider2D collision;
+    [SerializeField] private BoxCollider2D lightCollision, wallCollision;
     private SpriteRenderer sprite;
 
     [SerializeField]
@@ -81,6 +83,10 @@ public class PlayerMovement : MonoBehaviour
     // Constants
     private float grav;
     [SerializeField] private float groundAcceleration;
+
+    private Vector2 ghostSize = new(0.6875f, 0.8125f);
+    private Vector2 ghostOffset = new(0f, 0.40625f);
+    private Vector2 ghostDetectSize = new(0.6875f, 1f);
 
     // Physics Materials
     [SerializeField] private PhysicsMaterial2D slippery, friction;
@@ -496,16 +502,19 @@ public class PlayerMovement : MonoBehaviour
     void SetShadow()
     {
         if (isShadow) return;
+
         playerShadowSprite.SetActive(true);
         playerLightSprite.SetActive(false);
 
-        collision.size = new Vector2(0.65f, 0.65f);
-        collision.offset = new Vector2(0f, 0.5f);
-        foreach (BoxCollider2D box in GetComponentsInChildren<BoxCollider2D>())
-        {
-            box.size = collision.size;
-            box.offset = collision.offset;
-        }
+        collision.size = 0.6875f * Vector2.one;
+        collision.offset = 0.5f * Vector2.up;
+
+        lightCollision.size = collision.size;
+        lightCollision.offset = collision.offset;
+
+        wallCollision.size = collision.size;
+        wallCollision.offset = collision.offset;
+
         shadowAnimator.SetFloat("Speed", 2);
         if (shadowAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0)
         {
@@ -522,13 +531,15 @@ public class PlayerMovement : MonoBehaviour
         playerShadowSprite.SetActive(false);
         playerLightSprite.SetActive(true);
 
-        collision.size = new Vector2(0.7f, 0.8424748f);
-        collision.offset = new Vector2(0f, 0.4212374f);
-        foreach (BoxCollider2D box in GetComponentsInChildren<BoxCollider2D>())
-        {
-            box.size = collision.size;
-            box.offset = collision.offset;
-        }
+        collision.size = ghostSize;
+        collision.offset = ghostOffset;
+
+        lightCollision.size = ghostDetectSize;
+        lightCollision.offset = Vector2.up * 0.5f;
+
+        wallCollision.size = ghostDetectSize;
+        wallCollision.offset = lightCollision.offset;
+
         shadowAnimator.SetFloat("Speed", -2);
         soundPlayer.PlaySound("Game.ShadowOut");
         if (shadowAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
