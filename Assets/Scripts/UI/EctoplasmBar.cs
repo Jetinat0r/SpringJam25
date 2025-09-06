@@ -8,7 +8,9 @@ public class EctoplasmBar : MonoBehaviour
     private const float pixelUnit = 0.03125f;   // 1/32
     private const float initialTilingW = barPixelsWide * pixelUnit;  // 6/32
     private const float initialTilingH = barPixelsTall * pixelUnit; // 27/32
-    
+    private const float initialOffset = -0.75f;
+
+
     private GameObject player = null;
     private PlayerMovement playerScript = null;
 
@@ -50,7 +52,11 @@ public class EctoplasmBar : MonoBehaviour
         if (playerScript.hasWon) return;
 
         // Make it so that the bar is always behind the player and not in the way
-        transform.localScale = player.GetComponentInChildren<SpriteRenderer>().gameObject.transform.localScale;
+        Vector3 pos = transform.localPosition;
+        pos.x = initialOffset * Mathf.Sign(player.GetComponentInChildren<SpriteRenderer>().gameObject.transform.localScale.x);
+        transform.localPosition = pos;
+        
+        // Deplete bar
         timeRemaining -= Time.deltaTime;
         if (timeRemaining <= 0)
         {

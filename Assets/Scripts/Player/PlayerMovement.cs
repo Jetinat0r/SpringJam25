@@ -496,7 +496,6 @@ public class PlayerMovement : MonoBehaviour
     void SetShadow()
     {
         if (isShadow) return;
-
         playerShadowSprite.SetActive(true);
         playerLightSprite.SetActive(false);
 
