@@ -615,7 +615,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
-        if (hasWon || LevelManager.instance.isResetting || isDead) return;
+        if (hasWon || LevelManager.isResetting || isDead) return;
         LevelMenuManager.playerOverride = true;
         isDead = true;
         playerShadowSprite.SetActive(false);
@@ -631,7 +631,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Win()
     {
-        if (isDead || LevelManager.instance.isResetting) return;
+        if (isDead || LevelManager.isResetting) return;
         LevelMenuManager.playerOverride = true;
         rb.linearVelocity = Vector2.zero;
         playerShadowSprite.SetActive(false);

@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
     //  TL Corner is grid (0, 0)
     private Vector2Int zeroRoomReferenceCell = new Vector2Int(0, 0);
 
-    public bool isResetting = false;
+    public static bool isResetting = false;
 
     public float ectoplasmTime = 5f;
 
