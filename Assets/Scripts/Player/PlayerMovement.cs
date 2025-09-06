@@ -72,8 +72,8 @@ public class PlayerMovement : MonoBehaviour
     private bool inLight = false;
     private bool onWall = false;
     private bool isShadow = false;
-    private bool isDead = false;
-    private bool hasWon = false;
+    public bool isDead { get; private set; } = false;
+    public bool hasWon { get; private set; } = false;
     private bool isPushing = false;
     //The temptation to call this "isSus" is so strong, but I remain stronger
     public bool isVenting = false;

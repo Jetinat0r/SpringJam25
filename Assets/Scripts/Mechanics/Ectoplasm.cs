@@ -3,7 +3,7 @@ using UnityEngine;
 public class Ectoplasm : Collectible
 {
 
-    private void Start()
+    private void Awake()
     {
         if (ChallengeManager.currentMode != ChallengeManager.ChallengeMode.Ectoplasm)
         {
@@ -14,5 +14,8 @@ public class Ectoplasm : Collectible
     {
         PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
         player.soundPlayer.PlaySound("Game.Key");
+
+        EctoplasmBar eBar = FindFirstObjectByType<EctoplasmBar>();
+        eBar.FullRestore();
     }
 }

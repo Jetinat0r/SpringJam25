@@ -12,7 +12,7 @@ public class ChallengeManager : MonoBehaviour
         Hardcore
     }
 
-    public static ChallengeMode currentMode = ChallengeMode.None;
+    public static ChallengeMode currentMode = ChallengeMode.Ectoplasm;
 
     private void Awake()
     {
