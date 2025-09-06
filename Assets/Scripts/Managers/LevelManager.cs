@@ -29,6 +29,11 @@ public class LevelManager : MonoBehaviour
     //  TL Corner is grid (0, 0)
     private Vector2Int zeroRoomReferenceCell = new Vector2Int(0, 0);
 
+    public bool isResetting = false;
+
+    public float ectoplasmTime = 5f;
+
+
 
     private void Awake()
     {
@@ -93,10 +98,17 @@ public class LevelManager : MonoBehaviour
         levelMenuManager.ToggleMenu(player);
     }
 
+    public void ResetSceneIn(float delay)
+    {
+        Invoke(nameof(ResetScene), delay);
+    }
+
     public void ResetScene()
     {
+        if (isResetting) return;
+        isResetting = true;
         ScreenWipe.current.WipeIn();
-        ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene(currentLevelName); };
+        ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene(currentLevelName); isResetting = false; };
     }
 
     public void CompleteLevel()

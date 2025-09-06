@@ -74,7 +74,8 @@ public class LevelMenuManager : MonoBehaviour
         soundPlayer.PlaySound("UI.Select");
         CloseMenu();
         Time.timeScale = 1;
-        // TODO this should use a delay + screen transition
+
+        if (PlayerMovement.instance.isDead || PlayerMovement.instance.hasWon) return;
         LevelManager.instance.ResetScene();
     }
 
@@ -84,7 +85,6 @@ public class LevelMenuManager : MonoBehaviour
 
         Time.timeScale = 1;
         soundPlayer.PlaySound("UI.Select");
-        // TODO this should use a delay + screen transition
         LevelManager.instance.ReturnToMainMenu();
         AudioManager.instance.UnPauseCurrent();
         isMenuOpen = false;

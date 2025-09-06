@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -19,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     // Components
     private Rigidbody2D rb;
     private BoxCollider2D collision;
+    [SerializeField] private BoxCollider2D lightCollision, wallCollision;
     private SpriteRenderer sprite;
 
     [SerializeField]
@@ -72,8 +75,8 @@ public class PlayerMovement : MonoBehaviour
     private bool inLight = false;
     private bool onWall = false;
     private bool isShadow = false;
-    private bool isDead = false;
-    private bool hasWon = false;
+    public bool isDead { get; private set; } = false;
+    public bool hasWon { get; private set; } = false;
     private bool isPushing = false;
     //The temptation to call this "isSus" is so strong, but I remain stronger
     public bool isVenting = false;
@@ -82,6 +85,10 @@ public class PlayerMovement : MonoBehaviour
     // Constants
     private float grav;
     [SerializeField] private float groundAcceleration;
+
+    private Vector2 ghostSize = new(0.6875f, 0.8125f);
+    private Vector2 ghostOffset = new(0f, 0.40625f);
+    private Vector2 ghostDetectSize = new(0.6875f, 1f);
 
     // Physics Materials
     [SerializeField] private PhysicsMaterial2D slippery, friction;
@@ -148,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (LevelMenuManager.isMenuOpen) return;
 
-        if (actionResetLevel.WasPressedThisFrame() && ScreenWipe.over)
+        if (actionResetLevel.WasPressedThisFrame() && ScreenWipe.over && !isDead && !hasWon)
         {
             LevelManager.instance.ResetScene();
         }
@@ -501,13 +508,15 @@ public class PlayerMovement : MonoBehaviour
         playerShadowSprite.SetActive(true);
         playerLightSprite.SetActive(false);
 
-        collision.size = new Vector2(0.65f, 0.65f);
-        collision.offset = new Vector2(0f, 0.5f);
-        foreach (BoxCollider2D box in GetComponentsInChildren<BoxCollider2D>())
-        {
-            box.size = collision.size;
-            box.offset = collision.offset;
-        }
+        collision.size = 0.59375f * Vector2.one;
+        collision.offset = 0.5f * Vector2.up;
+
+        lightCollision.size = collision.size;
+        lightCollision.offset = collision.offset;
+
+        wallCollision.size = collision.size;
+        wallCollision.offset = collision.offset;
+
         shadowAnimator.SetFloat("Speed", 2);
         if (shadowAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0)
         {
@@ -524,13 +533,15 @@ public class PlayerMovement : MonoBehaviour
         playerShadowSprite.SetActive(false);
         playerLightSprite.SetActive(true);
 
-        collision.size = new Vector2(0.7f, 0.8424748f);
-        collision.offset = new Vector2(0f, 0.4212374f);
-        foreach (BoxCollider2D box in GetComponentsInChildren<BoxCollider2D>())
-        {
-            box.size = collision.size;
-            box.offset = collision.offset;
-        }
+        collision.size = ghostSize;
+        collision.offset = ghostOffset;
+
+        lightCollision.size = ghostDetectSize;
+        lightCollision.offset = Vector2.up * 0.5f;
+
+        wallCollision.size = ghostDetectSize;
+        wallCollision.offset = lightCollision.offset;
+
         shadowAnimator.SetFloat("Speed", -2);
         soundPlayer.PlaySound("Game.ShadowOut");
         if (shadowAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
@@ -604,7 +615,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
-        if (hasWon) return;
+        if (hasWon || LevelManager.instance.isResetting || isDead) return;
         LevelMenuManager.playerOverride = true;
         isDead = true;
         playerShadowSprite.SetActive(false);
@@ -615,10 +626,12 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = grav;
         rb.AddForceY(400f);
         collision.enabled = false;
+        LevelManager.instance.ResetSceneIn(2f);
     }
 
     public void Win()
     {
+        if (isDead || LevelManager.instance.isResetting) return;
         LevelMenuManager.playerOverride = true;
         rb.linearVelocity = Vector2.zero;
         playerShadowSprite.SetActive(false);
@@ -626,5 +639,6 @@ public class PlayerMovement : MonoBehaviour
         spriteAnimator.SetTrigger("win");
         soundPlayer.PlaySound("Game.LevelClear", 0.6f);
         hasWon = true;
+        LevelManager.instance.CompleteLevel();
     }
 }

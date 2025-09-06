@@ -49,7 +49,6 @@ public class Door : MonoBehaviour
         {
             //Debug.Log("Level Complete!");
             playerScript.Win();
-            LevelManager.instance.CompleteLevel();
 
             playerScript.OnInteract -= MyInteraction;
         }
@@ -70,6 +69,7 @@ public class Door : MonoBehaviour
             PlayerMovement _playerScript = collision.gameObject.GetComponent<PlayerMovement>();
             if (_playerScript != null)
             {
+                _playerScript.OnInteract -= MyInteraction;
                 _playerScript.OnInteract += MyInteraction;
                 playerScript = _playerScript;
             }
