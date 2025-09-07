@@ -12,7 +12,7 @@ public class ChallengeManager : MonoBehaviour
         Hardcore
     }
 
-    public static ChallengeMode currentMode = ChallengeMode.Ectoplasm;
+    public static ChallengeMode currentMode = ChallengeMode.None;
 
     // Singleton stuff in case we decide to not use static vars and methods
     private void Awake()
