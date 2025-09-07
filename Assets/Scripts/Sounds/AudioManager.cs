@@ -83,13 +83,15 @@ public class AudioManager : MonoBehaviour
         return World.WORLD1;
     }
 
-    public void CheckChangeWorlds(string _levelName)
+    public bool CheckChangeWorlds(string _levelName)
     {
         int.TryParse(_levelName["Level".Length..], out int level);
         if (currentWorld != GetWorld(level))
         {
             Stop();
+            return true;
         }
+        return false;
     }
 
     /// <summary>

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_challengeclear_ectoplasm_locked_0: -307650764390188762
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

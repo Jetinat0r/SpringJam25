@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using JetEngine;
+using Steamworks;
 
 public class LevelManager : MonoBehaviour
 {
@@ -121,7 +122,30 @@ public class LevelManager : MonoBehaviour
             SettingsManager.SaveSettings();
         }
 
-        AudioManager.instance.CheckChangeWorlds(nextLevelName);
+        if (AudioManager.instance.CheckChangeWorlds(nextLevelName))
+        {
+            if (SteamManager.Initialized)
+            {
+                // Unlock appropriate world clear achievements
+                // TODO: Add the speedrun achievements as we finish building out entire worlds
+                int.TryParse(currentLevelName["Level".Length..], out int level);
+                switch (AudioManager.instance.GetWorld(level))
+                {
+                    case AudioManager.World.WORLD1:
+                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W1");
+                        break;
+                    case AudioManager.World.WORLD2:
+                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W2");
+                        break;
+                    case AudioManager.World.WORLD3:
+                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W3");
+                        break;
+                    case AudioManager.World.WORLD4:
+                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W4");
+                        break;
+                }
+            }
+        }
         
         StartCoroutine(GoToNextLevel(1.5f));
     }
