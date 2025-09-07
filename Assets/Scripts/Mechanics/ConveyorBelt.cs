@@ -31,7 +31,6 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
         {
             if (Mathf.Abs((_contact.normal - Vector2.down).magnitude) <= 0.001f)
             {
-                Debug.Log("whyy");
                 Rigidbody2D _collidingRb = _contact.collider.attachedRigidbody;
                 if (_collidingRb != null && _collidingRb.bodyType != RigidbodyType2D.Static)
                 {
