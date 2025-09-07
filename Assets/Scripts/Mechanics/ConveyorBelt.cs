@@ -24,15 +24,20 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
 
     private void FixedUpdate()
     {
-        List<Collider2D> _colliders = new();
-        rb.GetContacts(_colliders);
-        foreach (Collider2D _collision in _colliders)
+        List<ContactPoint2D> _contactPoints = new();
+        rb.GetContacts(_contactPoints);
+
+        foreach (ContactPoint2D _contact in _contactPoints)
         {
-            Rigidbody2D _collidingRb = _collision.attachedRigidbody;
-            if (_collidingRb != null && _collidingRb.bodyType != RigidbodyType2D.Static)
+            if (Mathf.Abs((_contact.normal - Vector2.down).magnitude) <= 0.001f)
             {
-                _collidingRb.MovePosition(_collidingRb.transform.position + (speed * Time.fixedDeltaTime * (clockwise ? Vector3.right : Vector3.left)) + (Vector3)_collidingRb.linearVelocity * Time.fixedDeltaTime);
-                _collidingRb.linearVelocity = Vector2.zero;
+                Debug.Log("whyy");
+                Rigidbody2D _collidingRb = _contact.collider.attachedRigidbody;
+                if (_collidingRb != null && _collidingRb.bodyType != RigidbodyType2D.Static)
+                {
+                    _collidingRb.MovePosition(_collidingRb.transform.position + (speed * Time.fixedDeltaTime * (clockwise ? Vector3.right : Vector3.left)) + (Vector3)_collidingRb.linearVelocity * Time.fixedDeltaTime);
+                    _collidingRb.linearVelocity = Vector2.zero;
+                }
             }
         }
 
