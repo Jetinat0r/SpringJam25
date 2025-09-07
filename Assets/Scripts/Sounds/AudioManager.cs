@@ -140,6 +140,7 @@ public class AudioManager : MonoBehaviour
         {
             if (firstSet && BGM2[activePlayer].timeSamples != BGM1[activePlayer].timeSamples)
             {
+                //TODO: Error executing result (An invalid seek position was passed to this function AudioSource:set_timeSamples (int)
                 BGM1[activePlayer].timeSamples = BGM2[activePlayer].timeSamples;
             }
             else if (!firstSet && BGM1[activePlayer].timeSamples != BGM2[activePlayer].timeSamples)

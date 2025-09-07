@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -22,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D collision;
     [SerializeField] private BoxCollider2D lightCollision, wallCollision;
-    private SpriteRenderer sprite;
 
     [SerializeField]
     private Animator shadowAnimator;
@@ -37,8 +37,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private WallDetector wallDetector;
 
-    public GameObject playerLightSprite;
-    public GameObject playerShadowSprite;
+    public GameObject ghostSpriteParent;
+    public GameObject ghostSprite;
+    public GameObject shadowSpriteParent;
+    public GameObject shadowSprite;
+
+    public Animator ghostAppear;
+    public Animator ghostDisappear;
+    public Animator shadowAppear;
+    public Animator shadowDisappear;
 
     // Input
     private PlayerInput playerInput;
@@ -81,6 +88,9 @@ public class PlayerMovement : MonoBehaviour
     //The temptation to call this "isSus" is so strong, but I remain stronger
     public bool isVenting = false;
     private float oldTimeScale = 1f;
+    //What vent the player is currently moving through
+    private Vent currentVent = null;
+    private List<int> currentVentPath = null;
 
     // Constants
     private float grav;
@@ -109,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         collision = GetComponent<BoxCollider2D>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        //sprite = GetComponentInChildren<SpriteRenderer>();
         playerInput = GetComponent<PlayerInput>();
         currState = PlayerStates.IdleGhost;
 
@@ -286,8 +296,8 @@ public class PlayerMovement : MonoBehaviour
     // FSM functions
     void IdleGhost(float moveX, bool interacted, bool toggledShadow)
     {
-        playerShadowSprite.SetActive(false);
-        playerLightSprite.SetActive(true);
+        shadowSprite.SetActive(false);
+        ghostSprite.SetActive(true);
         if (!grounded)
         {
             rb.linearVelocityX = 0f;
@@ -318,17 +328,17 @@ public class PlayerMovement : MonoBehaviour
 
     void WalkGhost(float moveX, bool interacted, bool toggledShadow)
     {
-        playerShadowSprite.SetActive(false);
-        playerLightSprite.SetActive(true);
+        shadowSprite.SetActive(false);
+        ghostSprite.SetActive(true);
         rb.gravityScale = grav;
 
         Vector2 targetVelocity = new Vector2(moveX * (moveSpd + spdBoost), rb.linearVelocity.y);
         rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, groundAcceleration);
 
         // Flip sprite based on movement direction
-        Vector3 sprScale = sprite.transform.localScale;  // This is here to make typing easier
+        Vector3 sprScale = ghostSpriteParent.transform.localScale;  // This is here to make typing easier
         // TODO: This is not a good check! Has a right bias
-        sprite.transform.localScale = new Vector3(Mathf.Sign(rb.linearVelocityX), sprScale.y, sprScale.z);
+        ghostSpriteParent.transform.localScale = new Vector3(Mathf.Sign(rb.linearVelocityX), sprScale.y, sprScale.z);
 
         if (Mathf.Abs(moveX) < moveDeadzone)
         {
@@ -422,7 +432,7 @@ public class PlayerMovement : MonoBehaviour
 
             //Debug.Log($"Deg: {_deg} {moveY} {moveX}");
 
-            playerShadowSprite.transform.rotation = Quaternion.Euler(0f, 0f, (Mathf.Rad2Deg * _deg) - 90f);
+            shadowSpriteParent.transform.rotation = Quaternion.Euler(0f, 0f, (Mathf.Rad2Deg * _deg) - 90f);
             /*
             if(moveX > 0 && (moveY >= 0))
             {
@@ -505,8 +515,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isShadow) return;
 
-        playerShadowSprite.SetActive(true);
-        playerLightSprite.SetActive(false);
+        shadowSprite.SetActive(true);
+        ghostSprite.SetActive(false);
 
         collision.size = 0.59375f * Vector2.one;
         collision.offset = 0.5f * Vector2.up;
@@ -530,8 +540,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isShadow) return;
 
-        playerShadowSprite.SetActive(false);
-        playerLightSprite.SetActive(true);
+        shadowSprite.SetActive(false);
+        ghostSprite.SetActive(true);
 
         collision.size = ghostSize;
         collision.offset = ghostOffset;
@@ -574,40 +584,91 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if(!LevelManager.instance.GetVentPath(_vent, out List<int> _zonePath))
+        if(!LevelManager.instance.GetVentPath(_vent, out currentVentPath))
         {
             //TODO:
             //Display NO ENTRY or NO PATH symbol
             Debug.LogError($"NO VALID VENT PATH: {_vent.name}");
+            currentVentPath = null;
             return;
         }
         else
         {
-            Debug.Log(_zonePath.Count);
+            Debug.Log(currentVentPath.Count);
         }
 
         isVenting = true;
         oldTimeScale = Time.timeScale;
         Time.timeScale = 0f;
 
-        playerLightSprite.SetActive(false);
-        playerShadowSprite.SetActive(false);
+        shadowAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        currentVent = _vent;
+        if (isShadow)
+        {
+            shadowSprite.SetActive(false);
+            shadowDisappear.gameObject.SetActive(true);
+            shadowDisappear.SetTrigger("Disappear");
+        }
+        else
+        {
+            ghostSprite.SetActive(false);
+            ghostDisappear.gameObject.SetActive(true);
+            ghostDisappear.SetTrigger("Disappear");
+        }
+    }
 
-        //enteredVent = _vent;
-        rb.position = _vent.counterpart.transform.position;
+    //If isGhost, use ghost sprite, else use shadow sprite
+    public void OnEnterVentAnimationComplete(bool _isGhost)
+    {
+        shadowAnimator.updateMode = AnimatorUpdateMode.Normal;
+
+        Debug.Log("Fully Entered");
+        rb.position = currentVent.counterpart.transform.position;
+        transform.position = currentVent.counterpart.transform.position;
+        //rb.MovePosition(currentVent.counterpart.transform.position);
 
         CameraTarget[] _targets = FindObjectsByType<CameraTarget>(FindObjectsSortMode.None);
-        _targets[0].TakeVentPath(_zonePath, ExitVent);
+        _targets[0].TakeVentPath(currentVentPath, ExitVent);
     }
 
     public void ExitVent()
     {
-        //TODO: Allow venting and keeping shadow state?
-        playerLightSprite.SetActive(true);
-        //playerShadowSprite.SetActive(false);
+        if (isShadow)
+        {
+            shadowAppear.gameObject.SetActive(true);
+            shadowAppear.SetTrigger("Appear");
+            shadowDisappear.SetTrigger("Reset");
+            shadowDisappear.gameObject.SetActive(false);
+        }
+        else
+        {
+            ghostAppear.gameObject.SetActive(true);
+            ghostAppear.SetTrigger("Appear");
+            ghostDisappear.SetTrigger("Reset");
+            ghostDisappear.gameObject.SetActive(false);
+        }
+    }
 
+    //If isGhost, use ghost sprite, else use shadow sprite
+    public void OnExitVentAnimationComplete(bool _isGhost)
+    {
+        Debug.Log("Fully Exited");
 
-        //enteredVent = null;
+        if (isShadow)
+        {
+            shadowSprite.SetActive(true);
+            shadowAppear.SetTrigger("Reset");
+            shadowAppear.gameObject.SetActive(false);
+        }
+        else
+        {
+            ghostSprite.SetActive(true);
+            ghostAppear.SetTrigger("Reset");
+            ghostAppear.gameObject.SetActive(false);
+        }
+
+        currentVent = null;
+        currentVentPath = null;
 
         Time.timeScale = oldTimeScale;
         isVenting = false;
@@ -618,8 +679,8 @@ public class PlayerMovement : MonoBehaviour
         if (hasWon || LevelManager.isResetting || isDead) return;
         LevelMenuManager.playerOverride = true;
         isDead = true;
-        playerShadowSprite.SetActive(false);
-        playerLightSprite.SetActive(true);
+        shadowSprite.SetActive(false);
+        ghostSprite.SetActive(true);
         spriteAnimator.SetTrigger("die");
         soundPlayer.PlaySound("Game.Death");
         rb.linearVelocity = Vector2.zero;
@@ -634,8 +695,8 @@ public class PlayerMovement : MonoBehaviour
         if (isDead || LevelManager.isResetting) return;
         LevelMenuManager.playerOverride = true;
         rb.linearVelocity = Vector2.zero;
-        playerShadowSprite.SetActive(false);
-        playerLightSprite.SetActive(true);
+        shadowSprite.SetActive(false);
+        ghostSprite.SetActive(true);
         spriteAnimator.SetTrigger("win");
         soundPlayer.PlaySound("Game.LevelClear", 0.6f);
         hasWon = true;
