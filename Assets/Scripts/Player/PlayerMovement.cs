@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -81,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocity = Vector2.zero;
     private bool inLight = false;
     private bool onWall = false;
-    private bool isShadow = false;
+    public bool isShadow { get; private set; } = false;
     public bool isDead { get; private set; } = false;
     public bool hasWon { get; private set; } = false;
     private bool isPushing = false;
@@ -527,6 +525,10 @@ public class PlayerMovement : MonoBehaviour
         wallCollision.size = collision.size;
         wallCollision.offset = collision.offset;
 
+        Vector2 newPos = transform.position;
+        newPos.y -= 0.2f;
+        transform.position = newPos;
+
         shadowAnimator.SetFloat("Speed", 2);
         if (shadowAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0)
         {
@@ -542,6 +544,10 @@ public class PlayerMovement : MonoBehaviour
 
         shadowSprite.SetActive(false);
         ghostSprite.SetActive(true);
+
+        Vector2 newPos = transform.position;
+        newPos.y += 0.2f;
+        transform.position = newPos;
 
         collision.size = ghostSize;
         collision.offset = ghostOffset;

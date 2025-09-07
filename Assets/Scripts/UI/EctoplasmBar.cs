@@ -55,6 +55,7 @@ public class EctoplasmBar : MonoBehaviour
         // Make it so that the bar is always behind the player and not in the way
         Vector3 pos = transform.localPosition;
         pos.x = initialOffset * Mathf.Sign(player.GetComponentInChildren<SpriteRenderer>().gameObject.transform.localScale.x);
+        pos.y = playerScript.isShadow ? 0.2f : 0f;
         transform.localPosition = pos;
         
         // Deplete bar

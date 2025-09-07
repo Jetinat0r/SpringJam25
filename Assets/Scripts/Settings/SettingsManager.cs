@@ -17,6 +17,7 @@ public class SettingsManager : MonoBehaviour
     public static float musicVolume = -10f;
     public static float sfxVolume = -6f;
     public static int resolution = 2;
+    public static int currentLevel = 1;
 
     public TMP_Dropdown resolutionDropdown;
     public Slider musicSlider;
@@ -33,7 +34,7 @@ public class SettingsManager : MonoBehaviour
 
     public static void SetResolution(Int32 res)
     {
-        if (SteamManager.Initialized && SteamUtils.IsSteamRunningOnSteamDeck())
+        if (SteamManager.Initialized && Steamworks.SteamUtils.IsSteamRunningOnSteamDeck())
         {
             res = 2; // force high res on steamdeck sorry :(
         }
@@ -52,6 +53,7 @@ public class SettingsManager : MonoBehaviour
         musicVolume = PlayerPrefs.GetFloat("musicVolume", musicVolume);
         sfxVolume = PlayerPrefs.GetFloat("sfxVolume", sfxVolume);
         resolution = PlayerPrefs.GetInt("resolution", resolution);
+        currentLevel = PlayerPrefs.GetInt("currentLevel", currentLevel);
         
         /*
         Settings newSettings = JsonUtility.FromJson<Settings>(File.ReadAllText(Application.persistentDataPath + "/" + fileName));
@@ -71,6 +73,7 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("musicVolume", musicVolume);
         PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
         PlayerPrefs.SetInt("resolution", resolution);
+        PlayerPrefs.SetInt("currentLevel", currentLevel);
 
         PlayerPrefs.Save();
         /*

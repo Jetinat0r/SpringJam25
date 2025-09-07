@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -24,16 +24,36 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
 
     private void FixedUpdate()
     {
-        Vector2 position = rb.position;
-        if (clockwise)
+        List<ContactPoint2D> _contactPoints = new();
+        rb.GetContacts(_contactPoints);
+
+        foreach (ContactPoint2D _contact in _contactPoints)
         {
-            rb.position += speed * Time.fixedDeltaTime * Vector2.left;
+            if (Mathf.Abs((_contact.normal - Vector2.down).magnitude) <= 0.001f)
+            {
+                Debug.Log("whyy");
+                Rigidbody2D _collidingRb = _contact.collider.attachedRigidbody;
+                if (_collidingRb != null && _collidingRb.bodyType != RigidbodyType2D.Static)
+                {
+                    _collidingRb.MovePosition(_collidingRb.transform.position + (speed * Time.fixedDeltaTime * (clockwise ? Vector3.right : Vector3.left)) + (Vector3)_collidingRb.linearVelocity * Time.fixedDeltaTime);
+                    _collidingRb.linearVelocity = Vector2.zero;
+                }
+            }
         }
-        else
-        {
-            rb.position += speed * Time.fixedDeltaTime * Vector2.right;
-        }
-        rb.MovePosition(position);
+
+        /* TODO: This is the old method, in case we ever want to go back to it.
+         * It worked in a much jankier way with friction, which ended up carrying momentum improperly
+         */
+        // Vector2 position = rb.position;
+        // if (clockwise)
+        // {
+        //     rb.position += speed * Time.fixedDeltaTime * Vector2.left;
+        // }
+        // else
+        // {
+        //     rb.position += speed * Time.fixedDeltaTime * Vector2.right;
+        // }
+        // rb.MovePosition(position);
     }
 
     public void FlipBelt()

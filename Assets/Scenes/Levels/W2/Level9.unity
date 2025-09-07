@@ -128,6 +128,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1171581960070588738, guid: e80fcde0e5ed5a84a841be0422cd4685, type: 3}
+      propertyPath: world
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171581960070588738, guid: e80fcde0e5ed5a84a841be0422cd4685, type: 3}
       propertyPath: newTrack
       value: 
       objectReference: {fileID: 11400000, guid: c550c2e617c744de1979e1e972d7a86e, type: 2}
