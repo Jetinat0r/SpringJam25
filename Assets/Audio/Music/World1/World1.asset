@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a26adf86829b4d84ea3114b11ed9f424, type: 3}
-  m_Name: Menu
+  m_Script: {fileID: 11500000, guid: c0dbb07ce11e4bc40ae3eb1b248f06e1, type: 3}
+  m_Name: World1
   m_EditorClassIdentifier: 
-  children:
-  - {fileID: 11400000, guid: 1b1b9a04a18dd4d5a86f1a9b732aa8a3, type: 2}
-  - {fileID: 11400000, guid: 1dcb4c0c3fb5c4a0cab2800c02d37b6f, type: 2}
+  menuSong: {fileID: 8300000, guid: 0cb0efd5d99d94c30bc103c4f292cb08, type: 3}
+  levelSong: {fileID: 8300000, guid: c6244f1ccb3ce44d7ab3afe3b679161b, type: 3}
+  world: 1

@@ -70,6 +70,13 @@ public class MainMenuManager : MonoBehaviour
     [Tooltip("Allows Right Shift + R to Reset all progress. Save for Debug and Showcase builds!")]
     public bool allowProgressDeletion = false;
 
+    public static bool inMenu = false;
+
+    void Awake()
+    {
+        inMenu = true;
+    }
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -90,9 +97,9 @@ public class MainMenuManager : MonoBehaviour
 
         eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
 
-        for(int i = 0; i < levelButtons.Length; i++)
+        for (int i = 0; i < levelButtons.Length; i++)
         {
-            if(SettingsManager.completedLevels >= i)
+            if (SettingsManager.completedLevels >= i)
             {
                 levelButtons[i].UnlockLevel();
             }
@@ -221,6 +228,8 @@ public class MainMenuManager : MonoBehaviour
 
         EventSystem.current.gameObject.SetActive(false);
 
+        AudioManager.instance.CheckChangeWorlds(_levelName);
+
         soundPlayer.PlaySound(selectSound);
         ScreenWipe.current.WipeIn();
         ScreenWipe.current.PostWipe += () =>
@@ -228,6 +237,7 @@ public class MainMenuManager : MonoBehaviour
             //Debug.Log($"Entering level {_levelName}");
             SceneManager.LoadScene(_levelName);
         };
+        inMenu = false;
     }
 
     public void EnterLevel(LevelButton _levelButton)

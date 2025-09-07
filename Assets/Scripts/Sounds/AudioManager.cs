@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioMixer musicMixer, sfxMixer, globalSfxMixer;
     public AudioMixerGroup musicMixerGroup;
     public MusicClip currentSong = null;
-    public GameArea currentArea;
+    public World currentWorld;
 
     private int activePlayer = 0;
     public AudioSource[] BGM1, BGM2;
@@ -20,7 +20,6 @@ public class AudioManager : MonoBehaviour
     private int volumeChangesPerSecond = 15;
 
     public float fadeDuration = 1.0f;
-    private float loopPointSeconds;
     private bool firstSet = true;
     private bool firstSongPlayed = false;
     public bool paused = false;
@@ -28,13 +27,14 @@ public class AudioManager : MonoBehaviour
     public AudioMixerSnapshot normal, hurt;
     public SoundCategory soundDatabase;
     public MusicCategory musicDatabase;
+    public bool playingMenuMusic = false;
 
     /// <summary>
     /// List of all different game areas that may have different sets of music
     /// </summary>
-    public enum GameArea
+    public enum World
     {
-        CURRENT, MENU, LEVEL
+        CURRENT, WORLD1, WORLD2, WORLD3, WORLD4
     }
 
     /// <summary>
@@ -64,7 +64,28 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentWorld = GetWorld(SettingsManager.currentLevel);
+    }
+
+    public World GetWorld(int level)
+    {
+        return level switch
+        {
+            >= 0 and <= 8 => World.WORLD1,
+            > 8 and <= 16 => World.WORLD2,
+            > 16 and <= 24 => World.WORLD3,
+            > 24 and <= 32 => World.WORLD4,
+            _ => World.WORLD1,
+        };
+    }
+
+    public void CheckChangeWorlds(string _levelName)
+    {
+        int.TryParse(_levelName["Level".Length..], out int level);
+        if (currentWorld != GetWorld(level))
+        {
+            Stop();
+        }
     }
 
     /// <summary>
@@ -148,44 +169,6 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-
-        ////Manages looping tracks
-        //if (firstSet)
-        //{
-        //    if (BGM1[activePlayer].clip != null && BGM1[activePlayer].time >= loopPointSeconds)
-        //    {
-        //        //BGM1[activePlayer].Stop();
-        //        //BGM1[activePlayer].time = 0;
-        //        activePlayer = 1 - activePlayer;
-        //        if (currentSong != null)
-        //            BGM1[activePlayer].clip = currentSong.GetClip();
-        //        BGM1[activePlayer].volume = 1.0f;
-        //        BGM1[activePlayer].time = 0;
-        //        BGM1[activePlayer].Play();
-        //    }
-        //}
-        //else
-        //{
-        //    if (BGM2[activePlayer].clip != null && BGM2[activePlayer].time >= loopPointSeconds)
-        //    {
-        //        //BGM2[activePlayer].Stop();
-        //        //BGM2[activePlayer].time = 0;
-        //        activePlayer = 1 - activePlayer;
-        //        if (currentSong != null)
-        //            BGM2[activePlayer].clip = currentSong.GetClip();
-        //        BGM2[activePlayer].volume = 1.0f;
-        //        BGM2[activePlayer].time = 0;
-        //        BGM2[activePlayer].Play();
-        //    }
-        //}
-
-        // Toggle muting (press M)
-        //if (Input.GetKeyDown(KeyCode.M))
-        //{
-        //    musicMute = !musicMute;
-        //}
-        //SettingsManager.currentSettings.musicMute = musicMute;
-
         // Volume controls (hold down + or -)
         musicMixer.SetFloat("Volume", musicVolume);
         musicMixer.GetFloat("Volume", out musicVolume);
@@ -204,27 +187,6 @@ public class AudioManager : MonoBehaviour
         SettingsManager.musicVolume = musicVolume;
         SettingsManager.sfxVolume = sfxVolume;
 
-        float pitch;
-        musicMixer.GetFloat("Pitch", out pitch);
-        if (pitch <= 0.05f)
-        {
-            SetPitch(1f);
-            if (firstSet)
-            {
-                BGM1[activePlayer].volume = 0;
-                BGM1[activePlayer].timeSamples = 0;
-                fader[0] = FadeAudioSource(BGM1[activePlayer], fadeDuration, 1.0f, () => { fader[0] = null; });
-                StartCoroutine(fader[0]);
-            }
-            else
-            {
-                BGM2[activePlayer].volume = 0;
-                BGM2[activePlayer].timeSamples = 0;
-                fader[0] = FadeAudioSource(BGM2[activePlayer], fadeDuration, 1.0f, () => { fader[0] = null; });
-                StartCoroutine(fader[0]);
-            }
-        }
-
         // sfxVolume is a float from 0.0-1.0 but we'd want 1.0 to correspond to 10dB => *10f
         targetSFXVolume = SettingsManager.sfxVolume;
         // TODO in case we want fade between scene changes, add this sorta thing
@@ -240,59 +202,29 @@ public class AudioManager : MonoBehaviour
         sfxMixer.SetFloat("Volume", actualSFXVolume);
     }
 
-    public void ChangeBGM(string musicPath, float duration = 1f)
+    public void ChangeBGM(World newWorld, bool fromMenu, float duration = 1f)
     {
-        MusicClip music = FindMusic(musicPath);
-        ChangeBGM(music, duration);
+        if (newWorld == World.CURRENT) newWorld = currentWorld;
+        ChangeBGM((MusicClip)musicDatabase.children[(int)newWorld - 1], fromMenu, duration);
     }
 
-    public void ChangeBGM(string musicPath, string area, float duration = 1f)
+    public void ChangeBGM(MusicClip music, bool fromMenu, float duration = 1f)
     {
-        GameArea theArea;
-        switch (area.Trim().ToUpper())
-        {
-            case "CURRENT":
-                theArea = currentArea;
-                break;
-            case "MENU":
-                theArea = GameArea.MENU;
-                break;
-            case "LEVEL":
-                theArea = GameArea.LEVEL;
-                break;
-            default:
-                Debug.LogWarning("Invalid area provided! Using current");
-                theArea = currentArea;
-                break;
-        }
-        ChangeBGM(FindMusic(musicPath), theArea, duration);
+        ChangeBGM(music, music.world, fromMenu, duration);
     }
 
-    public void ChangeBGM(string musicPath, GameArea area, float duration = 1f)
+    public void ChangeBGM(MusicClip music, World newWorld, bool fromMenu, float duration = 1f)
     {
-        ChangeBGM(FindMusic(musicPath), area, duration);
-    }
+        if (newWorld == World.CURRENT) newWorld = currentWorld;
 
-    public void ChangeBGM(MusicClip music, float duration = 1f)
-    {
-        ChangeBGM(music, music.area, duration);
-    }
-
-    public void ChangeBGM(MusicClip music, GameArea newArea, float duration = 1f)
-    {
-        // support cutscenes keeping music area
-        if (newArea == GameArea.CURRENT) newArea = currentArea;
-
-        // carry on music if area has not changed
-        bool carryOn = true; // HAHA no
-        currentArea = newArea;
-
-        //Calculate loop point
-        loopPointSeconds = 60.0f * (music.barsLength * 4 * music.timeSignature / music.timeSignatureBottom) / music.BPM;
+        // carry on music if world has not changed
+        bool carryOn = currentWorld == newWorld;
+        currentWorld = newWorld;
 
         //Prevent fading the same clip on both players
-        if (music == currentSong)
+        if (firstSongPlayed && carryOn && playingMenuMusic == fromMenu)
             return;
+        playingMenuMusic = fromMenu;
 
         //Kill all playing
         foreach (IEnumerator i in fader)
@@ -302,6 +234,8 @@ public class AudioManager : MonoBehaviour
                 StopCoroutine(i);
             }
         }
+
+        if (currentSong == null) duration = 0f; // No fades for world transitions
 
         if (firstSet)
         {
@@ -504,59 +438,6 @@ public class AudioManager : MonoBehaviour
         paused = false;
     }
 
-    public void ApplyMixerEffect(string mixer, string effect, float value, float duration = 0)
-    {
-        AudioMixer theMixer = null;
-        switch (mixer.Trim().ToLower())
-        {
-            case "music":
-            case "bgm":
-                theMixer = musicMixer;
-                break;
-            case "sound":
-            case "sfx":
-                theMixer = sfxMixer;
-                break;
-            case "global":
-                theMixer = globalSfxMixer;
-                break;
-        }
-        if (theMixer != null) 
-            ApplyMixerEffect(theMixer, effect, value, duration);
-        else
-            Debug.LogError("Invalid mixer!");
-    }
-
-    public void ApplyMixerEffect(AudioMixer mixer, string effect, float value, float duration = 0)
-    {
-        if (duration == 0)
-        {
-            mixer.SetFloat(effect.Trim(), value);
-            return;
-        }
-        StartCoroutine(gradualMixerEffect(mixer, effect.Trim(), value, duration));
-    }
-
-    private IEnumerator gradualMixerEffect(AudioMixer mixer, string effect, float value, float duration)
-    {
-        float startTime = Time.time;
-        float startValue;
-        mixer.GetFloat(effect, out startValue);
-        while (startTime + duration >= Time.time)
-        {
-            mixer.SetFloat(effect, Mathf.Lerp(startValue, value, (Time.time - startTime) / duration));
-            yield return new WaitForEndOfFrame();
-        }
-        mixer.SetFloat(effect, value);
-    }
-
-    public IEnumerator Muffle()
-    {
-        hurt.TransitionTo(0.1f);
-        yield return new WaitForSeconds(1f);
-        normal.TransitionTo(1f);
-    }
-
     public AudioClip FindSound(string soundPath)
     {
         List<string> path = new List<string>(soundPath.Trim().Split("."));
@@ -585,37 +466,6 @@ public class AudioManager : MonoBehaviour
             return null;
         }
         Debug.LogError("Invalid sound path provided!");
-        return null;
-    }
-
-    public MusicClip FindMusic(string musicPath)
-    {
-        List<string> path = new List<string>(musicPath.Trim().Split("."));
-        return FindMusic(musicDatabase, path);
-    }
-
-    public MusicClip FindMusic(SoundNode current, List<string> path)
-    {
-        if (current is MusicClip)
-        {
-            return ((MusicClip)current);
-        }
-        else if (current is MusicCategory)
-        {
-            foreach (SoundNode node in ((MusicCategory)current).children)
-            {
-                if (path.Count > 0 && node.name.ToLower() == path[0].ToLower())
-                {
-                    // Debug.Log("Found " + path[0]);
-                    current = node;
-                    path.RemoveAt(0);
-                    return FindMusic(node, path);
-                }
-            }
-            Debug.LogError("Invalid music path provided!");
-            return null;
-        }
-        Debug.LogError("Invalid music path provided!");
         return null;
     }
 }
