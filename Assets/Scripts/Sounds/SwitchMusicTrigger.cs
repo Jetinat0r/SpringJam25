@@ -14,7 +14,7 @@ public class SwitchMusicTrigger : MonoBehaviour
         {
             theAM = FindFirstObjectByType<AudioManager>();
             oldTrack = theAM.currentSong;
-            theAM.ChangeBGM(newTrack, theAM.currentArea);
+            theAM.ChangeBGM(newTrack, theAM.currentWorld, false);
         }
     }
 
@@ -23,7 +23,7 @@ public class SwitchMusicTrigger : MonoBehaviour
         if (other.CompareTag("Player") && oldTrack != null)
         {
             theAM = FindFirstObjectByType<AudioManager>();
-            theAM.ChangeBGM(oldTrack, theAM.currentArea);
+            theAM.ChangeBGM(oldTrack, theAM.currentWorld, false);
         }
     }
 }

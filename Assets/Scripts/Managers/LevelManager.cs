@@ -64,6 +64,8 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log($"Path: {i}");
         }
+        SettingsManager.currentLevel = currentLevelNumber;
+        SettingsManager.SaveSettings();
     }
 
     private void FindZeroRoomReferenceCell()
@@ -119,6 +121,8 @@ public class LevelManager : MonoBehaviour
             SettingsManager.SaveSettings();
         }
 
+        AudioManager.instance.CheckChangeWorlds(nextLevelName);
+        
         StartCoroutine(GoToNextLevel(1.5f));
     }
 
