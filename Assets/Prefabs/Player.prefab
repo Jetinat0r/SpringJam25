@@ -1005,7 +1005,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barFillSprite: {fileID: 3610538432687708045}
   waveSprite: {fileID: 7409060416833006208}
-  maxTime: 5
 --- !u!1 &7121442458700776672
 GameObject:
   m_ObjectHideFlags: 0
