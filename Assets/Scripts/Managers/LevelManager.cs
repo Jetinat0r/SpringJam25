@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     public Tilemap conveyorTilemap;
 
     private PlayerMovement player;
+    // private SpeedrunManager speedrunManager;
 
     public Vector2Int zoneSize = new Vector2Int(10, 9);
     private CameraTarget cameraTarget;
@@ -67,6 +68,8 @@ public class LevelManager : MonoBehaviour
         }
         SettingsManager.currentLevel = currentLevelNumber;
         SettingsManager.SaveSettings();
+
+        // speedrunManager = FindFirstObjectByType<SpeedrunManager>();
     }
 
     private void FindZeroRoomReferenceCell()
@@ -126,22 +129,53 @@ public class LevelManager : MonoBehaviour
         {
             if (SteamManager.Initialized)
             {
+                float clearTime = SpeedrunManager.instance.StopTimer();
+                Debug.Log("Clear time: " + clearTime);
+                Destroy(SpeedrunManager.instance);
                 // Unlock appropriate world clear achievements
                 // TODO: Add the speedrun achievements as we finish building out entire worlds
                 int.TryParse(currentLevelName["Level".Length..], out int level);
                 switch (AudioManager.instance.GetWorld(level))
                 {
                     case AudioManager.World.WORLD1:
+                        Debug.Log("Achievement unlocked! CLEAR_W1");
                         JetEngine.SteamUtils.TryGetAchievement("CLEAR_W1");
+
+                        if (clearTime <= SpeedrunManager.instance.timeLimit)
+                        {
+                            Debug.Log("Achievement unlocked! SPEEDRUN_W1");
+                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W1");
+                        }
                         break;
                     case AudioManager.World.WORLD2:
+                        Debug.Log("Achievement unlocked! CLEAR_W2");
                         JetEngine.SteamUtils.TryGetAchievement("CLEAR_W2");
+
+                        if (clearTime <= SpeedrunManager.instance.timeLimit)
+                        {
+                            Debug.Log("Achievement unlocked! SPEEDRUN_W2");
+                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W2");
+                        }
                         break;
                     case AudioManager.World.WORLD3:
+                        Debug.Log("Achievement unlocked! CLEAR_W3");
                         JetEngine.SteamUtils.TryGetAchievement("CLEAR_W3");
+
+                        if (clearTime <= SpeedrunManager.instance.timeLimit)
+                        {
+                            Debug.Log("Achievement unlocked! SPEEDRUN_W3");
+                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W3");
+                        }
                         break;
                     case AudioManager.World.WORLD4:
+                        Debug.Log("Achievement unlocked! CLEAR_W4");
                         JetEngine.SteamUtils.TryGetAchievement("CLEAR_W4");
+
+                        if (clearTime <= SpeedrunManager.instance.timeLimit)
+                        {
+                            Debug.Log("Achievement unlocked! SPEEDRUN_W4");
+                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W4");
+                        }
                         break;
                 }
             }
