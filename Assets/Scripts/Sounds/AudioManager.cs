@@ -69,14 +69,18 @@ public class AudioManager : MonoBehaviour
 
     public World GetWorld(int level)
     {
-        return level switch
+        switch (level)
         {
-            >= 0 and <= 8 => World.WORLD1,
-            > 8 and <= 16 => World.WORLD2,
-            > 16 and <= 24 => World.WORLD3,
-            > 24 and <= 32 => World.WORLD4,
-            _ => World.WORLD1,
-        };
+            case >= 0 and <= 8:
+                return World.WORLD1;
+            case > 8 and <= 16:
+                return World.WORLD2;
+            case > 16 and <= 24:
+                return World.WORLD3;
+            case > 24 and <= 32:
+                return World.WORLD4;
+        }
+        return World.WORLD1;
     }
 
     public void CheckChangeWorlds(string _levelName)
