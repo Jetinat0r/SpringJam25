@@ -515,6 +515,10 @@ public class PlayerMovement : MonoBehaviour
         wallCollision.size = collision.size;
         wallCollision.offset = collision.offset;
 
+        Vector2 newPos = transform.position;
+        newPos.y -= 0.2f;
+        transform.position = newPos;
+
         shadowAnimator.SetFloat("Speed", 2);
         if (shadowAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0)
         {
@@ -530,6 +534,10 @@ public class PlayerMovement : MonoBehaviour
 
         playerShadowSprite.SetActive(false);
         playerLightSprite.SetActive(true);
+
+        Vector2 newPos = transform.position;
+        newPos.y += 0.2f;
+        transform.position = newPos;
 
         collision.size = ghostSize;
         collision.offset = ghostOffset;
