@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocity = Vector2.zero;
     private bool inLight = false;
     private bool onWall = false;
-    private bool isShadow = false;
+    public bool isShadow { get; private set; } = false;
     public bool isDead { get; private set; } = false;
     public bool hasWon { get; private set; } = false;
     private bool isPushing = false;
