@@ -47,9 +47,14 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
                 Rigidbody2D _collidingRb = _contact.collider.attachedRigidbody;
                 if (_collidingRb != null && _collidingRb.bodyType != RigidbodyType2D.Static)
                 {
-                    _collidingRb.MovePosition(_collidingRb.transform.position + (speed * Time.fixedDeltaTime * (clockwise ? Vector3.right : Vector3.left)) + Time.fixedDeltaTime * (Vector3)_collidingRb.linearVelocity);
-                    if (!_collidingRb.TryGetComponent(out PlayerMovement _))
+                    if (_collidingRb.TryGetComponent(out PlayerMovement player))
                     {
+                        if (!player.isShadow)
+                            _collidingRb.MovePosition(_collidingRb.transform.position + (speed * Time.fixedDeltaTime * (clockwise ? Vector3.right : Vector3.left)) + Time.fixedDeltaTime * (Vector3)_collidingRb.linearVelocity);
+                    }
+                    else
+                    {
+                        _collidingRb.MovePosition(_collidingRb.transform.position + (speed * Time.fixedDeltaTime * (clockwise ? Vector3.right : Vector3.left)) + Time.fixedDeltaTime * (Vector3)_collidingRb.linearVelocity);
                         _collidingRb.linearVelocity = Vector2.zero;
                     }
                 }
