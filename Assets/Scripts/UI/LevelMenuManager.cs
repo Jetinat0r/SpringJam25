@@ -47,7 +47,8 @@ public class LevelMenuManager : MonoBehaviour
         AudioManager.instance.PauseCurrent();
         eventSystem.SetSelectedGameObject(firstSelectedElement);
         playerSoundPlayer.PauseSound("all");
-        SpeedrunManager.instance.PauseTimer();
+        if (SpeedrunManager.instance)
+            SpeedrunManager.instance.PauseTimer();
         isMenuOpen = true;
     }
 
@@ -60,7 +61,8 @@ public class LevelMenuManager : MonoBehaviour
         AudioManager.instance.UnPauseCurrent();
         eventSystem.SetSelectedGameObject(null);
         playerSoundPlayer.UnPauseSound("all");
-        SpeedrunManager.instance.ContinueTimer();
+        if (SpeedrunManager.instance)
+            SpeedrunManager.instance.ContinueTimer();
         isMenuOpen = false;
     }
 
@@ -89,7 +91,8 @@ public class LevelMenuManager : MonoBehaviour
         soundPlayer.PlaySound("UI.Select");
         LevelManager.instance.ReturnToMainMenu();
         AudioManager.instance.UnPauseCurrent();
-        Destroy(SpeedrunManager.instance);
+        if (SpeedrunManager.instance)
+            Destroy(SpeedrunManager.instance);
         isMenuOpen = false;
     }
 }
