@@ -128,6 +128,7 @@ MonoBehaviour:
   - {fileID: 3562665294006101874, guid: 6e3f6dc3f3daab443a3c42b38dd3dd91, type: 3}
   - {fileID: -1152381239167569582, guid: 3ed228ad477619c4b9ca9a471ea37a26, type: 3}
   - {fileID: -1123445563611647213, guid: 9d619b6b0db8e504f8df2b7bdb99d81c, type: 3}
+  keyholeVFX: {fileID: 8359243223844374135, guid: 37b8c8d604f1acd4aab35f6732973000, type: 3}
 --- !u!1 &8350718797877198993
 GameObject:
   m_ObjectHideFlags: 0

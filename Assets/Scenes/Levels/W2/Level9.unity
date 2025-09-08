@@ -484,7 +484,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2083463069254832573, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
       propertyPath: speed
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2351858333105431794, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
       propertyPath: m_Points.Array.data[0].x
@@ -493,6 +493,10 @@ PrefabInstance:
     - target: {fileID: 2351858333105431794, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
       propertyPath: m_Points.Array.data[1].x
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697420245751242986, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6473461939702629203, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
       propertyPath: m_Name
@@ -3231,11 +3235,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2083463069254832573, guid: 1144a5027bce9174c96a889988675f23, type: 3}
       propertyPath: speed
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6473461939702629203, guid: 1144a5027bce9174c96a889988675f23, type: 3}
       propertyPath: m_Name
       value: ConveyorBeltCW
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378188008398662074, guid: 1144a5027bce9174c96a889988675f23, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7493696123487677551, guid: 1144a5027bce9174c96a889988675f23, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5949,7 +5957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4415245891207165135, guid: 68c19e6d16ecd0f448613a4ff4b822e6, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4415245891207165135, guid: 68c19e6d16ecd0f448613a4ff4b822e6, type: 3}
       propertyPath: m_SortingLayerID
@@ -7177,7 +7185,7 @@ Tilemap:
       - {fileID: 5097835944376697235, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -4807704676763458266, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -6051028654464453215, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 16, y: -9, z: 0}
@@ -7666,7 +7674,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2083463069254832573, guid: 1144a5027bce9174c96a889988675f23, type: 3}
       propertyPath: speed
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6473461939702629203, guid: 1144a5027bce9174c96a889988675f23, type: 3}
       propertyPath: m_Name
@@ -32303,6 +32311,26 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 15, y: -9, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 24, y: -9, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 26, y: -9, z: 0}
     second:
       serializedVersion: 2
@@ -41837,15 +41865,15 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 241
     m_Data: {fileID: 11400000, guid: 5cef74e30cb50f9429f0de95a83f5706, type: 2}
-  - m_RefCount: 750
+  - m_RefCount: 752
     m_Data: {fileID: 11400000, guid: 2bf776c313ca2084dad49332a6b1ee2a, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 241
     m_Data: {fileID: -512549444713398877, guid: 491d2de67ceebe541899c6ef11f75e7c, type: 3}
-  - m_RefCount: 750
+  - m_RefCount: 752
     m_Data: {fileID: 2602187622350026979, guid: d155f6f365a3d8847aaf5bbfb2ef34f9, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 991
+  - m_RefCount: 993
     m_Data:
       e00: 1
       e01: 0
@@ -41864,7 +41892,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 991
+  - m_RefCount: 993
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
