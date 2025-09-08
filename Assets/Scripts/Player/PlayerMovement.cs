@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
     public bool canInteract;
     private bool grounded;
     public bool hasKey;
-    public bool succumbToTheBelt = false;
     private bool checkIsForcedOutShadow = false;
 
     // Mutables
@@ -241,7 +240,6 @@ public class PlayerMovement : MonoBehaviour
         // Ground/box push check
         grounded = false;
         isPushing = false;
-        succumbToTheBelt = false;
         spdBoost = 0;
         List<ContactPoint2D> contacts = new();
         rb.GetContacts(contacts);
@@ -269,7 +267,6 @@ public class PlayerMovement : MonoBehaviour
                                 break;
                             case PlayerStates.IdleGhost:
                                 rb.linearVelocity = Vector2.zero;
-                                succumbToTheBelt = true;
                                 break;
                         }
                     }
@@ -342,8 +339,7 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = grav;
 
         Vector2 targetVelocity = new Vector2(moveX * (moveSpd + spdBoost), rb.linearVelocity.y);
-        if (!succumbToTheBelt)
-            rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, groundAcceleration);
+        rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, groundAcceleration);
 
         // Flip sprite based on movement direction
         Vector3 sprScale = ghostSpriteParent.transform.localScale;  // This is here to make typing easier
