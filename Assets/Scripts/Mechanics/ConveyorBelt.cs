@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,6 +9,15 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
     public float speed = 1.0f;
     private Rigidbody2D rb;
     private EdgeCollider2D cldr;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    [Header("Indicator Controllers")]
+    [SerializeField] private RuntimeAnimatorController controllerCW;
+    [SerializeField] private RuntimeAnimatorController controllerCCW;
+    [SerializeField] private float indicatorTime = 1.0f;
+    private Coroutine cr = null;
+
+    [Header("Tiles")]
     [SerializeField] private TileBase cwTile, ccwTile;
     private float startTime;
 
@@ -16,6 +26,9 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
         rb = GetComponent<Rigidbody2D>();
         cldr = GetComponent<EdgeCollider2D>();
         startTime = Time.time;
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.enabled = false;
     }
 
     private void Update()
@@ -70,6 +83,34 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
 
             pos += 0.5f;
         }
+
+        
+        // Swap indicator and display
+        if (clockwise)
+        {
+            animator.runtimeAnimatorController = controllerCW;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = controllerCCW;
+        }
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = true;
+            if (cr != null)
+            {
+                StopCoroutine(cr);
+            }
+            cr = StartCoroutine(HideIndicator(indicatorTime));
+        }
+
+    }
+
+    private IEnumerator HideIndicator(float numSeconds)
+    {
+        yield return new WaitForSeconds(numSeconds);
+        spriteRenderer.enabled = false;
     }
 
     public void OnToggle()
