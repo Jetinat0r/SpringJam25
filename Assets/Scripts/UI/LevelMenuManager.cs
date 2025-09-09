@@ -48,6 +48,7 @@ public class LevelMenuManager : MonoBehaviour
         AudioManager.instance.PauseCurrent();
         eventSystem.SetSelectedGameObject(firstSelectedElement);
         playerSoundPlayer.PauseSound("all");
+        soundPlayer.PlaySound("UI.Pause");
         if (SpeedrunManager.instance)
             SpeedrunManager.instance.PauseTimer();
         isMenuOpen = true;
@@ -62,6 +63,7 @@ public class LevelMenuManager : MonoBehaviour
         AudioManager.instance.UnPauseCurrent();
         eventSystem.SetSelectedGameObject(null);
         playerSoundPlayer.UnPauseSound("all");
+        soundPlayer.PlaySound("UI.Pause");
         if (SpeedrunManager.instance)
             SpeedrunManager.instance.ContinueTimer();
         isMenuOpen = false;

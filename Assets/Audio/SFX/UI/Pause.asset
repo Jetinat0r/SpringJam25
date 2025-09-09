@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bce0f28d8c20041688f5a354ba0b5f0d, type: 3}
-  m_Name: Move
+  m_Name: Pause
   m_EditorClassIdentifier: 
   clip:
   - {fileID: 8300000, guid: 23be34f0759a949748a38afc3623c9b7, type: 3}
