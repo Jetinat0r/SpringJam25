@@ -30,11 +30,16 @@ public abstract class Collectible : MonoBehaviour
 
     private void OnDestroy()
     {
-        StopCoroutine(cr1);
-        StopCoroutine(cr2);
-
-        cr1 = null;
-        cr2 = null;
+        if (cr1 != null)
+        {
+            StopCoroutine(cr1);
+            cr1 = null;
+        }
+        if (cr2 != null)
+        {
+            StopCoroutine(cr2);
+            cr2 = null;
+        }
     }
 
     private void FixedUpdate()

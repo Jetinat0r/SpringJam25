@@ -50,10 +50,10 @@ MonoBehaviour:
   floatSpd: 1
   incrementFactor: 0.1
   amplitude: 4
-  pickupVFX: {fileID: 0}
-  ambientVFX: {fileID: 0}
-  pickupSFXPath: Game.Key
-  enableAmbientVFX: 0
+  pickupVFX: {fileID: 660762055328907081, guid: 37b8c8d604f1acd4aab35f6732973000, type: 3}
+  ambientVFX: {fileID: 2833084460079846898, guid: 7c2f4ae1633180c4ba7cc4d040ee5b32, type: 3}
+  pickupSFXPath: Game.EctoplasmFill
+  enableAmbientVFX: 1
 --- !u!50 &5862603624933015794
 Rigidbody2D:
   serializedVersion: 5
