@@ -15,12 +15,14 @@ public class Door : MonoBehaviour
     private PlayerMovement playerScript = null;
     private SpriteRenderer spriteRenderer = null;
 
+    [SerializeField] private GameObject keyholeVFX; // The prefab containing a sprite renderer and animator for the visual effect that plays upon keyhole removal
+
     private void Start()
     {
         remainingKeys = myKeys.ToList();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        UpdateKeyholes();
+        UpdateKeyholes(false);
 
         Debug.Log(remainingKeys.Count);
     }
@@ -88,8 +90,16 @@ public class Door : MonoBehaviour
     }
 
     // This function changes the sprite depending on how many remaining keys are left to find
-    public void UpdateKeyholes()
+    public void UpdateKeyholes(bool showVFX)
     {
         spriteRenderer.sprite = sprites[remainingKeys.Count];
+
+        if (showVFX)
+        {
+            var vfx1 = Instantiate(keyholeVFX, transform);
+            vfx1.transform.localPosition = new Vector3(-0.25f, 0.25f, 0);
+            var vfx2 = Instantiate(keyholeVFX, transform);
+            vfx2.transform.localPosition = new Vector3(0.25f, -0.25f, 0);
+        }
     }
 }

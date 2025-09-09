@@ -598,7 +598,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if(!LevelManager.instance.GetVentPath(_vent, out currentVentPath))
+        if (!LevelManager.instance.GetVentPath(_vent, out currentVentPath))
         {
             //TODO:
             //Display NO ENTRY or NO PATH symbol
@@ -629,6 +629,8 @@ public class PlayerMovement : MonoBehaviour
             ghostDisappear.gameObject.SetActive(true);
             ghostDisappear.SetTrigger("Disappear");
         }
+
+        soundPlayer.PlaySound("Game.VentIn");
     }
 
     //If isGhost, use ghost sprite, else use shadow sprite
@@ -661,6 +663,8 @@ public class PlayerMovement : MonoBehaviour
             ghostDisappear.SetTrigger("Reset");
             ghostDisappear.gameObject.SetActive(false);
         }
+
+        soundPlayer.PlaySound("Game.VentOut");
     }
 
     //If isGhost, use ghost sprite, else use shadow sprite
@@ -711,6 +715,12 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         shadowSprite.SetActive(false);
         ghostSprite.SetActive(true);
+        if (isShadow)
+        {
+            Vector2 newPos = transform.position;
+            newPos.y += 0.2f;
+            transform.position = newPos;
+        }
         spriteAnimator.SetTrigger("win");
         soundPlayer.PlaySound("Game.LevelClear", 0.6f);
         hasWon = true;

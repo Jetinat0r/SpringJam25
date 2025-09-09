@@ -35,28 +35,28 @@ public class SoundPlayer : MonoBehaviour
         }
     }
 
-    public void PlaySound(string path, float volume = 1, bool loop = false)
+    public void PlaySound(string path, float volume = 1, bool loop = false, float pitch = 1)
     {
-        PlaySound(AudioManager.instance?.FindSound(path), volume, loop);
+        PlaySound(AudioManager.instance?.FindSound(path), volume, loop, pitch);
     }
 
-    public void PlaySound(SoundPlayable clip, float volume = 1, bool loop = false)
+    public void PlaySound(SoundPlayable clip, float volume = 1, bool loop = false, float pitch = 1)
     {
-        PlaySound(clip.GetClip(), volume, loop);
+        PlaySound(clip.GetClip(), volume, loop, pitch);
     }
     
-    public void PlaySound(AudioClip clip, float volume = 1, bool loop = false)
+    public void PlaySound(AudioClip clip, float volume = 1, bool loop = false, float pitch = 1)
     {
         if (clip == null) return;
 
-        foreach (AudioSource source in sources)
-        {
-            if (source != null && source.gameObject.activeInHierarchy && source.clip == clip && source.isPlaying)
-            {
-                if (source.time < 0.2f) return;
-                else source.Stop();
-            }
-        }
+        // foreach (AudioSource source in sources)
+        // {
+        //     if (source != null && source.gameObject.activeInHierarchy && source.clip == clip && source.isPlaying)
+        //     {
+        //         if (source.time / source.clip.length < 0.2f) return;
+        //         else source.Stop();
+        //     }
+        // }
         for (int index = sources.Length - 1; index >= 0; index--)
         {
             if (sources[index] != null && sources[index].gameObject.activeInHierarchy && !sources[index].isPlaying)
@@ -64,6 +64,7 @@ public class SoundPlayer : MonoBehaviour
                 sources[index].clip = clip;
                 sources[index].loop = loop;
                 sources[index].volume = volume;
+                sources[index].pitch = pitch;
                 sources[index].Play();
                 return;
             }

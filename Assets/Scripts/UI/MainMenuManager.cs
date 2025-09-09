@@ -55,8 +55,9 @@ public class MainMenuManager : MonoBehaviour
 
     private Tween curTween;
 
-    public SoundClip selectSound, backSound;
+    public SoundPlayable selectSound, backSound;
     public SoundPlayer soundPlayer;
+    public static SoundPlayer menuSoundPlayer;
 
     public LabelledSliderLinker musicSetting, sfxSetting;
 
@@ -75,6 +76,7 @@ public class MainMenuManager : MonoBehaviour
     void Awake()
     {
         inMenu = true;
+        menuSoundPlayer = soundPlayer;
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created

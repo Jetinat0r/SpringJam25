@@ -8,18 +8,19 @@ public class Key : Collectible
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
-            player.soundPlayer.PlaySound("Game.Key");
-
+            PlayPickupSFX(player);
             Door[] doors = FindObjectsByType<Door>(FindObjectsSortMode.None);
             foreach (Door door in doors)
             {
                 if (door.remainingKeys.Contains(this))
                 {
                     door.remainingKeys.Remove(this);
-                    door.UpdateKeyholes();
+                    door.UpdateKeyholes(true);
                     Debug.Log("Keyholes updated");
                 }
             }
+
+            DisplayPickupVFX();
             Destroy(gameObject);
         }
     }

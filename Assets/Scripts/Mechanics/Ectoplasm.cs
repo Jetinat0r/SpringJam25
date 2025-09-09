@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Ectoplasm : Collectible
 {
+    Coroutine ambience = null;
 
     private void Awake()
     {
@@ -10,12 +11,20 @@ public class Ectoplasm : Collectible
             Destroy(gameObject);
         }
     }
+
+    protected override void BeginHandleAmbientVFX()
+    {
+        ambience = StartCoroutine(AmbientVFXLoop(new Vector3(0f, 0.25f, 0f)));
+    }
+
     protected override void OnCollected(Collider2D collision)
     {
         PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
-        player.soundPlayer.PlaySound("Game.Key");
+        PlayPickupSFX(player);
 
         EctoplasmBar eBar = FindFirstObjectByType<EctoplasmBar>();
         eBar.FullRestore();
+        DisplayPickupVFX();
+        Destroy(gameObject);
     }
 }
