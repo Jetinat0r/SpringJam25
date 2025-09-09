@@ -49,14 +49,14 @@ public class SoundPlayer : MonoBehaviour
     {
         if (clip == null) return;
 
-        foreach (AudioSource source in sources)
-        {
-            if (source != null && source.gameObject.activeInHierarchy && source.clip == clip && source.isPlaying)
-            {
-                if (source.time < 0.2f) return;
-                else source.Stop();
-            }
-        }
+        // foreach (AudioSource source in sources)
+        // {
+        //     if (source != null && source.gameObject.activeInHierarchy && source.clip == clip && source.isPlaying)
+        //     {
+        //         if (source.time / source.clip.length < 0.2f) return;
+        //         else source.Stop();
+        //     }
+        // }
         for (int index = sources.Length - 1; index >= 0; index--)
         {
             if (sources[index] != null && sources[index].gameObject.activeInHierarchy && !sources[index].isPlaying)
