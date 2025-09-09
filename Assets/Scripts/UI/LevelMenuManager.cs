@@ -24,6 +24,7 @@ public class LevelMenuManager : MonoBehaviour
     void Start()
     {
         soundPlayer = Instantiate(soundPlayerPrefab).GetComponent<SoundPlayer>();
+        MainMenuManager.menuSoundPlayer = soundPlayer;
     }
 
     public void ToggleMenu(PlayerMovement player)
