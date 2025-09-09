@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundPlayer : MonoBehaviour
 {
     public AudioSource[] sources;
     public static bool debugSounds = false;
+    public AudioMixerGroup sounds, pitchedSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -35,17 +37,17 @@ public class SoundPlayer : MonoBehaviour
         }
     }
 
-    public void PlaySound(string path, float volume = 1, bool loop = false, float pitch = 1)
+    public void PlaySound(string path, float volume = 1, bool loop = false, bool pitched = false, float pitch = 1)
     {
-        PlaySound(AudioManager.instance?.FindSound(path), volume, loop, pitch);
+        PlaySound(AudioManager.instance?.FindSound(path), volume, loop, pitched, pitch);
     }
 
-    public void PlaySound(SoundPlayable clip, float volume = 1, bool loop = false, float pitch = 1)
+    public void PlaySound(SoundPlayable clip, float volume = 1, bool loop = false, bool pitched = false, float pitch = 1)
     {
-        PlaySound(clip.GetClip(), volume, loop, pitch);
+        PlaySound(clip.GetClip(), volume, loop, pitched, pitch);
     }
     
-    public void PlaySound(AudioClip clip, float volume = 1, bool loop = false, float pitch = 1)
+    public void PlaySound(AudioClip clip, float volume = 1, bool loop = false, bool pitched = false, float pitch = 1, AudioMixerGroup mixerGroup = null)
     {
         if (clip == null) return;
 
@@ -65,6 +67,10 @@ public class SoundPlayer : MonoBehaviour
                 sources[index].loop = loop;
                 sources[index].volume = volume;
                 sources[index].pitch = pitch;
+                if (!pitched)
+                    sources[index].outputAudioMixerGroup = sounds;
+                else
+                    sources[index].outputAudioMixerGroup = pitchedSounds;
                 sources[index].Play();
                 return;
             }

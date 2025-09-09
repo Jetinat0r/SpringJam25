@@ -716,7 +716,7 @@ public class PlayerMovement : MonoBehaviour
         shadowSprite.SetActive(false);
         ghostSprite.SetActive(true);
         spriteAnimator.SetTrigger("win");
-        soundPlayer.PlaySound("Game.LevelClear", 0.6f);
+        soundPlayer.PlaySound("Game.LevelClear", 0.6f, false, true);
         hasWon = true;
         LevelManager.instance.CompleteLevel();
     }
