@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bce0f28d8c20041688f5a354ba0b5f0d, type: 3}
-  m_Name: Key
+  m_Name: Move
   m_EditorClassIdentifier: 
   clip:
-  - {fileID: 8300000, guid: c70ea11c3c7a048b287d2c054f35a00b, type: 3}
-  - {fileID: 8300000, guid: c70ea11c3c7a048b287d2c054f35a00b, type: 3}
-  - {fileID: 8300000, guid: c70ea11c3c7a048b287d2c054f35a00b, type: 3}
-  - {fileID: 8300000, guid: c70ea11c3c7a048b287d2c054f35a00b, type: 3}
+  - {fileID: 8300000, guid: 3a2a7c837433b4316938ba27f460bb7e, type: 3}
+  - {fileID: 8300000, guid: 4aa4a43bd34974789bfd8f916eda32c3, type: 3}
+  - {fileID: 8300000, guid: 3a2a7c837433b4316938ba27f460bb7e, type: 3}
+  - {fileID: 8300000, guid: 3a2a7c837433b4316938ba27f460bb7e, type: 3}

@@ -22541,8 +22541,9 @@ MonoBehaviour:
   - {fileID: 6087213}
   - {fileID: 447443215}
   - {fileID: 3661632}
-  selectSound: {fileID: 11400000, guid: 05160ec723370a64eb092feb9a2303a0, type: 2}
-  backSound: {fileID: 11400000, guid: 5ae8e2dfafa27234fad2d92cadaf7694, type: 2}
+  selectSound: {fileID: 11400000, guid: da7802216da1049a3bb3a5ba7c7c3405, type: 2}
+  backSound: {fileID: 11400000, guid: 9cc15da6fce9c488fbf245998920ef1e, type: 2}
+  moveSound: {fileID: 11400000, guid: ba402f33e84b04a7ba071278c3b4d63d, type: 2}
   soundPlayer: {fileID: 2020560074}
   musicSetting: {fileID: 367381762}
   sfxSetting: {fileID: 807881811}
@@ -25410,10 +25411,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.003125
+    y: 0.0034722222
+    width: 5.4625
+    height: 2.277778
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
