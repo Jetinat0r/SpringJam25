@@ -189,8 +189,14 @@ MonoBehaviour:
   controllerCW: {fileID: 1886140625162311801, guid: 1b6cced0aba3a401bb229b07a7b8c28e, type: 3}
   controllerCCW: {fileID: -4952406303011742727, guid: 7c6b2e034ed582f47aff652483a6e0e5, type: 3}
   indicatorTime: 1
-  cwTile: {fileID: 11400000, guid: 82afe58eaaa4ac3488310d82a921749f, type: 2}
-  ccwTile: {fileID: 11400000, guid: ec5bdaf8201c6024fa8c2929c6184dbe, type: 2}
+  cwTile:
+  - {fileID: 11400000, guid: 82afe58eaaa4ac3488310d82a921749f, type: 2}
+  - {fileID: 11400000, guid: ac8ea099b554b42fd81177c3e0e07d8f, type: 2}
+  - {fileID: 11400000, guid: 3f243685851bb42c59f09264e99549ec, type: 2}
+  ccwTile:
+  - {fileID: 11400000, guid: ec5bdaf8201c6024fa8c2929c6184dbe, type: 2}
+  - {fileID: 11400000, guid: f92f9757b099b4253934543593364c10, type: 2}
+  - {fileID: 11400000, guid: d019eea0e53c0495fa8dc214ddbaa941, type: 2}
 --- !u!68 &2351858333105431794
 EdgeCollider2D:
   m_ObjectHideFlags: 0

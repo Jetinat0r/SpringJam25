@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class ConveyorBelt : MonoBehaviour, IToggleable
 {
     public bool clockwise = true;
-    public float speed = 1.0f;
+    public int speed = 1;
     private Rigidbody2D rb;
     private EdgeCollider2D cldr;
     private Animator animator;
@@ -18,7 +18,7 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
     private Coroutine cr = null;
 
     [Header("Tiles")]
-    [SerializeField] private TileBase cwTile, ccwTile;
+    [SerializeField] private TileBase[] cwTile, ccwTile;
     private float startTime;
 
     private void Start()
@@ -29,6 +29,8 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.enabled = false;
+        UpdateTiles();
+        LevelManager.instance.conveyorTilemap.RefreshAllTiles();
     }
 
     private void Update()
@@ -79,21 +81,8 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
     public void FlipBelt()
     {
         clockwise = !clockwise;
-        float pos = cldr.bounds.min.x + 0.25f;
-        while (pos < cldr.bounds.max.x)
-        {
-            Vector2 worldPos = new(pos, transform.position.y);
-            Vector3Int tilePos = LevelManager.instance.conveyorTilemap.WorldToCell(worldPos);
+        UpdateTiles();
 
-            if (clockwise)
-                LevelManager.instance.conveyorTilemap.SetTile(tilePos, cwTile);
-            else
-                LevelManager.instance.conveyorTilemap.SetTile(tilePos, ccwTile);
-
-            pos += 0.5f;
-        }
-
-        
         // Swap indicator and display
         if (clockwise)
         {
@@ -114,6 +103,23 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
             cr = StartCoroutine(HideIndicator(indicatorTime));
         }
 
+    }
+
+    private void UpdateTiles()
+    {
+        float pos = cldr.bounds.min.x + 0.25f;
+        while (pos < cldr.bounds.max.x)
+        {
+            Vector2 worldPos = new(pos, transform.position.y);
+            Vector3Int tilePos = LevelManager.instance.conveyorTilemap.WorldToCell(worldPos);
+
+            if (clockwise)
+                LevelManager.instance.conveyorTilemap.SetTile(tilePos, cwTile[speed-1]);
+            else
+                LevelManager.instance.conveyorTilemap.SetTile(tilePos, ccwTile[speed-1]);
+
+            pos += 0.5f;
+        }
     }
 
     private IEnumerator HideIndicator(float numSeconds)
