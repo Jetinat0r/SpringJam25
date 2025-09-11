@@ -129,9 +129,16 @@ public class LevelManager : MonoBehaviour
         {
             if (SteamManager.Initialized)
             {
-                float clearTime = SpeedrunManager.instance.StopTimer();
-                Debug.Log("Clear time: " + clearTime);
-                Destroy(SpeedrunManager.instance);
+                float clearTime = 1;
+                float timeLimit = 0;
+                if (SpeedrunManager.instance != null)
+                {
+                    clearTime = SpeedrunManager.instance.StopTimer();
+                    timeLimit = SpeedrunManager.instance.timeLimit;
+                    Debug.Log("Clear time: " + clearTime);
+                    Destroy(SpeedrunManager.instance);
+                }
+
                 // Unlock appropriate world clear achievements
                 // TODO: Add the speedrun achievements as we finish building out entire worlds
                 int.TryParse(currentLevelName["Level".Length..], out int level);
@@ -141,7 +148,7 @@ public class LevelManager : MonoBehaviour
                         Debug.Log("Achievement unlocked! CLEAR_W1");
                         JetEngine.SteamUtils.TryGetAchievement("CLEAR_W1");
 
-                        if (clearTime <= SpeedrunManager.instance.timeLimit)
+                        if (clearTime <= timeLimit)
                         {
                             Debug.Log("Achievement unlocked! SPEEDRUN_W1");
                             JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W1");
@@ -151,7 +158,7 @@ public class LevelManager : MonoBehaviour
                         Debug.Log("Achievement unlocked! CLEAR_W2");
                         JetEngine.SteamUtils.TryGetAchievement("CLEAR_W2");
 
-                        if (clearTime <= SpeedrunManager.instance.timeLimit)
+                        if (clearTime <= timeLimit)
                         {
                             Debug.Log("Achievement unlocked! SPEEDRUN_W2");
                             JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W2");
@@ -161,7 +168,7 @@ public class LevelManager : MonoBehaviour
                         Debug.Log("Achievement unlocked! CLEAR_W3");
                         JetEngine.SteamUtils.TryGetAchievement("CLEAR_W3");
 
-                        if (clearTime <= SpeedrunManager.instance.timeLimit)
+                        if (clearTime <= timeLimit)
                         {
                             Debug.Log("Achievement unlocked! SPEEDRUN_W3");
                             JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W3");
@@ -171,7 +178,7 @@ public class LevelManager : MonoBehaviour
                         Debug.Log("Achievement unlocked! CLEAR_W4");
                         JetEngine.SteamUtils.TryGetAchievement("CLEAR_W4");
 
-                        if (clearTime <= SpeedrunManager.instance.timeLimit)
+                        if (clearTime <= timeLimit)
                         {
                             Debug.Log("Achievement unlocked! SPEEDRUN_W4");
                             JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W4");
