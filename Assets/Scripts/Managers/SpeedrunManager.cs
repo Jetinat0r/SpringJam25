@@ -38,7 +38,7 @@ public class SpeedrunManager : MonoBehaviour
         if (timerActive)
         {
             timer += Time.deltaTime;
-            Debug.Log("Timer at " + timer);
+            // Debug.Log("Timer at " + timer);
         }
     }
 
