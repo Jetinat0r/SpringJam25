@@ -46,19 +46,19 @@ public class PressurePad : MonoBehaviour
         // Pad just has more weight on it. No state change required.
         if (weight > previousWeight && previousWeight > 0)
         {
-            Debug.Log("Pad state went unchanged. Heavier, but it was already weighed down before.");
+            // Debug.Log("Pad state went unchanged. Heavier, but it was already weighed down before.");
             return;
         }
 
         if (weight < previousWeight && weight > 0)
         {
-            Debug.Log("Pad state went unchanged. Lighter, but still > 0");
+            // Debug.Log("Pad state went unchanged. Lighter, but still > 0");
         }
 
         if (weight == 0)
         {
             // Pad is no longer burdened by weight. Lift it up.
-            Debug.Log("Pad is now free of any and all weights.");
+            // Debug.Log("Pad is now free of any and all weights.");
             spriteRenderer.sprite = unpressed;
             ChangeAffectedObjects();
             PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
@@ -66,7 +66,7 @@ public class PressurePad : MonoBehaviour
         else if (weight == 1 && previousWeight == 0)
         {
             // Pad is burdened by new weight. Press it down.
-            Debug.Log("Pad is now weighed down.");
+            // Debug.Log("Pad is now weighed down.");
             spriteRenderer.sprite = pressed;
             ChangeAffectedObjects();
             PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");

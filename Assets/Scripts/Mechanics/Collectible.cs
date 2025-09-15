@@ -60,10 +60,10 @@ public abstract class Collectible : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("You are being touched.");
+        // Debug.Log("You are being touched.");
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("You are about to be collected");
+            // Debug.Log("You are about to be collected");
             OnCollected(collision);
             Destroy(gameObject);
         }

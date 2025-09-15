@@ -23,8 +23,6 @@ public class Door : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         UpdateKeyholes(false);
-
-        Debug.Log(remainingKeys.Count);
     }
 
 #if UNITY_EDITOR

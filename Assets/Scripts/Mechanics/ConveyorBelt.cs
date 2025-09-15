@@ -19,13 +19,11 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
 
     [Header("Tiles")]
     [SerializeField] private TileBase[] cwTile, ccwTile;
-    private float startTime;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cldr = GetComponent<EdgeCollider2D>();
-        startTime = Time.time;
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.enabled = false;
@@ -52,30 +50,16 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
                     if (_collidingRb.TryGetComponent(out PlayerMovement player))
                     {
                         if (!player.isShadow)
-                            _collidingRb.MovePosition(_collidingRb.transform.position + (speed * Time.fixedDeltaTime * (clockwise ? Vector3.right : Vector3.left)) + Time.fixedDeltaTime * (Vector3)_collidingRb.linearVelocity);
+                            _collidingRb.MovePosition((Vector3)_collidingRb.position + (speed * Time.fixedDeltaTime * (clockwise ? Vector3.right : Vector3.left)) + Time.fixedDeltaTime * (Vector3)_collidingRb.linearVelocity);
                     }
                     else
                     {
-                        _collidingRb.MovePosition(_collidingRb.transform.position + (speed * Time.fixedDeltaTime * (clockwise ? Vector3.right : Vector3.left)) + Time.fixedDeltaTime * (Vector3)_collidingRb.linearVelocity);
+                        _collidingRb.MovePosition((Vector3)_collidingRb.position + (speed * Time.fixedDeltaTime * (clockwise ? Vector3.right : Vector3.left)) + Time.fixedDeltaTime * (Vector3)_collidingRb.linearVelocity);
                         _collidingRb.linearVelocity = Vector2.zero;
                     }
                 }
             }
         }
-
-        /* TODO: This is the old method, in case we ever want to go back to it.
-         * It worked in a much jankier way with friction, which ended up carrying momentum improperly
-         */
-        // Vector2 position = rb.position;
-        // if (clockwise)
-        // {
-        //     rb.position += speed * Time.fixedDeltaTime * Vector2.left;
-        // }
-        // else
-        // {
-        //     rb.position += speed * Time.fixedDeltaTime * Vector2.right;
-        // }
-        // rb.MovePosition(position);
     }
 
     public void FlipBelt()

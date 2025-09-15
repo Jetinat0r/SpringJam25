@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour
     {
         List<int> _path = new List<int>();
         //Debug.Log(VentSearch(new Vector2Int(0, 1), new Vector2Int(2, 2), ref _path));
-        Debug.Log(VentSearch(new Vector2Int(1, 1), new Vector2Int(2, 0), ref _path));
+        // Debug.Log(VentSearch(new Vector2Int(1, 1), new Vector2Int(2, 0), ref _path));
         foreach (int i in _path)
         {
             Debug.Log($"Path: {i}");
