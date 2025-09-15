@@ -21,7 +21,7 @@ public class PressurePad : MonoBehaviour
             {
                 int previousWeight = weight;
                 weight++;
-                Debug.Log("You added some weight. Current weight: " + weight);
+                // Debug.Log("You added some weight. Current weight: " + weight);
                 CheckWeight(previousWeight);
             }
         }
@@ -35,7 +35,7 @@ public class PressurePad : MonoBehaviour
             {
                 int previousWeight = weight;
                 weight--;
-                Debug.Log("You took off some weight. Current weight: " + weight);
+                // Debug.Log("You took off some weight. Current weight: " + weight);
                 CheckWeight(previousWeight);
             }
         }
