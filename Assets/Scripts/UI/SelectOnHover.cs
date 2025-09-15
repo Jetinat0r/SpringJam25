@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class SelectOnHover : MonoBehaviour, IPointerMoveHandler
+public class SelectOnHover : MonoBehaviour, IPointerMoveHandler, ISelectHandler
 {
     [SerializeField]
     public MenuPanel parentPanel = MenuPanel.MAIN;
@@ -28,8 +28,7 @@ public class SelectOnHover : MonoBehaviour, IPointerMoveHandler
         if (selectable && MenuPanelWatcher.instance.activePanel == parentPanel)
         {
             if (EventSystem.current.currentSelectedGameObject != selectable.gameObject)
-                MainMenuManager.menuSoundPlayer.PlaySound("UI.Move");
-            EventSystem.current.SetSelectedGameObject(selectable.gameObject);
+                EventSystem.current.SetSelectedGameObject(selectable.gameObject);
             
             //selectable.Select();
         }
@@ -53,5 +52,15 @@ public class SelectOnHover : MonoBehaviour, IPointerMoveHandler
                 return;
             }
         }
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        if (MainMenuManager.muteFirstButtonSound)
+        {
+            MainMenuManager.muteFirstButtonSound = false;
+            return;
+        }
+        MainMenuManager.menuSoundPlayer.PlaySound("UI.Move");
     }
 }

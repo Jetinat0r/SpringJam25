@@ -42,7 +42,7 @@ public class MainMenuManager : MonoBehaviour
     public float tweenMoveTime = 1f;
     [SerializeField]
     public Ease tweenEaseType = Ease.OutQuint;
-    
+
     [SerializeField]
     public LevelButton[] levelButtons = new LevelButton[32];
 
@@ -72,13 +72,14 @@ public class MainMenuManager : MonoBehaviour
     public bool allowProgressDeletion = false;
 
     public static bool inMenu = false;
+    public static bool muteFirstButtonSound = true;
 
     void Awake()
     {
         inMenu = true;
         menuSoundPlayer = soundPlayer;
     }
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -119,6 +120,7 @@ public class MainMenuManager : MonoBehaviour
     private void OnDestroy()
     {
         resetProgress.started -= ResetProgress;
+        muteFirstButtonSound = true;
     }
 
     public void ResetProgress(InputAction.CallbackContext _context)
