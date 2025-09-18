@@ -12,7 +12,6 @@ public class DestroyScriptOnEnter : MonoBehaviour
             return;
         }
 
-        Debug.Log("Hewwo?");
         Destroy(scriptToDestroy);
         Destroy(gameObject);
     }
