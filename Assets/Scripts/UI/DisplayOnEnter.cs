@@ -9,6 +9,9 @@ public class DisplayOnEnter : MonoBehaviour
     [SerializeField]
     public List<GameObject> objectsToRevealOnInput;
 
+    [SerializeField]
+    public bool hideEnterObjectsOnExit = false;
+
     private bool playerInBox = false;
 
     [SerializeField]
@@ -35,6 +38,14 @@ public class DisplayOnEnter : MonoBehaviour
         if (!collision.CompareTag("Player"))
         {
             return;
+        }
+
+        if (hideEnterObjectsOnExit)
+        {
+            foreach (GameObject obj in objectsToRevealOnEnter)
+            {
+                obj.SetActive(false);
+            }
         }
 
         playerInBox = false;
