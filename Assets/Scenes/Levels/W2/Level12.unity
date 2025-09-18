@@ -1512,7 +1512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb609824bfd8724bafa57c0f3908e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolDistanceFromCenter: 3
+  firstPatrolRight: 0
+  patrolDistanceFromCenter: 4
   patrolPeriod: 12
 --- !u!4 &982439641
 Transform:
