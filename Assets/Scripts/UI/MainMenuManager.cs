@@ -66,6 +66,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private PlayerInput debugInput;
     private InputAction resetProgress;
+    private InputAction toggleEP;   // DEBUG PURPOSES ONLY. REPLACE WITH CHALLENGE MENU.
 
     [SerializeField]
     [Tooltip("Allows Right Shift + R to Reset all progress. Save for Debug and Showcase builds!")]
@@ -115,6 +116,10 @@ public class MainMenuManager : MonoBehaviour
         resetProgress = debugInput.actions["ResetProgress"];
         resetProgress.Enable();
         resetProgress.started += ResetProgress;
+
+        toggleEP = debugInput.actions["ToggleEctoplasm"];
+        toggleEP.Enable();
+        toggleEP.started += ToggleEP;
     }
 
     private void OnDestroy()
@@ -148,6 +153,23 @@ public class MainMenuManager : MonoBehaviour
             {
                 levelButtons[i].LockLevel();
             }
+        }
+    }
+
+    public void ToggleEP(InputAction.CallbackContext _context)
+    {
+        if (ChallengeManager.currentMode == ChallengeManager.ChallengeMode.None)
+        {
+            ChallengeManager.currentMode = ChallengeManager.ChallengeMode.Ectoplasm;
+            soundPlayer.PlaySound(selectSound);
+            Debug.Log("Ectoplasm Enabled!");
+
+        }
+        else if (ChallengeManager.currentMode == ChallengeManager.ChallengeMode.Ectoplasm)
+        {
+            ChallengeManager.currentMode = ChallengeManager.ChallengeMode.None;
+            soundPlayer.PlaySound(backSound);
+            Debug.Log("Ectoplasm Disabled!");
         }
     }
 
