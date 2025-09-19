@@ -1113,6 +1113,7 @@ MonoBehaviour:
   groundAcceleration: 0.02
   slippery: {fileID: 6200000, guid: 43bc07a684bfe45f89322810a08e3ce4, type: 2}
   friction: {fileID: 6200000, guid: 83f5deb1c6b3a4621b76822ac7a3b759, type: 2}
+  cameraTarget: {fileID: 5778771310185363040}
 --- !u!1 &3856495095441558420
 GameObject:
   m_ObjectHideFlags: 0

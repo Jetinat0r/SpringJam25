@@ -101,6 +101,10 @@ public class PlayerMovement : MonoBehaviour
     // Physics Materials
     [SerializeField] private PhysicsMaterial2D slippery, friction;
 
+    //Camera Target
+    [SerializeField]
+    public Transform cameraTarget;
+
     // Singleton
     public static PlayerMovement instance;
 

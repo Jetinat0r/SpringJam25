@@ -93,10 +93,14 @@ public class LevelManager : MonoBehaviour
         player = _player;
 
         //Spaghetti City
+        /*
         GameObject _camTarget = new GameObject("Camera Target");
         cameraTarget = _camTarget.AddComponent<CameraTarget>();
         cameraTarget.Init(player.transform);
         Camera.main.GetComponent<CameraSnapToPlayerZone>().Init(cameraTarget.transform);
+        */
+
+        Camera.main.GetComponent<CameraSnapToPlayerZone>().Init(player.cameraTarget);
     }
 
     public void ToggleMenu()
