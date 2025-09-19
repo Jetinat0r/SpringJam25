@@ -374,6 +374,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleEctoplasm",
+                    "type": "Button",
+                    "id": "52830bec-8d44-4685-9ff2-256b004dc8b9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -869,6 +878,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "ResetProgress",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "fa2455de-ec57-4527-8671-27e00fd049c6",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleEctoplasm",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "c020589f-8f42-4dbd-9547-3d8f6eb778ec",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ToggleEctoplasm",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "08af12a0-43dd-4bef-b4c4-9127144a2df5",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ToggleEctoplasm",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
