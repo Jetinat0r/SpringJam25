@@ -135,7 +135,21 @@ public class MainMenuManager : MonoBehaviour
             return;
         }
 
-        ResetProgress();
+        soundPlayer.PlaySound(selectSound);
+        SettingsManager.completedLevels = 15;
+        SettingsManager.SaveSettings();
+        for (int i = 0; i < levelButtons.Length; i++)
+        {
+            if (SettingsManager.completedLevels >= i)
+            {
+                levelButtons[i].UnlockLevel();
+            }
+            else
+            {
+                levelButtons[i].LockLevel();
+            }
+        }
+        //ResetProgress();
     }
 
     public void ResetProgress()

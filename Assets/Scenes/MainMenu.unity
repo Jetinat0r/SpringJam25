@@ -22543,12 +22543,11 @@ MonoBehaviour:
   - {fileID: 3661632}
   selectSound: {fileID: 11400000, guid: da7802216da1049a3bb3a5ba7c7c3405, type: 2}
   backSound: {fileID: 11400000, guid: 9cc15da6fce9c488fbf245998920ef1e, type: 2}
-  moveSound: {fileID: 11400000, guid: ba402f33e84b04a7ba071278c3b4d63d, type: 2}
   soundPlayer: {fileID: 2020560074}
   musicSetting: {fileID: 367381762}
   sfxSetting: {fileID: 807881811}
   debugInput: {fileID: 1256944912}
-  allowProgressDeletion: 0
+  allowProgressDeletion: 1
 --- !u!114 &1256944912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25411,10 +25410,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.003125
-    y: 0.0034722222
-    width: 5.4625
-    height: 2.277778
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -25609,7 +25608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickableLevelButton: {fileID: 1444954490}
-  levelName: Level16
+  levelName: TitleLevel
   isLocked: 1
   levelText: {fileID: 641461821}
   levelLockIcon: {fileID: 291524578}
