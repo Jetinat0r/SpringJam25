@@ -8,7 +8,7 @@ public class CameraTarget : MonoBehaviour
     [SerializeField]
     public float ventSecondsPerScreen = 1.5f;
     public bool followingVent = false;
-    private Transform targetPlayer;
+    private Transform targetTransform;
 
     private Action onCompletePath = null;
 
@@ -18,9 +18,9 @@ public class CameraTarget : MonoBehaviour
         Camera.main.GetComponent<CameraSnapToPlayerZone>().Init(transform);
     }
 
-    public void Init(Transform _targetPlayer)
+    public void Init(Transform _targetTransform)
     {
-        targetPlayer = _targetPlayer;
+        targetTransform = _targetTransform;
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class CameraTarget : MonoBehaviour
     {
         if (!followingVent)
         {
-            transform.position = targetPlayer.position;
+            transform.position = targetTransform.position;
         }
     }
 
