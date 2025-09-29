@@ -20,6 +20,8 @@ public class Vent : MonoBehaviour, IToggleable
     public List<Box> touchingBoxes = new();
     public List<GameObject> objectsInTransit = new();
 
+    public Transform CustomMagicLinePivot { get; set; }
+
     private void Start()
     {
         objectTrigger = GetComponent<BoxCollider2D>();

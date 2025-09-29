@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
+    [SerializeField] public MagicInteractionLine magicInteractionLinePrefab;
+    [SerializeField] public Transform customMagicLinePivot = null;
+    private MagicInteractionLine[] magicInteractionLines;
     public GameObject[] affectedObjects;
     private PlayerMovement playerScript;
     [SerializeField] private SpriteRenderer sprite;
@@ -10,6 +13,33 @@ public class Switch : MonoBehaviour
     public bool on = false, wallSwitch = false;
     public Animator myAnim;
     private bool flipped = false;
+
+    private void Awake()
+    {
+        if (customMagicLinePivot == null)
+        {
+            customMagicLinePivot = transform;
+        }
+    }
+
+    private void Start()
+    {
+        magicInteractionLines = new MagicInteractionLine[affectedObjects.Length];
+
+        for (int i = 0; i < affectedObjects.Length; i++)
+        {
+            if (affectedObjects[i].TryGetComponent(out IToggleable _toggleable))
+            {
+                magicInteractionLines[i] = Instantiate(magicInteractionLinePrefab);
+                magicInteractionLines[i].SetupLine(customMagicLinePivot.position, _toggleable.CustomMagicLinePivot.position);
+            }
+            else
+            {
+                Debug.LogError($"Affected object [{affectedObjects[i]}] in Switch [{name}] is not IToggleable!");
+                throw new Exception($"Affected object [{affectedObjects[i]}] in Switch [{name}] is not IToggleable!");
+            }
+        }
+    }
 
     public void MyInteraction()
     {
@@ -40,13 +70,15 @@ public class Switch : MonoBehaviour
             }
         }
 
-        foreach (GameObject obj in affectedObjects)
+        for (int i = 0; i < affectedObjects.Length; i++)
         {
-            if (obj != null)
+            if (affectedObjects[i] != null)
             {
-                if (obj.TryGetComponent(out IToggleable _toggler))
+                if (affectedObjects[i].TryGetComponent(out IToggleable _toggler))
                 {
                     _toggler.OnToggle();
+
+                    magicInteractionLines[i].PlayParticles();
                 }
             }
         }

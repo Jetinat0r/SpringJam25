@@ -1,16 +1,43 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PressurePad : MonoBehaviour
 {
+    [SerializeField] public MagicInteractionLine magicInteractionLinePrefab;
+    [SerializeField] public Transform customMagicLinePivot = null;
+    private MagicInteractionLine[] magicInteractionLines;
     public GameObject[] affectedObjects;
     private int weight = 0;
     private SpriteRenderer spriteRenderer = null;
     [SerializeField] private Sprite unpressed, pressed;
 
+    private void Awake()
+    {
+        if (customMagicLinePivot == null)
+        {
+            customMagicLinePivot = transform;
+        }
+    }
+
     private void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        magicInteractionLines = new MagicInteractionLine[affectedObjects.Length];
+
+        for (int i = 0; i < affectedObjects.Length; i++)
+        {
+            if (affectedObjects[i].TryGetComponent(out IToggleable _toggleable))
+            {
+                magicInteractionLines[i] = Instantiate(magicInteractionLinePrefab);
+                magicInteractionLines[i].SetupLine(customMagicLinePivot.position, _toggleable.CustomMagicLinePivot.position);
+            }
+            else
+            {
+                throw new Exception($"Affected object [{affectedObjects[i]}] in Pressure Pad [{name}] is not IToggleable!");
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -75,13 +102,15 @@ public class PressurePad : MonoBehaviour
 
     private void ChangeAffectedObjects()
     {
-        foreach (GameObject obj in affectedObjects)
+        for (int i = 0; i < affectedObjects.Length; i++)
         {
-            if (obj != null)
+            if (affectedObjects[i] != null)
             {
-                if (obj.TryGetComponent(out IToggleable _toggler))
+                if (affectedObjects[i].TryGetComponent(out IToggleable _toggler))
                 {
                     _toggler.OnToggle();
+
+                    magicInteractionLines[i].PlayParticles();
                 }
             }
         }

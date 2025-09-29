@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Mirror : MonoBehaviour, IRotatable
 {
+    [SerializeField]
+    private Transform _customMagicLinePivot;
+    public Transform CustomMagicLinePivot { get => _customMagicLinePivot != null ? _customMagicLinePivot : transform; set => _customMagicLinePivot = value; }
+
     private enum MirrorDirection
     {
         UpLeft,
@@ -18,6 +22,7 @@ public class Mirror : MonoBehaviour, IRotatable
     private CapsuleCollider2D capsuleCollider = null;
     private Animator animator = null;
     private Vector3 lightOffset = Vector3.up * 0.5f;
+
 
     private void Start()
     {

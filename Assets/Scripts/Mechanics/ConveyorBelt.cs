@@ -5,6 +5,10 @@ using UnityEngine.Tilemaps;
 
 public class ConveyorBelt : MonoBehaviour, IToggleable
 {
+    [SerializeField]
+    private Transform _customMagicLinePivot;
+    public Transform CustomMagicLinePivot { get => _customMagicLinePivot != null ? _customMagicLinePivot : transform; set => _customMagicLinePivot = value; }
+
     public bool clockwise = true;
     public int speed = 1;
     private Rigidbody2D rb;

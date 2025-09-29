@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &551104004833955142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935051877919784210}
+  m_Layer: 0
+  m_Name: CustomMagicLinePivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935051877919784210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551104004833955142}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.84375, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5774632632469359591}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3254230680181210499
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +195,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -731661655
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: -9183957232404209822, guid: 8d420f5dad9e2ac42a55db43c0af5600, type: 3}
   m_Color: {r: 1, g: 0.9685757, b: 0, a: 0.27058825}
@@ -417,6 +448,7 @@ Transform:
   - {fileID: 3383507313904615457}
   - {fileID: 8746533313271740962}
   - {fileID: 3154599344466403146}
+  - {fileID: 935051877919784210}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5720174945745109045
@@ -445,8 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a160458e5512fe42875117194a09b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _customMagicLinePivot: {fileID: 935051877919784210}
   affectedObjs:
   - {fileID: 7701107492513274544}
   - {fileID: 3254230680181210499}
   - {fileID: 6485261965720258989}
-  heldLight: {fileID: 0}

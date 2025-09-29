@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b10d3820488c4a428353b2d6484d423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magicInteractionLinePrefab: {fileID: 1161396084233844661, guid: b58c5aaaa72058741811f9a8bb265fd8, type: 3}
+  customMagicLinePivot: {fileID: 0}
   affectedObjects: []
   unpressed: {fileID: -6477558487834423063, guid: be038bbe210d45748b8dd7ddadf3d64a, type: 3}
   pressed: {fileID: 203934653236089922, guid: be038bbe210d45748b8dd7ddadf3d64a, type: 3}
