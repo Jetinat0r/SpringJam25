@@ -8,7 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
-  importerVersion: 1
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -84,6 +84,8 @@ ScriptedImporter:
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
+    generateIndividualEvents: 1
+    generateSpriteAtlas: 1
   asepriteImporterSettings:
     fileImportMode: 1
     importHiddenLayers: 0
@@ -97,6 +99,8 @@ ScriptedImporter:
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
+    generateIndividualEvents: 1
+    generateSpriteAtlas: 1
   importFileNodeState: 1
   platformSettingsDirtyTick: 638927071071655633
   textureAssetName: 
@@ -460,8 +464,14 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 50, y: 68}
   spriteSheetImportData: []
+  tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
+    uuid:
+      value0: 4287466683
+      value1: 0
+      value2: 0
+      value3: 0
     guid: -7500613
     name: Layer 4
     layerFlags: 3
@@ -505,8 +515,15 @@ ScriptedImporter:
         height: 32
       spriteId: af630c7cd25643a4cb60be2c3819365f
     linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
     parentIndex: -1
   - layerIndex: 1
+    uuid:
+      value0: 4287466677
+      value1: 0
+      value2: 0
+      value3: 0
     guid: -7500619
     name: Layer 2
     layerFlags: 3
@@ -550,8 +567,15 @@ ScriptedImporter:
         height: 27
       spriteId: 0989b92682aaf834f9a0c445c71f5763
     linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
     parentIndex: -1
   - layerIndex: 2
+    uuid:
+      value0: 4287466678
+      value1: 0
+      value2: 0
+      value3: 0
     guid: -7500618
     name: Layer 3
     layerFlags: 3
@@ -595,8 +619,15 @@ ScriptedImporter:
         height: 19
       spriteId: 5cfa1ed570422ec4494b0a719c19800d
     linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
     parentIndex: -1
   - layerIndex: 3
+    uuid:
+      value0: 4287466680
+      value1: 0
+      value2: 0
+      value3: 0
     guid: -7500616
     name: Layer 1
     layerFlags: 3
@@ -640,7 +671,10 @@ ScriptedImporter:
         height: 2
       spriteId: 7248c8181f43fcb44951454238e386eb
     linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
     parentIndex: -1
+  tileSets: []
   platformSettings:
   - name: Default
     overridden: 0
