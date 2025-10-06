@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Ectoplasm : Collectible
 {
-    Coroutine ambience = null;
+    [SerializeField] protected ParticleSystem ambientSmallVfx;
+    [SerializeField] protected ParticleSystem pickupVfx;
 
     private void Awake()
     {
@@ -12,10 +13,12 @@ public class Ectoplasm : Collectible
         }
     }
 
+    /*
     protected override void BeginHandleAmbientVFX()
     {
         ambience = StartCoroutine(AmbientVFXLoop(new Vector3(0f, 0.25f, 0f)));
     }
+    */
 
     protected override void OnCollected(Collider2D collision)
     {
@@ -24,7 +27,10 @@ public class Ectoplasm : Collectible
 
         EctoplasmBar eBar = FindFirstObjectByType<EctoplasmBar>();
         eBar.FullRestore();
-        DisplayPickupVFX();
+
+        ambientSmallVfx.Stop();
+        pickupVfx.Play();
+
         Destroy(gameObject);
     }
 }

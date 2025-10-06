@@ -5,29 +5,34 @@ public abstract class Collectible : MonoBehaviour
 {
     [SerializeField] private float floatSpd;   // This will act as the frequency modulation for the sin wave
     [SerializeField] private float incrementFactor; // timer will increase by this amount every frame.
-    [SerializeField] private float amplitude;    // This is the amplitude of the sin wave.
+    [SerializeField] protected float amplitude;    // This is the amplitude of the sin wave.
     private float timer = 0.0f;  // This will reset to 0 after it has made one full sinusoidal cycle
-    private SpriteRenderer sprite;
+    protected SpriteRenderer sprite;
+    private Vector3 initialSpritePosition;
     private CapsuleCollider2D pickupCollider;
-    [SerializeField] private VFX pickupVFX;
-    [SerializeField] private VFX ambientVFX;
+    //[SerializeField] private VFX pickupVFX;
+    //[SerializeField] private VFX ambientVFX;
     [SerializeField] private string pickupSFXPath = "Game.Key";
-    [SerializeField] private bool enableAmbientVFX = true;
-    private Coroutine cr1 = null;
-    private Coroutine cr2 = null;
+    [SerializeField] protected bool enableAmbientVFX = true;
+    //private Coroutine cr1 = null;
+    //private Coroutine cr2 = null;
 
     private void Start()
     {
         // Get components
         sprite = GetComponentInChildren<SpriteRenderer>();
+        initialSpritePosition = sprite.transform.localPosition;
         pickupCollider = GetComponentInChildren<CapsuleCollider2D>();
 
+        /*
         if (enableAmbientVFX)
         {
             BeginHandleAmbientVFX();
         }
+        */
     }
 
+    /*
     private void OnDestroy()
     {
         if (cr1 != null)
@@ -41,20 +46,22 @@ public abstract class Collectible : MonoBehaviour
             cr2 = null;
         }
     }
+    */
 
     private void FixedUpdate()
     {
-        if (LevelMenuManager.isMenuOpen) return;
-
-        // Make sprite float
-        sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, amplitude * Mathf.Sin(floatSpd * timer) * Time.fixedDeltaTime, sprite.transform.localPosition.z);
+        //if (LevelMenuManager.isMenuOpen) return;
 
         // Update timer to make collectible move along the sin wave and reset to 0 if it has made a full wave to prevent overflow
-        timer += incrementFactor;
+        timer += incrementFactor * Time.fixedDeltaTime;
 
-        if (timer >= 2 * Mathf.PI)
+        // Make sprite float
+        sprite.transform.localPosition = new Vector3(sprite.transform.localPosition.x, amplitude * Mathf.Sin(floatSpd * timer) * Time.fixedDeltaTime, sprite.transform.localPosition.z) + initialSpritePosition;
+
+
+        if (timer >= 2f * Mathf.PI)
         {
-            timer = 0.0f;
+            timer %= 2f * Mathf.PI;
         }
     }
 
@@ -65,7 +72,7 @@ public abstract class Collectible : MonoBehaviour
         {
             // Debug.Log("You are about to be collected");
             OnCollected(collision);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
@@ -78,6 +85,7 @@ public abstract class Collectible : MonoBehaviour
         playerRef.soundPlayer.PlaySound(pickupSFXPath);
     }
 
+    /*
     protected virtual void BeginHandleAmbientVFX()
     {
         cr1 = StartCoroutine(AmbientVFXLoop(new Vector3(-0.25f, 0.25f, 0)));
@@ -103,4 +111,5 @@ public abstract class Collectible : MonoBehaviour
             vfx.transform.localPosition = pos;
         }
     }
+    */
 }
