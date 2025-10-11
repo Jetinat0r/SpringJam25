@@ -15,12 +15,14 @@ public class CameraTarget : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        Camera.main.GetComponent<CameraSnapToPlayerZone>().Init(transform);
+        //Camera.main.GetComponent<CameraSnapToPlayerZone>().Init(transform);
     }
 
     public void Init(Transform _targetTransform)
     {
         targetTransform = _targetTransform;
+        transform.position = targetTransform.position;
+        Camera.main.GetComponent<CameraSnapToPlayerZone>().Init(transform);
     }
 
     // Update is called once per frame
