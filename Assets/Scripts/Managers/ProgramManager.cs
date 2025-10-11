@@ -4,7 +4,6 @@ using UnityEngine;
 public class ProgramManager : MonoBehaviour
 {
     public static ProgramManager instance;
-    
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     public static void InitDOTween()
@@ -22,6 +21,7 @@ public class ProgramManager : MonoBehaviour
         DontDestroyOnLoad(_managerGameObject);
 
         _managerGameObject.AddComponent<ProgramManager>();
+        _managerGameObject.AddComponent<ShaderManager>();
     }
 
     private void Awake()

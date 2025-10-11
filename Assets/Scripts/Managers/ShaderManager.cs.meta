@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 085942ca2662e1543a89a9c157e3e709
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fullscreenShaderMat: {fileID: 2100000, guid: 0cc1f43b1bdd9a34f8b0924898bed1c0, type: 2}
+  - uiShaderMat: {fileID: 2100000, guid: f43c93fc7fbc60a44b2cf83ee6b079a4, type: 2}
+  - fontShaderMat: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
+  - defaultPalette: {fileID: 2800000, guid: 3231c1435c925df4ea34d2ca641a1a27, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

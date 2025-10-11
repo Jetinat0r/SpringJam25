@@ -113,15 +113,18 @@ public class LevelManager : MonoBehaviour
 
     public void ResetSceneIn(float delay)
     {
+        //Block perfectly timed double resets
+        //  I believe it's impossible to invoke anyways, but more guards is better
+        if (isResetting) return;
         Invoke(nameof(ResetScene), delay);
     }
 
     public void ResetScene()
     {
         if (isResetting) return;
-        isResetting = true;
-        ScreenWipe.current.WipeIn();
+        if (!ScreenWipe.current.WipeIn()) return;
         ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene(currentLevelName); isResetting = false; };
+        isResetting = true;
     }
 
     public void CompleteLevel()
@@ -201,7 +204,7 @@ public class LevelManager : MonoBehaviour
     IEnumerator GoToNextLevel(float delay)
     {
         yield return new WaitForSeconds(delay);
-        ScreenWipe.current.WipeIn();
+        ScreenWipe.current.WipeIn(true);
         ScreenWipe.current.PostWipe += NextScene;
     }
 
@@ -210,10 +213,11 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(nextLevelName);
     }
 
-    public void ReturnToMainMenu()
+    public bool ReturnToMainMenu()
     {
-        ScreenWipe.current.WipeIn();
+        if (!ScreenWipe.current.WipeIn()) return false;
         ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene("MainMenu"); };
+        return true;
     }
 
     private enum CELL_SEARCH_VALUES

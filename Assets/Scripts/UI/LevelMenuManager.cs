@@ -23,7 +23,7 @@ public class LevelMenuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        soundPlayer = Instantiate(soundPlayerPrefab).GetComponent<SoundPlayer>();
+        soundPlayer = Instantiate(soundPlayerPrefab, transform).GetComponent<SoundPlayer>();
         MainMenuManager.menuSoundPlayer = soundPlayer;
     }
 
@@ -88,11 +88,11 @@ public class LevelMenuManager : MonoBehaviour
 
     public void ExitToMainMenu()
     {
+        if (!LevelManager.instance.ReturnToMainMenu()) return;
         EventSystem.current.gameObject.SetActive(false);
 
         Time.timeScale = 1;
         soundPlayer.PlaySound("UI.Select");
-        LevelManager.instance.ReturnToMainMenu();
         AudioManager.instance.UnPauseCurrent();
         if (SpeedrunManager.instance)
             Destroy(SpeedrunManager.instance);

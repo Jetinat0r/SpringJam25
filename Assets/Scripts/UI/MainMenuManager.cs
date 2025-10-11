@@ -264,6 +264,13 @@ public class MainMenuManager : MonoBehaviour
 
     public void EnterLevel(string _levelName)
     {
+        if (!ScreenWipe.current.WipeIn()) return;
+        ScreenWipe.current.PostWipe += () =>
+        {
+            //Debug.Log($"Entering level {_levelName}");
+            SceneManager.LoadScene(_levelName);
+        };
+
         curTween?.Kill();
 
         EventSystem.current.gameObject.SetActive(false);
@@ -271,12 +278,6 @@ public class MainMenuManager : MonoBehaviour
         AudioManager.instance.CheckChangeWorlds(_levelName);
 
         soundPlayer.PlaySound(selectSound);
-        ScreenWipe.current.WipeIn();
-        ScreenWipe.current.PostWipe += () =>
-        {
-            //Debug.Log($"Entering level {_levelName}");
-            SceneManager.LoadScene(_levelName);
-        };
         inMenu = false;
     }
 
@@ -287,9 +288,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void QuitGame()
     {
-        soundPlayer.PlaySound(backSound);
-        AudioManager.instance.FadeOutCurrent();
-        ScreenWipe.current.WipeIn();
+        if (!ScreenWipe.current.WipeIn()) return;
         ScreenWipe.current.PostWipe += () =>
         {
             //Debug.Log($"Entering level {_levelName}");
@@ -299,5 +298,7 @@ public class MainMenuManager : MonoBehaviour
             Application.Quit();
 #endif
         };
+        soundPlayer.PlaySound(backSound);
+        AudioManager.instance.FadeOutCurrent();
     }
 }

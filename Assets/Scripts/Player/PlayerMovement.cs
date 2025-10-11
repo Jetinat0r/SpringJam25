@@ -169,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (actionResetLevel.WasPressedThisFrame() && ScreenWipe.over && !isDead && !hasWon)
         {
+            //TODO: Play sound here
             LevelManager.instance.ResetScene();
         }
 
