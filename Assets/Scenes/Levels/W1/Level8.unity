@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!212 &111083836 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2782313045031841242, guid: 34abdb5f6ce19354c8eeda0455a4cf0f, type: 3}
+  m_PrefabInstance: {fileID: 2082198221}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &224051751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -698,6 +703,8 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
@@ -719,6 +726,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -2017205445
   m_SortingLayer: 5
   m_SortingOrder: 0
@@ -3601,6 +3609,8 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3622,6 +3632,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1780029583
   m_SortingLayer: 4
   m_SortingOrder: 0
@@ -4972,6 +4983,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fd12ad700f3fa641a8b7152246bf6d1, type: 3}
+--- !u!1 &608743201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 266782389306294835, guid: 34abdb5f6ce19354c8eeda0455a4cf0f, type: 3}
+  m_PrefabInstance: {fileID: 2082198221}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &673298349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5251,6 +5267,8 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
@@ -5272,6 +5290,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -368742371
   m_SortingLayer: 3
   m_SortingOrder: 0
@@ -7225,16 +7244,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0.153125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.2375
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.27734375
+      value: 0.6944445
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.399375
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9162143757938705908, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_Name
@@ -7384,19 +7407,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 266782389306294835, guid: 34abdb5f6ce19354c8eeda0455a4cf0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2082198223}
   m_SourcePrefab: {fileID: 100100000, guid: 34abdb5f6ce19354c8eeda0455a4cf0f, type: 3}
 --- !u!114 &2082198222 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1951224279385893684, guid: 34abdb5f6ce19354c8eeda0455a4cf0f, type: 3}
   m_PrefabInstance: {fileID: 2082198221}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 608743201}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f2e66d8eefeb0342b9650fabac3ffbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2082198223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608743201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288aa21f61199cb4aa3fb8f18f27a211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  spriteRenderer: {fileID: 111083836}
 --- !u!4 &755227993951155763
 Transform:
   m_ObjectHideFlags: 0
@@ -11124,6 +11163,8 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11145,6 +11186,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -843600679
   m_SortingLayer: 6
   m_SortingOrder: 0
@@ -13779,6 +13821,8 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
@@ -13800,6 +13844,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1626492045
   m_SortingLayer: 1
   m_SortingOrder: 0
@@ -17532,6 +17577,8 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17553,6 +17600,7 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 936006715
   m_SortingLayer: 2
   m_SortingOrder: 0

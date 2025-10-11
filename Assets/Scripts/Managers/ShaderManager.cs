@@ -183,7 +183,7 @@ public class ShaderManager : MonoBehaviour
 
     private void UpdateAllShaderMaterialsParams()
     {
-        Debug.Log("Update ALL");
+        //Debug.Log("Update ALL");
         UpdateShaderMaterialParams(fullscreenShaderMat);
         UpdateShaderMaterialParams(trueUiShaderMat);
         UpdateShaderMaterialParams(fontShaderMat);
