@@ -348,8 +348,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Flip sprite based on movement direction
         Vector3 sprScale = ghostSpriteParent.transform.localScale;  // This is here to make typing easier
-        // TODO: This is not a good check! Has a right bias
-        ghostSpriteParent.transform.localScale = new Vector3(Mathf.Sign(rb.linearVelocityX), sprScale.y, sprScale.z);
+        if (moveX != 0)
+            ghostSpriteParent.transform.localScale = new Vector3(Mathf.Sign(moveX), sprScale.y, sprScale.z);
 
         if (Mathf.Abs(moveX) < moveDeadzone)
         {
