@@ -267,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
                                 }
                                 else if ((belt.clockwise && moveX < 0) || (!belt.clockwise && moveX > 0))
                                 {
-                                    spdBoost = -belt.speed / 2;
+                                    spdBoost = -belt.speed / 2.0f;
                                 }
                                 break;
                             case PlayerStates.IdleGhost:
