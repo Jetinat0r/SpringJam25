@@ -56,7 +56,6 @@ public class Roomba : MonoBehaviour
                     isGrounded = true;
                     if (contact.collider.gameObject.TryGetComponent(out ConveyorBelt belt))
                     {
-                        Debug.Log(belt.clockwise + " " + facingRight);
                         if ((belt.clockwise && facingRight) || (!belt.clockwise && !facingRight))
                         {
                             spdBoost = belt.speed;
