@@ -100,7 +100,7 @@ public class LevelManager : MonoBehaviour
         Camera.main.GetComponent<CameraSnapToPlayerZone>().Init(cameraTarget.transform);
         */
 
-        Camera.main.GetComponent<CameraSnapToPlayerZone>().Init(player.cameraTarget);
+        //Camera.main.GetComponent<CameraSnapToPlayerZone>().Init(player.cameraTarget);
         GameObject _cameraTargetObject = new GameObject("CameraTarget");
         CameraTarget _camTarget = _cameraTargetObject.AddComponent<CameraTarget>();
         _camTarget.Init(player.cameraTarget);

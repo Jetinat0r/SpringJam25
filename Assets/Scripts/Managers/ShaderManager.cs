@@ -2,6 +2,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using TMPro;
 
 public class ShaderManager : MonoBehaviour
 {
@@ -76,7 +77,10 @@ public class ShaderManager : MonoBehaviour
         }
 
 
-        
+        fullscreenShaderMat = Resources.Load<Material>("Shaders/FullscreenPaletteSwapperShader");
+        uiShaderMat = Resources.Load<Material>("Shaders/UI_Palette");
+        fontShaderMat = Resources.Load<TMP_FontAsset>("Fonts/Early GameBoy SDF").material;
+        defaultPalette = Resources.Load<Texture2D>("Shaders/ScreenPalette");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -55,7 +55,7 @@ SubShader{
 
         #include "UnityCG.cginc"
         #include "UnityUI.cginc"
-        #include "../../Shaders/PaletteSwapper.cginc"
+        #include "../../Resources/Shaders/PaletteSwapper.cginc"
 
         struct appdata_t
         {
@@ -149,6 +149,7 @@ SubShader{
             //return fixed4(_paletteImage_TexelSize.x / 1., _paletteImage_TexelSize.x / 4., _paletteImage_TexelSize.y / 16., 1.);
             if (_usePalette)
             {
+                color.rgb = Unity_ColorspaceConversion_Linear_RGB_float(color.rgb);
                 return SwapPalette(color, _paletteImage, sampler_paletteImage, _paletteImageTexelSize, _curPaletteIndex, _nextPaletteIndex, _paletteCondenseAmount, _paletteMixAmount);
             }
             else
