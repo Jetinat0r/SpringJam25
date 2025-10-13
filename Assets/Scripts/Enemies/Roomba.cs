@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Roomba : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Roomba : MonoBehaviour
     private Vector3 home;
     public float rightDist;
     public float leftDist;
+    public float spdBoost;
+    public PhysicsMaterial2D friction, slippery;
 
     Animator myAnim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,30 +32,6 @@ public class Roomba : MonoBehaviour
     {
         if (LevelMenuManager.isMenuOpen) return;
 
-        Vector3 intendedPos;
-        if (facingRight)
-        {
-            intendedPos = transform.position + speed * Time.deltaTime * Vector3.right;
-            intendedPos.y = transform.position.y;
-            EnemyRB.MovePosition(intendedPos);
-            if ((transform.position.x - home.x) > rightDist)
-            {
-                Flip();
-                //print("should flip");
-            }
-        }
-        else
-        {
-            intendedPos = transform.position + speed * Time.deltaTime * Vector3.left;
-            intendedPos.y = transform.position.y;
-            EnemyRB.MovePosition(intendedPos);
-            if ((home.x - transform.position.x) > leftDist)
-            {
-                Flip();
-            }
-        }
-
-
         //if(!isGrounded && facingRight)
         //{
         //    Flip();
@@ -61,6 +40,71 @@ public class Roomba : MonoBehaviour
         //{
         //    Flip();
         //}
+
+        // Ground/box push check
+        isGrounded = false;
+        spdBoost = 0;
+        List<ContactPoint2D> contacts = new();
+        EnemyRB.GetContacts(contacts);
+        foreach (ContactPoint2D contact in contacts)
+        {
+            // TODO: Amend this check for other ground collidable objects
+            if (contact.collider.gameObject.layer == 6 || contact.collider.gameObject.layer == 10 || contact.collider.gameObject.layer == 11)
+            {
+                if (Mathf.Abs((contact.normal - Vector2.up).magnitude) <= 0.001f)
+                {
+                    isGrounded = true;
+                    if (contact.collider.gameObject.TryGetComponent(out ConveyorBelt belt))
+                    {
+                        if ((belt.clockwise && facingRight) || (!belt.clockwise && !facingRight))
+                        {
+                            spdBoost = belt.speed;
+                        }
+                        else if ((belt.clockwise && !facingRight) || (!belt.clockwise && facingRight))
+                        {
+                            spdBoost = -belt.speed / 2.0f;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Set physics material for proper friction behavior
+        if (!isGrounded)
+        {
+            EnemyRB.sharedMaterial = slippery;
+        }
+        else
+        {
+            EnemyRB.sharedMaterial = friction;
+        }
+
+        Vector3 intendedPos;
+        if (isGrounded)
+        {
+            if (facingRight)
+            {
+                intendedPos = transform.position + (speed + speed * spdBoost) * Time.fixedDeltaTime * Vector3.right;
+                intendedPos.y = transform.position.y;
+                EnemyRB.MovePosition(intendedPos);
+                if ((transform.position.x - home.x) > rightDist)
+                {
+                    Flip();
+                    //print("should flip");
+                }
+            }
+            else
+            {
+                intendedPos = transform.position + (speed + speed * spdBoost) * (isGrounded ? 1 : 0) * Time.fixedDeltaTime * Vector3.left;
+                intendedPos.y = transform.position.y;
+                EnemyRB.MovePosition(intendedPos);
+                if ((home.x - transform.position.x) > leftDist)
+                {
+                    Flip();
+                }
+            }
+        }
     }
 
     void Flip()

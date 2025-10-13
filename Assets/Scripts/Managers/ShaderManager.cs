@@ -2,6 +2,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using TMPro;
 
 public class ShaderManager : MonoBehaviour
 {
@@ -27,6 +28,15 @@ public class ShaderManager : MonoBehaviour
     [SerializeField, Min(0)] private int nextPaletteIndex = 0;
     [SerializeField, Range(0, 3)] private int paletteCondenseAmount = 3;
     [SerializeField, Range(0, 1)] private float paletteMixAmount = 0f;
+
+#if UNITY_EDITOR
+    public bool useDebugPalette = false;
+    private Texture2D debugPalette;
+    public Color debugPalette0 = new Color(15f/255f, 55f/255f, 15f/255f, 1f);
+    public Color debugPalette1 = new Color(47f/255f, 98f/255f, 47f/255f, 1f);
+    public Color debugPalette2 = new Color(139f/255f, 172f/255f, 15f/255f, 1f);
+    public Color debugPalette3 = new Color(156f/255f, 189f/255f, 16f/255f, 1f);
+#endif
 
     public static int GetWorldPaletteIndex(string _sceneName)
     {
@@ -76,7 +86,16 @@ public class ShaderManager : MonoBehaviour
         }
 
 
-        
+        fullscreenShaderMat = Resources.Load<Material>("Shaders/FullscreenPaletteSwapperShader");
+        uiShaderMat = Resources.Load<Material>("Shaders/UI_Palette");
+        fontShaderMat = Resources.Load<TMP_FontAsset>("Fonts/Early GameBoy SDF").material;
+        defaultPalette = Resources.Load<Texture2D>("Shaders/ScreenPalette");
+
+#if UNITY_EDITOR
+        debugPalette = new Texture2D(4, 1, TextureFormat.RGBA32, false);
+        debugPalette.filterMode = FilterMode.Point;
+        debugPalette.wrapMode = TextureWrapMode.Clamp;
+#endif
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -136,7 +155,18 @@ public class ShaderManager : MonoBehaviour
     void Update()
     {
 
+#if UNITY_EDITOR
+        if (useDebugPalette)
+        {
+            debugPalette.SetPixel(0, 0, debugPalette0);
+            debugPalette.SetPixel(1, 0, debugPalette1);
+            debugPalette.SetPixel(2, 0, debugPalette2);
+            debugPalette.SetPixel(3, 0, debugPalette3);
+            debugPalette.Apply();
+        }
 
+        UpdateAllShaderMaterialsTexture();
+#endif
 
         //TODO: Remove from build
         UpdateAllShaderMaterialsParams();
@@ -167,6 +197,16 @@ public class ShaderManager : MonoBehaviour
 
     private void UpdateShaderMaterialTexture(Material _shaderMat)
     {
+#if UNITY_EDITOR
+        //Default palette check here is for OnDestroy so it gets properly reset for the editor
+        if (useDebugPalette && !forceDefaultPalette)
+        {
+            _shaderMat.SetTexture("_paletteImage", debugPalette);
+            _shaderMat.SetVector("_paletteImageTexelSize", debugPalette.texelSize);
+            return;
+        }
+#endif
+
         if (!forceDefaultPalette && hasCustomPalette && usingCustomPalette)
         {
             _shaderMat.SetTexture("_paletteImage", customPalette);
