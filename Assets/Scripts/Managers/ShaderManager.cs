@@ -52,7 +52,7 @@ public class ShaderManager : MonoBehaviour
             case "Level14":
             case "Level15":
             case "Level16":
-                return 1;
+                return 10;
 
             //No World (Fallback to 0 palette)
             //  TODO: Keep palette for main menu?

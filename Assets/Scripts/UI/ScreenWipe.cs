@@ -14,7 +14,7 @@ public class ScreenWipe : MonoBehaviour
     public static bool over = false;
     public static ScreenWipe current;
     [SerializeField] private Image ScreenBlocker;
-    private float secondsPerPaletteOperation = 0.25f;
+    private float secondsPerPaletteOperation = 0.125f;
     private static bool firstBoot = true;
 
     public void Awake()
