@@ -35,7 +35,10 @@ public class LevelManager : MonoBehaviour
 
     public float ectoplasmTime = 5f;
 
-
+#if UNITY_EDITOR
+    public bool DEBUG_SHOW_LEVEL_GRID = false;
+    public float DEBUG_LEVEL_GRID_SCALE = 0.99f;
+#endif
 
     private void Awake()
     {
@@ -54,7 +57,7 @@ public class LevelManager : MonoBehaviour
             levelGrid = GetComponent<LevelGrid>();
         }
 
-        FindZeroRoomReferenceCell();
+        GetZeroRoomReferenceCell();
     }
 
     private void Start()
@@ -72,19 +75,9 @@ public class LevelManager : MonoBehaviour
         // speedrunManager = FindFirstObjectByType<SpeedrunManager>();
     }
 
-    private void FindZeroRoomReferenceCell()
+    private void GetZeroRoomReferenceCell()
     {
-        for (int i = 0; i < levelGrid.width; i++)
-        {
-            for (int j = 0; j < levelGrid.height; j++)
-            {
-                if (levelGrid.GetCell(i, j) == "*")
-                {
-                    zeroRoomReferenceCell = new Vector2Int(i, j);
-                    return;
-                }
-            }
-        }
+        zeroRoomReferenceCell = levelGrid.FindZeroRoomReferenceCell();
     }
 
     //Leaves room to support multiple player instances
@@ -382,4 +375,50 @@ public class LevelManager : MonoBehaviour
 
         return VentSearch(_startCell, _endCell, ref _zonePath);
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (!DEBUG_SHOW_LEVEL_GRID)
+        {
+            return;
+        }
+
+        Color _originalColor = Gizmos.color;
+
+        //Can't use the "GetZeroRoomReferenceCell()" function as that will modify member data
+        Vector2Int _zeroRoomCell = levelGrid.FindZeroRoomReferenceCell();
+
+        for (int i = 0; i <  levelGrid.width; i++)
+        {
+            for (int j = 0; j < levelGrid.height; j++)
+            {
+                Vector2Int _localCell = new Vector2Int(i, j);
+                Vector2 _worldCell = _localCell - _zeroRoomCell;
+                _worldCell *= zoneSize;
+                _worldCell.y *= -1;
+
+                string _cellVal = levelGrid.GetCell(_localCell.x, _localCell.y);
+                if (_cellVal == "*")
+                {
+                    Gizmos.color = Color.green;
+                }
+                else if(_cellVal == "T")
+                {
+                    Gizmos.color = Color.white;
+                }
+                else
+                {
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawLine(_worldCell - (Vector2)zoneSize * DEBUG_LEVEL_GRID_SCALE / 2f, _worldCell + (Vector2)zoneSize * DEBUG_LEVEL_GRID_SCALE / 2f);
+                }
+
+                Gizmos.DrawWireCube(_worldCell, (Vector2)zoneSize * DEBUG_LEVEL_GRID_SCALE);
+            }
+        }
+
+
+        Gizmos.color = _originalColor;
+    }
+#endif
 }

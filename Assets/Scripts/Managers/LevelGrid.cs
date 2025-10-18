@@ -71,6 +71,23 @@ public class LevelGrid : MonoBehaviour
         return !(x < 0 || y < 0 || x >= width || y >= height);
     }
 
+    public Vector2Int FindZeroRoomReferenceCell()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (GetCell(i, j) == "*")
+                {
+                    return new Vector2Int(i, j);
+                }
+            }
+        }
+
+        Debug.LogWarning("NO ZERO ROOM REFERENCE CELL IN CURRENT LEVEL!");
+        return new Vector2Int(0, 0);
+    }
+
 #if UNITY_EDITOR
     public void OnValidate()
     {

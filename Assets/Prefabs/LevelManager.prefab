@@ -341,7 +341,7 @@ MonoBehaviour:
   nextLevelName: Level
   conveyorTilemap: {fileID: 0}
   zoneSize: {x: 10, y: 9}
-  levelGrid: {fileID: 0}
+  levelGrid: {fileID: 5980513364741979909}
   ectoplasmTime: 5
 --- !u!114 &5980513364741979909
 MonoBehaviour:
