@@ -6,7 +6,7 @@ using System;
 public class CameraTarget : MonoBehaviour
 {
     [SerializeField]
-    public float ventSecondsPerScreen = 1.5f;
+    public float ventSecondsPerScreen = 0f;
     public bool followingVent = false;
     private Transform targetTransform;
 
