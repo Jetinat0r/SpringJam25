@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638782643288928232
+  platformSettingsDirtyTick: 638964892294803847
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -929,7 +929,12 @@ ScriptedImporter:
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline: []
+    spritePhysicsOutline:
+    - outline:
+      - {x: -8, y: -8}
+      - {x: 8, y: -8}
+      - {x: 8, y: 7.52}
+      - {x: -8, y: 7.52}
     indices: 
     edges: []
     tessellationDetail: 0
