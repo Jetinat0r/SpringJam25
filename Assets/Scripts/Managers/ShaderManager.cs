@@ -38,7 +38,7 @@ public class ShaderManager : MonoBehaviour
     public Color debugPalette3 = new Color(156f/255f, 189f/255f, 16f/255f, 1f);
 #endif
 
-    public static int GetWorldPaletteIndex(string _sceneName)
+    public int GetWorldPaletteIndex(string _sceneName)
     {
         switch (_sceneName)
         {
@@ -62,12 +62,17 @@ public class ShaderManager : MonoBehaviour
             case "Level14":
             case "Level15":
             case "Level16":
-                return 10;
+            case "Level16b":
+            case "Level16c":
+            case "Level16d":
+                return 1;
+
+            //Keep current palette for main menu?
+            case "MainMenu":
+                return curPaletteIndex;
 
             //No World (Fallback to 0 palette)
-            //  TODO: Keep palette for main menu?
             //      We want to revert during development to catch errors, but maybe allow whatever later?
-            case "MainMenu":
             default:
                 return 0;
         }
