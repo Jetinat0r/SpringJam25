@@ -52,7 +52,7 @@ public class Roomba : MonoBehaviour
             // TODO: Amend this check for other ground collidable objects
             if (contact.collider.gameObject.layer == 6 || contact.collider.gameObject.layer == 10 || contact.collider.gameObject.layer == 11)
             {
-                if (Mathf.Abs((contact.normal - (transform.up.GetXY() * transform.localScale.y)).magnitude) <= 0.001f)
+                if (Mathf.Abs((contact.normal - (transform.up.GetXY() * transform.localScale.y).normalized).magnitude) <= 0.001f)
                 {
                     isGrounded = true;
                     if (contact.collider.gameObject.TryGetComponent(out ConveyorBelt belt))
