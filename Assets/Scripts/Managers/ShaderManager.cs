@@ -57,6 +57,7 @@ public class ShaderManager : MonoBehaviour
             case "Level9":
             case "Level10":
             case "Level11":
+            case "Level11b":
             case "Level12":
             case "Level13":
             case "Level14":
