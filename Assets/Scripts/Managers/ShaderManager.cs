@@ -68,6 +68,11 @@ public class ShaderManager : MonoBehaviour
             case "Level16d":
                 return 1;
 
+            //World 3
+            case "Level17":
+            case "Level17b":
+                return 15;
+
             //Keep current palette for main menu?
             case "MainMenu":
                 return curPaletteIndex;
