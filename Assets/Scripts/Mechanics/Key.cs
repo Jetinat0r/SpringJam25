@@ -24,7 +24,7 @@ public class Key : Collectible
         {
             /*
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
-            PlayPickupSFX(player);
+            
             Door[] doors = FindObjectsByType<Door>(FindObjectsSortMode.None);
             foreach (Door door in doors)
             {
@@ -42,6 +42,7 @@ public class Key : Collectible
 
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             Vector3 _avoidPos = player.cameraTarget.position;
+            PlayPickupSFX(player);
 
             Door[] doors = FindObjectsByType<Door>(FindObjectsSortMode.None);
             foreach (Door door in doors)
@@ -75,7 +76,10 @@ public class Key : Collectible
 
                     _sequence.Append(transform.DOMove(_punchPos, punchTime).SetEase(punchCurve));
                     _sequence.Join(transform.DORotate(new Vector3(0f, 0f, 360f + 90f + _rotAngle), punchTime, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad));
-                    _sequence.Append(transform.DOMove(_targetPos, launchTime).SetEase(launchCurve));
+                    _sequence.Append(transform.DOMove(_targetPos, launchTime).SetEase(launchCurve).OnStart(() =>
+                    {
+                        player.soundPlayer.PlaySound("Game.KeyFly");
+                    }));
                     _sequence.onComplete += UnlockDoor;
                     _sequence.Play();
                 }
@@ -99,6 +103,7 @@ public class Key : Collectible
         ambientSmallVfx.Stop();
         ambientLargeVfx.Stop();
         unlockVfx.Play();
+        PlayerMovement.instance.soundPlayer.PlaySound("Game.KeyholeRemove");
         Destroy(gameObject);
     }
 }
