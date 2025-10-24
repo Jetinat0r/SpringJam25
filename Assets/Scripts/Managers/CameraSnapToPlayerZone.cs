@@ -12,6 +12,8 @@ public class CameraSnapToPlayerZone : MonoBehaviour
     private Tween panTween = null;
     private float oldTimeScale = 1f;
 
+    public static Action<Vector2Int> changeZone;
+
     private void Start()
     {
         if (target == null)
@@ -30,6 +32,7 @@ public class CameraSnapToPlayerZone : MonoBehaviour
         currentZone = new Vector2(MathUtils.GetClosestEvenDivisor(target.position.x, LevelManager.instance.zoneSize.x) / LevelManager.instance.zoneSize.x, MathUtils.GetClosestEvenDivisor(target.position.y, LevelManager.instance.zoneSize.y) / LevelManager.instance.zoneSize.y).ToVector2Int();
         Vector2 _newPos = currentZone * LevelManager.instance.zoneSize;
         transform.position = new Vector3(_newPos.x, _newPos.y, transform.position.z);
+        changeZone?.Invoke(currentZone);
     }
 
     //Can't be FixedUpdate as it won't run while venting bc venting sets timeScale to 0 and that stops FixedUpdate :P
@@ -42,6 +45,7 @@ public class CameraSnapToPlayerZone : MonoBehaviour
         if (_newZone != currentZone)
         {
             currentZone = _newZone;
+            changeZone?.Invoke(currentZone);
             panTween?.Kill();
             
             Vector2 _newPos = _newZone * LevelManager.instance.zoneSize;
