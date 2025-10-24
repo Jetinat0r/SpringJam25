@@ -1,8 +1,9 @@
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
-using TMPro;
 
 public class ShaderManager : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class ShaderManager : MonoBehaviour
     public Texture2D defaultPalette;
     private Texture2D customPalette = null;
     [SerializeField]
-    private bool forceDefaultPalette;
+    private bool forceDefaultPalette = true;
     private bool hasCustomPalette = false;
     private bool usingCustomPalette = false;
 
@@ -40,48 +41,39 @@ public class ShaderManager : MonoBehaviour
 
     public int GetWorldPaletteIndex(string _sceneName)
     {
-        switch (_sceneName)
+        //Main menu keeps current active palette
+        if (_sceneName == "MainMenu")
         {
-            //World 1
-            case "Level1":
-            case "Level2":
-            case "Level3":
-            case "Level4":
-            case "Level5":
-            case "Level6":
-            case "Level7":
-            case "Level8":
-                return 0;
-
-            //World 2
-            case "Level9":
-            case "Level10":
-            case "Level11":
-            case "Level11b":
-            case "Level12":
-            case "Level13":
-            case "Level14":
-            case "Level15":
-            case "Level16":
-            case "Level16b":
-            case "Level16c":
-            case "Level16d":
-                return 1;
-
-            //World 3
-            case "Level17":
-            case "Level17b":
-                return 15;
-
-            //Keep current palette for main menu?
-            case "MainMenu":
-                return curPaletteIndex;
-
-            //No World (Fallback to 0 palette)
-            //      We want to revert during development to catch errors, but maybe allow whatever later?
-            default:
-                return 0;
+            return curPaletteIndex;
         }
+
+        if (int.TryParse(Regex.Match(_sceneName, @"\d+").Value, out int _level))
+        {
+            if (_level >= 1 && _level <= 8)
+            {
+                return 0;
+            }
+            else if (_level >= 9 && _level <= 16)
+            {
+                return 1;
+            }
+            else if (_level >= 17 && _level <= 24)
+            {
+                return 15;
+            }
+            else if (_level >= 25 && _level <= 32)
+            {
+                return 3;
+            }
+            else
+            {
+                Debug.LogWarning($"Unknown Level [{_sceneName}] Loading! Reverting to palette 0");
+                return 0;
+            }
+        }
+
+        Debug.LogWarning($"Unknown Scene [{_sceneName}] Loading! Reverting to palette 0");
+        return 0;
     }
 
     private void Awake()
