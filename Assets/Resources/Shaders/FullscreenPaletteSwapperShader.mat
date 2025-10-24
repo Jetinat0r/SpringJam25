@@ -54,8 +54,8 @@ Material:
     - _StencilWriteMask: 255
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
-    - _curPaletteIndex: 0
-    - _nextPaletteIndex: 0
+    - _curPaletteIndex: 1
+    - _nextPaletteIndex: 1
     - _paletteCondenseAmount: 0
     - _paletteMixAmount: 0
     - _usePalette: 1
