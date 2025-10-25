@@ -207,6 +207,7 @@ public class LevelManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         ScreenWipe.current.WipeIn(true);
+        PlayerMovement.instance.soundPlayer.PlaySound("Game.Stairs");
         ScreenWipe.current.PostWipe += NextScene;
     }
 
