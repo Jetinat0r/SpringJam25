@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a913750643e7984d8ea61409649b0da, type: 3}
   m_Name: Stairs
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: d126e30e35a9e4c80ba39ea0ab621017, type: 3}
+  clip: {fileID: 8300000, guid: 6d5236a30639fe1428a92241f6e651ed, type: 3}
