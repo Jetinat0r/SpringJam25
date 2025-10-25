@@ -343,6 +343,8 @@ MonoBehaviour:
   zoneSize: {x: 10, y: 9}
   levelGrid: {fileID: 5980513364741979909}
   ectoplasmTime: 5
+  DEBUG_SHOW_LEVEL_GRID: 0
+  DEBUG_LEVEL_GRID_SCALE: 0.99
 --- !u!114 &5980513364741979909
 MonoBehaviour:
   m_ObjectHideFlags: 0
