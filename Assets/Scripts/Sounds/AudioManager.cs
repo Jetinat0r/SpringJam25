@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -85,12 +86,15 @@ public class AudioManager : MonoBehaviour
 
     public bool CheckChangeWorlds(string _levelName)
     {
-        int.TryParse(_levelName["Level".Length..], out int level);
-        if (currentWorld != GetWorld(level))
+        if (int.TryParse(Regex.Match(_levelName, @"\d+").Value, out int level))
         {
-            Stop();
-            return true;
+            if (currentWorld != GetWorld(level))
+            {
+                Stop();
+                return true;
+            }
         }
+
         return false;
     }
 

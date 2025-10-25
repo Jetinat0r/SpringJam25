@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetEngine;
 using UnityEngine;
 
 public class PressurePad : MonoBehaviour
@@ -11,6 +12,8 @@ public class PressurePad : MonoBehaviour
     private int weight = 0;
     private SpriteRenderer spriteRenderer = null;
     [SerializeField] private Sprite unpressed, pressed;
+    [SerializeField] private bool localSound = false;
+    private bool onScreen = true;
 
     private void Awake()
     {
@@ -18,6 +21,19 @@ public class PressurePad : MonoBehaviour
         {
             customMagicLinePivot = transform;
         }
+
+        CameraSnapToPlayerZone.changeZone += OnZoneChanged;
+    }
+
+    private void OnZoneChanged(Vector2Int newZone)
+    {
+        Vector2Int _myZone = new Vector2(MathUtils.GetClosestEvenDivisor(transform.position.x, LevelManager.instance.zoneSize.x) / LevelManager.instance.zoneSize.x, MathUtils.GetClosestEvenDivisor(transform.position.y, LevelManager.instance.zoneSize.y) / LevelManager.instance.zoneSize.y).ToVector2Int();
+        onScreen = _myZone == newZone;
+    }
+
+    private void OnDestroy()
+    {
+        CameraSnapToPlayerZone.changeZone -= OnZoneChanged;
     }
 
     private void Start()
@@ -88,7 +104,10 @@ public class PressurePad : MonoBehaviour
             // Debug.Log("Pad is now free of any and all weights.");
             spriteRenderer.sprite = unpressed;
             ChangeAffectedObjects();
-            PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
+            if (!localSound || (localSound && onScreen))
+            {
+                PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
+            }
         }
         else if (weight == 1 && previousWeight == 0)
         {
@@ -96,7 +115,10 @@ public class PressurePad : MonoBehaviour
             // Debug.Log("Pad is now weighed down.");
             spriteRenderer.sprite = pressed;
             ChangeAffectedObjects();
-            PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
+            if (!localSound || (localSound && onScreen))
+            {
+                PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
+            }
         }
     }
 

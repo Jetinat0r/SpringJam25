@@ -59,7 +59,7 @@ public class ScreenWipe : MonoBehaviour
             _sequence.AppendInterval(secondsPerPaletteOperation);
         }
 
-        int _levelPaletteIndex = ShaderManager.GetWorldPaletteIndex(SceneManager.GetActiveScene().name);
+        int _levelPaletteIndex = ShaderManager.instance.GetWorldPaletteIndex(SceneManager.GetActiveScene().name);
         if (ShaderManager.instance.CheckNeedsPaletteTransition(_levelPaletteIndex))
         {
             //Swap palettes

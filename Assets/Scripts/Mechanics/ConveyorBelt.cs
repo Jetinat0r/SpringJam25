@@ -95,6 +95,12 @@ public class ConveyorBelt : MonoBehaviour, IToggleable
 
     private void UpdateTiles()
     {
+        //Stop Unity Errors when leaving level or exiting play mode
+        if (LevelManager.instance == null || LevelManager.instance.conveyorTilemap == null)
+        {
+            return;
+        }
+
         float pos = cldr.bounds.min.x + 0.25f;
         while (pos < cldr.bounds.max.x)
         {

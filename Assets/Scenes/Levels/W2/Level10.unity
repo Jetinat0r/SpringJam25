@@ -579,7 +579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: nextLevelName
-      value: Level11
+      value: Level11b
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: conveyorTilemap
@@ -7034,7 +7034,7 @@ Tilemap:
       - {fileID: -7073110359072914169, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -5999132610181422918, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -3884477281039024349, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 22, y: -9, z: 0}
@@ -7204,7 +7204,7 @@ Tilemap:
       - {fileID: -7073110359072914169, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -5999132610181422918, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -3884477281039024349, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 5, y: -1, z: 0}
@@ -7324,7 +7324,7 @@ Tilemap:
       - {fileID: -7073110359072914169, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -5999132610181422918, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -3884477281039024349, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 10, y: 4, z: 0}
@@ -7414,7 +7414,7 @@ Tilemap:
       - {fileID: -7073110359072914169, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -5999132610181422918, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -3884477281039024349, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 22, y: 4, z: 0}

@@ -117,7 +117,6 @@ MonoBehaviour:
   rightDist: 3
   leftDist: 3
   spdBoost: 0
-  grounded: 0
   friction: {fileID: 6200000, guid: 83f5deb1c6b3a4621b76822ac7a3b759, type: 2}
   slippery: {fileID: 6200000, guid: 43bc07a684bfe45f89322810a08e3ce4, type: 2}
 --- !u!50 &2426319323427192376
@@ -191,7 +190,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.501, y: 0.18999553}
+  m_Size: {x: 0.5, y: 0.18999553}
   m_EdgeRadius: 0
 --- !u!95 &1179193246207103183
 Animator:

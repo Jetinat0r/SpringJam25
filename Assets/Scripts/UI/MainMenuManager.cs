@@ -136,7 +136,7 @@ public class MainMenuManager : MonoBehaviour
         }
 
         soundPlayer.PlaySound(selectSound);
-        SettingsManager.completedLevels = 15;
+        SettingsManager.completedLevels = 17;
         SettingsManager.SaveSettings();
         for (int i = 0; i < levelButtons.Length; i++)
         {
