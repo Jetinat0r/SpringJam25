@@ -17,6 +17,13 @@ namespace JetEngine
         public static bool TryInitSteam()
         {
             noSteam = false;
+#if UNITY_EDITOR
+            if (UnityEditor.EditorPrefs.HasKey("noSteam"))
+            {
+                noSteam = UnityEditor.EditorPrefs.GetBool("noSteam");
+                Debug.Log($"Set noSteam to {noSteam}");
+            }
+#endif
 
             //If we're specifically circumventing steam, don't even bother opening it!
             string[] _cmdLineArgs = Environment.GetCommandLineArgs();

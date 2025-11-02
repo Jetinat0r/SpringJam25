@@ -6,7 +6,6 @@ using System.Runtime.Serialization.Json;
 using UnityEngine.InputSystem;
 using System;
 using TMPro;
-using Steamworks;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour

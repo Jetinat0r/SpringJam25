@@ -10,10 +10,10 @@
 #endif
 
 using UnityEngine;
-#if !DISABLESTEAMWORKS
 using System.Collections;
-using Steamworks;
 using System.Linq;
+#if !DISABLESTEAMWORKS
+using Steamworks;
 #endif
 
 //
@@ -62,7 +62,16 @@ public class SteamManager : MonoBehaviour {
 #endif
 
 	protected virtual void Awake() {
-		if (true || System.Environment.GetCommandLineArgs().Contains("-noSteam"))
+#if UNITY_EDITOR
+        if (UnityEditor.EditorPrefs.HasKey("noSteam") && UnityEditor.EditorPrefs.GetBool("noSteam"))
+        {
+			Debug.LogWarning("Game is running in noSteam Editor Mode! Refusing to load Steam Manager!");
+			Destroy(gameObject);
+			return;
+        }
+#endif
+
+        if (System.Environment.GetCommandLineArgs().Contains("-noSteam"))
 		{
 			//Refuse to load steam
 			Debug.LogWarning("Game is running in noSteam Mode! Refusing to load Steam Manager!");

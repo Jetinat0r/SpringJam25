@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ToggleShaders : MonoBehaviour
 {
-    [MenuItem("PhantomFeline/Enable Shaders")]
+    [MenuItem("PhantomFeline/Shaders/Enable Shaders")]
     static void EnableShaders()
     {
         AssetDatabase.LoadAssetAtPath<Material>("Assets/Resources/Shaders/FullscreenPaletteSwapperShader.mat").SetFloat("_usePalette", 1f);
@@ -19,7 +19,7 @@ public class ToggleShaders : MonoBehaviour
         AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/Resources/Fonts/Early GameBoy SDF.asset").material.SetFloat("_usePalette", 1f);
     }
 
-    [MenuItem("PhantomFeline/Disable Shaders")]
+    [MenuItem("PhantomFeline/Shaders/Disable Shaders")]
     static void DisableShaders()
     {
         AssetDatabase.LoadAssetAtPath<Material>("Assets/Resources/Shaders/FullscreenPaletteSwapperShader.mat").SetFloat("_usePalette", 0f);
