@@ -34,7 +34,7 @@ public class SettingsManager : MonoBehaviour
 
     public static void SetResolution(Int32 res)
     {
-        if (SteamManager.Initialized && Steamworks.SteamUtils.IsSteamRunningOnSteamDeck())
+        if (JetEngine.SteamUtils.IsOnSteamDeck())
         {
             res = 2; // force high res on steamdeck sorry :(
         }

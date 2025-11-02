@@ -1,4 +1,5 @@
 using DG.Tweening;
+using JetEngine;
 using UnityEngine;
 
 public class ProgramManager : MonoBehaviour
@@ -15,6 +16,10 @@ public class ProgramManager : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void AddGlobalManagers()
     {
+        //Try to load Steam
+        //  Returns false if Steam fails to load or if "-noSteam" is defined as a command line arg
+        SteamUtils.TryInitSteam();
+
         GameObject _managerGameObject = new GameObject();
 
         _managerGameObject.name = "GLOBAL_MANAGERS";
