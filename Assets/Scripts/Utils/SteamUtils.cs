@@ -21,7 +21,7 @@ namespace JetEngine
             if (UnityEditor.EditorPrefs.HasKey("noSteam"))
             {
                 noSteam = UnityEditor.EditorPrefs.GetBool("noSteam");
-                Debug.Log($"Set noSteam to {noSteam}");
+                Debug.Log($"EDITOR: Set noSteam to {noSteam}");
             }
 #endif
 

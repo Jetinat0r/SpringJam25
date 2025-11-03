@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using JetEngine;
-using Steamworks;
 using System.Text.RegularExpressions;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -14,10 +14,17 @@ public class LevelManager : MonoBehaviour
 
     public LevelMenuManager levelMenuManager;
 
+
     public string currentLevelName = "Level";
     public int currentLevelNumber = 1;
 
     public string nextLevelName = "Level";
+
+    [TextArea]
+    public string levelDisplayName = "MISSING LEVEL DISPLAY NAME";
+    [SerializeField]
+    public TMP_Text levelTitleTextDisplay;
+
     public Tilemap conveyorTilemap;
 
     private PlayerMovement player;
@@ -63,6 +70,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        levelTitleTextDisplay.text = levelDisplayName;
+
         List<int> _path = new List<int>();
         //Debug.Log(VentSearch(new Vector2Int(0, 1), new Vector2Int(2, 2), ref _path));
         // Debug.Log(VentSearch(new Vector2Int(1, 1), new Vector2Int(2, 0), ref _path));

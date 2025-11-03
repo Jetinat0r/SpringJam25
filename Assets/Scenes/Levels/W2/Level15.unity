@@ -941,6 +941,10 @@ PrefabInstance:
       value: Level15
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
+      propertyPath: levelDisplayName
+      value: "Box And\n Whiskers, Inc.\n-\nLevel 16"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: currentLevelNumber
       value: 16
       objectReference: {fileID: 0}
@@ -5777,7 +5781,7 @@ Tilemap:
       - {fileID: 5097835944376697235, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -4807704676763458266, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -6051028654464453215, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 29, y: 3, z: 0}

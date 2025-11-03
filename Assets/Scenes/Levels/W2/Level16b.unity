@@ -575,6 +575,10 @@ PrefabInstance:
       value: Level16b
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
+      propertyPath: levelDisplayName
+      value: "Box And\n Whiskers, Inc.\n-\nLevel 15"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: currentLevelNumber
       value: 16
       objectReference: {fileID: 0}
