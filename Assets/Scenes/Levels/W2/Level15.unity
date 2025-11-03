@@ -129,7 +129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1216228286100196808, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.3
+      value: 11.3
       objectReference: {fileID: 0}
     - target: {fileID: 1216228286100196808, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: m_LocalPosition.y
@@ -173,11 +173,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1365629117755394409, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: leftDist
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1365629117755394409, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: rightDist
-      value: 1.4
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365629117755394409, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
+      propertyPath: facingRight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1497992678486151276, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: m_SortingOrder
@@ -6419,7 +6423,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1216228286100196808, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.78125
+      value: 19.39063
       objectReference: {fileID: 0}
     - target: {fileID: 1216228286100196808, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6463,15 +6467,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1365629117755394409, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: leftDist
-      value: 0
+      value: 0.609375
       objectReference: {fileID: 0}
     - target: {fileID: 1365629117755394409, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: rightDist
-      value: 2.4375
+      value: 1.828125
       objectReference: {fileID: 0}
     - target: {fileID: 1365629117755394409, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: facingRight
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1497992678486151276, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: m_SortingOrder
