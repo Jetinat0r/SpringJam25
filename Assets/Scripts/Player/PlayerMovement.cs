@@ -718,6 +718,7 @@ public class PlayerMovement : MonoBehaviour
         if (isDead || LevelManager.isResetting) return;
         LevelMenuManager.playerOverride = true;
         rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0f;
         shadowSprite.SetActive(false);
         ghostSprite.SetActive(true);
         if (isShadow)
