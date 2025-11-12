@@ -65,7 +65,18 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentWorld = GetWorld(SettingsManager.currentLevel);
+        //currentWorld = GetWorld(SettingsManager.currentLevel);
+        currentWorld = GetWorld(ProgramManager.instance.saveData.LastPlayedLevel);
+
+        //Audio is needed in boot scene, but we can't guarantee valid save data!
+        if(ProgramManager.instance.saveData != null && ProgramManager.instance.saveData.AudioSettings != null)
+        {
+            UpdateVolume(ProgramManager.instance.saveData.AudioSettings.musicVolume, ProgramManager.instance.saveData.AudioSettings.sfxVolume);
+        }
+        else
+        {
+            UpdateVolume(32, 50);
+        }
     }
 
     public World GetWorld(int level)
@@ -134,8 +145,7 @@ public class AudioManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        musicVolume = SettingsManager.musicVolume;
-        sfxVolume = SettingsManager.sfxVolume;
+        UpdateVolume(ProgramManager.instance.saveData.AudioSettings.musicVolume, ProgramManager.instance.saveData.AudioSettings.sfxVolume);
         /*
         if (SettingsManager.currentSettings != null)
         {
@@ -180,6 +190,7 @@ public class AudioManager : MonoBehaviour
             }
         }
 
+        /*
         // Volume controls (hold down + or -)
         musicMixer.SetFloat("Volume", musicVolume);
         musicMixer.GetFloat("Volume", out musicVolume);
@@ -195,11 +206,18 @@ public class AudioManager : MonoBehaviour
             if (musicVolume > -80f)
                 musicVolume -= 0.1f;
         }
-        SettingsManager.musicVolume = musicVolume;
-        SettingsManager.sfxVolume = sfxVolume;
+        */
 
+        
+    }
+
+    public void UpdateVolume(float _musicVolume, float _sfxVolume)
+    {
+        musicVolume = Mathf.Log10(_musicVolume / 100f + 0.00001f) * 20;
         // sfxVolume is a float from 0.0-1.0 but we'd want 1.0 to correspond to 10dB => *10f
-        targetSFXVolume = SettingsManager.sfxVolume;
+        //targetSFXVolume = SettingsManager.sfxVolume;
+        sfxVolume = Mathf.Log10(_sfxVolume / 100f + 0.00001f) * 20;
+        //targetSFXVolume = sfxVolume;
         // TODO in case we want fade between scene changes, add this sorta thing
         //if (ChangeScene.changingScene)
         //{
@@ -209,8 +227,9 @@ public class AudioManager : MonoBehaviour
         //{
         //    actualSFXVolume = Mathf.Lerp(actualSFXVolume, targetSFXVolume, 0.1f);
         //}
-        actualSFXVolume = targetSFXVolume; // TEMP
-        sfxMixer.SetFloat("Volume", actualSFXVolume);
+        //actualSFXVolume = targetSFXVolume; // TEMP
+        musicMixer.SetFloat("Volume", musicVolume);
+        sfxMixer.SetFloat("Volume", sfxVolume);
     }
 
     public void ChangeBGM(World newWorld, bool fromMenu, float duration = 1f)

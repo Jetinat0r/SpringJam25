@@ -25,6 +25,7 @@ public class ScreenWipe : MonoBehaviour
     }
 
     //Returns true if the wipe starts, and false if it couldn't be started
+    //  Fades screen out
     public bool WipeIn(bool _forceTransition = false)
     {
         //Block transitions from hapenning mid transition
@@ -50,6 +51,7 @@ public class ScreenWipe : MonoBehaviour
         return true;
     }
 
+    //Fades screen in
     public void WipeOut()
     {
         //Debug.Log(secondsPerPaletteOperation);

@@ -20,7 +20,7 @@ public class FullScreenDetector : MonoBehaviour
             }
             else
             {
-                SettingsManager.SetResolution(SettingsManager.resolution);
+                //SettingsManager.SetResolution(SettingsManager.resolution);
             }
         }
     }

@@ -21,7 +21,14 @@ public class LabelledSliderLinker : MonoBehaviour
         curValue = float.Parse(inputField.text);
     }
 
-    public void SetValue(System.Single _newValue)
+    public void SetValueNotify(System.Single _newValue)
+    {
+        float clampedVal = Mathf.Clamp(_newValue, min, max);
+        slider.value = clampedVal;
+        OnUpdate?.Invoke();
+    }
+
+    public void SetValueWithoutNotify(System.Single _newValue)
     {
         float clampedVal = Mathf.Clamp(_newValue, min, max);
         slider.SetValueWithoutNotify(clampedVal);
@@ -41,19 +48,12 @@ public class LabelledSliderLinker : MonoBehaviour
         {
             _newValue = "0";
         }
-        SetValue(float.Parse(_newValue));
+        SetValueWithoutNotify(float.Parse(_newValue));
     }
 
     public void OnMusicVolumeUpdate()
     {
-        if(AudioManager.instance == null)
-        {
-            //Debug.LogError("WHY");
-        }
-        else
-        {
-            AudioManager.instance.musicVolume = Mathf.Log10(slider.value / 100f + 0.00001f) * 20;
-        }
+        AudioManager.instance.musicVolume = Mathf.Log10(slider.value / 100f + 0.00001f) * 20;
     }
 
     public void OnSoundVolumeUpdate()

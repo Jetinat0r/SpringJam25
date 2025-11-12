@@ -134,6 +134,8 @@ public class ShaderManager : MonoBehaviour
             Debug.Log($"Loaded Custom Palette: {Application.persistentDataPath + "/CustomPalette.png"}");
         }
 
+        curPaletteIndex = GetWorldPaletteIndex(ProgramManager.instance.saveData.LastPlayedLevel.ToString());
+
         //Init shader state
         UpdateAllShaderMaterialsTexture();
         UpdateAllShaderMaterialsParams();
@@ -252,6 +254,7 @@ public class ShaderManager : MonoBehaviour
 
     public bool CheckNeedsPaletteTransition(int _newPaletteIndex)
     {
+        Debug.Log($"NEEDS PALETTE TRANSITION: {_newPaletteIndex != curPaletteIndex} [{_newPaletteIndex} | {curPaletteIndex}]");
         return _newPaletteIndex != curPaletteIndex;
     }
 
@@ -287,5 +290,11 @@ public class ShaderManager : MonoBehaviour
     private void FinishTransition()
     {
 
+    }
+
+    //External things may not modify custom palette (yet) but may ask if one exists
+    public bool GetHasCustomPalette()
+    {
+        return hasCustomPalette;
     }
 }
