@@ -47,7 +47,7 @@ public class ProgramManager : MonoBehaviour
         //Match Gameboy Framerate
         Application.targetFrameRate = 60;
         LoadSettings();
-        SaveSettings();
+        //SaveSettings();
     }
 
     private void Start()
@@ -88,6 +88,7 @@ public class ProgramManager : MonoBehaviour
                 return;
             }
 
+            RepairSettingsIfNecessary(saveData);
 
             if (!ValidateSaveData(saveData))
             {
@@ -114,6 +115,31 @@ public class ProgramManager : MonoBehaviour
         }
     }
 
+    private void RepairSettingsIfNecessary(RootSaveDataObject _saveData)
+    {
+        _saveData.AudioSettings ??= new SaveData.AudioSettings();
+        _saveData.DisplaySettings ??= new SaveData.DisplaySettings();
+    }
+
+    //Transfer ALL transferrable settings between same version save datas
+    private void TransferSettings(RootSaveDataObject _oldSaveData, RootSaveDataObject _newSaveData)
+    {
+        //Keep Game Settings
+        _newSaveData.SkipIntro = _oldSaveData.SkipIntro;
+        _newSaveData.UseCustomPalette = _oldSaveData.UseCustomPalette;
+
+        //Keep Custom Bindings
+        _newSaveData.CustomBindings = _oldSaveData.CustomBindings;
+
+        //Keep Audio Volumes
+        _newSaveData.AudioSettings.musicVolume = _oldSaveData.AudioSettings.musicVolume;
+        _newSaveData.AudioSettings.sfxVolume = _oldSaveData.AudioSettings.sfxVolume;
+
+        //Keep Resolution Settings
+        _newSaveData.DisplaySettings.fullScreenMode = _oldSaveData.DisplaySettings.fullScreenMode;
+        _newSaveData.DisplaySettings.vsync = _oldSaveData.DisplaySettings.vsync;
+    }
+
     public void SaveSettings()
     {
         saveData.SaveSaveData();
@@ -123,15 +149,8 @@ public class ProgramManager : MonoBehaviour
     {
         RootSaveDataObject _defaultSaveData = SaveData.LoadDefaultSaveData();
 
-        //Keep Audio Volumes
-        _defaultSaveData.AudioSettings.musicVolume = saveData.AudioSettings.musicVolume;
-        _defaultSaveData.AudioSettings.sfxVolume = saveData.AudioSettings.sfxVolume;
-
-        //Keep Resolution Settings
-        _defaultSaveData.DisplaySettings.fullScreenMode = saveData.DisplaySettings.fullScreenMode;
-
-        //Keep controller bindings
-        _defaultSaveData.CustomBindings = saveData.CustomBindings;
+        //Keep Settings
+        TransferSettings(_defaultSaveData, saveData);
 
         saveData = _defaultSaveData;
 
@@ -143,15 +162,8 @@ public class ProgramManager : MonoBehaviour
     {
         RootSaveDataObject _fullCompleteSaveData = JsonUtility.FromJson<RootSaveDataObject>(Resources.Load<TextAsset>("FullCompleteSaveData").text);
 
-        //Keep Audio Volumes
-        _fullCompleteSaveData.AudioSettings.musicVolume = saveData.AudioSettings.musicVolume;
-        _fullCompleteSaveData.AudioSettings.sfxVolume = saveData.AudioSettings.sfxVolume;
-
-        //Keep Resolution Settings
-        _fullCompleteSaveData.DisplaySettings.fullScreenMode = saveData.DisplaySettings.fullScreenMode;
-
-        //Keep controller bindings
-        _fullCompleteSaveData.CustomBindings = saveData.CustomBindings;
+        //Keep Settings
+        TransferSettings(_fullCompleteSaveData, saveData);
 
         saveData = _fullCompleteSaveData;
 

@@ -32,6 +32,12 @@ public class SaveData
     //Ensure save data object is valid and has not been irreparably tampered with
     public static bool ValidateSaveData(RootSaveDataObject _saveData)
     {
+        //Ensure the save data exists in the first place
+        if (_saveData == null)
+        {
+            return false;
+        }
+
         //Ensure audio settings exist
         if (_saveData.AudioSettings == null)
         {
@@ -91,14 +97,15 @@ public class SaveData
     public class RootSaveDataObject
     {
         //Track Save data revision for automatic replacement / upgrading
-        public int SaveDataVersion;
+        public int SaveDataVersion = -1;
         public AudioSettings AudioSettings;
         public DisplaySettings DisplaySettings;
         public WorldSaveData[] WorldSaveData;
-        public string CustomBindings;
-        public int LastPlayedLevel;
+        public string CustomBindings = "";
+        public int LastPlayedLevel = 1;
         //Defaults to true, but is treated as false if no custom palette is found
-        public bool UsingCustomPalette;
+        public bool UseCustomPalette = true;
+        public bool SkipIntro = false;
 
         //Expects world number 1 indexed
         public WorldSaveData GetWorldSaveData(int _worldNumber)
@@ -172,15 +179,15 @@ public class SaveData
     [Serializable]
     public class AudioSettings
     {
-        public float musicVolume;
-        public float sfxVolume;
+        public float musicVolume = 50;
+        public float sfxVolume = 50;
     }
 
     [Serializable]
     public class DisplaySettings
     {
-        public int fullScreenMode;
-        public bool vsync;
+        public int fullScreenMode = 0;
+        public bool vsync = true;
     }
 
     [Serializable]

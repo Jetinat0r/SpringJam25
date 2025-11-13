@@ -67,16 +67,6 @@ public class AudioManager : MonoBehaviour
     {
         //currentWorld = GetWorld(SettingsManager.currentLevel);
         currentWorld = GetWorld(ProgramManager.instance.saveData.LastPlayedLevel);
-
-        //Audio is needed in boot scene, but we can't guarantee valid save data!
-        if(ProgramManager.instance.saveData != null && ProgramManager.instance.saveData.AudioSettings != null)
-        {
-            UpdateVolume(ProgramManager.instance.saveData.AudioSettings.musicVolume, ProgramManager.instance.saveData.AudioSettings.sfxVolume);
-        }
-        else
-        {
-            UpdateVolume(32, 50);
-        }
     }
 
     public World GetWorld(int level)
@@ -145,6 +135,8 @@ public class AudioManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
+        //Update volume before anything starts playing
+        //  We know these calls are safe because ProgramData (which loads settings) validates everything settings related before we get here
         UpdateVolume(ProgramManager.instance.saveData.AudioSettings.musicVolume, ProgramManager.instance.saveData.AudioSettings.sfxVolume);
         /*
         if (SettingsManager.currentSettings != null)

@@ -438,5 +438,6 @@
 	},
 	"CustomBindings": "",
 	"LastPlayedLevel": 1,
-	"UsingCustomPalette": true
+	"UseCustomPalette": true,
+	"SkipIntro": false
 }

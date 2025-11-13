@@ -14,8 +14,7 @@ public class AudioSettingsMenu : MonoBehaviour
         //These no longer behave as linked sliders, so we want to update the static text as well!
         //musicSetting.SetValueNotify(Mathf.Pow(10, ProgramManager.instance.saveData.AudioSettings.musicVolume / 20) * 100 - 0.00001f);
         //sfxSetting.SetValueNotify(Mathf.Pow(10, ProgramManager.instance.saveData.AudioSettings.sfxVolume / 20) * 100 - 0.00001f);
-        musicSetting.SetValueNotify(ProgramManager.instance.saveData.AudioSettings.musicVolume);
-        sfxSetting.SetValueNotify(ProgramManager.instance.saveData.AudioSettings.sfxVolume);
+        UpdateSliders();
 
         AudioManager.instance.UpdateVolume(ProgramManager.instance.saveData.AudioSettings.musicVolume, ProgramManager.instance.saveData.AudioSettings.sfxVolume);
 
@@ -31,8 +30,8 @@ public class AudioSettingsMenu : MonoBehaviour
 
     public void UpdateSliders()
     {
-        musicSetting.SetValueWithoutNotify(ProgramManager.instance.saveData.AudioSettings.musicVolume);
-        sfxSetting.SetValueWithoutNotify(ProgramManager.instance.saveData.AudioSettings.sfxVolume);
+        musicSetting.SetValueNotify(ProgramManager.instance.saveData.AudioSettings.musicVolume);
+        sfxSetting.SetValueNotify(ProgramManager.instance.saveData.AudioSettings.sfxVolume);
     }
 
     public void OnVolumeChange(System.Single _newVal)
