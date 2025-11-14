@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static AudioManager;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,6 +16,24 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
     public EventSystem eventSystem;
+
+    [SerializeField]
+    public GameObject corruptedSaveDataScreen;
+    [SerializeField]
+    public Button corruptedSaveDataScreenFirstSelected;
+    [SerializeField]
+    public GameObject startScreen;
+    //These 2 are different because of spaghetti code :3
+    //  They need to be synced exactly once per play session :P
+    [SerializeField]
+    public OscillatingLogo mainLogo;
+    [SerializeField]
+    public OscillatingLogo startScreenLogo;
+
+    [SerializeField]
+    //Use this button to detect start input
+    public Button startScreenHiddenButton;
+    private bool startedMusic = false;
 
     [SerializeField]
     public RectTransform panelContainer;
@@ -77,6 +99,8 @@ public class MainMenuManager : MonoBehaviour
     {
         inMenu = true;
         menuSoundPlayer = soundPlayer;
+
+        mainPanel.gameObject.SetActive(false);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -90,8 +114,6 @@ public class MainMenuManager : MonoBehaviour
         anchoredSettingsPanelPos = settingsPanel.anchoredPosition;
         anchoredInstructionsPanelPos = instructionsPanel.anchoredPosition;
         anchoredCreditsPanelPos = creditsPanel.anchoredPosition;
-
-        eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
 
         int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
         for (int i = 0; i < levelButtons.Length; i++)
@@ -114,6 +136,62 @@ public class MainMenuManager : MonoBehaviour
         toggleEP = debugInput.actions["ToggleEctoplasm"];
         toggleEP.Enable();
         toggleEP.started += ToggleEP;
+    }
+
+    public void StartupMainMenu()
+    {
+        ShaderManager.instance.EnableShaders();
+        if (!SaveData.ValidateSaveData(ProgramManager.instance.saveData))
+        {
+            OpenCorruptedSavePopup();
+        }
+        else
+        {
+            EnterStartScreen();
+        }
+    }
+
+    public void OpenCorruptedSavePopup()
+    {
+        ShaderManager.instance.DisableShaders();
+        corruptedSaveDataScreen.SetActive(true);
+        MenuPanelWatcher.instance.activePanel = MenuPanel.POPUP;
+        eventSystem.SetSelectedGameObject(corruptedSaveDataScreenFirstSelected.gameObject);
+    }
+
+    public void EnterStartScreen()
+    {
+        FindFirstObjectByType<AudioManager>().ChangeBGM(AudioManager.World.CURRENT, true);
+        ScreenWipe.current.WipeOut();
+
+        if (ProgramManager.instance.firstOpen && !ProgramManager.instance.saveData.SkipIntro)
+        {
+            MenuPanelWatcher.instance.activePanel = MenuPanel.START;
+            startScreen.SetActive(true);
+            eventSystem.SetSelectedGameObject(startScreenHiddenButton.gameObject);
+        }
+        else
+        {
+            EnterMainMenu();
+        }
+    }
+
+    public void SyncLogos()
+    {
+        mainLogo.timer = startScreenLogo.timer;
+    }
+
+    //Sets up the input to allow standard menu interactions
+    //  Seperated to allow boot splash, corrupted save popups, and start screen to exist in varying states without exploding logic
+    public void EnterMainMenu()
+    {
+        ProgramManager.instance.firstOpen = false;
+
+        mainPanel.gameObject.SetActive(true);
+        startScreen.SetActive(false);
+
+        MenuPanelWatcher.instance.activePanel = MenuPanel.MAIN;
+        eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
     }
 
     private void OnDestroy()
@@ -150,6 +228,32 @@ public class MainMenuManager : MonoBehaviour
         //ResetProgress();
     }
 
+    //Mostly duplicated ResetProgress so we could play a different sound :P
+    public void OverwriteCorruptedSaveData()
+    {
+        soundPlayer.PlaySound(selectSound);
+
+        ProgramManager.instance.ResetSaveData();
+        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
+
+        //TODO: Move to level menu script AND add support for hiding/showing challenges
+        for (int i = 0; i < levelButtons.Length; i++)
+        {
+            //if (SettingsManager.completedLevels >= i)
+            if (_completedLevels >= i)
+            {
+                levelButtons[i].UnlockLevel();
+            }
+            else
+            {
+                levelButtons[i].LockLevel();
+            }
+        }
+
+        corruptedSaveDataScreen.SetActive(false);
+        StartupMainMenu();
+    }
+
     public void ResetProgress()
     {
         soundPlayer.PlaySound(backSound);
@@ -157,6 +261,8 @@ public class MainMenuManager : MonoBehaviour
         //SettingsManager.SaveSettings();
         ProgramManager.instance.ResetSaveData();
         int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
+
+        //TODO: Move to level menu script AND add support for hiding/showing challenges
         for (int i = 0; i < levelButtons.Length; i++)
         {
             //if (SettingsManager.completedLevels >= i)
@@ -293,7 +399,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void QuitGame()
     {
-        if (!ScreenWipe.current.WipeIn()) return;
+        ShaderManager.instance.UpdatePaletteCondenseAmount(0);
+        ShaderManager.instance.EnableShaders();
+        ScreenWipe.current.WipeIn(true);
         ScreenWipe.current.PostWipe += () =>
         {
             //Debug.Log($"Entering level {_levelName}");

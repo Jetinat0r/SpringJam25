@@ -14,6 +14,7 @@
 	[
 		{
 			"worldNumber": 1,
+			"unlockedChallenges": true,
 			"levels":
 			[
 				{
@@ -117,6 +118,7 @@
 		},
 		{
 			"worldNumber": 2,
+			"unlockedChallenges": true,
 			"levels":
 			[
 				{
@@ -220,6 +222,7 @@
 		},
 		{
 			"worldNumber": 3,
+			"unlockedChallenges": true,
 			"levels":
 			[
 				{
@@ -323,6 +326,7 @@
 		},
 		{
 			"worldNumber": 4,
+			"unlockedChallenges": true,
 			"levels":
 			[
 				{

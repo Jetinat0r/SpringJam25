@@ -20,7 +20,17 @@ public class SaveData
         }
 
         Debug.Log($"Loaded save data from {_saveDataPath}");
-        return JsonUtility.FromJson<RootSaveDataObject>(File.ReadAllText(_saveDataPath));
+        try
+        {
+            return JsonUtility.FromJson<RootSaveDataObject>(File.ReadAllText(_saveDataPath));
+        }
+        catch
+        {
+            Debug.LogWarning("Save data corrupted beyond repair, creating new save data!");
+            RootSaveDataObject _defaultSaveData = LoadDefaultSaveData();
+            _defaultSaveData.PortPlayerPrefProgress();
+            return _defaultSaveData;
+        }
     }
 
     public static RootSaveDataObject LoadDefaultSaveData()
@@ -158,6 +168,7 @@ public class SaveData
         //Attempts to upgrade save data from PlayerPrefs to the new Json format
         public void PortPlayerPrefProgress()
         {
+            /*
             if (PlayerPrefs.HasKey("musicVolume"))
             {
                 AudioSettings.musicVolume = PlayerPrefs.GetFloat("musicVolume");
@@ -173,13 +184,14 @@ public class SaveData
                 int _numCompletedLevels = PlayerPrefs.GetInt("completedLevels");
                 
             }
+            */
         }
     }
 
     [Serializable]
     public class AudioSettings
     {
-        public float musicVolume = 50;
+        public float musicVolume = 32;
         public float sfxVolume = 50;
     }
 
@@ -203,6 +215,7 @@ public class SaveData
     public class WorldSaveData
     {
         public int worldNumber;
+        public bool unlockedChallenges = false;
         public LevelSaveData[] levels;
         public float fastestTime;
 

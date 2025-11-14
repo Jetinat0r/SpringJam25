@@ -2,8 +2,8 @@
 	"SaveDataVersion": 0,
 	"AudioSettings":
 	{
-		"musicVolume": 30,
-		"sfxVolume": 72
+		"musicVolume": 32,
+		"sfxVolume": 50
 	},
 	"DisplaySettings":
 	{
@@ -14,6 +14,7 @@
 	[
 		{
 			"worldNumber": 1,
+			"unlockedChallenges": false,
 			"levels":
 			[
 				{
@@ -117,6 +118,7 @@
 		},
 		{
 			"worldNumber": 2,
+			"unlockedChallenges": false,
 			"levels":
 			[
 				{
@@ -220,6 +222,7 @@
 		},
 		{
 			"worldNumber": 3,
+			"unlockedChallenges": false,
 			"levels":
 			[
 				{
@@ -323,6 +326,7 @@
 		},
 		{
 			"worldNumber": 4,
+			"unlockedChallenges": false,
 			"levels":
 			[
 				{

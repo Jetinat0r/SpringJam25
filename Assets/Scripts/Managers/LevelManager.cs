@@ -269,6 +269,9 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         ScreenWipe.current.WipeIn(true);
         PlayerMovement.instance.soundPlayer.PlaySound("Game.Stairs");
+
+        //TODO: Add challenge display popup. Will require changing target scene to one designed specifically for displaying these texts
+        //  And messing with shaders and oh my god palette shader why
         ScreenWipe.current.PostWipe += NextScene;
     }
 

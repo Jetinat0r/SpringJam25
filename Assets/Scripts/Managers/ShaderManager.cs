@@ -183,6 +183,20 @@ public class ShaderManager : MonoBehaviour
     }
 #endif
 
+    public void EnableShaders()
+    {
+        fullscreenShaderMat.SetFloat("_usePalette", 1f);
+        trueUiShaderMat.SetFloat("_usePalette", 1f);
+        fontShaderMat.SetFloat("_usePalette", 1f);
+    }
+
+    public void DisableShaders()
+    {
+        fullscreenShaderMat.SetFloat("_usePalette", 0f);
+        trueUiShaderMat.SetFloat("_usePalette", 0f);
+        fontShaderMat.SetFloat("_usePalette", 0f);
+    }
+
     public void SetUseCustomPalette(bool _value)
     {
         usingCustomPalette = _value;
@@ -266,7 +280,7 @@ public class ShaderManager : MonoBehaviour
 
     public bool CheckNeedsPaletteTransition(int _newPaletteIndex)
     {
-        Debug.Log($"NEEDS PALETTE TRANSITION: {_newPaletteIndex != curPaletteIndex} [{_newPaletteIndex} | {curPaletteIndex}]");
+        //Debug.Log($"NEEDS PALETTE TRANSITION: {_newPaletteIndex != curPaletteIndex} [{_newPaletteIndex} | {curPaletteIndex}]");
         return _newPaletteIndex != curPaletteIndex;
     }
 

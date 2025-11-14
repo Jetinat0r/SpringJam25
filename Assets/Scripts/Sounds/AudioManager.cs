@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
     private int activePlayer = 0;
     public AudioSource[] BGM1, BGM2;
     private IEnumerator[] fader = new IEnumerator[2];
-    public float musicVolume = 1.0f, sfxVolume = 10.0f, targetSFXVolume= -80.0f, actualSFXVolume = -80.0f;
+    public float musicVolume = 1.0f, sfxVolume = 10.0f;
 
     //Note: If the volumeChangesPerSecond value is higher than the fps, the duration of the fading will be extended!
     private int volumeChangesPerSecond = 15;
@@ -65,6 +65,11 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Update volume before anything starts playing
+        //  We know these calls are safe because ProgramData (which loads settings) validates everything settings related before we get here
+        //We have to call this in Start() instead of Awake() because Unity is on hard drugs
+        UpdateVolume(ProgramManager.instance.saveData.AudioSettings.musicVolume, ProgramManager.instance.saveData.AudioSettings.sfxVolume);
+
         //currentWorld = GetWorld(SettingsManager.currentLevel);
         currentWorld = GetWorld(ProgramManager.instance.saveData.LastPlayedLevel);
     }
@@ -104,6 +109,16 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        //Singleton check
+        //if (FindObjectsByType<AudioManager>(FindObjectsSortMode.None).Length > 1)
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
         //Generate two AudioSource lists
         BGM1 = new AudioSource[2]{
             gameObject.AddComponent<AudioSource>(),
@@ -132,12 +147,8 @@ public class AudioManager : MonoBehaviour
             s.outputAudioMixerGroup = musicMixerGroup;
         }
 
-        instance = this;
-        DontDestroyOnLoad(gameObject);
 
-        //Update volume before anything starts playing
-        //  We know these calls are safe because ProgramData (which loads settings) validates everything settings related before we get here
-        UpdateVolume(ProgramManager.instance.saveData.AudioSettings.musicVolume, ProgramManager.instance.saveData.AudioSettings.sfxVolume);
+        
         /*
         if (SettingsManager.currentSettings != null)
         {
@@ -150,11 +161,6 @@ public class AudioManager : MonoBehaviour
         }
         */
 
-        if (FindObjectsByType<AudioManager>(FindObjectsSortMode.None).Length > 1)
-        {
-            instance = null;
-            Destroy(gameObject);
-        }
     }
 
     // Update is called once per frame

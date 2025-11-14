@@ -2,12 +2,16 @@ using DG.Tweening;
 using JetEngine;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static SaveData;
 
 public class ProgramManager : MonoBehaviour
 {
     public static ProgramManager instance;
     public SaveData.RootSaveDataObject saveData = null;
+    //Determines whether or not to load the boot splash and start screen when Main Menu is entered
+    //  Should only ever be true when the game opens, then false forever more
+    public bool firstOpen = true;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     public static void InitDOTween()
@@ -53,6 +57,11 @@ public class ProgramManager : MonoBehaviour
     private void Start()
     {
         //LoadSettings();
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            Debug.Log("Game didn't start in Main Menu; disabling First Open logic!");
+            firstOpen = false;
+        }
     }
 
     public static FullScreenMode IndexToFullScreenMode(int _index)
@@ -84,8 +93,9 @@ public class ProgramManager : MonoBehaviour
             saveData = LoadSaveData();
             if (saveData == null)
             {
-                Debug.LogError("Couldn't Load Existing or Default Save Data! Very Bad!");
-                return;
+                Debug.LogWarning("Save data corrupted beyond repair, creating new save data!");
+                saveData = LoadDefaultSaveData();
+                saveData.PortPlayerPrefProgress();
             }
 
             RepairSettingsIfNecessary(saveData);
@@ -119,6 +129,18 @@ public class ProgramManager : MonoBehaviour
     {
         _saveData.AudioSettings ??= new SaveData.AudioSettings();
         _saveData.DisplaySettings ??= new SaveData.DisplaySettings();
+
+        //Unlock challenges if they should be unlocked but weren't for some reason
+        if (_saveData.WorldSaveData != null)
+        {
+            for (int i = 0; i < _saveData.WorldSaveData.Length; i++)
+            {
+                if (_saveData.WorldSaveData[i] != null && _saveData.WorldSaveData[i].levels.Length >= 8 && _saveData.WorldSaveData[i].levels[7] != null && _saveData.WorldSaveData[i].levels[7].completed)
+                {
+                    _saveData.WorldSaveData[i].unlockedChallenges = true;
+                }
+            }
+        }
     }
 
     //Transfer ALL transferrable settings between same version save datas
@@ -150,7 +172,7 @@ public class ProgramManager : MonoBehaviour
         RootSaveDataObject _defaultSaveData = SaveData.LoadDefaultSaveData();
 
         //Keep Settings
-        TransferSettings(_defaultSaveData, saveData);
+        TransferSettings(saveData, _defaultSaveData);
 
         saveData = _defaultSaveData;
 
@@ -163,7 +185,7 @@ public class ProgramManager : MonoBehaviour
         RootSaveDataObject _fullCompleteSaveData = JsonUtility.FromJson<RootSaveDataObject>(Resources.Load<TextAsset>("FullCompleteSaveData").text);
 
         //Keep Settings
-        TransferSettings(_fullCompleteSaveData, saveData);
+        TransferSettings(saveData, _fullCompleteSaveData);
 
         saveData = _fullCompleteSaveData;
 

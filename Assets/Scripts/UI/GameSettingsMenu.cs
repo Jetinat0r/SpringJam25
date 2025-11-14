@@ -1,10 +1,9 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GameSettingsManager : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject settingsPanel;
     [SerializeField]
     public Toggle skipIntroToggle;
     [SerializeField]
@@ -74,15 +73,16 @@ public class GameSettingsManager : MonoBehaviour
     public void OpenResetProgressPopup()
     {
         resetProgressPopup.SetActive(true);
-        //For some reason you can still hover over these buttons if they aren't disabled
-        settingsPanel.SetActive(false);
-        resetProgressCancelButton.Select();
+        MenuPanelWatcher.instance.activePanel = MenuPanel.POPUP;
+        EventSystem.current.SetSelectedGameObject(resetProgressCancelButton.gameObject);
+        //resetProgressCancelButton.Select();
     }
 
     public void CloseResetProgressPopup()
     {
-        settingsPanel.SetActive(true);
+        MenuPanelWatcher.instance.activePanel = MenuPanel.SETTINGS;
         resetProgressPopup.SetActive(false);
-        resetProgressButton.Select();
+        EventSystem.current.SetSelectedGameObject(resetProgressButton.gameObject);
+        //resetProgressButton.Select();
     }
 }

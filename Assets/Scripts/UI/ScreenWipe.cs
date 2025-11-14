@@ -15,13 +15,18 @@ public class ScreenWipe : MonoBehaviour
     public static ScreenWipe current;
     [SerializeField] private Image ScreenBlocker;
     private float secondsPerPaletteOperation = 0.125f;
-    private static bool firstBoot = true;
+    [SerializeField]
+    public bool autoWipeOut = true;
 
     public void Awake()
     {
-        //Debug.Log(SceneManager.GetActiveScene().name);
-        WipeOut();
         current = this;
+
+        //If we want to control the wipe out from code, we need it to have not happened yet!
+        if (autoWipeOut)
+        {
+            WipeOut();
+        }
     }
 
     //Returns true if the wipe starts, and false if it couldn't be started
@@ -56,10 +61,7 @@ public class ScreenWipe : MonoBehaviour
     {
         //Debug.Log(secondsPerPaletteOperation);
         Sequence _sequence = DOTween.Sequence();
-        if (firstBoot)
-        {
-            _sequence.AppendInterval(secondsPerPaletteOperation);
-        }
+        _sequence.AppendInterval(secondsPerPaletteOperation);
 
         int _levelPaletteIndex = ShaderManager.instance.GetWorldPaletteIndex(SceneManager.GetActiveScene().name);
         if (ShaderManager.instance.CheckNeedsPaletteTransition(_levelPaletteIndex))
