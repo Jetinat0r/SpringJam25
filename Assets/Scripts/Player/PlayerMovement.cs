@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // Components
     private Rigidbody2D rb;
-    private BoxCollider2D collision;
+    [SerializeField] private BoxCollider2D collision;
     [SerializeField] private BoxCollider2D lightCollision, wallCollision;
 
     [SerializeField]
@@ -98,6 +98,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 ghostOffset = new(0f, 0.40625f);
     private Vector2 ghostDetectSize = new(0.6875f, 1f);
 
+    //Layers to exclude on death to prevent interactions (pushing blocks & being pushed by conveyors; etc.)
+    [SerializeField] private LayerMask deathExcludeLayers = 0;
+
     // Physics Materials
     [SerializeField] private PhysicsMaterial2D slippery, friction;
 
@@ -120,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb = GetComponent<Rigidbody2D>();
-        collision = GetComponent<BoxCollider2D>();
+        if (collision == null) { collision = GetComponent<BoxCollider2D>(); }
         //sprite = GetComponentInChildren<SpriteRenderer>();
         playerInput = GetComponent<PlayerInput>();
         currState = PlayerStates.IdleGhost;
@@ -718,6 +721,8 @@ public class PlayerMovement : MonoBehaviour
         if (isDead || LevelManager.isResetting) return;
         LevelMenuManager.playerOverride = true;
         rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0f;
+        collision.excludeLayers |= deathExcludeLayers;
         shadowSprite.SetActive(false);
         ghostSprite.SetActive(true);
         if (isShadow)

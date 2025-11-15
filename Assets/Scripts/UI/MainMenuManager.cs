@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static AudioManager;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,6 +16,24 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
     public EventSystem eventSystem;
+
+    [SerializeField]
+    public GameObject corruptedSaveDataScreen;
+    [SerializeField]
+    public Button corruptedSaveDataScreenFirstSelected;
+    [SerializeField]
+    public GameObject startScreen;
+    //These 2 are different because of spaghetti code :3
+    //  They need to be synced exactly once per play session :P
+    [SerializeField]
+    public OscillatingLogo mainLogo;
+    [SerializeField]
+    public OscillatingLogo startScreenLogo;
+
+    [SerializeField]
+    //Use this button to detect start input
+    public Button startScreenHiddenButton;
+    private bool startedMusic = false;
 
     [SerializeField]
     public RectTransform panelContainer;
@@ -59,8 +81,6 @@ public class MainMenuManager : MonoBehaviour
     public SoundPlayer soundPlayer;
     public static SoundPlayer menuSoundPlayer;
 
-    public LabelledSliderLinker musicSetting, sfxSetting;
-
     private bool inSettings = false;
 
     [SerializeField]
@@ -70,7 +90,7 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Allows Right Shift + R to Reset all progress. Save for Debug and Showcase builds!")]
-    public bool allowProgressDeletion = false;
+    public bool allowDebugFullComplete = false;
 
     public static bool inMenu = false;
     public static bool muteFirstButtonSound = true;
@@ -79,14 +99,13 @@ public class MainMenuManager : MonoBehaviour
     {
         inMenu = true;
         menuSoundPlayer = soundPlayer;
+
+        mainPanel.gameObject.SetActive(false);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Application.targetFrameRate = 60;
-        QualitySettings.vSyncCount = 1;
-
         anchoredMainPanelPos = mainPanel.anchoredPosition;
         foreach (RectTransform panel in levelSelectPanels)
         {
@@ -96,14 +115,11 @@ public class MainMenuManager : MonoBehaviour
         anchoredInstructionsPanelPos = instructionsPanel.anchoredPosition;
         anchoredCreditsPanelPos = creditsPanel.anchoredPosition;
 
-        musicSetting.SetValue(Mathf.Pow(10, SettingsManager.musicVolume / 20) * 100 - 0.00001f);
-        sfxSetting.SetValue(Mathf.Pow(10, SettingsManager.sfxVolume / 20) * 100 - 0.00001f);
-
-        eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
-
+        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            if (SettingsManager.completedLevels >= i)
+            //if (SettingsManager.completedLevels >= i)
+            if (_completedLevels >= i)
             {
                 levelButtons[i].UnlockLevel();
             }
@@ -115,32 +131,92 @@ public class MainMenuManager : MonoBehaviour
 
         resetProgress = debugInput.actions["ResetProgress"];
         resetProgress.Enable();
-        resetProgress.started += ResetProgress;
+        resetProgress.started += UnlockAll;
 
         toggleEP = debugInput.actions["ToggleEctoplasm"];
         toggleEP.Enable();
         toggleEP.started += ToggleEP;
     }
 
+    public void StartupMainMenu()
+    {
+        ShaderManager.instance.EnableShaders();
+        if (!SaveData.ValidateSaveData(ProgramManager.instance.saveData))
+        {
+            OpenCorruptedSavePopup();
+        }
+        else
+        {
+            EnterStartScreen();
+        }
+    }
+
+    public void OpenCorruptedSavePopup()
+    {
+        ShaderManager.instance.DisableShaders();
+        corruptedSaveDataScreen.SetActive(true);
+        MenuPanelWatcher.instance.activePanel = MenuPanel.POPUP;
+        eventSystem.SetSelectedGameObject(corruptedSaveDataScreenFirstSelected.gameObject);
+    }
+
+    public void EnterStartScreen()
+    {
+        FindFirstObjectByType<AudioManager>().ChangeBGM(AudioManager.World.CURRENT, true);
+        ScreenWipe.current.WipeOut();
+
+        if (ProgramManager.instance.firstOpen && !ProgramManager.instance.saveData.SkipIntro)
+        {
+            MenuPanelWatcher.instance.activePanel = MenuPanel.START;
+            startScreen.SetActive(true);
+            eventSystem.SetSelectedGameObject(startScreenHiddenButton.gameObject);
+        }
+        else
+        {
+            EnterMainMenu();
+        }
+    }
+
+    public void SyncLogos()
+    {
+        mainLogo.timer = startScreenLogo.timer;
+    }
+
+    //Sets up the input to allow standard menu interactions
+    //  Seperated to allow boot splash, corrupted save popups, and start screen to exist in varying states without exploding logic
+    public void EnterMainMenu()
+    {
+        ProgramManager.instance.firstOpen = false;
+
+        mainPanel.gameObject.SetActive(true);
+        startScreen.SetActive(false);
+
+        MenuPanelWatcher.instance.activePanel = MenuPanel.MAIN;
+        eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
+    }
+
     private void OnDestroy()
     {
-        resetProgress.started -= ResetProgress;
+        resetProgress.started -= UnlockAll;
         muteFirstButtonSound = true;
     }
 
-    public void ResetProgress(InputAction.CallbackContext _context)
+    //Has been morphed into UnlockAll
+    public void UnlockAll(InputAction.CallbackContext _context)
     {
-        if (!allowProgressDeletion)
+        if (!allowDebugFullComplete)
         {
             return;
         }
 
         soundPlayer.PlaySound(selectSound);
-        SettingsManager.completedLevels = 17;
-        SettingsManager.SaveSettings();
+        //SettingsManager.completedLevels = 17;
+        //SettingsManager.SaveSettings();
+        ProgramManager.instance.LoadFullCompleteSaveData();
+        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            if (SettingsManager.completedLevels >= i)
+            //if (SettingsManager.completedLevels >= i)
+            if (_completedLevels >= i)
             {
                 levelButtons[i].UnlockLevel();
             }
@@ -152,14 +228,45 @@ public class MainMenuManager : MonoBehaviour
         //ResetProgress();
     }
 
+    //Mostly duplicated ResetProgress so we could play a different sound :P
+    public void OverwriteCorruptedSaveData()
+    {
+        soundPlayer.PlaySound(selectSound);
+
+        ProgramManager.instance.ResetSaveData();
+        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
+
+        //TODO: Move to level menu script AND add support for hiding/showing challenges
+        for (int i = 0; i < levelButtons.Length; i++)
+        {
+            //if (SettingsManager.completedLevels >= i)
+            if (_completedLevels >= i)
+            {
+                levelButtons[i].UnlockLevel();
+            }
+            else
+            {
+                levelButtons[i].LockLevel();
+            }
+        }
+
+        corruptedSaveDataScreen.SetActive(false);
+        StartupMainMenu();
+    }
+
     public void ResetProgress()
     {
         soundPlayer.PlaySound(backSound);
-        SettingsManager.completedLevels = 0;
-        SettingsManager.SaveSettings();
+        //SettingsManager.completedLevels = 0;
+        //SettingsManager.SaveSettings();
+        ProgramManager.instance.ResetSaveData();
+        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
+
+        //TODO: Move to level menu script AND add support for hiding/showing challenges
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            if (SettingsManager.completedLevels >= i)
+            //if (SettingsManager.completedLevels >= i)
+            if (_completedLevels >= i)
             {
                 levelButtons[i].UnlockLevel();
             }
@@ -195,7 +302,8 @@ public class MainMenuManager : MonoBehaviour
         if (inSettings)
         {
             inSettings = false;
-            SettingsManager.SaveSettings();
+            //SettingsManager.SaveSettings();
+            ProgramManager.instance.saveData.SaveSaveData();
         }
 
         MenuPanelWatcher.instance.activePanel = MenuPanel.MAIN;
@@ -252,13 +360,16 @@ public class MainMenuManager : MonoBehaviour
     public void ContinuePlaying()
     {
         soundPlayer.PlaySound(selectSound);
-        if (SettingsManager.completedLevels >= levelButtons.Length)
+        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
+        //if (SettingsManager.completedLevels >= levelButtons.Length)
+        if (_completedLevels >= levelButtons.Length)
         {
             EnterLevel(levelButtons[^1].levelName);
         }
         else
         {
-            EnterLevel(levelButtons[SettingsManager.completedLevels].levelName);
+            //EnterLevel(levelButtons[SettingsManager.completedLevels].levelName);
+            EnterLevel(levelButtons[_completedLevels].levelName);
         }
     }
 
@@ -288,7 +399,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void QuitGame()
     {
-        if (!ScreenWipe.current.WipeIn()) return;
+        ShaderManager.instance.UpdatePaletteCondenseAmount(0);
+        ShaderManager.instance.EnableShaders();
+        ScreenWipe.current.WipeIn(true);
         ScreenWipe.current.PostWipe += () =>
         {
             //Debug.Log($"Entering level {_levelName}");

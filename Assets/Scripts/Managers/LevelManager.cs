@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using JetEngine;
-using Steamworks;
 using System.Text.RegularExpressions;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -14,10 +14,17 @@ public class LevelManager : MonoBehaviour
 
     public LevelMenuManager levelMenuManager;
 
+
     public string currentLevelName = "Level";
     public int currentLevelNumber = 1;
 
     public string nextLevelName = "Level";
+
+    [TextArea]
+    public string levelDisplayName = "MISSING LEVEL DISPLAY NAME";
+    [SerializeField]
+    public TMP_Text levelTitleTextDisplay;
+
     public Tilemap conveyorTilemap;
 
     private PlayerMovement player;
@@ -63,6 +70,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        levelTitleTextDisplay.text = levelDisplayName;
+
         List<int> _path = new List<int>();
         //Debug.Log(VentSearch(new Vector2Int(0, 1), new Vector2Int(2, 2), ref _path));
         // Debug.Log(VentSearch(new Vector2Int(1, 1), new Vector2Int(2, 0), ref _path));
@@ -70,8 +79,10 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log($"Path: {i}");
         }
-        SettingsManager.currentLevel = currentLevelNumber;
-        SettingsManager.SaveSettings();
+        ProgramManager.instance.saveData.LastPlayedLevel = currentLevelNumber;
+        ProgramManager.instance.saveData.SaveSaveData();
+        //SettingsManager.currentLevel = currentLevelNumber;
+        //SettingsManager.SaveSettings();
 
         // speedrunManager = FindFirstObjectByType<SpeedrunManager>();
     }
@@ -123,83 +134,133 @@ public class LevelManager : MonoBehaviour
 
     public void CompleteLevel()
     {
+        /*
         if (SettingsManager.completedLevels < currentLevelNumber)
         {
             SettingsManager.completedLevels = currentLevelNumber;
             SettingsManager.SaveSettings();
         }
+        */
+        SaveData.LevelSaveData _levelSaveData = ProgramManager.instance.saveData.GetLevelSaveData(currentLevelNumber);
+        _levelSaveData.completed = true;
+        //Debug.Log($"Completed Level {_levelSaveData.levelNumber}");
+        //TODO: Save completion time
+        //_levelSaveData.fastestTime = 60f;
 
         if (AudioManager.instance.CheckChangeWorlds(nextLevelName))
         {
-            if (SteamManager.Initialized)
+            float clearTime = 1;
+            float timeLimit = 0;
+            if (SpeedrunManager.instance != null)
             {
-                float clearTime = 1;
-                float timeLimit = 0;
-                if (SpeedrunManager.instance != null)
+                clearTime = SpeedrunManager.instance.StopTimer();
+                timeLimit = SpeedrunManager.instance.timeLimit;
+                Debug.Log("Clear time: " + clearTime);
+                Destroy(SpeedrunManager.instance);
+            }
+
+            // Unlock appropriate world clear achievements
+            // TODO: Add the speedrun achievements as we finish building out entire worlds
+            //int.TryParse(currentLevelName["Level".Length..], out int level)
+
+            /* We don't need to parse the level number, that's what currentLevelNumber is for!
+            if (int.TryParse(Regex.Match(currentLevelName, @"\d+").Value, out int level))
+            {
+                switch (AudioManager.instance.GetWorld(level))
                 {
-                    clearTime = SpeedrunManager.instance.StopTimer();
-                    timeLimit = SpeedrunManager.instance.timeLimit;
-                    Debug.Log("Clear time: " + clearTime);
-                    Destroy(SpeedrunManager.instance);
-                }
+                    case AudioManager.World.WORLD1:
+                        Debug.Log("Achievement unlocked! CLEAR_W1");
+                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W1");
 
-                // Unlock appropriate world clear achievements
-                // TODO: Add the speedrun achievements as we finish building out entire worlds
-                //int.TryParse(currentLevelName["Level".Length..], out int level)
-                if (int.TryParse(Regex.Match(currentLevelName, @"\d+").Value, out int level))
-                {
-                    switch (AudioManager.instance.GetWorld(level))
-                    {
-                        case AudioManager.World.WORLD1:
-                            Debug.Log("Achievement unlocked! CLEAR_W1");
-                            JetEngine.SteamUtils.TryGetAchievement("CLEAR_W1");
+                        if (clearTime <= timeLimit)
+                        {
+                            Debug.Log("Achievement unlocked! SPEEDRUN_W1");
+                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W1");
+                        }
+                        break;
+                    case AudioManager.World.WORLD2:
+                        Debug.Log("Achievement unlocked! CLEAR_W2");
+                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W2");
 
-                            if (clearTime <= timeLimit)
-                            {
-                                Debug.Log("Achievement unlocked! SPEEDRUN_W1");
-                                JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W1");
-                            }
-                            break;
-                        case AudioManager.World.WORLD2:
-                            Debug.Log("Achievement unlocked! CLEAR_W2");
-                            JetEngine.SteamUtils.TryGetAchievement("CLEAR_W2");
+                        if (clearTime <= timeLimit)
+                        {
+                            Debug.Log("Achievement unlocked! SPEEDRUN_W2");
+                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W2");
+                        }
+                        break;
+                    case AudioManager.World.WORLD3:
+                        Debug.Log("Achievement unlocked! CLEAR_W3");
+                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W3");
 
-                            if (clearTime <= timeLimit)
-                            {
-                                Debug.Log("Achievement unlocked! SPEEDRUN_W2");
-                                JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W2");
-                            }
-                            break;
-                        case AudioManager.World.WORLD3:
-                            Debug.Log("Achievement unlocked! CLEAR_W3");
-                            JetEngine.SteamUtils.TryGetAchievement("CLEAR_W3");
+                        if (clearTime <= timeLimit)
+                        {
+                            Debug.Log("Achievement unlocked! SPEEDRUN_W3");
+                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W3");
+                        }
+                        break;
+                    case AudioManager.World.WORLD4:
+                        Debug.Log("Achievement unlocked! CLEAR_W4");
+                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W4");
 
-                            if (clearTime <= timeLimit)
-                            {
-                                Debug.Log("Achievement unlocked! SPEEDRUN_W3");
-                                JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W3");
-                            }
-                            break;
-                        case AudioManager.World.WORLD4:
-                            Debug.Log("Achievement unlocked! CLEAR_W4");
-                            JetEngine.SteamUtils.TryGetAchievement("CLEAR_W4");
-
-                            if (clearTime <= timeLimit)
-                            {
-                                Debug.Log("Achievement unlocked! SPEEDRUN_W4");
-                                JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W4");
-                            }
-                            break;
-                    }
-                }
-                else
-                {
-                    //TODO: Something bad probably happened! We should handle it
-                    Debug.LogWarning($"Tried to get level number but failed! [{currentLevelName}]");
+                        if (clearTime <= timeLimit)
+                        {
+                            Debug.Log("Achievement unlocked! SPEEDRUN_W4");
+                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W4");
+                        }
+                        break;
                 }
             }
+            else
+            {
+                //TODO: Something bad probably happened! We should handle it
+                Debug.LogWarning($"Tried to get level number but failed! [{currentLevelName}]");
+            }
+        */
+            switch (AudioManager.instance.GetWorld(currentLevelNumber))
+            {
+                case AudioManager.World.WORLD1:
+                    Debug.Log("Achievement unlocked! CLEAR_W1");
+                    JetEngine.SteamUtils.TryGetAchievement("CLEAR_W1");
+
+                    if (clearTime <= timeLimit)
+                    {
+                        Debug.Log("Achievement unlocked! SPEEDRUN_W1");
+                        JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W1");
+                    }
+                    break;
+                case AudioManager.World.WORLD2:
+                    Debug.Log("Achievement unlocked! CLEAR_W2");
+                    JetEngine.SteamUtils.TryGetAchievement("CLEAR_W2");
+
+                    if (clearTime <= timeLimit)
+                    {
+                        Debug.Log("Achievement unlocked! SPEEDRUN_W2");
+                        JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W2");
+                    }
+                    break;
+                case AudioManager.World.WORLD3:
+                    Debug.Log("Achievement unlocked! CLEAR_W3");
+                    JetEngine.SteamUtils.TryGetAchievement("CLEAR_W3");
+
+                    if (clearTime <= timeLimit)
+                    {
+                        Debug.Log("Achievement unlocked! SPEEDRUN_W3");
+                        JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W3");
+                    }
+                    break;
+                case AudioManager.World.WORLD4:
+                    Debug.Log("Achievement unlocked! CLEAR_W4");
+                    JetEngine.SteamUtils.TryGetAchievement("CLEAR_W4");
+
+                    if (clearTime <= timeLimit)
+                    {
+                        Debug.Log("Achievement unlocked! SPEEDRUN_W4");
+                        JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W4");
+                    }
+                    break;
+            }
         }
-        
+
         StartCoroutine(GoToNextLevel(1.5f));
     }
 
@@ -208,6 +269,9 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         ScreenWipe.current.WipeIn(true);
         PlayerMovement.instance.soundPlayer.PlaySound("Game.Stairs");
+
+        //TODO: Add challenge display popup. Will require changing target scene to one designed specifically for displaying these texts
+        //  And messing with shaders and oh my god palette shader why
         ScreenWipe.current.PostWipe += NextScene;
     }
 

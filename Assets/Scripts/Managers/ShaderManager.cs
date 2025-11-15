@@ -12,6 +12,7 @@ public class ShaderManager : MonoBehaviour
     [SerializeField]
     public Material fullscreenShaderMat;
     [SerializeField]
+    //NOTE: DO NOT SET SHADER PROPERTIES ON THIS MATERIAL. USE trueUiShaderMat INSTEAD!!!
     public Material uiShaderMat;
     //We don't actually set the default material, so we grab it and set it here
     private Material trueUiShaderMat;
@@ -21,7 +22,7 @@ public class ShaderManager : MonoBehaviour
     public Texture2D defaultPalette;
     private Texture2D customPalette = null;
     [SerializeField]
-    private bool forceDefaultPalette = true;
+    private bool forceDefaultPalette = false;
     private bool hasCustomPalette = false;
     private bool usingCustomPalette = false;
 
@@ -94,6 +95,20 @@ public class ShaderManager : MonoBehaviour
         fontShaderMat = Resources.Load<TMP_FontAsset>("Fonts/Early GameBoy SDF").material;
         defaultPalette = Resources.Load<Texture2D>("Shaders/ScreenPalette");
 
+        if (File.Exists(Application.persistentDataPath + "/CustomPalette.png"))
+        {
+            Texture2D _newPalette = new Texture2D(1, 1, TextureFormat.RGBA32, false);
+            ImageConversion.LoadImage(_newPalette, File.ReadAllBytes(Application.persistentDataPath + "/CustomPalette.png"));
+            _newPalette.filterMode = FilterMode.Point;
+            _newPalette.wrapMode = TextureWrapMode.Clamp;
+            //customPalette = Sprite.Create(_newPalette, new Rect(0, 0, _newPalette.width, _newPalette.height), Vector2.zero, 100, 0, SpriteMeshType.Tight);
+
+            customPalette = _newPalette;
+            hasCustomPalette = true;
+
+            Debug.Log($"Loaded Custom Palette: {Application.persistentDataPath + "/CustomPalette.png"}");
+        }
+
 #if UNITY_EDITOR
         debugPalette = new Texture2D(4, 1, TextureFormat.RGBA32, false);
         debugPalette.filterMode = FilterMode.Point;
@@ -116,23 +131,12 @@ public class ShaderManager : MonoBehaviour
         //Debug.Log(Canvas.GetDefaultCanvasMaterial());
         Debug.Log($"Persistent Data Path: {Application.persistentDataPath}");
 
-        if (File.Exists(Application.persistentDataPath + "/CustomPalette.png"))
+        if (hasCustomPalette)
         {
-            Texture2D _newPalette = new Texture2D(1, 1, TextureFormat.RGBA32, false);
-            ImageConversion.LoadImage(_newPalette, File.ReadAllBytes(Application.persistentDataPath + "/CustomPalette.png"));
-            _newPalette.filterMode = FilterMode.Point;
-            _newPalette.wrapMode = TextureWrapMode.Clamp;
-            //customPalette = Sprite.Create(_newPalette, new Rect(0, 0, _newPalette.width, _newPalette.height), Vector2.zero, 100, 0, SpriteMeshType.Tight);
-
-            customPalette = _newPalette;
-            hasCustomPalette = true;
-
-            //TODO: Make this accessible to the user via the setter function?
-            //TODO: Figure out what to do with forceDefaultPalette
-            usingCustomPalette = true;
-
-            Debug.Log($"Loaded Custom Palette: {Application.persistentDataPath + "/CustomPalette.png"}");
+            usingCustomPalette = ProgramManager.instance.saveData.UseCustomPalette;
         }
+
+        curPaletteIndex = GetWorldPaletteIndex(ProgramManager.instance.saveData.LastPlayedLevel.ToString());
 
         //Init shader state
         UpdateAllShaderMaterialsTexture();
@@ -154,11 +158,11 @@ public class ShaderManager : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
+    private bool useDebugPaletteLastState = false;
     // Update is called once per frame
     void Update()
     {
-
-#if UNITY_EDITOR
         if (useDebugPalette)
         {
             debugPalette.SetPixel(0, 0, debugPalette0);
@@ -168,16 +172,40 @@ public class ShaderManager : MonoBehaviour
             debugPalette.Apply();
         }
 
-        UpdateAllShaderMaterialsTexture();
+        if (useDebugPalette != useDebugPaletteLastState)
+        {
+            UpdateAllShaderMaterialsTexture();
+
+            useDebugPaletteLastState = useDebugPalette;
+
+            Debug.Log("Ping!");
+        }
+    }
 #endif
 
-        //TODO: Remove from build
-        UpdateAllShaderMaterialsParams();
+    public void EnableShaders()
+    {
+        fullscreenShaderMat.SetFloat("_usePalette", 1f);
+        trueUiShaderMat.SetFloat("_usePalette", 1f);
+        fontShaderMat.SetFloat("_usePalette", 1f);
+    }
+
+    public void DisableShaders()
+    {
+        fullscreenShaderMat.SetFloat("_usePalette", 0f);
+        trueUiShaderMat.SetFloat("_usePalette", 0f);
+        fontShaderMat.SetFloat("_usePalette", 0f);
     }
 
     public void SetUseCustomPalette(bool _value)
     {
         usingCustomPalette = _value;
+        UpdateAllShaderMaterialsTexture();
+    }
+
+    public void SetForceDefualtPalette(bool _value)
+    {
+        forceDefaultPalette = _value;
         UpdateAllShaderMaterialsTexture();
     }
 
@@ -243,15 +271,16 @@ public class ShaderManager : MonoBehaviour
 
     public void UpdatePaletteCondenseAmount(int _value)
     {
-        //Debug.Log($"CONDENSE: {_value}");
         paletteCondenseAmount = _value;
+        
         fullscreenShaderMat.SetFloat("_paletteCondenseAmount", paletteCondenseAmount);
-        uiShaderMat.SetFloat("_paletteCondenseAmount", paletteCondenseAmount);
+        trueUiShaderMat.SetFloat("_paletteCondenseAmount", paletteCondenseAmount);
         fontShaderMat.SetFloat("_paletteCondenseAmount", paletteCondenseAmount);
     }
 
     public bool CheckNeedsPaletteTransition(int _newPaletteIndex)
     {
+        //Debug.Log($"NEEDS PALETTE TRANSITION: {_newPaletteIndex != curPaletteIndex} [{_newPaletteIndex} | {curPaletteIndex}]");
         return _newPaletteIndex != curPaletteIndex;
     }
 
@@ -259,7 +288,7 @@ public class ShaderManager : MonoBehaviour
     {
         nextPaletteIndex = _newPaletteIndex;
         fullscreenShaderMat.SetFloat("_nextPaletteIndex", nextPaletteIndex);
-        uiShaderMat.SetFloat("_nextPaletteIndex", nextPaletteIndex);
+        trueUiShaderMat.SetFloat("_nextPaletteIndex", nextPaletteIndex);
         fontShaderMat.SetFloat("_nextPaletteIndex", nextPaletteIndex);
     }
 
@@ -268,7 +297,7 @@ public class ShaderManager : MonoBehaviour
         //Debug.Log($"MIX: {_value}");
         paletteMixAmount = _value;
         fullscreenShaderMat.SetFloat("_paletteMixAmount", paletteMixAmount);
-        uiShaderMat.SetFloat("_paletteMixAmount", paletteMixAmount);
+        trueUiShaderMat.SetFloat("_paletteMixAmount", paletteMixAmount);
         fontShaderMat.SetFloat("_paletteMixAmount", paletteMixAmount);
     }
 
@@ -277,7 +306,7 @@ public class ShaderManager : MonoBehaviour
         //We've met our next palette, so now it's our current palette!
         curPaletteIndex = nextPaletteIndex;
         fullscreenShaderMat.SetFloat("_curPaletteIndex", curPaletteIndex);
-        uiShaderMat.SetFloat("_curPaletteIndex", curPaletteIndex);
+        trueUiShaderMat.SetFloat("_curPaletteIndex", curPaletteIndex);
         fontShaderMat.SetFloat("_curPaletteIndex", curPaletteIndex);
 
         //Now that we've updated our current palette, we can go back to using it
@@ -287,5 +316,11 @@ public class ShaderManager : MonoBehaviour
     private void FinishTransition()
     {
 
+    }
+
+    //External things may not modify custom palette (yet) but may ask if one exists
+    public bool GetHasCustomPalette()
+    {
+        return hasCustomPalette;
     }
 }

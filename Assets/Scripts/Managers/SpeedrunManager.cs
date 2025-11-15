@@ -22,10 +22,13 @@ public class SpeedrunManager : MonoBehaviour
         }
 
         // This class is only useful for checking the time trial achievements in Steam. If Steam has not yet been initialized, destroy self
+        //JET: Our game should be resilient enough to be fine running this stuff even without Steam.
+        /*
         if (!SteamManager.Initialized)
         {
             Destroy(instance.gameObject);
         }
+        */
     }
     
     private void Start()
