@@ -6,7 +6,7 @@ public class OscillatingLogo : MonoBehaviour
     [SerializeField] private float floatSpd;   // This will act as the frequency modulation for the sin wave
     [SerializeField] private float incrementFactor; // keyTimer will increase by this amount every frame.
     [SerializeField] private float amplitude;    // This is the amplitude of the sin wave.
-    private float timer = 0.0f;  // This will reset to 0 after it has made one full sinusoidal cycle
+    [HideInInspector] public float timer = 0.0f;  // This will reset to 0 after it has made one full sinusoidal cycle
     [SerializeField] private Image img;
 
     // Update is called once per frame

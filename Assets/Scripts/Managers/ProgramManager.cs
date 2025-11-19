@@ -1,10 +1,17 @@
 using DG.Tweening;
 using JetEngine;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using static SaveData;
 
 public class ProgramManager : MonoBehaviour
 {
     public static ProgramManager instance;
+    public SaveData.RootSaveDataObject saveData = null;
+    //Determines whether or not to load the boot splash and start screen when Main Menu is entered
+    //  Should only ever be true when the game opens, then false forever more
+    public bool firstOpen = true;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     public static void InitDOTween()
@@ -41,16 +48,147 @@ public class ProgramManager : MonoBehaviour
             return;
         }
 
+        //Match Gameboy Framerate
+        Application.targetFrameRate = 60;
+        LoadSettings();
+        //SaveSettings();
+    }
+
+    private void Start()
+    {
         //LoadSettings();
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            Debug.Log("Game didn't start in Main Menu; disabling First Open logic!");
+            firstOpen = false;
+        }
+    }
+
+    public static FullScreenMode IndexToFullScreenMode(int _index)
+    {
+        if (_index < 0 || _index >= 3)
+        {
+            Debug.LogError($"Bad Fullscreen Mode Index: {_index}. Defaulting to Borderless.");
+            _index = 0;
+        }
+
+        switch (_index)
+        {
+            case 0:
+                return FullScreenMode.FullScreenWindow;
+            case 1:
+                return FullScreenMode.ExclusiveFullScreen;
+            case 2:
+                return FullScreenMode.Windowed;
+            default:
+                Debug.LogError($"SOMETHING HAS GONE HORRIBLY WRONG: {_index}");
+                return FullScreenMode.FullScreenWindow;
+        }
     }
 
     private void LoadSettings()
     {
-        
+        try
+        {
+            saveData = LoadSaveData();
+            if (saveData == null)
+            {
+                Debug.LogWarning("Save data corrupted beyond repair, creating new save data!");
+                saveData = LoadDefaultSaveData();
+                saveData.PortPlayerPrefProgress();
+            }
+
+            RepairSettingsIfNecessary(saveData);
+
+            if (!ValidateSaveData(saveData))
+            {
+                //TODO: Display a warning popup
+                Debug.LogError("Save data failed to validate!");
+            }
+            else
+            {
+                //Save data is valid, apply display settings (audio settings get applied elsewhere
+                if (saveData.DisplaySettings.fullScreenMode < 0 || saveData.DisplaySettings.fullScreenMode >= 3)
+                {
+                    saveData.DisplaySettings.fullScreenMode = 0;
+                }
+
+                Screen.fullScreenMode = IndexToFullScreenMode(saveData.DisplaySettings.fullScreenMode);
+                QualitySettings.vSyncCount = saveData.DisplaySettings.vsync ? 1 : 0;
+            }
+
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+    }
+
+    private void RepairSettingsIfNecessary(RootSaveDataObject _saveData)
+    {
+        _saveData.AudioSettings ??= new SaveData.AudioSettings();
+        _saveData.DisplaySettings ??= new SaveData.DisplaySettings();
+
+        //Unlock challenges if they should be unlocked but weren't for some reason
+        if (_saveData.WorldSaveData != null)
+        {
+            for (int i = 0; i < _saveData.WorldSaveData.Length; i++)
+            {
+                if (_saveData.WorldSaveData[i] != null && _saveData.WorldSaveData[i].levels.Length >= 8 && _saveData.WorldSaveData[i].levels[7] != null && _saveData.WorldSaveData[i].levels[7].completed)
+                {
+                    _saveData.WorldSaveData[i].unlockedChallenges = true;
+                }
+            }
+        }
+    }
+
+    //Transfer ALL transferrable settings between same version save datas
+    private void TransferSettings(RootSaveDataObject _oldSaveData, RootSaveDataObject _newSaveData)
+    {
+        //Keep Game Settings
+        _newSaveData.SkipIntro = _oldSaveData.SkipIntro;
+        _newSaveData.UseCustomPalette = _oldSaveData.UseCustomPalette;
+
+        //Keep Custom Bindings
+        _newSaveData.CustomBindings = _oldSaveData.CustomBindings;
+
+        //Keep Audio Volumes
+        _newSaveData.AudioSettings.musicVolume = _oldSaveData.AudioSettings.musicVolume;
+        _newSaveData.AudioSettings.sfxVolume = _oldSaveData.AudioSettings.sfxVolume;
+
+        //Keep Resolution Settings
+        _newSaveData.DisplaySettings.fullScreenMode = _oldSaveData.DisplaySettings.fullScreenMode;
+        _newSaveData.DisplaySettings.vsync = _oldSaveData.DisplaySettings.vsync;
     }
 
     public void SaveSettings()
     {
-        
+        saveData.SaveSaveData();
+    }
+
+    public void ResetSaveData()
+    {
+        RootSaveDataObject _defaultSaveData = SaveData.LoadDefaultSaveData();
+
+        //Keep Settings
+        TransferSettings(saveData, _defaultSaveData);
+
+        saveData = _defaultSaveData;
+
+        SaveSettings();
+    }
+
+    //This is for cheating! Ensure nothing can call this for full release!
+    public void LoadFullCompleteSaveData()
+    {
+        RootSaveDataObject _fullCompleteSaveData = JsonUtility.FromJson<RootSaveDataObject>(Resources.Load<TextAsset>("FullCompleteSaveData").text);
+
+        //Keep Settings
+        TransferSettings(saveData, _fullCompleteSaveData);
+
+        saveData = _fullCompleteSaveData;
+
+        SaveSettings();
     }
 }
