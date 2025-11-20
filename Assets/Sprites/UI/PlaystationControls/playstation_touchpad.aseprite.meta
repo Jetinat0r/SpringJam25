@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1ed79d63b2a9a54f8f1e430ba6e0b08
+guid: c7e3bbd3e6c2a554ab7fae2e7dcef71b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 0
+    spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 16
@@ -72,7 +72,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 0
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -87,7 +87,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   asepriteImporterSettings:
-    fileImportMode: 0
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638991810169890360
+  platformSettingsDirtyTick: 638991806967877625
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: spr_buttonprompt_start_generic
+  - name: spr_buttonprompt_touchpad_playstation
     originalName: 
-    pivot: {x: 0.5, y: -0.3}
+    pivot: {x: 0.42857146, y: -0.06666667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 12
-      height: 10
-    spriteID: 8acbff2031a844b479ca2a07725f8446
+      width: 21
+      height: 15
+    spriteID: 1c0fc35a54ad4384faade01ba8fa0bb4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,51 +148,30 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  spriteSheetImportData:
-  - name: generic_start_0
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 2
-      y: 1
-      width: 16
-      height: 16
-    spriteID: c126112d38471fe4ead614481da5ab13
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+  spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 632393709
+      value0: 3216249152
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: spr_buttonprompt_start_generic
+    name: spr_buttonprompt_touchpad_playstation
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: generic_start
+    - name: playstation_touchpad
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 1
-        y: 3
-        width: 14
-        height: 10
-      spriteId: 8acbff2031a844b479ca2a07725f8446
+        x: 3
+        y: 1
+        width: 21
+        height: 15
+      spriteId: 1c0fc35a54ad4384faade01ba8fa0bb4
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -226,5 +205,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 16, y: 16}
+  canvasSize: {x: 24, y: 16}
   previousTextureSize: {x: 32, y: 32}

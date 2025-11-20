@@ -330,9 +330,9 @@ MonoBehaviour:
   - inputPath: rightStickPress
     glyph: {fileID: 3444682834882531213, guid: 9b7ac1c8e4ae12145bfad2a8e66ff3c9, type: 3}
   - inputPath: start
-    glyph: {fileID: 6202387339469488018, guid: f1ed79d63b2a9a54f8f1e430ba6e0b08, type: 3}
+    glyph: {fileID: -7162593984047063211, guid: f1ed79d63b2a9a54f8f1e430ba6e0b08, type: 3}
   - inputPath: select
-    glyph: {fileID: -9085549345938017874, guid: 4fb296b5ba1a9654199bbfe4a98d7d6a, type: 3}
+    glyph: {fileID: 6170071527408390368, guid: 4fb296b5ba1a9654199bbfe4a98d7d6a, type: 3}
   - inputPath: leftShoulder
     glyph: {fileID: 8554115604373454695, guid: 1f9f28c00d10c0c46a3a7be1812424e7, type: 3}
   - inputPath: leftTrigger
