@@ -70,7 +70,7 @@ public class FloatingEnemy : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime, moveSpeed);
 
         // Small rotation for a floating effect
-        transform.Rotate(0, 0, Mathf.Sin(Time.time * rotationSpeed) * Time.deltaTime * 5f);
+        //transform.Rotate(0, 0, Mathf.Sin(Time.time * rotationSpeed) * Time.deltaTime * 5f);
         //transform.position = new Vector3(transform.position.x, transform.position.y + (Mathf.Sin(Time.time * rotationSpeed) * 0.001f), transform.position.z);//.Rotate(0, 0, Mathf.Sin(Time.time * rotationSpeed) * Time.deltaTime * 5f);
 
         // Check if close to target, then pick a new one

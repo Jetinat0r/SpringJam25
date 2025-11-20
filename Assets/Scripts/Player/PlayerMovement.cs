@@ -117,6 +117,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerInput = InputOverlord.instance.playerInput;
+
         if (LevelManager.instance != null)
         {
             LevelManager.instance.RegisterPlayer(this);
@@ -125,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (collision == null) { collision = GetComponent<BoxCollider2D>(); }
         //sprite = GetComponentInChildren<SpriteRenderer>();
-        playerInput = GetComponent<PlayerInput>();
+        //playerInput = GetComponent<PlayerInput>();
         currState = PlayerStates.IdleGhost;
 
         // Set Input Bindings

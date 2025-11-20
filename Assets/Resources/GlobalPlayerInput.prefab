@@ -1,0 +1,458 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7648541913327151743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4817055453007097471}
+  - component: {fileID: 5297551661331363757}
+  - component: {fileID: 5808026511157566496}
+  - component: {fileID: 1672687886181059351}
+  - component: {fileID: 6568923677432695798}
+  m_Layer: 0
+  m_Name: GlobalPlayerInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4817055453007097471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648541913327151743}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5297551661331363757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648541913327151743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &5808026511157566496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648541913327151743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &1672687886181059351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648541913327151743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_MoveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_SubmitAction: {fileID: 1781555164194001046, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_CancelAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_MiddleClickAction: {fileID: 0}
+  m_RightClickAction: {fileID: 0}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_DeselectOnBackgroundClick: 0
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
+--- !u!114 &6568923677432695798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648541913327151743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51310483fefc4814aa411c0ae580745e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlyphContainer
+  keyboardGlyphMap:
+  - inputPath: a
+    glyph: {fileID: -5373436069955167331, guid: 379d4a07c8db72f4baf23f616f07e4e5, type: 3}
+  - inputPath: b
+    glyph: {fileID: 3751638875839897936, guid: ec078370e0ee75d43873f282203a3bbd, type: 3}
+  - inputPath: c
+    glyph: {fileID: -1651767179375456903, guid: d023b93b59764664fb9669bde6e5b430, type: 3}
+  - inputPath: d
+    glyph: {fileID: -8633034055408887828, guid: 96136d2c498416f48a8589388284b34c, type: 3}
+  - inputPath: e
+    glyph: {fileID: 3105911454135450837, guid: 38c497e876a048d4dace04e52b34ce00, type: 3}
+  - inputPath: f
+    glyph: {fileID: 7878665778820266658, guid: 0ff6fef248180f548a0ba076737118f2, type: 3}
+  - inputPath: g
+    glyph: {fileID: -6363185226343972320, guid: d7ace8acf583e0c4aa1189c331c148f0, type: 3}
+  - inputPath: h
+    glyph: {fileID: 3044555731559496043, guid: 18cad87d137e46348ae05738d76d8405, type: 3}
+  - inputPath: i
+    glyph: {fileID: 7300969062665751817, guid: c868e115eac8d22488839019b67c122f, type: 3}
+  - inputPath: j
+    glyph: {fileID: 884127645714468792, guid: 92be3b0e5a322a5409d40810f9f4bbf6, type: 3}
+  - inputPath: k
+    glyph: {fileID: -2529765598923747020, guid: 662605742e6f0964cb045a9b031008a1, type: 3}
+  - inputPath: l
+    glyph: {fileID: 7361797635020322233, guid: af3f6880b4def0346ae1bb8ba1ec62a3, type: 3}
+  - inputPath: m
+    glyph: {fileID: -8659056911471764699, guid: dc606ef77ee9ae9448e32051c2eaf1f5, type: 3}
+  - inputPath: n
+    glyph: {fileID: -8906285714369683852, guid: df3087d9be9e6f648b334022f3640b10, type: 3}
+  - inputPath: o
+    glyph: {fileID: -7069679631342308831, guid: 7274c72eba3f0054d9c2ceba1813f907, type: 3}
+  - inputPath: p
+    glyph: {fileID: -2354441711124873310, guid: 2da291a8cb6e1f94bbdb52c5032b6401, type: 3}
+  - inputPath: q
+    glyph: {fileID: 4603625732864608212, guid: 0608bc599c04ce3448cd5fb1e93c73ed, type: 3}
+  - inputPath: r
+    glyph: {fileID: -2193728180340406681, guid: 4671142fc97c1794e9d70009a9d8ec7f, type: 3}
+  - inputPath: s
+    glyph: {fileID: 9152216172413993933, guid: 1dee4a943ba1eef469156d567afd3fc2, type: 3}
+  - inputPath: t
+    glyph: {fileID: -8065997110863999091, guid: 14fbddedb48f6414fb0b8634be81c762, type: 3}
+  - inputPath: u
+    glyph: {fileID: 7156175380470094104, guid: f108cb6603c72ea44a3c0b3346e49532, type: 3}
+  - inputPath: v
+    glyph: {fileID: 7314873810166770369, guid: 220821167f6e73048bb5e57c7b36d5bc, type: 3}
+  - inputPath: w
+    glyph: {fileID: 8502469127130004407, guid: 438e461c44764394ea50a7924d2e5bc7, type: 3}
+  - inputPath: x
+    glyph: {fileID: 3290773590391931726, guid: 543b4e6b365fbdd44b7273f1ddc55975, type: 3}
+  - inputPath: y
+    glyph: {fileID: 834430511312592703, guid: ba7c00966d2bba14085dded79d4a17b6, type: 3}
+  - inputPath: z
+    glyph: {fileID: -8228751825728113428, guid: 4ec00366eed9b9743b469db0688f2985, type: 3}
+  - inputPath: '#(X)'
+    glyph: {fileID: 3290773590391931726, guid: 543b4e6b365fbdd44b7273f1ddc55975, type: 3}
+  - inputPath: '#(Z)'
+    glyph: {fileID: -8228751825728113428, guid: 4ec00366eed9b9743b469db0688f2985, type: 3}
+  - inputPath: 0
+    glyph: {fileID: -2514698208951956304, guid: 0b253cd56383c1341a67cf575a4666f2, type: 3}
+  - inputPath: 1
+    glyph: {fileID: -7886922242658283865, guid: 084dae91f4b4c7042a9a99aaee5cc1df, type: 3}
+  - inputPath: 2
+    glyph: {fileID: -7279937891196333910, guid: b5a70f310b9de96438e51b040874708e, type: 3}
+  - inputPath: 3
+    glyph: {fileID: 8373404476085174157, guid: cee23ea630babfa46adac82b02be003d, type: 3}
+  - inputPath: 4
+    glyph: {fileID: -8319809426228649467, guid: a240cabcd23e2f74ba146fe9a093c7ee, type: 3}
+  - inputPath: 5
+    glyph: {fileID: -3585252685802890057, guid: c0fe46f6c3666804fa4392fdcd1e544b, type: 3}
+  - inputPath: 6
+    glyph: {fileID: -8151092067462453741, guid: 0da1123249d38ae4f87516cf2ba5eabe, type: 3}
+  - inputPath: 7
+    glyph: {fileID: -8618895075474930340, guid: 5649ed35ea4bc73419792a64b450308f, type: 3}
+  - inputPath: 8
+    glyph: {fileID: -5704750549528803899, guid: e45efb6fbb1e79944b646c73f04e7857, type: 3}
+  - inputPath: 9
+    glyph: {fileID: 1113600885026463479, guid: e142e7a7f14d6754fb1999e95558a235, type: 3}
+  - inputPath: numpad0
+    glyph: {fileID: -2514698208951956304, guid: 0b253cd56383c1341a67cf575a4666f2, type: 3}
+  - inputPath: numpad1
+    glyph: {fileID: -7886922242658283865, guid: 084dae91f4b4c7042a9a99aaee5cc1df, type: 3}
+  - inputPath: numpad2
+    glyph: {fileID: -7279937891196333910, guid: b5a70f310b9de96438e51b040874708e, type: 3}
+  - inputPath: numpad3
+    glyph: {fileID: 8373404476085174157, guid: cee23ea630babfa46adac82b02be003d, type: 3}
+  - inputPath: numpad4
+    glyph: {fileID: -8319809426228649467, guid: a240cabcd23e2f74ba146fe9a093c7ee, type: 3}
+  - inputPath: numpad5
+    glyph: {fileID: -3585252685802890057, guid: c0fe46f6c3666804fa4392fdcd1e544b, type: 3}
+  - inputPath: numpad6
+    glyph: {fileID: -8151092067462453741, guid: 0da1123249d38ae4f87516cf2ba5eabe, type: 3}
+  - inputPath: numpad7
+    glyph: {fileID: -8618895075474930340, guid: 5649ed35ea4bc73419792a64b450308f, type: 3}
+  - inputPath: numpad8
+    glyph: {fileID: -5704750549528803899, guid: e45efb6fbb1e79944b646c73f04e7857, type: 3}
+  - inputPath: numpad9
+    glyph: {fileID: 1113600885026463479, guid: e142e7a7f14d6754fb1999e95558a235, type: 3}
+  - inputPath: apostrophe
+    glyph: {fileID: 5064939718467746228, guid: ba4922d9e12fd0143b16e1397cea107f, type: 3}
+  - inputPath: backslash
+    glyph: {fileID: -8219446828668730530, guid: f2534b659976ac5459dc89d30b6d34f3, type: 3}
+  - inputPath: backspace
+    glyph: {fileID: -2588601067930392146, guid: a4c5b2362c16e964ea55bf055e2c9af4, type: 3}
+  - inputPath: backquote
+    glyph: {fileID: 3877788623153239117, guid: 921b56d298b29b341b22af95e3546d75, type: 3}
+  - inputPath: capsLock
+    glyph: {fileID: 3739571134945068392, guid: fd049cf9074b84d47b4f51c2c55be990, type: 3}
+  - inputPath: comma
+    glyph: {fileID: 6761849158985510405, guid: 83ca4ed177a931d4386773361a9f8043, type: 3}
+  - inputPath: ctrl
+    glyph: {fileID: 597497745070065996, guid: 2c72b805bd71df14bb81c4640d6fe9d6, type: 3}
+  - inputPath: leftCtrl
+    glyph: {fileID: 597497745070065996, guid: 2c72b805bd71df14bb81c4640d6fe9d6, type: 3}
+  - inputPath: rightCtrl
+    glyph: {fileID: 597497745070065996, guid: 2c72b805bd71df14bb81c4640d6fe9d6, type: 3}
+  - inputPath: upArrow
+    glyph: {fileID: -8778027604432948253, guid: fb51d4485c83ec244b4e10b6e9d32644, type: 3}
+  - inputPath: downArrow
+    glyph: {fileID: -8387304691967000764, guid: 439c692cbc33bbe4d89e42ad6d0d4bb5, type: 3}
+  - inputPath: leftArrow
+    glyph: {fileID: -861516373737725364, guid: c5c9c25c13787d140a3b258dd37a7ad1, type: 3}
+  - inputPath: rightArrow
+    glyph: {fileID: -5332486705905676251, guid: 7e67fa6e89c113d479bfcacbf1f9e5f6, type: 3}
+  - inputPath: f1
+    glyph: {fileID: -3323680052950792602, guid: 54a40c372d1a5f64687317b98f1787a7, type: 3}
+  - inputPath: f2
+    glyph: {fileID: 3388706984081615055, guid: b5c1607099a99044ab21d28a541dc552, type: 3}
+  - inputPath: f3
+    glyph: {fileID: 1135328235160895328, guid: 922c07260b88efd4594a0edccde31b0e, type: 3}
+  - inputPath: f4
+    glyph: {fileID: 570524703327657273, guid: 0845544b48183234a83d46afe1c2ec45, type: 3}
+  - inputPath: f5
+    glyph: {fileID: 8093925366868427322, guid: b2754b436ec9d80498bcfc52c1470444, type: 3}
+  - inputPath: f6
+    glyph: {fileID: -5238054337716919911, guid: 8c23199380bb5e542aa5a5af3fae6347, type: 3}
+  - inputPath: f7
+    glyph: {fileID: 7724689449166335216, guid: 0b8759715775ae84cb54ce8aeda747d7, type: 3}
+  - inputPath: f8
+    glyph: {fileID: 1687852220560363770, guid: ef99b3ccf6fc8174dab566632fec8e65, type: 3}
+  - inputPath: f9
+    glyph: {fileID: 4141581903408917653, guid: a40aeadc41e74d2499a59375787f116c, type: 3}
+  - inputPath: f10
+    glyph: {fileID: -3936742751220466252, guid: 50f2842bd41c24b4689c642cdeb049d9, type: 3}
+  - inputPath: f11
+    glyph: {fileID: -6333820518005658332, guid: 5f1209a9335d02344a9fc37f6bd889ec, type: 3}
+  - inputPath: f12
+    glyph: {fileID: -4893111824312783801, guid: 252c77317ff72bd40aa396442e2be9ec, type: 3}
+  - inputPath: enter
+    glyph: {fileID: 4546386930150944528, guid: 972e00979f41c6840a90bb9f5c4ee48a, type: 3}
+  - inputPath: numpadEnter
+    glyph: {fileID: 4546386930150944528, guid: 972e00979f41c6840a90bb9f5c4ee48a, type: 3}
+  - inputPath: equals
+    glyph: {fileID: -2877077303757404837, guid: 11a75af952842dc4ca9345f1245cfebc, type: 3}
+  - inputPath: numpadEquals
+    glyph: {fileID: -2877077303757404837, guid: 11a75af952842dc4ca9345f1245cfebc, type: 3}
+  - inputPath: escape
+    glyph: {fileID: -3498050357335781876, guid: 6e3dbef727f03db49948a4eca4a5937f, type: 3}
+  - inputPath: minus
+    glyph: {fileID: 7524989590642630092, guid: 0ca565023327c574db87a12bd756d6d4, type: 3}
+  - inputPath: numpadMinus
+    glyph: {fileID: 7524989590642630092, guid: 0ca565023327c574db87a12bd756d6d4, type: 3}
+  - inputPath: period
+    glyph: {fileID: 6815366339014402831, guid: 661239060cc481347be2df732662f0d3, type: 3}
+  - inputPath: numpadPeriod
+    glyph: {fileID: 6815366339014402831, guid: 661239060cc481347be2df732662f0d3, type: 3}
+  - inputPath: semicolon
+    glyph: {fileID: 6875831656705329728, guid: 322acbddd9db3ff488739736ea79981a, type: 3}
+  - inputPath: shift
+    glyph: {fileID: 7508923379511736186, guid: 7130e980289d0b9499a8260ee9f2df0d, type: 3}
+  - inputPath: leftShift
+    glyph: {fileID: 7508923379511736186, guid: 7130e980289d0b9499a8260ee9f2df0d, type: 3}
+  - inputPath: rightShift
+    glyph: {fileID: 7508923379511736186, guid: 7130e980289d0b9499a8260ee9f2df0d, type: 3}
+  - inputPath: slash
+    glyph: {fileID: 2479364308580484737, guid: 1a64260d6ed21d3458a0c65ca8a30177, type: 3}
+  - inputPath: numpadDivide
+    glyph: {fileID: 2479364308580484737, guid: 1a64260d6ed21d3458a0c65ca8a30177, type: 3}
+  - inputPath: space
+    glyph: {fileID: 1507074109472704570, guid: cec2a8c01a481cd42bb88d5d0e08a4bc, type: 3}
+  - inputPath: leftBracket
+    glyph: {fileID: 7660017557337518478, guid: afd9efeb39641de4fb4f0cdad33f7fed, type: 3}
+  - inputPath: rightBracket
+    glyph: {fileID: -5784217634274159342, guid: 4f86e91a1dc0fc24e981c2ab379ebf4f, type: 3}
+  - inputPath: tab
+    glyph: {fileID: -2675021241385580073, guid: f8f30cc2802b7554bad27ff78686313f, type: 3}
+  genericGlyphMap:
+  - inputPath: buttonNorth
+    glyph: {fileID: -2387022029367388428, guid: 0828472bbc3ddf949a928211c60c12fd, type: 3}
+  - inputPath: buttonSouth
+    glyph: {fileID: -7957231483821635067, guid: cf97d405b35fb8643939986481723509, type: 3}
+  - inputPath: buttonWest
+    glyph: {fileID: -9029083894172840260, guid: 6f0142bac7fb7854f859663e075bd2aa, type: 3}
+  - inputPath: buttonEast
+    glyph: {fileID: 933917687536966540, guid: 9d859ff520a2e24409a0d67ce66885c4, type: 3}
+  - inputPath: dpad/up
+    glyph: {fileID: 4723066583106916422, guid: 39c30a6f5725dc6449763415af746c5c, type: 3}
+  - inputPath: dpad/down
+    glyph: {fileID: 6212914745707789498, guid: 872fdd2f55cd6e44fabf75d3711f4f46, type: 3}
+  - inputPath: dpad/left
+    glyph: {fileID: -7429442475343095068, guid: 78bdaaebc7aed0d478e423dfc9f49b7d, type: 3}
+  - inputPath: dpad/right
+    glyph: {fileID: -4535333867812540386, guid: 72623fde6f9083741800fee7d2699152, type: 3}
+  - inputPath: leftStickPress
+    glyph: {fileID: 7209877680057631465, guid: 7675be54462c24e4e89d46857dd66383, type: 3}
+  - inputPath: rightStickPress
+    glyph: {fileID: 3444682834882531213, guid: 9b7ac1c8e4ae12145bfad2a8e66ff3c9, type: 3}
+  - inputPath: start
+    glyph: {fileID: 6202387339469488018, guid: f1ed79d63b2a9a54f8f1e430ba6e0b08, type: 3}
+  - inputPath: select
+    glyph: {fileID: -9085549345938017874, guid: 4fb296b5ba1a9654199bbfe4a98d7d6a, type: 3}
+  - inputPath: leftShoulder
+    glyph: {fileID: 8554115604373454695, guid: 1f9f28c00d10c0c46a3a7be1812424e7, type: 3}
+  - inputPath: leftTrigger
+    glyph: {fileID: -3967133574777980809, guid: 98ef3fe5895a597458f52175c7b002d5, type: 3}
+  - inputPath: leftTriggerButton
+    glyph: {fileID: -3967133574777980809, guid: 98ef3fe5895a597458f52175c7b002d5, type: 3}
+  - inputPath: rightShoulder
+    glyph: {fileID: -7709241684702900526, guid: 5e34c7addc6a7704d87feaef34522bc7, type: 3}
+  - inputPath: rightTrigger
+    glyph: {fileID: -899724866091441795, guid: 08e72088057d94d4ea54f899828842bf, type: 3}
+  - inputPath: rightTriggerButton
+    glyph: {fileID: -899724866091441795, guid: 08e72088057d94d4ea54f899828842bf, type: 3}
+  nintendoGlyphMap:
+  - inputPath: buttonNorth
+    glyph: {fileID: -876340183637453798, guid: 054ccd48ae3509a46ae15953debc8fa6, type: 3}
+  - inputPath: buttonSouth
+    glyph: {fileID: -8070010104199377974, guid: aa0acea899296114086c86a33806455d, type: 3}
+  - inputPath: buttonWest
+    glyph: {fileID: 3151843768699673383, guid: d3324a6956b0ae442b69c13258af44a6, type: 3}
+  - inputPath: buttonEast
+    glyph: {fileID: 8804646276779413558, guid: 489b1e004ddb3a3458c1f25ee425c607, type: 3}
+  - inputPath: dpad/up
+    glyph: {fileID: 4723066583106916422, guid: 39c30a6f5725dc6449763415af746c5c, type: 3}
+  - inputPath: dpad/down
+    glyph: {fileID: 6212914745707789498, guid: 872fdd2f55cd6e44fabf75d3711f4f46, type: 3}
+  - inputPath: dpad/left
+    glyph: {fileID: -7429442475343095068, guid: 78bdaaebc7aed0d478e423dfc9f49b7d, type: 3}
+  - inputPath: dpad/right
+    glyph: {fileID: -4535333867812540386, guid: 72623fde6f9083741800fee7d2699152, type: 3}
+  - inputPath: leftStickPress
+    glyph: {fileID: 7209877680057631465, guid: 7675be54462c24e4e89d46857dd66383, type: 3}
+  - inputPath: rightStickPress
+    glyph: {fileID: 3444682834882531213, guid: 9b7ac1c8e4ae12145bfad2a8e66ff3c9, type: 3}
+  - inputPath: start
+    glyph: {fileID: 4119616516007514361, guid: 04d90ff9db05a4c4689a0380240933e0, type: 3}
+  - inputPath: select
+    glyph: {fileID: -4568564586848567893, guid: f8f89c0f62d51d94bb93cd0226c13068, type: 3}
+  - inputPath: leftShoulder
+    glyph: {fileID: -3614512430479439193, guid: 70d5d57a74136c44e87327f4842c4a21, type: 3}
+  - inputPath: leftTrigger
+    glyph: {fileID: 578450549204182060, guid: 93cef0091731ac54982ebf1cde57bbe6, type: 3}
+  - inputPath: leftTriggerButton
+    glyph: {fileID: 578450549204182060, guid: 93cef0091731ac54982ebf1cde57bbe6, type: 3}
+  - inputPath: rightShoulder
+    glyph: {fileID: -958708955346680941, guid: 80a0719049c23c84d905cb7c8359501e, type: 3}
+  - inputPath: rightTrigger
+    glyph: {fileID: 2257252880750765325, guid: fcbac8084c0a229469c2129135b82572, type: 3}
+  - inputPath: rightTriggerButton
+    glyph: {fileID: 2257252880750765325, guid: fcbac8084c0a229469c2129135b82572, type: 3}
+  playstationGlyphMap:
+  - inputPath: buttonNorth
+    glyph: {fileID: -4999293811446269517, guid: 3d6db4ba1dee9af4487a9011772bd4de, type: 3}
+  - inputPath: buttonSouth
+    glyph: {fileID: -1902229936782928897, guid: 5a78e0b7f4d04374e88d7da292d5d34f, type: 3}
+  - inputPath: buttonWest
+    glyph: {fileID: -5822551145925727509, guid: 0994d0826d5ac104489d9a9ca3eb2e91, type: 3}
+  - inputPath: buttonEast
+    glyph: {fileID: -3002996670656923023, guid: 5d6c536a47cfbca41ab00cbf6ae8ad09, type: 3}
+  - inputPath: dpad/up
+    glyph: {fileID: 6169872304512345339, guid: 04aed4ee93b15194dac7ce31ab3b20df, type: 3}
+  - inputPath: dpad/down
+    glyph: {fileID: 6704513139232669909, guid: d919a524d3acda740a29cad7d94391c2, type: 3}
+  - inputPath: dpad/left
+    glyph: {fileID: 9139591307508500700, guid: 13f23d5f16a3b9a49bb2bc394a0bc40b, type: 3}
+  - inputPath: dpad/right
+    glyph: {fileID: 3437350848919300932, guid: b6a66c8a001042a408a6d5dd6acb1740, type: 3}
+  - inputPath: leftStickPress
+    glyph: {fileID: 7209877680057631465, guid: 7675be54462c24e4e89d46857dd66383, type: 3}
+  - inputPath: rightStickPress
+    glyph: {fileID: 3444682834882531213, guid: 9b7ac1c8e4ae12145bfad2a8e66ff3c9, type: 3}
+  - inputPath: start
+    glyph: {fileID: -6158067485740899981, guid: 596418a4d0bdceb4e9611b3d5fbe0cad, type: 3}
+  - inputPath: select
+    glyph: {fileID: 5234111229037270639, guid: 58cc9cee51976964c9153c8af9dbeeec, type: 3}
+  - inputPath: leftShoulder
+    glyph: {fileID: 7946693118149927930, guid: eb2d5a13fde2f7b4892fb18424cb23bd, type: 3}
+  - inputPath: leftTrigger
+    glyph: {fileID: 6015177802868556697, guid: 8b0c9d472f9c7e345968a63d5731f939, type: 3}
+  - inputPath: leftTriggerButton
+    glyph: {fileID: 6015177802868556697, guid: 8b0c9d472f9c7e345968a63d5731f939, type: 3}
+  - inputPath: rightShoulder
+    glyph: {fileID: -6093469181734416243, guid: 67a68eee6b5904c4fa51e85cb2920acd, type: 3}
+  - inputPath: rightTrigger
+    glyph: {fileID: -2306139218203287151, guid: de0325768473de84cba818377333ccd6, type: 3}
+  - inputPath: rightTriggerButton
+    glyph: {fileID: -2306139218203287151, guid: de0325768473de84cba818377333ccd6, type: 3}
+  xboxGlyphMap:
+  - inputPath: buttonNorth
+    glyph: {fileID: 3151843768699673383, guid: d3324a6956b0ae442b69c13258af44a6, type: 3}
+  - inputPath: buttonSouth
+    glyph: {fileID: 8804646276779413558, guid: 489b1e004ddb3a3458c1f25ee425c607, type: 3}
+  - inputPath: buttonWest
+    glyph: {fileID: -876340183637453798, guid: 054ccd48ae3509a46ae15953debc8fa6, type: 3}
+  - inputPath: buttonEast
+    glyph: {fileID: -8070010104199377974, guid: aa0acea899296114086c86a33806455d, type: 3}
+  - inputPath: dpad/up
+    glyph: {fileID: 4723066583106916422, guid: 39c30a6f5725dc6449763415af746c5c, type: 3}
+  - inputPath: dpad/down
+    glyph: {fileID: 6212914745707789498, guid: 872fdd2f55cd6e44fabf75d3711f4f46, type: 3}
+  - inputPath: dpad/left
+    glyph: {fileID: -7429442475343095068, guid: 78bdaaebc7aed0d478e423dfc9f49b7d, type: 3}
+  - inputPath: dpad/right
+    glyph: {fileID: -4535333867812540386, guid: 72623fde6f9083741800fee7d2699152, type: 3}
+  - inputPath: leftStickPress
+    glyph: {fileID: 7209877680057631465, guid: 7675be54462c24e4e89d46857dd66383, type: 3}
+  - inputPath: rightStickPress
+    glyph: {fileID: 3444682834882531213, guid: 9b7ac1c8e4ae12145bfad2a8e66ff3c9, type: 3}
+  - inputPath: start
+    glyph: {fileID: -1118189097621338155, guid: 5f4e50ceec495124fb9deb5ab4b88459, type: 3}
+  - inputPath: select
+    glyph: {fileID: -880704895760364711, guid: e8a84516222a1f440b554dba1eb00524, type: 3}
+  - inputPath: leftShoulder
+    glyph: {fileID: -2562398848075637639, guid: 8edc80963b66f83499550af54be915df, type: 3}
+  - inputPath: leftTrigger
+    glyph: {fileID: -4520900956039445106, guid: 5c6860fa896d932448e3d34246e163d7, type: 3}
+  - inputPath: leftTriggerButton
+    glyph: {fileID: -4520900956039445106, guid: 5c6860fa896d932448e3d34246e163d7, type: 3}
+  - inputPath: rightShoulder
+    glyph: {fileID: -1261601678614839772, guid: f481e096214c96945917eb5e3c15a92d, type: 3}
+  - inputPath: rightTrigger
+    glyph: {fileID: -6474799174467741630, guid: eeba389803df8ba45bea08c83ce1daeb, type: 3}
+  - inputPath: rightTriggerButton
+    glyph: {fileID: -6474799174467741630, guid: eeba389803df8ba45bea08c83ce1daeb, type: 3}

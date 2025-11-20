@@ -14,9 +14,9 @@ public class DisplayOnEnter : MonoBehaviour
 
     private bool playerInBox = false;
 
-    [SerializeField]
     private PlayerInput playerInput;
     private InputAction actionShadow;
+    private bool completedShadowAction = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -44,7 +44,10 @@ public class DisplayOnEnter : MonoBehaviour
         {
             foreach (GameObject obj in objectsToRevealOnEnter)
             {
-                obj.SetActive(false);
+                if (obj != null)
+                {
+                    obj.SetActive(false);
+                }
             }
         }
 
@@ -54,6 +57,8 @@ public class DisplayOnEnter : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerInput = InputOverlord.instance.playerInput;
+
         actionShadow = playerInput.actions["Shadow"];
 
         actionShadow.started += ActionShadow_started;
@@ -61,7 +66,10 @@ public class DisplayOnEnter : MonoBehaviour
 
     private void OnDestroy()
     {
-        actionShadow.started -= ActionShadow_started;
+        if (!completedShadowAction)
+        {
+            actionShadow.started -= ActionShadow_started;
+        }
     }
 
     private void ActionShadow_started(InputAction.CallbackContext context)
@@ -74,6 +82,7 @@ public class DisplayOnEnter : MonoBehaviour
             }
 
             actionShadow.started -= ActionShadow_started;
+            completedShadowAction = true;
         }
     }
 

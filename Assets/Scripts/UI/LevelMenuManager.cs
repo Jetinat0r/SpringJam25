@@ -23,6 +23,8 @@ public class LevelMenuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        eventSystem = InputOverlord.instance.eventSystem;
+
         soundPlayer = Instantiate(soundPlayerPrefab, transform).GetComponent<SoundPlayer>();
         MainMenuManager.menuSoundPlayer = soundPlayer;
     }

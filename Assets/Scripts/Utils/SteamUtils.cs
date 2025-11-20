@@ -1,3 +1,4 @@
+using Steamworks;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -37,6 +38,7 @@ namespace JetEngine
             if (SteamManager.Initialized)
             {
                 successfullyLoadedSteamApi = true;
+
                 return true;
             }
             else
@@ -85,6 +87,56 @@ namespace JetEngine
             }
 
             return Steamworks.SteamUtils.IsSteamRunningOnSteamDeck();
+        }
+
+        public static void GetSteamController()
+        {
+            if (!IsSteamApiLoaded())
+            {
+                return;
+            }
+
+            SteamInput.Init(true);
+            SteamInput.RunFrame();
+            InputHandle_t[] _controllerHandles = new InputHandle_t[Steamworks.Constants.STEAM_INPUT_MAX_COUNT];
+            int _numConnectedControllers = Steamworks.SteamInput.GetConnectedControllers(_controllerHandles);
+            Debug.Log($"Controllers Found: {_numConnectedControllers}");
+            for (int i = 0; i < _numConnectedControllers; i++)
+            {
+                ESteamInputType _inputType = Steamworks.SteamInput.GetInputTypeForHandle(_controllerHandles[i]);
+                string _output = $"Controller [{i} | {(int)_inputType}]: ";
+
+                switch (_inputType)
+                {
+                    case ESteamInputType.k_ESteamInputType_SteamController:
+                    case ESteamInputType.k_ESteamInputType_SteamDeckController:
+                        _output += "STEAM";
+                        break;
+                    case ESteamInputType.k_ESteamInputType_XBox360Controller:
+                    case ESteamInputType.k_ESteamInputType_XBoxOneController:
+                        _output += "XBOX";
+                        break;
+                    case ESteamInputType.k_ESteamInputType_PS3Controller:
+                    case ESteamInputType.k_ESteamInputType_PS4Controller:
+                    case ESteamInputType.k_ESteamInputType_PS5Controller:
+                        _output += "PLAYSTATION";
+                        break;
+                    case ESteamInputType.k_ESteamInputType_SwitchJoyConPair:
+                    case ESteamInputType.k_ESteamInputType_SwitchProController:
+                        _output += "SWITCH";
+                        break;
+                    case ESteamInputType.k_ESteamInputType_GenericGamepad:
+                        _output += "GENERIC";
+                        break;
+                    case ESteamInputType.k_ESteamInputType_Unknown:
+                    default:
+                        _output += "UNKNOWN";
+                        break;
+                }
+
+                Debug.Log(_output);
+            }
+            SteamInput.Shutdown();
         }
     }
 }

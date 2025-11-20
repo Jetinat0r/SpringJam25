@@ -33,7 +33,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     //Use this button to detect start input
     public Button startScreenHiddenButton;
-    private bool startedMusic = false;
+    //private bool startedMusic = false;
 
     [SerializeField]
     public RectTransform panelContainer;
@@ -106,6 +106,9 @@ public class MainMenuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        eventSystem = InputOverlord.instance.eventSystem;
+        debugInput = InputOverlord.instance.playerInput;
+
         anchoredMainPanelPos = mainPanel.anchoredPosition;
         foreach (RectTransform panel in levelSelectPanels)
         {

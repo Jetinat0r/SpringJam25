@@ -1,79 +1,54 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using TMPro;
 
 public class InputDeviceDetector : MonoBehaviour
 {
     [SerializeField]
-    public PlayerInput playerInput;
+    public SpriteRenderer glyphSprite;
     [SerializeField]
-    public GameObject keyboardControl;
+    public TMP_Text fallbackText;
+
     [SerializeField]
-    public GameObject nintendoControl;
-    [SerializeField]
-    public GameObject xboxControl;
-    [SerializeField]
-    public GameObject playstationControl;
-    [SerializeField]
-    public GameObject defaultControl;
+    public InputOverlord.INPUT_ACTION action;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (playerInput.devices.Count > 0)
-        {
-            SwapControls(playerInput.devices[0].name);
-        }
-        else
-        {
-            SwapControls(string.Empty);
-        }
+        GetGlyph();
 
-        playerInput.onControlsChanged += OnControlsChanged;
+        InputOverlord.instance.ControlsChangedSignal += GetGlyph;
     }
-
     private void OnDestroy()
     {
-        playerInput.onControlsChanged -= OnControlsChanged;
+        InputOverlord.instance.ControlsChangedSignal -= GetGlyph;
     }
 
-    private void OnControlsChanged(PlayerInput obj)
+    public void GetGlyph()
     {
-        if(playerInput.devices.Count > 0)
+        Sprite _newSprite = InputOverlord.instance.GetGlyph(action);
+        if (_newSprite != null)
         {
-            SwapControls(playerInput.devices[0].name);
-        }
-    }
-
-    public void SwapControls(string _activeDevice)
-    {
-        //Debug.Log(_activeDevice);
-
-        keyboardControl.SetActive(false);
-        nintendoControl.SetActive(false);
-        xboxControl.SetActive(false);
-        playstationControl.SetActive(false);
-        defaultControl.SetActive(false);
-
-        _activeDevice = _activeDevice.ToLower();
-
-        if (_activeDevice.Contains("keyboard"))
-        {
-            keyboardControl.SetActive(true);
-        }
-        else if (_activeDevice.Contains("switch"))
-        {
-            nintendoControl.SetActive(true);
-        }
-        else if (_activeDevice.Contains("xinput"))
-        {
-            xboxControl.SetActive(true);
-        }
-        else if (_activeDevice.Contains("dual"))
-        {
-            playstationControl.SetActive(true);
+            SetGlyphSprite(_newSprite);
         }
         else
         {
-            defaultControl.SetActive(true);
+            SetFallbackText(InputOverlord.instance.GetFallbackText(action));
         }
+    }
+
+    public void SetGlyphSprite(Sprite _newSprite)
+    {
+        glyphSprite.sprite = _newSprite;
+        glyphSprite.gameObject.SetActive(true);
+
+        fallbackText.gameObject.SetActive(false);
+    }
+
+    public void SetFallbackText(string _newText)
+    {
+        fallbackText.SetText(_newText);
+        fallbackText.gameObject.SetActive(true);
+
+        glyphSprite.gameObject.SetActive(false);
     }
 }

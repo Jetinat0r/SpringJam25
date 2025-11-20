@@ -34,6 +34,7 @@ public class ProgramManager : MonoBehaviour
 
         _managerGameObject.AddComponent<ProgramManager>();
         _managerGameObject.AddComponent<ShaderManager>();
+        _managerGameObject.AddComponent<InputOverlord>();
     }
 
     private void Awake()

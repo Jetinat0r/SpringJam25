@@ -16,7 +16,7 @@ public class FixedScrollArea : ScrollRect
     private float elementPadding = 4f;
 
     private float anchoredScrollDelta;
-    private int scrollPos = 0;
+    public int scrollPos = 0;
 
     protected override void Start()
     {
@@ -41,8 +41,14 @@ public class FixedScrollArea : ScrollRect
         }
 
         scrollPos += Mathf.RoundToInt(Mathf.Sign(_delta));
+        UpdateScroll();
+    }
+
+    public void UpdateScroll()
+    {
         scrollPos = Mathf.Clamp(scrollPos, 0, numScrollPositions - 1);
 
         content.anchoredPosition = content.anchoredPosition.NewY(scrollPos * anchoredScrollDelta);
+        Canvas.ForceUpdateCanvases();
     }
 }
