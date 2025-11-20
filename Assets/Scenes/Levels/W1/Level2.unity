@@ -179,6 +179,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3444230331757940634, guid: d8ed61d18400e8d45997d1a2db043f57, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444230331757940634, guid: d8ed61d18400e8d45997d1a2db043f57, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.058823533
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444230331757940634, guid: d8ed61d18400e8d45997d1a2db043f57, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444230331757940634, guid: d8ed61d18400e8d45997d1a2db043f57, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4279187471
+      objectReference: {fileID: 0}
     - target: {fileID: 6105962238658459755, guid: d8ed61d18400e8d45997d1a2db043f57, type: 3}
       propertyPath: m_SortingLayer
       value: 7
@@ -190,7 +206,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 536963004211793500, guid: d8ed61d18400e8d45997d1a2db043f57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d8ed61d18400e8d45997d1a2db043f57, type: 3}
 --- !u!1 &115238078 stripped
 GameObject:
