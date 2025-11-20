@@ -46580,6 +46580,11 @@ MonoBehaviour:
   timeAfterAnimationEnd: 0.3
   bootAnimation: {fileID: 841561805}
   mainMenu: {fileID: 1256944911}
+  sidePanels:
+  - {fileID: 2017847656}
+  - {fileID: 2003396000}
+  - {fileID: 105156618}
+  - {fileID: 387975167}
 --- !u!114 &1453520501
 MonoBehaviour:
   m_ObjectHideFlags: 0

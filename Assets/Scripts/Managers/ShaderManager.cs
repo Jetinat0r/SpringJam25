@@ -323,4 +323,21 @@ public class ShaderManager : MonoBehaviour
     {
         return hasCustomPalette;
     }
+
+    //Index must be 0-3
+    //  I plan to use this EXACTLY ONCE! If you need it for something else, be warned that it could very well not work XP
+    //NOTE: DOES NOT SUPPORT DEBUG PALETTE!
+    public Color GetActiveColor(int _colorIndex)
+    {
+        if (usingCustomPalette)
+        {
+            return customPalette.GetPixel(Mathf.Min((int)((_colorIndex / 3f) * customPalette.width), customPalette.width - 1),
+                Mathf.Min(curPaletteIndex, customPalette.height - 1));
+        }
+        else
+        {
+            return defaultPalette.GetPixel(Mathf.Min((int)((_colorIndex / 3f) * customPalette.width), customPalette.width - 1),
+                Mathf.Min(curPaletteIndex, customPalette.height - 1));
+        }
+    }
 }
