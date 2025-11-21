@@ -329,15 +329,15 @@ public class ShaderManager : MonoBehaviour
     //NOTE: DOES NOT SUPPORT DEBUG PALETTE!
     public Color GetActiveColor(int _colorIndex)
     {
-        if (usingCustomPalette)
+        if (hasCustomPalette && usingCustomPalette)
         {
             return customPalette.GetPixel(Mathf.Min((int)((_colorIndex / 3f) * customPalette.width), customPalette.width - 1),
                 Mathf.Min(curPaletteIndex, customPalette.height - 1));
         }
         else
         {
-            return defaultPalette.GetPixel(Mathf.Min((int)((_colorIndex / 3f) * customPalette.width), customPalette.width - 1),
-                Mathf.Min(curPaletteIndex, customPalette.height - 1));
+            return defaultPalette.GetPixel(Mathf.Min((int)((_colorIndex / 3f) * defaultPalette.width), defaultPalette.width - 1),
+                Mathf.Min(curPaletteIndex, defaultPalette.height - 1));
         }
     }
 }
