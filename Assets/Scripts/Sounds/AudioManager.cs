@@ -233,7 +233,9 @@ public class AudioManager : MonoBehaviour
     public void ChangeBGM(World newWorld, bool fromMenu, float duration = 1f)
     {
         if (newWorld == World.CURRENT) newWorld = currentWorld;
-        ChangeBGM((MusicClip)musicDatabase.children[(int)newWorld - 1], fromMenu, duration);
+        int worldIndex = (int)newWorld - 1;
+        worldIndex = Mathf.Min(worldIndex, musicDatabase.children.Count - 1); // Clamp to # of worlds that actually exist
+        ChangeBGM((MusicClip)musicDatabase.children[worldIndex], fromMenu, duration);
     }
 
     public void ChangeBGM(MusicClip music, bool fromMenu, float duration = 1f)

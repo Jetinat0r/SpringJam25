@@ -8,7 +8,9 @@ public class WorldVariableSoundClip : SoundPlayable
     public AudioClip[] clip = new AudioClip[System.Enum.GetNames(typeof(AudioManager.World)).Length-1];
     public override AudioClip GetClip()
     {
-        return clip[(int)AudioManager.instance.currentWorld-1];
+        int worldIndex = (int)AudioManager.instance.currentWorld - 1;
+        worldIndex = Mathf.Min(worldIndex, clip.Length - 1);
+        return clip[worldIndex];
     }
     public float length()
     {
