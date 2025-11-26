@@ -42,9 +42,11 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     public GameObject mainPanelFirstSelected;
     [SerializeField]
-    public List<RectTransform> levelSelectPanels;
+    public LevelSelectMenu levelSelectMenu;
     [SerializeField]
-    public List<GameObject> levelSelectPanelFirstSelecteds;
+    public RectTransform levelSelectPanel;
+    [SerializeField]
+    public List<Button> levelSelectPanelFirstSelecteds;
     [SerializeField]
     public RectTransform settingsPanel;
     [SerializeField]
@@ -65,12 +67,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     public Ease tweenEaseType = Ease.OutQuint;
 
-    [SerializeField]
-    public LevelButton[] levelButtons = new LevelButton[32];
-
     //Used to slide the UI around. Cached because I don't know how things work when they slide
     private Vector2 anchoredMainPanelPos;
-    private readonly List<Vector2> anchoredLevelSelectPanelPoses = new();
+    private Vector2 anchoredLevelSelectPanelPos;
     private Vector2 anchoredSettingsPanelPos;
     private Vector2 anchoredInstructionsPanelPos;
     private Vector2 anchoredCreditsPanelPos;
@@ -110,27 +109,12 @@ public class MainMenuManager : MonoBehaviour
         debugInput = InputOverlord.instance.playerInput;
 
         anchoredMainPanelPos = mainPanel.anchoredPosition;
-        foreach (RectTransform panel in levelSelectPanels)
-        {
-            anchoredLevelSelectPanelPoses.Add(panel.anchoredPosition);
-        }
+        anchoredLevelSelectPanelPos = levelSelectPanel.anchoredPosition;
         anchoredSettingsPanelPos = settingsPanel.anchoredPosition;
         anchoredInstructionsPanelPos = instructionsPanel.anchoredPosition;
         anchoredCreditsPanelPos = creditsPanel.anchoredPosition;
 
-        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
-        for (int i = 0; i < levelButtons.Length; i++)
-        {
-            //if (SettingsManager.completedLevels >= i)
-            if (_completedLevels >= i)
-            {
-                levelButtons[i].UnlockLevel();
-            }
-            else
-            {
-                levelButtons[i].LockLevel();
-            }
-        }
+        levelSelectMenu.UpdateMenuState();
 
         resetProgress = debugInput.actions["ResetProgress"];
         resetProgress.Enable();
@@ -193,6 +177,9 @@ public class MainMenuManager : MonoBehaviour
         mainPanel.gameObject.SetActive(true);
         startScreen.SetActive(false);
 
+        //Just in case this needs changed last second
+        levelSelectMenu.UpdateMenuState();
+
         MenuPanelWatcher.instance.activePanel = MenuPanel.MAIN;
         eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
     }
@@ -215,19 +202,7 @@ public class MainMenuManager : MonoBehaviour
         //SettingsManager.completedLevels = 17;
         //SettingsManager.SaveSettings();
         ProgramManager.instance.LoadFullCompleteSaveData();
-        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
-        for (int i = 0; i < levelButtons.Length; i++)
-        {
-            //if (SettingsManager.completedLevels >= i)
-            if (_completedLevels >= i)
-            {
-                levelButtons[i].UnlockLevel();
-            }
-            else
-            {
-                levelButtons[i].LockLevel();
-            }
-        }
+        levelSelectMenu.UpdateMenuState();
         //ResetProgress();
     }
 
@@ -239,19 +214,7 @@ public class MainMenuManager : MonoBehaviour
         ProgramManager.instance.ResetSaveData();
         int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
 
-        //TODO: Move to level menu script AND add support for hiding/showing challenges
-        for (int i = 0; i < levelButtons.Length; i++)
-        {
-            //if (SettingsManager.completedLevels >= i)
-            if (_completedLevels >= i)
-            {
-                levelButtons[i].UnlockLevel();
-            }
-            else
-            {
-                levelButtons[i].LockLevel();
-            }
-        }
+        levelSelectMenu.UpdateMenuState();
 
         corruptedSaveDataScreen.SetActive(false);
         StartupMainMenu();
@@ -265,19 +228,7 @@ public class MainMenuManager : MonoBehaviour
         ProgramManager.instance.ResetSaveData();
         int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
 
-        //TODO: Move to level menu script AND add support for hiding/showing challenges
-        for (int i = 0; i < levelButtons.Length; i++)
-        {
-            //if (SettingsManager.completedLevels >= i)
-            if (_completedLevels >= i)
-            {
-                levelButtons[i].UnlockLevel();
-            }
-            else
-            {
-                levelButtons[i].LockLevel();
-            }
-        }
+        levelSelectMenu.UpdateMenuState();
     }
 
     public void ToggleEP(InputAction.CallbackContext _context)
@@ -313,14 +264,14 @@ public class MainMenuManager : MonoBehaviour
         eventSystem.SetSelectedGameObject(mainPanelFirstSelected);
     }
 
-    public void MoveToLevelSelectPanel(int num = 0)
+    public void MoveToLevelSelectPanel()
     {
         curTween?.Kill();
-        curTween = panelContainer.DOAnchorPos(-anchoredLevelSelectPanelPoses[num], tweenMoveTime).SetEase(tweenEaseType);
+        curTween = panelContainer.DOAnchorPos(-anchoredLevelSelectPanelPos, tweenMoveTime).SetEase(tweenEaseType);
         soundPlayer.PlaySound(selectSound);
 
         MenuPanelWatcher.instance.activePanel = MenuPanel.LEVELS;
-        eventSystem.SetSelectedGameObject(levelSelectPanelFirstSelecteds[num]);
+        levelSelectMenu.EnterLevelSelectMenu();
     }
 
     public void MoveToSettingsPanel()
@@ -363,17 +314,10 @@ public class MainMenuManager : MonoBehaviour
     public void ContinuePlaying()
     {
         soundPlayer.PlaySound(selectSound);
-        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
-        //if (SettingsManager.completedLevels >= levelButtons.Length)
-        if (_completedLevels >= levelButtons.Length)
-        {
-            EnterLevel(levelButtons[^1].levelName);
-        }
-        else
-        {
-            //EnterLevel(levelButtons[SettingsManager.completedLevels].levelName);
-            EnterLevel(levelButtons[_completedLevels].levelName);
-        }
+
+        
+        //TODO: Fix this button DX
+        //levelSelectMenu.UpdateMenuState();
     }
 
     public void EnterLevel(string _levelName)

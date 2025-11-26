@@ -1,7 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public enum MenuPanel
 {
@@ -12,7 +9,8 @@ public enum MenuPanel
     CREDITS, //Used for the credits page
     POPUP, //Used for any popup screen
     BOOT, //Used for the boot animation
-    START //Used for the "PRESS [Z]/(A) Screen
+    START, //Used for the "PRESS [Z]/(A) Screen
+    NONE //Used for level buttons you can't access
 }
 
 public class MenuPanelWatcher : MonoBehaviour

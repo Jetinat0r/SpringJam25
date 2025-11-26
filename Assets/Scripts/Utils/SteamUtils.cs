@@ -89,6 +89,7 @@ namespace JetEngine
             return Steamworks.SteamUtils.IsSteamRunningOnSteamDeck();
         }
 
+        /*
         public static void GetSteamController()
         {
             if (!IsSteamApiLoaded())
@@ -138,5 +139,6 @@ namespace JetEngine
             }
             SteamInput.Shutdown();
         }
+        */
     }
 }
