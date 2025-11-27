@@ -112,14 +112,14 @@ public class Mirror : MonoBehaviour, IRotatable
                 if (inputDirection == Vector2.down)
                 {
                     // Light is coming down, so fire a new light off to the left.
-                    outputLight = Instantiate(inputLight);
+                    outputLight = Instantiate(inputLight, transform);
                     outputLight.transform.position = transform.position + lightOffset;
                     outputLight.transform.localRotation = Quaternion.Euler(Vector3.forward * 270);
                 }
                 else if (inputDirection == Vector2.right)
                 {
                     // Light is coming from the left, so fire a new light upwards.
-                    outputLight = Instantiate(inputLight);
+                    outputLight = Instantiate(inputLight, transform);
                     outputLight.transform.position = transform.position + lightOffset;
                     outputLight.transform.localRotation = Quaternion.Euler(Vector3.forward * 180);
                 }
@@ -131,14 +131,14 @@ public class Mirror : MonoBehaviour, IRotatable
                 if (inputDirection == Vector2.down)
                 {
                     // Light is coming down, so fire a new light off to the right.
-                    outputLight = Instantiate(inputLight);
+                    outputLight = Instantiate(inputLight, transform);
                     outputLight.transform.position = transform.position + lightOffset;
                     outputLight.transform.localRotation = Quaternion.Euler(Vector3.forward * 90);
                 }
                 else if (inputDirection == Vector2.left)
                 {
                     // Light is coming from the right, so fire a new light upwards.
-                    outputLight = Instantiate(inputLight);
+                    outputLight = Instantiate(inputLight, transform);
                     outputLight.transform.position = transform.position + lightOffset;
                     outputLight.transform.localRotation = Quaternion.Euler(Vector3.forward * 180);
                 }
@@ -147,14 +147,14 @@ public class Mirror : MonoBehaviour, IRotatable
                 if (inputDirection == Vector2.up)
                 {
                     // Light is coming from below, so fire a new light off to the right.
-                    outputLight = Instantiate(inputLight);
+                    outputLight = Instantiate(inputLight, transform);
                     outputLight.transform.position = transform.position + lightOffset;
                     outputLight.transform.localRotation = Quaternion.Euler(Vector3.forward * 90);
                 }
                 else if (inputDirection == Vector2.left)
                 {
                     // Light is coming from the right, so fire a new light downwards.
-                    outputLight = Instantiate(inputLight);
+                    outputLight = Instantiate(inputLight, transform);
                     outputLight.transform.position = transform.position + lightOffset;
                     outputLight.transform.localRotation = Quaternion.Euler(Vector3.zero);
                 }
@@ -163,14 +163,14 @@ public class Mirror : MonoBehaviour, IRotatable
                 if (inputDirection == Vector2.up)
                 {
                     // Light is coming from below, so fire a new light off to the left.
-                    outputLight = Instantiate(inputLight);
+                    outputLight = Instantiate(inputLight, transform);
                     outputLight.transform.position = transform.position + lightOffset;
                     outputLight.transform.localRotation = Quaternion.Euler(Vector3.forward * 90);
                 }
                 else if (inputDirection == Vector2.right)
                 {
                     // Light is coming from the left, so fire a new light downwards.
-                    outputLight = Instantiate(inputLight);
+                    outputLight = Instantiate(inputLight, transform);
                     outputLight.transform.position = transform.position + lightOffset;
                     outputLight.transform.localRotation = Quaternion.Euler(Vector3.zero);
                 }
