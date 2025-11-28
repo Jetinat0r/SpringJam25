@@ -323,9 +323,15 @@ public class MainMenuManager : MonoBehaviour
     {
         soundPlayer.PlaySound(selectSound);
 
-        
-        //TODO: Fix this button DX
-        //levelSelectMenu.UpdateMenuState();
+        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
+        //Clamp to play last level if all have been completed
+        if (_completedLevels >= 32)
+        {
+            _completedLevels = 31;
+        }
+
+        //Play next level
+        EnterLevel(levelSelectMenu.levelButtonCollections[_completedLevels / 8].levelButtons[_completedLevels % 8].levelName);
     }
 
     public void EnterLevel(string _levelName)
