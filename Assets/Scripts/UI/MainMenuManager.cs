@@ -330,6 +330,11 @@ public class MainMenuManager : MonoBehaviour
             _completedLevels = 31;
         }
 
+        //Disable challenges if playing from here
+        ChallengeManager.instance.ectoplasmEnabled = false;
+        ChallengeManager.instance.lightsOutEnabled = false;
+        ChallengeManager.instance.spectralShuffleEnabled = false;
+
         //Play next level
         EnterLevel(levelSelectMenu.levelButtonCollections[_completedLevels / 8].levelButtons[_completedLevels % 8].levelName);
     }

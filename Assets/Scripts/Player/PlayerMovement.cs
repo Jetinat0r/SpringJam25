@@ -736,6 +736,7 @@ public class PlayerMovement : MonoBehaviour
         spriteAnimator.SetTrigger("win");
         soundPlayer.PlaySound("Game.LevelClear", 0.6f);
         hasWon = true;
+        ChallengeManager.instance.TryCompleteChallenges();
         LevelManager.instance.CompleteLevel();
     }
 }
