@@ -85,7 +85,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private PlayerInput debugInput;
     private InputAction resetProgress;
-    private InputAction toggleEP;   // DEBUG PURPOSES ONLY. REPLACE WITH CHALLENGE MENU.
+    //private InputAction toggleEP;   // DEBUG PURPOSES ONLY. REPLACE WITH CHALLENGE MENU.
 
     [SerializeField]
     [Tooltip("Allows Right Shift + R to Reset all progress. Save for Debug and Showcase builds!")]
@@ -120,9 +120,11 @@ public class MainMenuManager : MonoBehaviour
         resetProgress.Enable();
         resetProgress.started += UnlockAll;
 
+        /*
         toggleEP = debugInput.actions["ToggleEctoplasm"];
         toggleEP.Enable();
         toggleEP.started += ToggleEP;
+        */
     }
 
     public void StartupMainMenu()
@@ -228,25 +230,31 @@ public class MainMenuManager : MonoBehaviour
         ProgramManager.instance.ResetSaveData();
         int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
 
+        //Disable challenges so challenges can't accidentally be run before they're unlocked
+        ChallengeManager.instance.ectoplasmEnabled = false;
+        ChallengeManager.instance.lightsOutEnabled = false;
+        ChallengeManager.instance.spectralShuffleEnabled = false;
+
         levelSelectMenu.UpdateMenuState();
     }
 
+    /*
     public void ToggleEP(InputAction.CallbackContext _context)
     {
-        if (ChallengeManager.currentMode == ChallengeManager.ChallengeMode.None)
+        //TODO: Fix actually. This toggles active state, and should be moved to challenge manager
+        if (ChallengeManager.instance.ectoplasmEnabled)
         {
-            ChallengeManager.currentMode = ChallengeManager.ChallengeMode.Ectoplasm;
             soundPlayer.PlaySound(selectSound);
             Debug.Log("Ectoplasm Enabled!");
 
         }
-        else if (ChallengeManager.currentMode == ChallengeManager.ChallengeMode.Ectoplasm)
+        else
         {
-            ChallengeManager.currentMode = ChallengeManager.ChallengeMode.None;
             soundPlayer.PlaySound(backSound);
             Debug.Log("Ectoplasm Disabled!");
         }
     }
+    */
 
     public void MoveToMainMenu(bool _isXMove)
     {

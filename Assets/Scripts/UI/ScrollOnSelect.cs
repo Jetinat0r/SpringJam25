@@ -30,8 +30,5 @@ public class ScrollOnSelect : MonoBehaviour, ISelectHandler
         {
             scrollArea.UpdateScroll();
         }
-        {
-            
-        }
     }
 }

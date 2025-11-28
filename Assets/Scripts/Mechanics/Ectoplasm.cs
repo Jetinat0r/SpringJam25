@@ -7,7 +7,7 @@ public class Ectoplasm : Collectible
 
     private void Awake()
     {
-        if (ChallengeManager.currentMode != ChallengeManager.ChallengeMode.Ectoplasm)
+        if (!ChallengeManager.instance.ectoplasmEnabled)
         {
             Destroy(gameObject);
         }

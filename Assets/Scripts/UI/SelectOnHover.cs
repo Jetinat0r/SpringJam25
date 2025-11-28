@@ -3,12 +3,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class SelectOnHover : MonoBehaviour, IPointerMoveHandler, ISelectHandler
+public class SelectOnHover : MonoBehaviour, /*IPointerMoveHandler,*/ ISelectHandler
 {
     [SerializeField]
     public MenuPanel parentPanel = MenuPanel.MAIN;
     [SerializeField]
     public Selectable selectable;
+    private EventTrigger eventTrigger;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,8 +22,17 @@ public class SelectOnHover : MonoBehaviour, IPointerMoveHandler, ISelectHandler
                 selectable = GetComponentInParent<Selectable>();
             }
         }
+
+        eventTrigger = selectable.gameObject.AddComponent<EventTrigger>();
+        EventTrigger.Entry _onPointerEnter = new EventTrigger.Entry()
+        {
+            eventID = EventTriggerType.PointerEnter
+        };
+        _onPointerEnter.callback.AddListener(TrySelect);
+        eventTrigger.triggers.Add(_onPointerEnter);
     }
 
+    /*
     public void TrySelect()
     {
         if (selectable && MenuPanelWatcher.instance.activePanel == parentPanel)
@@ -33,7 +43,20 @@ public class SelectOnHover : MonoBehaviour, IPointerMoveHandler, ISelectHandler
             //selectable.Select();
         }
     }
+    */
 
+    public void TrySelect(BaseEventData _eventData)
+    {
+        if (selectable && MenuPanelWatcher.instance.activePanel == parentPanel)
+        {
+            if (EventSystem.current.currentSelectedGameObject != selectable.gameObject)
+                EventSystem.current.SetSelectedGameObject(selectable.gameObject);
+
+            //selectable.Select();
+        }
+    }
+
+    /*
     public void OnPointerMove(PointerEventData eventData)
     {
         List<RaycastResult> _results = new List<RaycastResult>();
@@ -51,6 +74,21 @@ public class SelectOnHover : MonoBehaviour, IPointerMoveHandler, ISelectHandler
                 _selectable.TrySelect();
                 return;
             }
+        }
+    }
+    */
+
+    private void OnDestroy()
+    {
+        //This happens for the dropdown menu, for whatever reason
+        if (eventTrigger == null || eventTrigger.triggers == null)
+        {
+            return;
+        }
+
+        if (eventTrigger.triggers.Count > 0)
+        {
+            eventTrigger.triggers.RemoveRange(0, eventTrigger.triggers.Count);
         }
     }
 

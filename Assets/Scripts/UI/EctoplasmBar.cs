@@ -25,7 +25,7 @@ public class EctoplasmBar : MonoBehaviour
 
     private void Awake()
     {
-        if (ChallengeManager.currentMode == ChallengeManager.ChallengeMode.Ectoplasm)
+        if (ChallengeManager.instance.ectoplasmEnabled)
         {
             gameObject.SetActive(true);
         }

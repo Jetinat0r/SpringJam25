@@ -73,7 +73,8 @@ public class LevelButton : MonoBehaviour
             spectralShuffleIcon.SetActive(true);
         }
 
-        if (_levelSaveData.challenges.beatPoltergeist)
+        //Poltergeist has been repurposed as completion
+        if (_levelSaveData.challenges.beatEctoplasm && _levelSaveData.challenges.beatLightsOut && _levelSaveData.challenges.beatSpectralShuffle)
         {
             poltergeistIcon.SetActive(true);
         }

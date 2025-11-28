@@ -15,12 +15,21 @@ public class LevelSelectMenu : MonoBehaviour
     [SerializeField]
     public Ease tweenEaseType = Ease.OutQuint;
     private Tween pageSlideTween = null;
+    private Tween worldNameSlideTween = null;
 
     [SerializeField]
     public RectTransform worldContainerPanel;
     [SerializeField]
     public List<RectTransform> levelContainerPanels = new();
     private List<Vector2> levelContainerPanelInitialAnchoredPositions = new();
+
+    [SerializeField]
+    public RectTransform worldNameContainerPanel;
+    [SerializeField]
+    public List<RectTransform> worldNamePanels = new();
+    private List<Vector2> worldNamePanelInitialAnchoredPositions = new();
+    [SerializeField]
+    public List<GameObject> worldCompletionCrowns = new();
 
     [Serializable]
     public class LevelButtonCollection
@@ -38,8 +47,7 @@ public class LevelSelectMenu : MonoBehaviour
     public GameObject rightArrow;
     public GameObject rightArrowBlock;
 
-    public TMP_Text challengeDescriptionText;
-
+    [Header("Challenge Buttons")]
     public Button lockedChallengesButton;
 
     public Button ectoplasmChallengeButton;
@@ -54,11 +62,26 @@ public class LevelSelectMenu : MonoBehaviour
     public GameObject disabledSpectralShuffleIcon;
     public GameObject enabledSpectralShuffleIcon;
 
+    [Header("Challenge Text")]
+    public GameObject ectoplasmEnabledText;
+    public GameObject ectoplasmDisabledText;
+
+    public GameObject lightsOutEnabledText;
+    public GameObject lightsOutDisabledText;
+
+    public GameObject spectralShuffleEnabledText;
+    public GameObject spectralShuffleDisabledText;
+
     private void Awake()
     {
         for (int i = 0; i < levelContainerPanels.Count; i++)
         {
             levelContainerPanelInitialAnchoredPositions.Add(levelContainerPanels[i].anchoredPosition);
+        }
+
+        for (int i = 0; i < worldNamePanels.Count; i++)
+        {
+            worldNamePanelInitialAnchoredPositions.Add(worldNamePanels[i].anchoredPosition);
         }
     }
 
@@ -75,21 +98,13 @@ public class LevelSelectMenu : MonoBehaviour
         int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
 
         bool _allLevelsCompleted = true;
-        /* TODO: Challenge completion
-        List<bool> _allEctoplasmCompleted = new List<bool>();
-        List<bool> _allLightsOutCompleted = new List<bool>();
-        List<bool> _allSpectralShuffleCompleted = new List<bool>();
-        List<bool> _allPoltergeistCompleted = new List<bool>();
-        */
+        int _fullClearedWorlds = 0;
         bool _levelUnlocked = true;
         for (int i = 0; i < 4; i++)
         {
-            /*
-            _allEctoplasmCompleted.Add(true);
-            _allLightsOutCompleted.Add(true);
-            _allSpectralShuffleCompleted.Add(true);
-            _allPoltergeistCompleted.Add(true);
-            */
+            int _worldEctoplasmCompleted = 0;
+            int _worldLightsOutCompleted = 0;
+            int _worldSpectralShuffleCompleted = 0;
             for (int j = 0; j < 8; j++)
             {
                 SaveData.LevelSaveData _curLevelSaveData = ProgramManager.instance.saveData.WorldSaveData[i].levels[j];
@@ -111,12 +126,22 @@ public class LevelSelectMenu : MonoBehaviour
                 }
 
                 //Update badge completeness
-                /*
-                _allEctoplasmCompleted[i] = false;
-                _allLightsOutCompleted[i] = false;
-                _allSpectralShuffleCompleted[i] = false;
-                _allPoltergeistCompleted[i] = false;
-                */
+                if (_curLevelSaveData.challenges.beatEctoplasm) _worldEctoplasmCompleted++;
+                if (_curLevelSaveData.challenges.beatLightsOut) _worldLightsOutCompleted++;
+                if (_curLevelSaveData.challenges.beatSpectralShuffle) _worldSpectralShuffleCompleted++;
+            }
+
+            //Check for total challenge completion
+            if (_worldEctoplasmCompleted == 8 && _worldLightsOutCompleted == 8 && _worldSpectralShuffleCompleted == 8)
+            {
+                //Reveal world crowns
+                worldCompletionCrowns[i].SetActive(true);
+
+                _fullClearedWorlds++;
+            }
+            else
+            {
+                worldCompletionCrowns[i].SetActive(false);
             }
         }
 
@@ -129,6 +154,13 @@ public class LevelSelectMenu : MonoBehaviour
         {
             LockChallenges();
         }
+
+        if (_fullClearedWorlds == 4)
+        {
+            //TODO: Final reward?
+        }
+
+        UpdateChallengeButtonDisplayStates();
 
         //Init Level Select Page
         ScrollToPage((ProgramManager.instance.saveData.LastPlayedLevel - 1) / 8, true);
@@ -272,15 +304,66 @@ public class LevelSelectMenu : MonoBehaviour
 
         //Tween!
         pageSlideTween?.Kill();
+        worldNameSlideTween?.Kill();
         if (_instant)
         {
-            //TODO: Replace w/ TWEEN
             worldContainerPanel.anchoredPosition = new Vector2(-levelContainerPanelInitialAnchoredPositions[activeLevelPage].x, worldContainerPanel.anchoredPosition.y);
+            worldNameContainerPanel.anchoredPosition = new Vector2(-worldNamePanelInitialAnchoredPositions[activeLevelPage].x, worldNameContainerPanel.anchoredPosition.y);
         }
         else
         {
             //TODO: Play sound
             pageSlideTween = worldContainerPanel.DOAnchorPosX(-levelContainerPanelInitialAnchoredPositions[activeLevelPage].x, tweenMoveTime).SetEase(tweenEaseType);
+            worldNameSlideTween = worldNameContainerPanel.DOAnchorPosX(-worldNamePanelInitialAnchoredPositions[activeLevelPage].x, tweenMoveTime).SetEase(tweenEaseType);
         }
+    }
+
+    public void UpdateChallengeButtonDisplayStates()
+    {
+        disabledEctoplasmIcon.SetActive(!ChallengeManager.instance.ectoplasmEnabled);
+        enabledEctoplasmIcon.SetActive(ChallengeManager.instance.ectoplasmEnabled);
+        ectoplasmDisabledText.SetActive(!ChallengeManager.instance.ectoplasmEnabled);
+        ectoplasmEnabledText.SetActive(ChallengeManager.instance.ectoplasmEnabled);
+
+        disabledLightsOutIcon.SetActive(!ChallengeManager.instance.lightsOutEnabled);
+        enabledLightsOutIcon.SetActive(ChallengeManager.instance.lightsOutEnabled);
+        lightsOutDisabledText.SetActive(!ChallengeManager.instance.lightsOutEnabled);
+        lightsOutEnabledText.SetActive(ChallengeManager.instance.lightsOutEnabled);
+
+        disabledSpectralShuffleIcon.SetActive(!ChallengeManager.instance.spectralShuffleEnabled);
+        enabledSpectralShuffleIcon.SetActive(ChallengeManager.instance.spectralShuffleEnabled);
+        spectralShuffleDisabledText.SetActive(!ChallengeManager.instance.spectralShuffleEnabled);
+        spectralShuffleEnabledText.SetActive(ChallengeManager.instance.spectralShuffleEnabled);
+    }
+
+    public void ToggleEctoplasmMode()
+    {
+        //TODO: Play sound. Sound should be dependent on resultant state (good sound for enabled, bad for disabled)
+        ChallengeManager.instance.ectoplasmEnabled = !ChallengeManager.instance.ectoplasmEnabled;
+        UpdateChallengeButtonDisplayStates();
+    }
+
+    public void ToggleLightsOutMode()
+    {
+        //TODO: Play sound. Sound should be dependent on resultant state (good sound for enabled, bad for disabled)
+        ChallengeManager.instance.lightsOutEnabled = !ChallengeManager.instance.lightsOutEnabled;
+        UpdateChallengeButtonDisplayStates();
+    }
+
+    public void ToggleSpectralShuffleMode()
+    {
+        //TODO: Play sound. Sound should be dependent on resultant state (good sound for enabled, bad for disabled)
+        ChallengeManager.instance.spectralShuffleEnabled = !ChallengeManager.instance.spectralShuffleEnabled;
+        UpdateChallengeButtonDisplayStates();
+    }
+
+    public void ShowObject(GameObject _obj)
+    {
+        _obj.SetActive(true);
+    }
+
+    public void HideObject(GameObject _obj)
+    {
+        _obj.SetActive(false);
     }
 }
