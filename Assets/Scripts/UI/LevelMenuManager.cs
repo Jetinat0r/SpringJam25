@@ -13,6 +13,11 @@ public class LevelMenuManager : MonoBehaviour
 
     public GameObject canvasPanel;
 
+    public GameObject activeChallengeParent;
+    public GameObject ectoplasmChallengeIcon;
+    public GameObject lightsOutChallengeIcon;
+    public GameObject spectralShuffleChallengeIcon;
+
     public static bool isMenuOpen = false;
     public static bool isMenuClosedThisFrame = false;
     //Player death or victory to avoid race conditions
@@ -27,6 +32,18 @@ public class LevelMenuManager : MonoBehaviour
 
         soundPlayer = Instantiate(soundPlayerPrefab, transform).GetComponent<SoundPlayer>();
         MainMenuManager.menuSoundPlayer = soundPlayer;
+
+        if (ChallengeManager.instance.ectoplasmEnabled || ChallengeManager.instance.lightsOutEnabled || ChallengeManager.instance.spectralShuffleEnabled)
+        {
+            activeChallengeParent.SetActive(true);
+            ectoplasmChallengeIcon.SetActive(ChallengeManager.instance.ectoplasmEnabled);
+            lightsOutChallengeIcon.SetActive(ChallengeManager.instance.lightsOutEnabled);
+            spectralShuffleChallengeIcon.SetActive(ChallengeManager.instance.spectralShuffleEnabled);
+        }
+        else
+        {
+            activeChallengeParent.SetActive(false);
+        }
     }
 
     public void ToggleMenu(PlayerMovement player)

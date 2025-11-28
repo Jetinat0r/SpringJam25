@@ -18565,14 +18565,10 @@ MonoBehaviour:
   spectralShuffleChallengeButton: {fileID: 238468620}
   disabledSpectralShuffleIcon: {fileID: 1895716118}
   enabledSpectralShuffleIcon: {fileID: 1919003873}
-  lockedChallengeTextParent: {fileID: 0}
-  ectoplasmChallengeTextParent: {fileID: 0}
   ectoplasmEnabledText: {fileID: 525744974}
   ectoplasmDisabledText: {fileID: 1144723280}
-  lightsOutChallengeTextParent: {fileID: 0}
   lightsOutEnabledText: {fileID: 1790843884}
   lightsOutDisabledText: {fileID: 1306712731}
-  spectralShuffleChallengeTextParent: {fileID: 0}
   spectralShuffleEnabledText: {fileID: 1301581823}
   spectralShuffleDisabledText: {fileID: 618689400}
 --- !u!1 &542081556
