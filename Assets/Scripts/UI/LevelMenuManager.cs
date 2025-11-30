@@ -1,3 +1,5 @@
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -17,6 +19,15 @@ public class LevelMenuManager : MonoBehaviour
     public GameObject ectoplasmChallengeIcon;
     public GameObject lightsOutChallengeIcon;
     public GameObject spectralShuffleChallengeIcon;
+
+    [Header("Spectral Shuffle Challenge Box")]
+    public RectTransform spectralShuffleChallengeBox;
+    public TMP_Text spectralShuffleChallengeName;
+    Sequence challengeBoxSequence;
+    public float tweenDist = 110f;
+    public float tweenMoveTime = 1.5f;
+    public float tweenHoldTime = 1f;
+    public Ease tweenEasing = Ease.InOutQuint;
 
     public static bool isMenuOpen = false;
     public static bool isMenuClosedThisFrame = false;
@@ -44,6 +55,13 @@ public class LevelMenuManager : MonoBehaviour
         {
             activeChallengeParent.SetActive(false);
         }
+
+        //DisplaySpectralShuffleChallenge("CUSTOM");
+    }
+
+    private void OnDestroy()
+    {
+        challengeBoxSequence?.Kill();
     }
 
     public void ToggleMenu(PlayerMovement player)
@@ -71,6 +89,9 @@ public class LevelMenuManager : MonoBehaviour
         if (SpeedrunManager.instance)
             SpeedrunManager.instance.PauseTimer();
         isMenuOpen = true;
+
+        challengeBoxSequence?.Pause();
+        spectralShuffleChallengeBox.gameObject.SetActive(false);
     }
 
     public void CloseMenu()
@@ -86,6 +107,9 @@ public class LevelMenuManager : MonoBehaviour
         if (SpeedrunManager.instance)
             SpeedrunManager.instance.ContinueTimer();
         isMenuOpen = false;
+
+        spectralShuffleChallengeBox.gameObject.SetActive(true);
+        challengeBoxSequence?.Play();
     }
 
     public void PlayBackSound()
@@ -116,5 +140,19 @@ public class LevelMenuManager : MonoBehaviour
         if (SpeedrunManager.instance)
             Destroy(SpeedrunManager.instance);
         isMenuOpen = false;
+    }
+
+    public void DisplaySpectralShuffleChallenge(string _challengeName)
+    {
+        spectralShuffleChallengeName.SetText(_challengeName);
+
+        Vector2 _initialPos = spectralShuffleChallengeBox.anchoredPosition;
+
+        challengeBoxSequence = DOTween.Sequence();
+        challengeBoxSequence.SetUpdate(true);
+        challengeBoxSequence.Append(spectralShuffleChallengeBox.DOAnchorPosY(_initialPos.y - tweenDist, tweenMoveTime).SetEase(tweenEasing))
+            .AppendInterval(tweenHoldTime)
+            .Append(spectralShuffleChallengeBox.DOAnchorPosY(_initialPos.y, tweenMoveTime).SetEase(tweenEasing));
+        challengeBoxSequence.Play();
     }
 }

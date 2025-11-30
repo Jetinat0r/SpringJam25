@@ -1,19 +1,16 @@
 using UnityEngine;
-
-public class CamFlip : MonoBehaviour
+/*
+ * THIS SCRIPT IS USED FOR CHALLENGES WITH MULTIPLE COMPONENTS, LIKE MALFUNCTION, TO ACT AS A SINGULAR OBJECT TO ANNOUNCE THE ACTIVE CHALLENGE
+ * CHALLENGES LIKE FLIP SIDE (Script: CamFlip.cs) ARE SINGULAR OBJECTS THAT ANNOUNCE THEMSELVES, AND THUS DO NOT NEED THIS SCRIPT
+ */
+public class SpectralShuffleChallengeAnnouncer : MonoBehaviour
 {
     [SerializeField]
     public LevelMenuManager levelMenuManager;
 
     [SerializeField]
-    public string challengeName = "Flip Side";
+    public string challengeName = "CUSTOM CHALLENGE";
 
-    [SerializeField]
-    public bool flipX;
-    [SerializeField]
-    public bool flipY;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (!ChallengeManager.instance.spectralShuffleEnabled)
@@ -29,12 +26,5 @@ public class CamFlip : MonoBehaviour
         }
 
         levelMenuManager.DisplaySpectralShuffleChallenge(challengeName);
-
-        Vector3 _camScale = new Vector3(flipX ? -1 : 1, flipY ? -1 : 1, 1);
-
-        //https://discussions.unity.com/t/flip-mirror-camera/4804
-        Matrix4x4 mat = Camera.main.projectionMatrix;
-        mat *= Matrix4x4.Scale(_camScale);
-        Camera.main.projectionMatrix = mat;
     }
 }
