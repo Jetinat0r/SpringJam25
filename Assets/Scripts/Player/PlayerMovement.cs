@@ -600,13 +600,15 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (_vent.CheckIsBlocked())
+        /* This check is done in Vent.cs instead
+        if (_vent.counterpart.CheckIsBlocked())
         {
             //TODO:
             //Display NO ENTRY or BLOCKAGE symbol
             Debug.Log($"Vent blocked {_vent.name}");
             return;
         }
+        */
 
         if (!LevelManager.instance.GetVentPath(_vent, out currentVentPath))
         {

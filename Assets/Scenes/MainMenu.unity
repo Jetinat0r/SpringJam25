@@ -50734,9 +50734,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.0014749262
-    width: 0.99907494
-    height: 0.99705017
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -56243,7 +56243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6980293509410089851, guid: 6ad1a2c1d0d700e4688e471b2ffd2a52, type: 3}
       propertyPath: levelName
-      value: Level18
+      value: Level18b
       objectReference: {fileID: 0}
     - target: {fileID: 8010921912469818439, guid: 6ad1a2c1d0d700e4688e471b2ffd2a52, type: 3}
       propertyPath: m_Pivot.x

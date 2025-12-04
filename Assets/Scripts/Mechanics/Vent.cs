@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class Vent : MonoBehaviour, IToggleable
 {
+    public LayerMask boxLayer = 0;
+
     [SerializeField]
     public GameObject noEntryIcon;
 
@@ -38,10 +40,14 @@ public class Vent : MonoBehaviour, IToggleable
 
     public void MyInteraction()
     {
-        if (isOpen && counterpart != null)
+        if (isOpen && counterpart != null && !counterpart.CheckIsBlocked())
         {
             //AcceptObject(player);
             player.EnterVent(this);
+        }
+        else
+        {
+            //TODO: Play closed sound
         }
     }
 
@@ -80,7 +86,7 @@ public class Vent : MonoBehaviour, IToggleable
     //If the exit is blocked by a box, return true
     public bool CheckIsBlocked()
     {
-        return false;
+        return touchingBoxes.Count > 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -95,6 +101,10 @@ public class Vent : MonoBehaviour, IToggleable
 
             //TODO: No entry icon
         }
+        else if (collision.gameObject.TryGetComponent(out Box _box))
+        {
+            touchingBoxes.Add(_box);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -108,6 +118,10 @@ public class Vent : MonoBehaviour, IToggleable
             player.OnInteract -= this.MyInteraction;
 
             //noEntryIcon.SetActive(false);
+        }
+        else if (collision.gameObject.TryGetComponent(out Box _box))
+        {
+            touchingBoxes.Remove(_box);
         }
     }
 }
