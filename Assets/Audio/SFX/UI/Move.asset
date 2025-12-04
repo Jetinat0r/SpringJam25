@@ -15,5 +15,5 @@ MonoBehaviour:
   clip:
   - {fileID: 8300000, guid: 05bb5e08c048e4e6aa1d35cc47b18dd0, type: 3}
   - {fileID: 8300000, guid: 4aa4a43bd34974789bfd8f916eda32c3, type: 3}
-  - {fileID: 8300000, guid: 05bb5e08c048e4e6aa1d35cc47b18dd0, type: 3}
+  - {fileID: 8300000, guid: 4aa4a43bd34974789bfd8f916eda32c3, type: 3}
   - {fileID: 8300000, guid: 05bb5e08c048e4e6aa1d35cc47b18dd0, type: 3}
