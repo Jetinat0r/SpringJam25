@@ -8,6 +8,7 @@ public class CameraSnapToPlayerZone : MonoBehaviour
 {
     [SerializeField] private Transform target;
     private Vector2Int currentZone;
+    //Check CameraTarget.cs if this ever changes
     [SerializeField] private float scrollTime = .75f;
     private Tween panTween = null;
     private float oldTimeScale = 1f;

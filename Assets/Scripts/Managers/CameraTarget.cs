@@ -6,7 +6,10 @@ using System;
 public class CameraTarget : MonoBehaviour
 {
     [SerializeField]
-    public float ventSecondsPerScreen = 0f;
+    public float ventSecondsPerScreen = 0.25f;
+    //Screen transition is 0.75 seconds
+    //Check CameraSnapToPlayerZone.cs if this ever changes
+    private float screenScrollTime = 0.75f;
     public bool followingVent = false;
     private Transform targetTransform;
 
@@ -38,12 +41,18 @@ public class CameraTarget : MonoBehaviour
     {
         Sequence _ventSequence = DOTween.Sequence(transform);
         _ventSequence.SetUpdate(true);
-        _ventSequence.AppendInterval(ventSecondsPerScreen);
-        Vector3 _targetPos = transform.position;
-        foreach (int d in _directions)
+        //_ventSequence.AppendInterval(ventSecondsPerScreen);
+
+        if (_directions.Count > 0)
         {
-            //Stupid foreach loops
-            int _dir = d;
+            //Wait a tick before screen transitioning
+            _ventSequence.AppendInterval(ventSecondsPerScreen);
+        }
+        Vector3 _targetPos = transform.position;
+        for (int i = 0; i < _directions.Count; i++)
+        {
+            //Don't fiddle with the original value
+            int _dir = _directions[i];
             if (Mathf.Abs(_dir) == 1)
             {
                 _targetPos += new Vector3(_dir * LevelManager.instance.zoneSize.x, 0, 0);
@@ -54,7 +63,15 @@ public class CameraTarget : MonoBehaviour
                 _targetPos += new Vector3(0, _dir * LevelManager.instance.zoneSize.y, 0);
             }
             _ventSequence.Append(transform.DOMove(_targetPos, 0));
-            _ventSequence.AppendInterval(ventSecondsPerScreen);
+
+            if (i < _directions.Count - 1)
+            {
+                _ventSequence.AppendInterval(screenScrollTime + ventSecondsPerScreen);
+            }
+            else
+            {
+                _ventSequence.AppendInterval(screenScrollTime + (ventSecondsPerScreen ));
+            }
         }
 
         _ventSequence.onComplete += ExitVent;
