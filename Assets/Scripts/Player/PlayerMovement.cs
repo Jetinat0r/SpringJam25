@@ -170,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
             LevelManager.instance.ToggleMenu();
         }
 
-        if (LevelMenuManager.isMenuOpen) return;
+        if (LevelMenuManager.isMenuOpen || LevelMenuManager.isTransitioningFromMenu) return;
 
         if (actionResetLevel.WasPressedThisFrame() && ScreenWipe.over && !isDead && !hasWon)
         {
@@ -206,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (LevelMenuManager.isMenuOpen || hasWon || isDead || isVenting) return;
+        if (LevelMenuManager.isMenuOpen || LevelMenuManager.isTransitioningFromMenu || hasWon || isDead || isVenting) return;
 
         //Debug.Log($"Light State: {(inLight ? "Light" : "Shadow")}");
         if (checkIsForcedOutShadow)

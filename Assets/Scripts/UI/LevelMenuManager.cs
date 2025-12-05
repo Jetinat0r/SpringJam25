@@ -35,10 +35,14 @@ public class LevelMenuManager : MonoBehaviour
     public static bool playerOverride = false;
     //Don't allow pausing mid room scroll transition
     public static bool roomScrollTransitionOverride = false;
+    //True if restarting or leaving level
+    public static bool isTransitioningFromMenu = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        isTransitioningFromMenu = false;
+        isMenuOpen = false;
         eventSystem = InputOverlord.instance.eventSystem;
 
         soundPlayer = Instantiate(soundPlayerPrefab, transform).GetComponent<SoundPlayer>();
@@ -119,6 +123,8 @@ public class LevelMenuManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        isTransitioningFromMenu = true;
+
         EventSystem.current.gameObject.SetActive(false);
 
         soundPlayer.PlaySound("UI.Select");
@@ -132,6 +138,7 @@ public class LevelMenuManager : MonoBehaviour
     public void ExitToMainMenu()
     {
         if (!LevelManager.instance.ReturnToMainMenu()) return;
+        isTransitioningFromMenu = true;
         EventSystem.current.gameObject.SetActive(false);
 
         Time.timeScale = 1;
