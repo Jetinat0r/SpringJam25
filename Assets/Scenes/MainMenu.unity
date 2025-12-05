@@ -56243,7 +56243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6980293509410089851, guid: 6ad1a2c1d0d700e4688e471b2ffd2a52, type: 3}
       propertyPath: levelName
-      value: Level18b
+      value: Level18
       objectReference: {fileID: 0}
     - target: {fileID: 8010921912469818439, guid: 6ad1a2c1d0d700e4688e471b2ffd2a52, type: 3}
       propertyPath: m_Pivot.x
@@ -62932,7 +62932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6980293509410089851, guid: 6ad1a2c1d0d700e4688e471b2ffd2a52, type: 3}
       propertyPath: levelName
-      value: Level19
+      value: Level19b
       objectReference: {fileID: 0}
     - target: {fileID: 8010921912469818439, guid: 6ad1a2c1d0d700e4688e471b2ffd2a52, type: 3}
       propertyPath: m_Pivot.x

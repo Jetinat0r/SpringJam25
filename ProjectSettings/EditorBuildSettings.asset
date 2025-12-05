@@ -80,15 +80,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Levels/W3/Level17b.unity
     guid: 70fc105d701584845a983aa7f3c29382
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Levels/W3/Level18.unity
+    guid: 5e1c59a01f199794e93e17c9d094f083
+  - enabled: 0
+    path: Assets/Scenes/Levels/W3/Level19.unity
     guid: 6d46a4fd9bbaa1344a6c305849b29a00
   - enabled: 1
-    path: Assets/Scenes/Levels/W3/Level18b.unity
+    path: Assets/Scenes/Levels/W3/Level19b.unity
     guid: 18b0c6fc64e234042aa95ac46990d362
-  - enabled: 1
-    path: Assets/Scenes/Levels/W3/Level19.unity
-    guid: 5e1c59a01f199794e93e17c9d094f083
   - enabled: 1
     path: Assets/Scenes/Levels/W3/Level20.unity
     guid: 7de51d5913efd1c44804988e89b0bf51
