@@ -23,6 +23,13 @@ public class Vent : MonoBehaviour, IToggleable
 
     public Transform CustomMagicLinePivot { get; set; }
 
+#if UNITY_EDITOR
+    public Color DebugLineColor = Color.magenta;
+    //Used so we don't have both sides of the pair draw a line
+    public bool DrawDebugLine = false;
+    public Vector3 DebugCenterOffset = new Vector3(0f, 0.25f, 0f);
+#endif
+
     private void Start()
     {
         objectTrigger = GetComponent<BoxCollider2D>();
@@ -123,4 +130,19 @@ public class Vent : MonoBehaviour, IToggleable
             touchingBoxes.Remove(_box);
         }
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+      if (DrawDebugLine && counterpart != null)
+        {
+            Color _originalColor = Gizmos.color;
+            Gizmos.color = DebugLineColor;
+
+            Gizmos.DrawLine(transform.position + DebugCenterOffset, counterpart.transform.position + DebugCenterOffset);
+
+            Gizmos.color = _originalColor;
+        }  
+    }
+#endif
 }

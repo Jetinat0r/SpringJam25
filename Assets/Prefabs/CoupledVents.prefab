@@ -162,6 +162,22 @@ PrefabInstance:
       propertyPath: counterpart
       value: 
       objectReference: {fileID: 8196672077120719468}
+    - target: {fileID: 5487345079410918503, guid: 6acfa9da77cafb04297bbc2881f200d8, type: 3}
+      propertyPath: DrawDebugLine
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487345079410918503, guid: 6acfa9da77cafb04297bbc2881f200d8, type: 3}
+      propertyPath: DebugLineColor.b
+      value: 0.958446
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487345079410918503, guid: 6acfa9da77cafb04297bbc2881f200d8, type: 3}
+      propertyPath: DebugLineColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487345079410918503, guid: 6acfa9da77cafb04297bbc2881f200d8, type: 3}
+      propertyPath: DebugLineColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8318919577611714684, guid: 6acfa9da77cafb04297bbc2881f200d8, type: 3}
       propertyPath: m_Name
       value: SoloWallVentA
