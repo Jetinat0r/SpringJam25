@@ -60,7 +60,7 @@ public class ShaderManager : MonoBehaviour
             }
             else if (_level >= 17 && _level <= 24)
             {
-                return 15;
+                return 2;
             }
             else if (_level >= 25 && _level <= 32)
             {
