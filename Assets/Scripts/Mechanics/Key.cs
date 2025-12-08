@@ -51,7 +51,7 @@ public class Key : Collectible
                 {
                     amplitude = 0f;
                     Vector3 _punchPos = (transform.position - _avoidPos).normalized * punchDistance + transform.position;
-                    Vector3 _targetPos = door.transform.position + new Vector3(0f, 0.5f, 0f);
+                    Vector3 _targetPos = door.transform.position + (door.transform.rotation * new Vector3(0f, 0.5f, 0f));
                     Vector3 _targetDir = _targetPos - _punchPos;
                     float _rotAngle = Mathf.Atan2(_targetDir.y, _targetDir.x) * Mathf.Rad2Deg;
                     //spriteTransform.rotation = Quaternion.Euler(0f, 0f, _rotAngle);
