@@ -21,10 +21,14 @@ public class ScreenWipe : MonoBehaviour
     public void Awake()
     {
         current = this;
+    }
 
+    private void Start()
+    {
         //If we want to control the wipe out from code, we need it to have not happened yet!
         if (autoWipeOut)
         {
+            //Debug.Log("Wipeout!");
             WipeOut();
         }
     }
