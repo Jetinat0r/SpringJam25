@@ -1,4 +1,3 @@
-using NUnit.Framework.Constraints;
 using System;
 using UnityEngine;
 
@@ -21,7 +20,7 @@ public class Mirror : MonoBehaviour, IRotatable
     private GameObject outputLight = null;
     private CapsuleCollider2D capsuleCollider = null;
     private Animator animator = null;
-    private Vector3 lightOffset = Vector3.up * 0.5f;
+    private Vector3 lightOffset = Vector3.zero;// Vector3.up * 0.5f;
 
 
     private void Start()
@@ -88,7 +87,26 @@ public class Mirror : MonoBehaviour, IRotatable
         }
 
         // Set animator trigger and change capsule collider rotation to match new rotation of the mirror
-        animator.SetTrigger("mirrorTrig");
+        //animator.SetTrigger("mirrorTrig");
+        switch (state)
+        {
+            case MirrorDirection.UpLeft:
+                animator.Play("mirrorRotate3");
+                capsuleCollider.transform.localRotation = Quaternion.Euler(Vector3.forward * 135);
+                break;
+            case MirrorDirection.UpRight:
+                animator.Play("mirrorRotate0");
+                capsuleCollider.transform.localRotation = Quaternion.Euler(Vector3.forward * 225);
+                break;
+            case MirrorDirection.DownRight:
+                animator.Play("mirrorRotate1");
+                capsuleCollider.transform.localRotation = Quaternion.Euler(Vector3.forward * 315);
+                break;
+            case MirrorDirection.DownLeft:
+                animator.Play("mirrorRotate2");
+                capsuleCollider.transform.localRotation = Quaternion.Euler(Vector3.forward * 45);
+                break;
+        }
         capsuleCollider.transform.localRotation = Quaternion.Euler(Vector3.forward * (capsuleCollider.transform.localEulerAngles.z + 90));
     }
 
