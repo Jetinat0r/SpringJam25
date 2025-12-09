@@ -14,6 +14,7 @@ public class PressurePad : MonoBehaviour
     [SerializeField] private Sprite unpressed, pressed;
     [SerializeField] private bool localSound = false;
     private bool onScreen = true;
+    private bool depressed = false;
 
     private void Awake()
     {
@@ -52,6 +53,38 @@ public class PressurePad : MonoBehaviour
             else
             {
                 throw new Exception($"Affected object [{affectedObjects[i]}] in Pressure Pad [{name}] is not IToggleable!");
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!depressed)
+        {
+            if (weight == 1)
+            {
+                depressed = true;
+
+                spriteRenderer.sprite = pressed;
+                ChangeAffectedObjects();
+                if (!localSound || (localSound && onScreen))
+                {
+                    PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
+                }
+            }
+        }
+        else
+        {
+            if (weight == 0)
+            {
+                depressed = false;
+
+                spriteRenderer.sprite = unpressed;
+                ChangeAffectedObjects();
+                if (!localSound || (localSound && onScreen))
+                {
+                    PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
+                }
             }
         }
     }
@@ -102,23 +135,27 @@ public class PressurePad : MonoBehaviour
         {
             // Pad is no longer burdened by weight. Lift it up.
             // Debug.Log("Pad is now free of any and all weights.");
+            /*
             spriteRenderer.sprite = unpressed;
             ChangeAffectedObjects();
             if (!localSound || (localSound && onScreen))
             {
                 PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
             }
+            */
         }
         else if (weight == 1 && previousWeight == 0)
         {
             // Pad is burdened by new weight. Press it down.
             // Debug.Log("Pad is now weighed down.");
+            /*
             spriteRenderer.sprite = pressed;
             ChangeAffectedObjects();
             if (!localSound || (localSound && onScreen))
             {
                 PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
             }
+            */
         }
     }
 
