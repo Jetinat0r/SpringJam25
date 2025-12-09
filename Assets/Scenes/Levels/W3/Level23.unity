@@ -712,7 +712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: ectoplasmTime
-      value: 20
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: nextLevelName
@@ -4206,11 +4206,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7081775063897183904, guid: d5db607cfcd321143b6ec81376ef99c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7081775063897183904, guid: d5db607cfcd321143b6ec81376ef99c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7081775063897183904, guid: d5db607cfcd321143b6ec81376ef99c1, type: 3}
       propertyPath: m_LocalPosition.z
