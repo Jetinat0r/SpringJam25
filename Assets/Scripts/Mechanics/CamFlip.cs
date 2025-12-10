@@ -18,7 +18,7 @@ public class CamFlip : MonoBehaviour
     {
         if (!ChallengeManager.instance.spectralShuffleEnabled)
         {
-            Destroy(gameObject);
+            Destroy(this);
             return;
         }
 
