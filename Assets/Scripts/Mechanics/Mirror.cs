@@ -98,7 +98,7 @@ public class Mirror : MonoBehaviour, IRotatable
             }
             else
             {
-                Debug.LogWarning("Warning: Light in range of mirror does not have the CustomLight component. May be circle light or bug!");
+                //Debug.LogWarning("Warning: Light in range of mirror does not have the CustomLight component. May be circle light or bug!");
                 return;
             }
         }
@@ -266,7 +266,6 @@ public class Mirror : MonoBehaviour, IRotatable
             case MirrorDirection.DownRight:
                 _encounteredLights = new List<MirrorableLight> { rightLight, downLight };
                 bool x = HasNonMirroredAncestorLight(LightDirection.UP, ref _encounteredLights);
-                Debug.Log($"X: {x}");
                 rightLight.gameObject.SetActive(x);
                 _encounteredLights = new List<MirrorableLight> { rightLight, downLight };
                 downLight.gameObject.SetActive(HasNonMirroredAncestorLight(LightDirection.LEFT, ref _encounteredLights));
@@ -320,16 +319,13 @@ public class Mirror : MonoBehaviour, IRotatable
                     }
                     break;
                 case MirrorDirection.UpRight:
-                    Debug.Log($"UP RIGHT!!! {m.parentMirror.gameObject.name}");
                     if (_desiredInputDirection == LightDirection.RIGHT)
                     {
                         _foundGoodAncestor = m.parentMirror.HasNonMirroredAncestorLight(LightDirection.DOWN, ref _encounteredLights);
                     }
                     else
                     {
-                        Debug.Log($"LEFT!!! {m.parentMirror.gameObject.name}");
                         _foundGoodAncestor = m.parentMirror.HasNonMirroredAncestorLight(LightDirection.LEFT, ref _encounteredLights);
-                        Debug.Log($"VAL: {_foundGoodAncestor}");
                     }
                     break;
                 case MirrorDirection.DownLeft:
