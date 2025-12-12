@@ -4,5 +4,5 @@ public interface IRotatable
 {
     public Transform CustomMagicLinePivot { get; set; }
 
-    void OnRotate();
+    void OnRotate(bool _clockwise);
 }

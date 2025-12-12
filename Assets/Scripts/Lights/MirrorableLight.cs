@@ -1,29 +1,45 @@
 using UnityEngine;
 
-public class CustomLight : MonoBehaviour
+public enum LightDirection : int
 {
-    public Vector2 lightDirection = Vector2.down;
+    DOWN = 0,
+    LEFT = 1,
+    UP = 2,
+    RIGHT = 3
+}
+
+public class MirrorableLight : MonoBehaviour
+{
+    public LightDirection lightDir = LightDirection.DOWN;
+    public bool calculateLightDirOnStart = true;
+    public Mirror parentMirror = null;
 
     private void Start()
     {
+        //Allow manual overrides if desired
+        if (!calculateLightDirOnStart)
+        {
+            return;
+        }
+
         // TODO: Only works with long lights, not circle lights.
         float zRotation = transform.eulerAngles.z % 360;
 
         if (zRotation >= 315 || zRotation <= 45)
         {
-            lightDirection = Vector2.down;
+            lightDir = LightDirection.DOWN;
         }
         else if (zRotation >= 45 && zRotation <= 135)
         {
-            lightDirection = Vector2.right;
+            lightDir = LightDirection.RIGHT;
         }
         else if (zRotation >= 135 && zRotation <= 225)
         {
-            lightDirection = Vector2.up;
+            lightDir = LightDirection.UP;
         }
         else if (zRotation >= 225 && zRotation <= 315)
         {
-            lightDirection = Vector2.left;
+            lightDir = LightDirection.LEFT;
         }
         else
         {
