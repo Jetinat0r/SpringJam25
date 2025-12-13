@@ -366,4 +366,10 @@ public class LevelSelectMenu : MonoBehaviour
     {
         _obj.SetActive(false);
     }
+
+    private void OnDestroy()
+    {
+        pageSlideTween?.Kill();
+        worldNameSlideTween?.Kill();
+    }
 }

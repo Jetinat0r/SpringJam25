@@ -127,8 +127,7 @@ public class LevelManager : MonoBehaviour
     public void ResetScene()
     {
         if (isResetting) return;
-        if (!ScreenWipe.current.WipeIn()) return;
-        ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene(currentLevelName); isResetting = false; };
+        if (!ScreenWipe.current.WipeIn(() => { SceneManager.LoadScene(currentLevelName); isResetting = false; })) return;
         isResetting = true;
     }
 
@@ -267,12 +266,8 @@ public class LevelManager : MonoBehaviour
     IEnumerator GoToNextLevel(float delay)
     {
         yield return new WaitForSeconds(delay);
-        ScreenWipe.current.WipeIn(true);
+        ScreenWipe.current.WipeIn(NextScene, true);
         PlayerMovement.instance.soundPlayer.PlaySound("Game.Stairs");
-
-        //TODO: Add challenge display popup. Will require changing target scene to one designed specifically for displaying these texts
-        //  And messing with shaders and oh my god palette shader why
-        ScreenWipe.current.PostWipe += NextScene;
     }
 
     public void NextScene()
@@ -282,8 +277,8 @@ public class LevelManager : MonoBehaviour
 
     public bool ReturnToMainMenu()
     {
-        if (!ScreenWipe.current.WipeIn()) return false;
-        ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene("MainMenu"); };
+        if (!ScreenWipe.current.WipeIn(() => { SceneManager.LoadScene("MainMenu"); })) return false;
+        //ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene("MainMenu"); };
         return true;
     }
 

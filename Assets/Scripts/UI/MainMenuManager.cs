@@ -151,6 +151,7 @@ public class MainMenuManager : MonoBehaviour
     public void EnterStartScreen()
     {
         FindFirstObjectByType<AudioManager>().ChangeBGM(AudioManager.World.CURRENT, true);
+        //TODO: Make sure this behaves
         ScreenWipe.current.WipeOut();
 
         if (ProgramManager.instance.firstOpen && !ProgramManager.instance.saveData.SkipIntro)
@@ -188,6 +189,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        curTween?.Kill();
         resetProgress.started -= UnlockAll;
         muteFirstButtonSound = true;
     }
@@ -237,24 +239,6 @@ public class MainMenuManager : MonoBehaviour
 
         levelSelectMenu.UpdateMenuState();
     }
-
-    /*
-    public void ToggleEP(InputAction.CallbackContext _context)
-    {
-        //TODO: Fix actually. This toggles active state, and should be moved to challenge manager
-        if (ChallengeManager.instance.ectoplasmEnabled)
-        {
-            soundPlayer.PlaySound(selectSound);
-            Debug.Log("Ectoplasm Enabled!");
-
-        }
-        else
-        {
-            soundPlayer.PlaySound(backSound);
-            Debug.Log("Ectoplasm Disabled!");
-        }
-    }
-    */
 
     public void MoveToMainMenu(bool _isXMove)
     {
@@ -321,7 +305,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void ContinuePlaying()
     {
-        soundPlayer.PlaySound(selectSound);
 
         int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
         //Clamp to play last level if all have been completed
@@ -337,18 +320,22 @@ public class MainMenuManager : MonoBehaviour
 
         //Play next level
         EnterLevel(levelSelectMenu.levelButtonCollections[_completedLevels / 8].levelButtons[_completedLevels % 8].levelName);
+        
+        //Enter level itself plays the sound
+        //soundPlayer.PlaySound(selectSound);
     }
 
     public void EnterLevel(string _levelName)
     {
-        if (!ScreenWipe.current.WipeIn()) return;
-        ScreenWipe.current.PostWipe += () =>
+        if (!ScreenWipe.current.WipeIn(() => { SceneManager.LoadScene(_levelName); }))
         {
-            //Debug.Log($"Entering level {_levelName}");
-            SceneManager.LoadScene(_levelName);
-        };
+            //Debug.LogError("REPORT THIS TO JET IMMEDIATELY: EnterLevel() WipeIn() Failure!");
+            return;
+        }
+        //ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene(_levelName); };
 
-        curTween?.Kill();
+        //curTween is killed in OnDestroy() now
+        //curTween?.Kill();
 
         EventSystem.current.gameObject.SetActive(false);
 
@@ -367,7 +354,17 @@ public class MainMenuManager : MonoBehaviour
     {
         ShaderManager.instance.UpdatePaletteCondenseAmount(0);
         ShaderManager.instance.EnableShaders();
-        ScreenWipe.current.WipeIn(true);
+        ScreenWipe.current.WipeIn(() =>
+        {
+            //Debug.Log($"Entering level {_levelName}");
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }, true);
+
+        /*
         ScreenWipe.current.PostWipe += () =>
         {
             //Debug.Log($"Entering level {_levelName}");
@@ -377,6 +374,7 @@ public class MainMenuManager : MonoBehaviour
             Application.Quit();
 #endif
         };
+        */
         soundPlayer.PlaySound(backSound);
         AudioManager.instance.FadeOutCurrent();
     }

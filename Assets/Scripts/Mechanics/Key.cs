@@ -17,6 +17,7 @@ public class Key : Collectible
     public float launchTime = 0.25f;
     [SerializeField]
     public AnimationCurve launchCurve;
+    private Sequence launchSequence = null;
 
     protected override void OnCollected(Collider2D collision)
     {
@@ -63,7 +64,7 @@ public class Key : Collectible
 
                     
 
-                    Sequence _sequence = DOTween.Sequence();
+                    launchSequence = DOTween.Sequence();
 
                     /*
                     _sequence.Append(transform.DOLocalMoveX(_targetDir.magnitude, punchTime).SetEase(Ease.OutQuad));
@@ -74,14 +75,14 @@ public class Key : Collectible
                         _rotAngle += 360f;
                     }
 
-                    _sequence.Append(transform.DOMove(_punchPos, punchTime).SetEase(punchCurve));
-                    _sequence.Join(transform.DORotate(new Vector3(0f, 0f, 360f + 90f + _rotAngle), punchTime, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad));
-                    _sequence.Append(transform.DOMove(_targetPos, launchTime).SetEase(launchCurve).OnStart(() =>
+                    launchSequence.Append(transform.DOMove(_punchPos, punchTime).SetEase(punchCurve));
+                    launchSequence.Join(transform.DORotate(new Vector3(0f, 0f, 360f + 90f + _rotAngle), punchTime, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad));
+                    launchSequence.Append(transform.DOMove(_targetPos, launchTime).SetEase(launchCurve).OnStart(() =>
                     {
                         player.soundPlayer.PlaySound("Game.KeyFly");
                     }));
-                    _sequence.onComplete += UnlockDoor;
-                    _sequence.Play();
+                    launchSequence.onComplete += UnlockDoor;
+                    launchSequence.Play();
                 }
             }
         }
@@ -105,5 +106,10 @@ public class Key : Collectible
         unlockVfx.Play();
         PlayerMovement.instance.soundPlayer.PlaySound("Game.KeyholeRemove");
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        launchSequence?.Kill();
     }
 }

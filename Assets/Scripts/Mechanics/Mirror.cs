@@ -360,6 +360,11 @@ public class Mirror : MonoBehaviour, IRotatable
         return false;
     }
 
+    private void OnDestroy()
+    {
+        rotationSequence?.Kill();
+    }
+
     private void OnDrawGizmos()
     {
         Color _originalColor = Gizmos.color;
