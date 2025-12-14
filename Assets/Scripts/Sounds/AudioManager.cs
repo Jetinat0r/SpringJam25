@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
     public MusicCategory musicDatabase;
     public bool playingMenuMusic = false;
 
-    private long beatLength, lastTime, absoluteTime, beatNumber;
+    private int beatLength, lastTime, absoluteTime;
     public Action OnBeat;
 
     /// <summary>
@@ -214,20 +214,20 @@ public class AudioManager : MonoBehaviour
         AudioSource currentPlayer = firstSet ? BGM1[activePlayer] : BGM2[activePlayer];
         if (currentSong != null && currentPlayer.clip != null)
         {
-            long currentTime = currentPlayer.timeSamples;
-            long delta = currentTime - lastTime;
+            int currentTime = currentPlayer.timeSamples;
+            int delta = currentTime - lastTime;
             if (currentTime < lastTime)
             {
                 delta += currentSong.GetClip().samples;
             }
             absoluteTime += delta;
             lastTime = currentTime;
-            long newBeatNumber = absoluteTime / beatLength;
-            if (newBeatNumber != beatNumber)
+            int beat = absoluteTime / beatLength;
+            if (beat != 0)
             {
                 OnBeat?.Invoke();
-                Debug.Log("Beat " + newBeatNumber);
-                beatNumber = newBeatNumber;
+                Debug.Log("Beat");
+                absoluteTime -= beatLength;
             }
         }
     }
@@ -292,11 +292,10 @@ public class AudioManager : MonoBehaviour
         {
             duration = 0f; // No fades for world transitions
             absoluteTime = 0;
-            beatNumber = 0;
             lastTime = 0;
         } 
 
-        beatLength = (long)(60.0f / music.BPM * music.sampleRate * music.beatFrequency);
+        beatLength = (int)(60.0f / music.BPM * music.sampleRate * music.beatFrequency);
 
         if (firstSet)
         {
@@ -318,7 +317,6 @@ public class AudioManager : MonoBehaviour
             {
                 BGM2[activePlayer].timeSamples = 0;
                 absoluteTime = 0;
-                beatNumber = 0;
                 lastTime = 0;
             }
             BGM2[activePlayer].Play();
@@ -352,7 +350,6 @@ public class AudioManager : MonoBehaviour
             {
                 BGM1[activePlayer].timeSamples = 0;
                 absoluteTime = 0;
-                beatNumber = 0;
                 lastTime = 0;
             }
             BGM1[activePlayer].Play();
