@@ -15,3 +15,6 @@ MonoBehaviour:
   menuSong: {fileID: 8300000, guid: 0cb0efd5d99d94c30bc103c4f292cb08, type: 3}
   levelSong: {fileID: 8300000, guid: c6244f1ccb3ce44d7ab3afe3b679161b, type: 3}
   world: 1
+  BPM: 65.42466
+  sampleRate: 44100
+  beatFrequency: 2

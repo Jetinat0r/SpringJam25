@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -29,6 +30,9 @@ public class AudioManager : MonoBehaviour
     public SoundCategory soundDatabase;
     public MusicCategory musicDatabase;
     public bool playingMenuMusic = false;
+
+    private long beatLength, lastTime, absoluteTime, beatNumber;
+    public Action OnBeat;
 
     /// <summary>
     /// List of all different game areas that may have different sets of music
@@ -206,7 +210,23 @@ public class AudioManager : MonoBehaviour
         }
         */
 
-        
+        // Beat tracking
+        AudioSource currentPlayer = firstSet ? BGM1[activePlayer] : BGM2[activePlayer];
+        long currentTime = currentPlayer.timeSamples;
+        long delta = currentTime - lastTime;
+        if (currentTime < lastTime)
+        {
+            delta += currentSong.GetClip().samples;
+        }
+        absoluteTime += delta;
+        lastTime = currentTime;
+        long newBeatNumber = absoluteTime / beatLength;
+        if (newBeatNumber != beatNumber)
+        {
+            OnBeat?.Invoke();
+            Debug.Log("Beat " + newBeatNumber);
+            beatNumber = newBeatNumber;
+        }
     }
 
     public void UpdateVolume(float _musicVolume, float _sfxVolume)
@@ -266,6 +286,8 @@ public class AudioManager : MonoBehaviour
         }
 
         if (currentSong == null) duration = 0f; // No fades for world transitions
+
+        beatLength = (long)(60.0f / music.BPM * music.sampleRate * music.beatFrequency);
 
         if (firstSet)
         {
