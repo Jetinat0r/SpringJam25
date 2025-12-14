@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HorizontalSinePatrol : MonoBehaviour
+public class VerticalSinePatrol : MonoBehaviour
 {
     private Vector3 initialPosition;
     [SerializeField]
@@ -23,7 +23,6 @@ public class HorizontalSinePatrol : MonoBehaviour
         timeOnPatrol += Time.deltaTime;
         timeOnPatrol %= patrolPeriod;
 
-        //transform.position = initialPosition + ((firstPatrolRight ? Vector3.right : Vector3.left) * (Mathf.Sin((timeOnPatrol / patrolPeriod) * (2f * Mathf.PI)) * patrolDistanceFromCenter));
-        transform.position = new Vector3(initialPosition.x + ((firstPatrolRight ? 1f : -1f) * (Mathf.Sin((timeOnPatrol / patrolPeriod) * (2f * Mathf.PI)) * patrolDistanceFromCenter)), transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, initialPosition.y + ((firstPatrolRight ? 1f :-1f) * (Mathf.Sin((timeOnPatrol / patrolPeriod) * (2f * Mathf.PI)) * patrolDistanceFromCenter)), transform.position.z);
     }
 }
