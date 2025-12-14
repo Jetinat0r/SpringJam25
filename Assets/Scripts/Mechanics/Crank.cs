@@ -77,6 +77,7 @@ public class Crank : MonoBehaviour
                 {
                     _rotator.OnRotate(affectedObjects[i].rotateClockwise);
 
+                    magicInteractionLines[i].SetupLine(customMagicLinePivot.position, _rotator.CustomMagicLinePivot.position);
                     magicInteractionLines[i].PlayParticles();
                 }
             }

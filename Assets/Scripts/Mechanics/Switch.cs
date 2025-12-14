@@ -7,6 +7,7 @@ public class Switch : MonoBehaviour
     [SerializeField] public Transform customMagicLinePivot = null;
     private MagicInteractionLine[] magicInteractionLines;
     public GameObject[] affectedObjects;
+    public CrankableObject[] crankableObjects;
     private PlayerMovement playerScript;
     [SerializeField] private SpriteRenderer sprite;
     public Sprite active, inactive;
@@ -24,7 +25,7 @@ public class Switch : MonoBehaviour
 
     private void Start()
     {
-        magicInteractionLines = new MagicInteractionLine[affectedObjects.Length];
+        magicInteractionLines = new MagicInteractionLine[affectedObjects.Length + crankableObjects.Length];
 
         for (int i = 0; i < affectedObjects.Length; i++)
         {
@@ -37,6 +38,21 @@ public class Switch : MonoBehaviour
             {
                 Debug.LogError($"Affected object [{affectedObjects[i]}] in Switch [{name}] is not IToggleable!");
                 throw new Exception($"Affected object [{affectedObjects[i]}] in Switch [{name}] is not IToggleable!");
+            }
+        }
+
+        for (int j = affectedObjects.Length; j < affectedObjects.Length + crankableObjects.Length; j++)
+        {
+            int i = j - affectedObjects.Length;
+            if (crankableObjects[i].affectedObject.TryGetComponent(out IRotatable _rotateable))
+            {
+                magicInteractionLines[j] = Instantiate(magicInteractionLinePrefab);
+                magicInteractionLines[j].SetupLine(customMagicLinePivot.position, _rotateable.CustomMagicLinePivot.position);
+            }
+            else
+            {
+                Debug.LogError($"Affected object [{crankableObjects[i]}] in Switch [{name}] is not IRotateable!");
+                throw new Exception($"Affected object [{crankableObjects[i]}] in Switch [{name}] is not IRotateable!");
             }
         }
     }
@@ -78,27 +94,28 @@ public class Switch : MonoBehaviour
                 {
                     _toggler.OnToggle();
 
+                    magicInteractionLines[i].SetupLine(customMagicLinePivot.position, _toggler.CustomMagicLinePivot.position);
                     magicInteractionLines[i].PlayParticles();
                 }
             }
         }
 
-        /*
-        // Code stub for eventual implementation of changing affected objects
-        // Adding onto this pile of duct tape with more duct tape in the form of conveyor belts
-        foreach (var obj in affectedObjects)
+        for (int j = affectedObjects.Length; j < affectedObjects.Length + crankableObjects.Length; j++)
         {
-            var _beltScript = obj.GetComponent<ConveyorBelt>();
-            if (_beltScript != null)
+            int i = j - affectedObjects.Length;
+            if (crankableObjects[i].affectedObject != null)
             {
-                _beltScript.FlipBelt();
+                if (crankableObjects[i].affectedObject.TryGetComponent(out IRotatable _rotateable))
+                {
+                    _rotateable.OnRotate(crankableObjects[i].rotateClockwise);
+                    //Flip bool so next "interact" flips it the other way
+                    crankableObjects[i].rotateClockwise = !crankableObjects[i].rotateClockwise;
+
+                    magicInteractionLines[j].SetupLine(customMagicLinePivot.position, _rotateable.CustomMagicLinePivot.position);
+                    magicInteractionLines[j].PlayParticles();
+                }
             }
-            else if (obj != null)
-            {
-                // State-changing code/appropriate obj function call here
-                obj.SetActive(!obj.activeSelf);
-            }
-        }*/
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
