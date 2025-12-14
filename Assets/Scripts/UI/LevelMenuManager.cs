@@ -156,6 +156,7 @@ public class LevelMenuManager : MonoBehaviour
         Vector2 _initialPos = spectralShuffleChallengeBox.anchoredPosition;
 
         challengeBoxSequence = DOTween.Sequence();
+        challengeBoxSequence.onKill += () => { challengeBoxSequence = null; };
         challengeBoxSequence.SetUpdate(true);
         challengeBoxSequence.Append(spectralShuffleChallengeBox.DOAnchorPosY(_initialPos.y - tweenDist, tweenMoveTime).SetEase(tweenEasing))
             .AppendInterval(tweenHoldTime)

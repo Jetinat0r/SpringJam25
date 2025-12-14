@@ -88,6 +88,7 @@ public class Crank : MonoBehaviour
 
         rotationSequence?.Kill();
         rotationSequence = DOTween.Sequence(this);
+        rotationSequence.onKill = () => { rotationSequence = null; };
         int f = 0;
         for (; f < framesPerState - 1; f++)
         {

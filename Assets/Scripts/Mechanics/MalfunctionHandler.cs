@@ -25,6 +25,7 @@ public class MalfunctionHandler : MonoBehaviour
         toggleable = GetComponent<IToggleable>();
 
         flickerSequence = DOTween.Sequence();
+        flickerSequence.onKill += () => { flickerSequence = null; };
         flickerSequence.AppendInterval(downTime);
         for (int i = 0; i < numFlickers; i++)
         {

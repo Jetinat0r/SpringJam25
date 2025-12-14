@@ -17,6 +17,7 @@ public class ScreenWipe : MonoBehaviour
     private float secondsPerPaletteOperation = 0.125f;
     [SerializeField]
     public bool autoWipeOut = true;
+    private Sequence curSequence;
 
     public void Awake()
     {
@@ -46,18 +47,20 @@ public class ScreenWipe : MonoBehaviour
         ScreenBlocker.raycastTarget = true;
         //GetComponent<Animator>().SetTrigger("WipeIn");
 
-        Sequence _sequence = DOTween.Sequence();
+        curSequence?.Kill();
+        curSequence = DOTween.Sequence();
+        curSequence.onKill += () => { curSequence = null; };
 
         //Condense palette
-        _sequence.AppendCallback(() => ShaderManager.instance.UpdatePaletteCondenseAmount(1));
-        _sequence.AppendInterval(secondsPerPaletteOperation);
-        _sequence.AppendCallback(() => ShaderManager.instance.UpdatePaletteCondenseAmount(2));
-        _sequence.AppendInterval(secondsPerPaletteOperation);
-        _sequence.AppendCallback(() => ShaderManager.instance.UpdatePaletteCondenseAmount(3));
-        _sequence.AppendInterval(secondsPerPaletteOperation);
+        curSequence.AppendCallback(() => ShaderManager.instance.UpdatePaletteCondenseAmount(1));
+        curSequence.AppendInterval(secondsPerPaletteOperation);
+        curSequence.AppendCallback(() => ShaderManager.instance.UpdatePaletteCondenseAmount(2));
+        curSequence.AppendInterval(secondsPerPaletteOperation);
+        curSequence.AppendCallback(() => ShaderManager.instance.UpdatePaletteCondenseAmount(3));
+        curSequence.AppendInterval(secondsPerPaletteOperation);
 
-        _sequence.onComplete += CallPostWipe;
-        _sequence.Play();
+        curSequence.onComplete += CallPostWipe;
+        curSequence.Play();
 
         return true;
     }
@@ -66,35 +69,37 @@ public class ScreenWipe : MonoBehaviour
     public void WipeOut()
     {
         //Debug.Log(secondsPerPaletteOperation);
-        Sequence _sequence = DOTween.Sequence();
-        _sequence.AppendInterval(secondsPerPaletteOperation);
+        curSequence?.Kill();
+        curSequence = DOTween.Sequence();
+        curSequence.onKill += () => { curSequence = null; };
+        curSequence.AppendInterval(secondsPerPaletteOperation);
 
         int _levelPaletteIndex = ShaderManager.instance.GetWorldPaletteIndex(SceneManager.GetActiveScene().name);
         if (ShaderManager.instance.CheckNeedsPaletteTransition(_levelPaletteIndex))
         {
             //Swap palettes
             //TODO: STOP MUSIC TRACK
-            _sequence.AppendCallback(() => ShaderManager.instance.SetupPaletteTransition(_levelPaletteIndex));
-            _sequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteMixAmount(.33f); });
-            _sequence.AppendInterval(secondsPerPaletteOperation);
-            _sequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteMixAmount(.66f); });
-            _sequence.AppendInterval(secondsPerPaletteOperation);
-            _sequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteMixAmount(1f); });
-            _sequence.AppendInterval(secondsPerPaletteOperation * 2f);
+            curSequence.AppendCallback(() => ShaderManager.instance.SetupPaletteTransition(_levelPaletteIndex));
+            curSequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteMixAmount(.33f); });
+            curSequence.AppendInterval(secondsPerPaletteOperation);
+            curSequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteMixAmount(.66f); });
+            curSequence.AppendInterval(secondsPerPaletteOperation);
+            curSequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteMixAmount(1f); });
+            curSequence.AppendInterval(secondsPerPaletteOperation * 2f);
             //TODO: START NEW MUSIC TRACK
-            _sequence.AppendCallback(() => { ShaderManager.instance.EndPaletteTransition(); });
+            curSequence.AppendCallback(() => { ShaderManager.instance.EndPaletteTransition(); });
         }
 
         //Expand palette
-        _sequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteCondenseAmount(2); });
-        _sequence.AppendInterval(secondsPerPaletteOperation);
-        _sequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteCondenseAmount(1); });
-        _sequence.AppendInterval(secondsPerPaletteOperation);
-        _sequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteCondenseAmount(0); });
-        //_sequence.AppendInterval(secondsPerPaletteOperation);
+        curSequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteCondenseAmount(2); });
+        curSequence.AppendInterval(secondsPerPaletteOperation);
+        curSequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteCondenseAmount(1); });
+        curSequence.AppendInterval(secondsPerPaletteOperation);
+        curSequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteCondenseAmount(0); });
+        //curSequence.AppendInterval(secondsPerPaletteOperation);
 
-        _sequence.onComplete += ScreenRevealed;
-        _sequence.Play();
+        curSequence.onComplete += ScreenRevealed;
+        curSequence.Play();
 
 
         //GetComponent<Animator>().SetTrigger("WipeOut");

@@ -18,8 +18,6 @@ public class Mirror : MonoBehaviour, IRotatable
     }
 
     [SerializeField] private MirrorDirection currentMirrorDirection = MirrorDirection.UpLeft;
-
-    private GameObject outputLight = null;
     public CapsuleCollider2D capsuleCollider = null;
     //private Animator animator = null;
     //private Vector3 lightOffset = Vector3.zero;// Vector3.up * 0.5f;
@@ -158,12 +156,6 @@ public class Mirror : MonoBehaviour, IRotatable
             currentMirrorDirection = (MirrorDirection)_mirrorState;
         }
 
-        if (outputLight != null)
-        {
-            Destroy(outputLight);
-            outputLight = null;
-        }
-
         //Reset lights during animation
         upLight.gameObject.SetActive(false);
         rightLight.gameObject.SetActive(false);
@@ -172,7 +164,8 @@ public class Mirror : MonoBehaviour, IRotatable
 
         //Horrible horrible animation shenanigans, but it's too late now!
         rotationSequence?.Kill();
-        rotationSequence = DOTween.Sequence(this);
+        rotationSequence = DOTween.Sequence();
+        rotationSequence.onKill += () => { rotationSequence = null; };
         int f = 0;
         if (_clockwise)
         {
@@ -184,8 +177,7 @@ public class Mirror : MonoBehaviour, IRotatable
             for (; f < framesPerState - 1; f++)
             {
                 //Needs copied or else it gets a stale reference and explodes
-                int _fCopy = f;
-                int _newSprite = activeState * framesPerState + _fCopy;
+                int _newSprite = activeState * framesPerState + f;
                 rotationSequence.AppendCallback(() => { UpdateSprite(_newSprite); });
                 rotationSequence.AppendInterval(animationTime / framesPerState);
             }
@@ -197,8 +189,7 @@ public class Mirror : MonoBehaviour, IRotatable
             for (; f < framesPerState - 1; f++)
             {
                 //Needs copied or else it gets a stale reference and explodes
-                int _fCopy = f;
-                int _newSprite = activeState * framesPerState - _fCopy;
+                int _newSprite = activeState * framesPerState - f;
                 rotationSequence.AppendCallback(() => { UpdateSprite(_newSprite); });
                 rotationSequence.AppendInterval(animationTime / framesPerState);
             }
@@ -362,7 +353,8 @@ public class Mirror : MonoBehaviour, IRotatable
 
     private void OnDestroy()
     {
-        rotationSequence?.Kill();
+        //Debug.LogWarning("MIRROR KILL");
+        //rotationSequence?.Kill();
     }
 
     private void OnDrawGizmos()
