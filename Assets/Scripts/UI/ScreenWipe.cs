@@ -122,7 +122,7 @@ public class ScreenWipe : MonoBehaviour
 
     public void PostCooldown()
     {
-        Debug.LogWarning("WIPE OFFICIALLY OVER!");
+        //Debug.LogWarning("WIPE OFFICIALLY OVER!");
         over = true;
         ScreenBlocker.raycastTarget = false;
     }
