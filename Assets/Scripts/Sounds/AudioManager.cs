@@ -226,7 +226,6 @@ public class AudioManager : MonoBehaviour
             if (beat != 0)
             {
                 OnBeat?.Invoke();
-                Debug.Log("Beat");
                 absoluteTime -= beatLength;
             }
         }
