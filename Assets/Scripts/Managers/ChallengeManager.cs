@@ -1,7 +1,7 @@
-using UnityEditor;
 #if UNITY_EDITOR
-using UnityEngine;
+using UnityEditor;
 #endif
+using UnityEngine;
 
 public class ChallengeManager : MonoBehaviour
 {
