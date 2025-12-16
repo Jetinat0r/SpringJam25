@@ -31,8 +31,8 @@ public class AudioManager : MonoBehaviour
     public MusicCategory musicDatabase;
     public bool playingMenuMusic = false;
 
-    private int beatLength, lastTime, absoluteTime;
-    public Action OnBeat;
+    private int beatLength, lastTime, absoluteTime, currentBeat;
+    public Action<int> OnBeat;
 
     /// <summary>
     /// List of all different game areas that may have different sets of music
@@ -219,13 +219,14 @@ public class AudioManager : MonoBehaviour
             if (currentTime < lastTime)
             {
                 delta += currentSong.GetClip().samples;
+                currentBeat = 0;
             }
             absoluteTime += delta;
             lastTime = currentTime;
-            int beat = absoluteTime / beatLength;
-            if (beat != 0)
+            if (absoluteTime / beatLength != 0)
             {
-                OnBeat?.Invoke();
+                currentBeat++;
+                OnBeat?.Invoke(currentBeat);
                 absoluteTime -= beatLength;
             }
         }
@@ -292,6 +293,7 @@ public class AudioManager : MonoBehaviour
             duration = 0f; // No fades for world transitions
             absoluteTime = 0;
             lastTime = 0;
+            currentBeat = 0;
         } 
 
         beatLength = (int)(60.0f / music.BPM * music.sampleRate * music.beatFrequency);
@@ -317,6 +319,7 @@ public class AudioManager : MonoBehaviour
                 BGM2[activePlayer].timeSamples = 0;
                 absoluteTime = 0;
                 lastTime = 0;
+                currentBeat = 0;
             }
             BGM2[activePlayer].Play();
             if (firstSongPlayed)
@@ -350,6 +353,7 @@ public class AudioManager : MonoBehaviour
                 BGM1[activePlayer].timeSamples = 0;
                 absoluteTime = 0;
                 lastTime = 0;
+                currentBeat = 0;
             }
             BGM1[activePlayer].Play();
             if (firstSongPlayed)
