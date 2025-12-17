@@ -15,6 +15,8 @@ enum PlayerStates
     WalkShadow
 }
 
+//Patch fix for when lights swap suddenly on the player
+[DefaultExecutionOrder(-1)]
 public class PlayerMovement : MonoBehaviour
 {
     // Components
