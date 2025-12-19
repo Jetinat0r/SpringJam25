@@ -486,7 +486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: nextLevelName
-      value: Level26
+      value: Level27
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: conveyorTilemap
@@ -494,7 +494,7 @@ PrefabInstance:
       objectReference: {fileID: 836777563}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: currentLevelName
-      value: Level25
+      value: Level26
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: levelDisplayName
@@ -506,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: currentLevelNumber
-      value: 25
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: DEBUG_SHOW_LEVEL_GRID
