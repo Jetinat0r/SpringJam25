@@ -22,7 +22,7 @@ public class LightDetector : MonoBehaviour
             _broadcastEnterEvent = true;
         }
 
-        if (!activeLightCollisions.Contains(collision))
+        if (!activeLightCollisions.Contains(collision) && !collision.CompareTag("Mirror"))
         {
             activeLightCollisions.Add(collision);
 

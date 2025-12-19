@@ -127,7 +127,7 @@ public class LevelManager : MonoBehaviour
     public void ResetScene()
     {
         if (isResetting) return;
-        if (!ScreenWipe.current.WipeIn(() => { SceneManager.LoadScene(currentLevelName); isResetting = false; })) return;
+        if (!ScreenWipe.current.WipeIn(() => { isResetting = false; SceneManager.LoadScene(currentLevelName); })) return;
         isResetting = true;
     }
 
