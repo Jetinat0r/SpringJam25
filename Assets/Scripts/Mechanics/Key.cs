@@ -105,6 +105,7 @@ public class Key : Collectible
         ambientLargeVfx.Stop();
         unlockVfx.Play();
         PlayerMovement.instance.soundPlayer.PlaySound("Game.KeyholeRemove");
+        launchSequence = null;
         Destroy(gameObject);
     }
 
