@@ -42,6 +42,11 @@ public class LevelManager : MonoBehaviour
     public static bool isResetting = false;
 
     public float ectoplasmTime = 5f;
+    private int initialBottleCount; // Used for Stay Dehydrated achievement
+
+    float clearTime = 1;
+    float timeLimit = 0;
+    bool worldCompleted = false;
 
 #if UNITY_EDITOR
     public bool DEBUG_SHOW_LEVEL_GRID = false;
@@ -85,6 +90,8 @@ public class LevelManager : MonoBehaviour
         //SettingsManager.SaveSettings();
 
         // speedrunManager = FindFirstObjectByType<SpeedrunManager>();
+
+        initialBottleCount = FindObjectsByType<Ectoplasm>(FindObjectsSortMode.None).Length;
     }
 
     private void GetZeroRoomReferenceCell()
@@ -146,10 +153,18 @@ public class LevelManager : MonoBehaviour
         //TODO: Save completion time
         //_levelSaveData.fastestTime = 60f;
 
+
+        // Check for Stay Dehydrated
+        var currentBottleCount = FindObjectsByType<Ectoplasm>(FindObjectsSortMode.None).Length;
+        if (ChallengeManager.instance.ectoplasmEnabled && initialBottleCount == currentBottleCount)
+        {
+            Debug.Log("Achievement unlocked! ECTOPLASM_DRY");
+            JetEngine.SteamUtils.TryGetAchievement("ECTOPLASM_DRY");
+        }
+
         if (AudioManager.instance.CheckChangeWorlds(nextLevelName))
         {
-            float clearTime = 1;
-            float timeLimit = 0;
+            // Completed last level of the world
             if (SpeedrunManager.instance != null)
             {
                 clearTime = SpeedrunManager.instance.StopTimer();
@@ -158,63 +173,21 @@ public class LevelManager : MonoBehaviour
                 Destroy(SpeedrunManager.instance);
             }
 
+            worldCompleted = true;
+        }
+
+        StartCoroutine(GoToNextLevel(1.5f));
+    }
+
+    IEnumerator GoToNextLevel(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ScreenWipe.current.WipeIn(NextScene, true);
+        PlayerMovement.instance.soundPlayer.PlaySound("Game.Stairs");
+
+        if (worldCompleted)
+        {
             // Unlock appropriate world clear achievements
-            // TODO: Add the speedrun achievements as we finish building out entire worlds
-            //int.TryParse(currentLevelName["Level".Length..], out int level)
-
-            /* We don't need to parse the level number, that's what currentLevelNumber is for!
-            if (int.TryParse(Regex.Match(currentLevelName, @"\d+").Value, out int level))
-            {
-                switch (AudioManager.instance.GetWorld(level))
-                {
-                    case AudioManager.World.WORLD1:
-                        Debug.Log("Achievement unlocked! CLEAR_W1");
-                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W1");
-
-                        if (clearTime <= timeLimit)
-                        {
-                            Debug.Log("Achievement unlocked! SPEEDRUN_W1");
-                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W1");
-                        }
-                        break;
-                    case AudioManager.World.WORLD2:
-                        Debug.Log("Achievement unlocked! CLEAR_W2");
-                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W2");
-
-                        if (clearTime <= timeLimit)
-                        {
-                            Debug.Log("Achievement unlocked! SPEEDRUN_W2");
-                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W2");
-                        }
-                        break;
-                    case AudioManager.World.WORLD3:
-                        Debug.Log("Achievement unlocked! CLEAR_W3");
-                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W3");
-
-                        if (clearTime <= timeLimit)
-                        {
-                            Debug.Log("Achievement unlocked! SPEEDRUN_W3");
-                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W3");
-                        }
-                        break;
-                    case AudioManager.World.WORLD4:
-                        Debug.Log("Achievement unlocked! CLEAR_W4");
-                        JetEngine.SteamUtils.TryGetAchievement("CLEAR_W4");
-
-                        if (clearTime <= timeLimit)
-                        {
-                            Debug.Log("Achievement unlocked! SPEEDRUN_W4");
-                            JetEngine.SteamUtils.TryGetAchievement("SPEEDRUN_W4");
-                        }
-                        break;
-                }
-            }
-            else
-            {
-                //TODO: Something bad probably happened! We should handle it
-                Debug.LogWarning($"Tried to get level number but failed! [{currentLevelName}]");
-            }
-        */
             switch (AudioManager.instance.GetWorld(currentLevelNumber))
             {
                 case AudioManager.World.WORLD1:
@@ -259,15 +232,6 @@ public class LevelManager : MonoBehaviour
                     break;
             }
         }
-
-        StartCoroutine(GoToNextLevel(1.5f));
-    }
-
-    IEnumerator GoToNextLevel(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        ScreenWipe.current.WipeIn(NextScene, true);
-        PlayerMovement.instance.soundPlayer.PlaySound("Game.Stairs");
     }
 
     public void NextScene()

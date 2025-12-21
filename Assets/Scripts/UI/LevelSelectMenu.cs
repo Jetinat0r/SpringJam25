@@ -158,6 +158,8 @@ public class LevelSelectMenu : MonoBehaviour
         if (_fullClearedWorlds == 4)
         {
             //TODO: Final reward?
+            Debug.Log("Achievement unlocked! CHALLENGECLEAR_ALL");
+            JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_ALL");
         }
 
         UpdateChallengeButtonDisplayStates();

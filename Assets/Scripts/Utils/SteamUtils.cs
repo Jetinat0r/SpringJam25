@@ -78,6 +78,32 @@ namespace JetEngine
             return false;
         }
 
+        public static bool TryIncrementStat(string API_NAME)
+        {
+            if (!IsSteamApiLoaded())
+            {
+                return false;
+            }
+
+            if (SteamManager.Initialized)
+            {
+                bool gotData = Steamworks.SteamUserStats.GetStat(API_NAME, out int currentValue);
+                if (!gotData) return false;
+
+                currentValue++;
+
+                bool setData = Steamworks.SteamUserStats.SetStat(API_NAME, currentValue);
+                if (!setData) return false;
+
+                bool storedData = Steamworks.SteamUserStats.StoreStats();
+                if (!storedData) return false;
+
+                return true;
+            }
+
+            return false;
+        }
+
         public static bool IsOnSteamDeck()
         {
             if (!IsSteamApiLoaded())
