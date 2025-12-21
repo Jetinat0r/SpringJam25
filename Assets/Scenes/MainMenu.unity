@@ -55185,6 +55185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be61586965d2ebf459d1d99268ed0fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisplaySettingsMenu
+  windowModeSettingParent: {fileID: 1337842433}
   windowModeDropdown: {fileID: 1460171550}
   vsyncToggle: {fileID: 1641384819}
 --- !u!114 &1545512958
