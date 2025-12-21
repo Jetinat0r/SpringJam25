@@ -17660,6 +17660,10 @@ PrefabInstance:
       propertyPath: rightDist
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1497992678486151276, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2262139508355653605, guid: 20cd0f303374847f7a099bc230cc3346, type: 3}
       propertyPath: m_Name
       value: Roomba
@@ -33246,16 +33250,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
-  - first: {x: 7, y: -1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 15
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741826
   - first: {x: 9, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -35600,7 +35594,7 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 501
+  - m_RefCount: 500
     m_Data: {fileID: 11400000, guid: 0c8db2dcc10cd9f448c737ace57be8f5, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
@@ -35633,7 +35627,7 @@ Tilemap:
     m_Data: {fileID: 2071713919318606458, guid: 2e0cec9de8fea5f4eb1da7c18675f0e8, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -6571833192432456277, guid: 2e0cec9de8fea5f4eb1da7c18675f0e8, type: 3}
-  - m_RefCount: 63
+  - m_RefCount: 62
     m_Data: {fileID: 9008848586261225196, guid: 2e0cec9de8fea5f4eb1da7c18675f0e8, type: 3}
   - m_RefCount: 64
     m_Data: {fileID: 1004398472733646137, guid: 2e0cec9de8fea5f4eb1da7c18675f0e8, type: 3}
@@ -35652,7 +35646,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 1502508537914740746, guid: 2e0cec9de8fea5f4eb1da7c18675f0e8, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 501
+  - m_RefCount: 500
     m_Data:
       e00: 1
       e01: 0
@@ -35671,7 +35665,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 501
+  - m_RefCount: 500
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -53607,14 +53601,6 @@ CompositeCollider2D:
         Y: -30149998
       - X: -25000000
         Y: -40150000
-    - - X: 40000000
-        Y: 0
-      - X: 35000000
-        Y: 0
-      - X: 35000000
-        Y: -5000000
-      - X: 40000000
-        Y: -5000000
     - - X: 75000000
         Y: -40150000
       - X: 75000000
@@ -53661,10 +53647,6 @@ CompositeCollider2D:
       - {x: 4.5, y: 1.4999707}
       - {x: 4.4999704, y: -3.0149999}
       - {x: -2.5, y: -3.0150292}
-    - - {x: 3.999971, y: -0.5}
-      - {x: 3.999971, y: 0}
-      - {x: 3.5, y: -0.000029300001}
-      - {x: 3.5000293, y: -0.5}
     - - {x: 12.5, y: -4.0149703}
       - {x: 7.5, y: -4.0149703}
       - {x: 7.5000296, y: -3}
