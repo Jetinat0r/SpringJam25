@@ -36,6 +36,8 @@ public class Mirror : MonoBehaviour, IRotatable
     public MirrorableLight downLight;
     public MirrorableLight leftLight;
 
+    private bool isRotating = false;
+
     private void Start()
     {
         capsuleCollider = GetComponentInChildren<CapsuleCollider2D>();
@@ -141,6 +143,8 @@ public class Mirror : MonoBehaviour, IRotatable
 
     public void OnRotate(bool _clockwise)
     {
+        isRotating = true;
+
         //Convert enum to backing int type, increment/decrement, handle wrapping, and finally cast back to enum type
         if (_clockwise)
         {
@@ -203,7 +207,7 @@ public class Mirror : MonoBehaviour, IRotatable
         }
 
         //Update Lighting States After Animation
-        rotationSequence.AppendCallback(() => { UpdateLightState(); });
+        rotationSequence.AppendCallback(() => { isRotating = false; UpdateLightState(); });
         //Play Animation
         rotationSequence.Play();
 
@@ -232,6 +236,7 @@ public class Mirror : MonoBehaviour, IRotatable
 
     private void UpdateLightState()
     {
+        if (isRotating) { return; }
         /*
         upLight.gameObject.SetActive(false);
         rightLight.gameObject.SetActive(false);
