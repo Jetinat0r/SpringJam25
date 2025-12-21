@@ -650,6 +650,7 @@ public class PlayerMovement : MonoBehaviour
         shadowAnimator.updateMode = AnimatorUpdateMode.Normal;
 
         Debug.Log("Fully Entered");
+        rb.linearVelocityY = 0;
         rb.position = currentVent.counterpart.transform.position;
         transform.position = currentVent.counterpart.transform.position;
         //rb.MovePosition(currentVent.counterpart.transform.position);
