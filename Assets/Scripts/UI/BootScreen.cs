@@ -20,6 +20,9 @@ public class BootScreen : MonoBehaviour
     public List<Image> sidePanels = new();
     private List<Color> sidePanelOriginalColors = null;
 
+    [SerializeField]
+    private SoundPlayer soundPlayer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -54,6 +57,7 @@ public class BootScreen : MonoBehaviour
     public void StartAnimation()
     {
         bootAnimation.Play("IntroAnimation_Clip");
+        soundPlayer.PlaySound("UI.Startup");
     }
 
     public void OnAnimationComplete()
