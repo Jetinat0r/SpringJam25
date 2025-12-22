@@ -432,5 +432,6 @@
 	"CustomBindings": "",
 	"LastPlayedLevel": 1,
 	"UseCustomPalette": true,
-	"SkipIntro": false
+	"SkipIntro": false,
+	"AnonymousAlcoholic": false
 }
