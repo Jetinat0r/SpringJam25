@@ -116,6 +116,8 @@ public class SaveData
         //Defaults to true, but is treated as false if no custom palette is found
         public bool UseCustomPalette = true;
         public bool SkipIntro = false;
+        //Whether or not "Dry Ectoplasm" has been completed
+        public bool AnonymousAlcoholic = false;
 
         //Expects world number 1 indexed
         public WorldSaveData GetWorldSaveData(int _worldNumber)
@@ -153,6 +155,74 @@ public class SaveData
             }
 
             return 32;
+        }
+
+        public int GetNumCompletedEctoplasm()
+        {
+            int _completedEctoplasm = 0;
+            for (int i = 0; i < WorldSaveData.Length; i++)
+            {
+                for (int j = 0; j < WorldSaveData[i].levels.Length; j++)
+                {
+                    if (WorldSaveData[i].levels[j].challenges.beatEctoplasm)
+                    {
+                        _completedEctoplasm++;
+                    }
+                }
+            }
+
+            return _completedEctoplasm;
+        }
+
+        public int GetNumCompletedLightsOut()
+        {
+            int _completedLightsOut = 0;
+            for (int i = 0; i < WorldSaveData.Length; i++)
+            {
+                for (int j = 0; j < WorldSaveData[i].levels.Length; j++)
+                {
+                    if (WorldSaveData[i].levels[j].challenges.beatLightsOut)
+                    {
+                        _completedLightsOut++;
+                    }
+                }
+            }
+
+            return _completedLightsOut;
+        }
+
+        public int GetNumCompletedSpectralShuffle()
+        {
+            int _completedSpectralShuffle = 0;
+            for (int i = 0; i < WorldSaveData.Length; i++)
+            {
+                for (int j = 0; j < WorldSaveData[i].levels.Length; j++)
+                {
+                    if (WorldSaveData[i].levels[j].challenges.beatSpectralShuffle)
+                    {
+                        _completedSpectralShuffle++;
+                    }
+                }
+            }
+
+            return _completedSpectralShuffle;
+        }
+
+        public int GetNumCrownedLevels()
+        {
+            int _crowned = 0;
+            for (int i = 0; i < WorldSaveData.Length; i++)
+            {
+                for (int j = 0; j < WorldSaveData[i].levels.Length; j++)
+                {
+                    if (WorldSaveData[i].levels[j].challenges.beatEctoplasm && WorldSaveData[i].levels[j].challenges.beatLightsOut && WorldSaveData[i].levels[j].challenges.beatSpectralShuffle)
+                    {
+                        _crowned++;
+                    }
+                }
+            }
+
+            return _crowned;
         }
 
         public void SaveSaveData()

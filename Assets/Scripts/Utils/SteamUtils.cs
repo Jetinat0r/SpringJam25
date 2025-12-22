@@ -78,7 +78,7 @@ namespace JetEngine
             return false;
         }
 
-        public static bool TryIncrementStat(string API_NAME)
+        public static bool TrySetStat(string API_NAME, int _value)
         {
             if (!IsSteamApiLoaded())
             {
@@ -90,15 +90,13 @@ namespace JetEngine
                 bool gotData = Steamworks.SteamUserStats.GetStat(API_NAME, out int currentValue);
                 if (!gotData) return false;
 
-                currentValue++;
+                //currentValue++;
 
-                bool setData = Steamworks.SteamUserStats.SetStat(API_NAME, currentValue);
+                bool setData = Steamworks.SteamUserStats.SetStat(API_NAME, _value);
                 if (!setData) return false;
 
-                bool storedData = Steamworks.SteamUserStats.StoreStats();
-                if (!storedData) return false;
-
-                return true;
+                bool didStoreData = Steamworks.SteamUserStats.StoreStats();
+                return didStoreData;
             }
 
             return false;

@@ -18632,6 +18632,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd253058cb321be4a85adac12284c559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelectMenu
+  speedrunTimes:
+  - 105
+  - 335
+  - 435
+  - 315
   tweenMoveTime: 0.75
   tweenEaseType: 15
   worldContainerPanel: {fileID: 83367905}

@@ -740,5 +740,6 @@ public class PlayerMovement : MonoBehaviour
         hasWon = true;
         ChallengeManager.instance.TryCompleteChallenges();
         LevelManager.instance.CompleteLevel();
+        ProgramManager.instance.saveData.SaveSaveData();
     }
 }

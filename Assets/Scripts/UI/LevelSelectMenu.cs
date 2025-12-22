@@ -8,6 +8,9 @@ using System;
 
 public class LevelSelectMenu : MonoBehaviour
 {
+    [SerializeField]
+    public List<float> speedrunTimes = new List<float>();
+
     private int activeLevelPage = 0;
     [SerializeField]
     [Tooltip("Move time in seconds")]
@@ -155,11 +158,58 @@ public class LevelSelectMenu : MonoBehaviour
             LockChallenges();
         }
 
-        if (_fullClearedWorlds == 4)
+        //Achievement Checks:
+        //World Completion
+        for (int w = 0; w < 4; w++)
         {
-            //TODO: Final reward?
-            Debug.Log("Achievement unlocked! CHALLENGECLEAR_ALL");
+            bool _completedAllWorldLevels = true;
+            for (int i = 0; i < 8; i++)
+            {
+                if (!ProgramManager.instance.saveData.WorldSaveData[w].levels[i].completed)
+                {
+                    _completedAllWorldLevels = false;
+                    break;
+                }
+            }
+            if (_completedAllWorldLevels)
+            {
+                JetEngine.SteamUtils.TryGetAchievement($"CLEAR_W{w + 1}");
+                if (ProgramManager.instance.saveData.WorldSaveData[w].fastestTime <= speedrunTimes[w])
+                {
+                    JetEngine.SteamUtils.TryGetAchievement($"SPEEDRUN_W{w + 1}");
+                }
+            }
+        }
+
+        //Challenge Completion
+        int _ectoplasmCompleted = ProgramManager.instance.saveData.GetNumCompletedEctoplasm();
+        JetEngine.SteamUtils.TrySetStat("ep_count", _ectoplasmCompleted);
+        if (_ectoplasmCompleted == 32)
+        {
+            JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_EP");
+        }
+        int _lightsOutCompleted = ProgramManager.instance.saveData.GetNumCompletedLightsOut();
+        JetEngine.SteamUtils.TrySetStat("lo_count", _lightsOutCompleted);
+        if (_lightsOutCompleted == 32)
+        {
+            JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_LO");
+        }
+        int _spectralShuffleCompleted = ProgramManager.instance.saveData.GetNumCompletedSpectralShuffle();
+        JetEngine.SteamUtils.TrySetStat("ss_count", _spectralShuffleCompleted);
+        if (_spectralShuffleCompleted == 32)
+        {
+            JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_SS");
+        }
+        int _crowned = ProgramManager.instance.saveData.GetNumCrownedLevels();
+        JetEngine.SteamUtils.TrySetStat("crown_count", _crowned);
+        if (_crowned == 32)
+        {
             JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_ALL");
+        }
+
+        if (ProgramManager.instance.saveData.AnonymousAlcoholic)
+        {
+            JetEngine.SteamUtils.TryGetAchievement("ECTOPLASM_DRY");
         }
 
         UpdateChallengeButtonDisplayStates();

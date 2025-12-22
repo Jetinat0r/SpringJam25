@@ -160,6 +160,7 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("Achievement unlocked! ECTOPLASM_DRY");
             JetEngine.SteamUtils.TryGetAchievement("ECTOPLASM_DRY");
+            ProgramManager.instance.saveData.AnonymousAlcoholic = true;
         }
 
         if (AudioManager.instance.CheckChangeWorlds(nextLevelName))
@@ -168,6 +169,13 @@ public class LevelManager : MonoBehaviour
             if (SpeedrunManager.instance != null)
             {
                 clearTime = SpeedrunManager.instance.StopTimer();
+                int _worldIndex = (currentLevelNumber - 1) / 8;
+                float _fastestTime = ProgramManager.instance.saveData.WorldSaveData[_worldIndex].fastestTime;
+                if (clearTime < _fastestTime)
+                {
+                    ProgramManager.instance.saveData.WorldSaveData[_worldIndex].fastestTime = clearTime;
+                }
+
                 timeLimit = SpeedrunManager.instance.timeLimit;
                 Debug.Log("Clear time: " + clearTime);
                 Destroy(SpeedrunManager.instance);

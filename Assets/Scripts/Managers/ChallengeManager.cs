@@ -39,42 +39,46 @@ public class ChallengeManager : MonoBehaviour
         int _curWorldIndex = _curLevelNumber / 8;
         int _curLevelIndex = _curLevelNumber % 8;
 
-        var _beatEctoplasm = ProgramManager.instance.saveData.WorldSaveData[_curWorldIndex].levels[_curLevelIndex].challenges.beatEctoplasm;
-        var _beatLightsOut = ProgramManager.instance.saveData.WorldSaveData[_curWorldIndex].levels[_curLevelIndex].challenges.beatLightsOut;
-        var _beatSpectralShuffle = ProgramManager.instance.saveData.WorldSaveData[_curWorldIndex].levels[_curLevelIndex].challenges.beatSpectralShuffle;
+        if (ectoplasmEnabled) ProgramManager.instance.saveData.WorldSaveData[_curWorldIndex].levels[_curLevelIndex].challenges.beatEctoplasm = true;
+        if (lightsOutEnabled) ProgramManager.instance.saveData.WorldSaveData[_curWorldIndex].levels[_curLevelIndex].challenges.beatLightsOut = true;
+        if (spectralShuffleEnabled) ProgramManager.instance.saveData.WorldSaveData[_curWorldIndex].levels[_curLevelIndex].challenges.beatSpectralShuffle = true;
 
+        //Attempt to update steam stats
         if (ectoplasmEnabled)
         {
-            if (!_beatEctoplasm)
+            int _ectoplasmCompleted = ProgramManager.instance.saveData.GetNumCompletedEctoplasm();
+            JetEngine.SteamUtils.TrySetStat("ep_count", _ectoplasmCompleted);
+            if (_ectoplasmCompleted == 32)
             {
-                // Beat it for the first time
-                // Increase stat
-                JetEngine.SteamUtils.TryIncrementStat("ep_count");
+                JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_EP");
             }
-
-            _beatEctoplasm = true;
         }
         if (lightsOutEnabled)
         {
-            if (!_beatLightsOut)
+            int _lightsOutCompleted = ProgramManager.instance.saveData.GetNumCompletedLightsOut();
+            JetEngine.SteamUtils.TrySetStat("lo_count", _lightsOutCompleted);
+            if (_lightsOutCompleted == 32)
             {
-                // Beat it for the first time
-                // Increase stat
-                JetEngine.SteamUtils.TryIncrementStat("lo_count");
+                JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_LO");
             }
-
-            _beatLightsOut = true;
         }
         if (spectralShuffleEnabled)
         {
-            if (!_beatSpectralShuffle)
+            int _spectralShuffleCompleted = ProgramManager.instance.saveData.GetNumCompletedSpectralShuffle();
+            JetEngine.SteamUtils.TrySetStat("ss_count", _spectralShuffleCompleted);
+            if (_spectralShuffleCompleted == 32)
             {
-                // Beat it for the first time
-                // Increase stat
-                JetEngine.SteamUtils.TryIncrementStat("ss_count");
+                JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_SS");
             }
-
-            _beatSpectralShuffle = true;
+        }
+        if (ectoplasmEnabled || lightsOutEnabled || spectralShuffleEnabled)
+        {
+            int _crowned = ProgramManager.instance.saveData.GetNumCrownedLevels();
+            JetEngine.SteamUtils.TrySetStat("crown_count", _crowned);
+            if (_crowned == 32)
+            {
+                JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_ALL");
+            }
         }
 
         ProgramManager.instance.saveData.SaveSaveData();
