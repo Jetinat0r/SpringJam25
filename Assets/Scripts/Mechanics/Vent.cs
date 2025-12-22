@@ -53,7 +53,7 @@ public class Vent : MonoBehaviour, IToggleable
         }
         else
         {
-            //TODO: Play closed sound
+            player.PlayClangSound();
         }
     }
 
