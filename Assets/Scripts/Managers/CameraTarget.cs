@@ -62,7 +62,7 @@ public class CameraTarget : MonoBehaviour
                 _dir /= 2;
                 _targetPos += new Vector3(0, _dir * LevelManager.instance.zoneSize.y, 0);
             }
-            _ventSequence.Append(transform.DOMove(_targetPos, 0));
+            _ventSequence.Append(transform.DOMove(_targetPos, 0).OnStart(() => { PlayerMovement.instance.OnVentNewScreen(); }));
 
             if (i < _directions.Count - 1)
             {
@@ -70,7 +70,7 @@ public class CameraTarget : MonoBehaviour
             }
             else
             {
-                _ventSequence.AppendInterval(screenScrollTime + (ventSecondsPerScreen ));
+                _ventSequence.AppendInterval(screenScrollTime + ventSecondsPerScreen);
             }
         }
 

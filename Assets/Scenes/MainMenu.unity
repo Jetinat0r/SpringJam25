@@ -50738,15 +50738,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.00052083336
+    y: 0.0009259259
+    width: 0.9989584
+    height: 0.99814814
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.25
+  orthographic size: 4.8125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -51094,6 +51094,7 @@ MonoBehaviour:
   - {fileID: 2003396000}
   - {fileID: 105156618}
   - {fileID: 387975167}
+  soundPlayer: {fileID: 2020560074}
 --- !u!114 &1453520501
 MonoBehaviour:
   m_ObjectHideFlags: 0

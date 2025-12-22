@@ -659,6 +659,11 @@ public class PlayerMovement : MonoBehaviour
         _targets[0].TakeVentPath(currentVentPath, ExitVent);
     }
 
+    public void OnVentNewScreen()
+    {
+        soundPlayer.PlaySound("Game.VentClang");
+    }
+
     public void ExitVent()
     {
         if (isShadow)
