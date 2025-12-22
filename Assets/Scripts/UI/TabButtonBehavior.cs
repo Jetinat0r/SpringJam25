@@ -15,6 +15,9 @@ public class TabButtonBehavior : MonoBehaviour
     [SerializeField]
     public Selectable firstNavigableElement;
 
+    [SerializeField]
+    private SoundPlayer soundPlayer;
+
     public void ShowTab()
     {
         //Don't activate tab if already active
@@ -33,6 +36,7 @@ public class TabButtonBehavior : MonoBehaviour
             t.tabButton.navigation = _nav;
         }
 
+        soundPlayer.PlaySound("UI.Select");
         tabContent.SetActive(true);
         activeTabDisplay.SetActive(true);
     }

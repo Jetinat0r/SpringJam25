@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a913750643e7984d8ea61409649b0da, type: 3}
+  m_Script: {fileID: 11500000, guid: bce0f28d8c20041688f5a354ba0b5f0d, type: 3}
   m_Name: Startup
-  m_EditorClassIdentifier: Assembly-CSharp::SoundClip
-  clip: {fileID: 8300000, guid: ab5fb86e494dc954dafe070879c5d0b3, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::WorldVariableSoundClip
+  clip:
+  - {fileID: 8300000, guid: ab5fb86e494dc954dafe070879c5d0b3, type: 3}
+  - {fileID: 8300000, guid: eee4faced4f44c74baa013ad3e8dc4ad, type: 3}
+  - {fileID: 8300000, guid: 4742585701986bc428c01da71e945d46, type: 3}
+  - {fileID: 8300000, guid: f44a93a5698594d4aa718ff3cda83150, type: 3}

@@ -54,7 +54,7 @@ public class Door : MonoBehaviour
         }
         else
         {
-            // Play a sound or something maybe
+            playerScript.PlayClangSound();
         }
     }
 

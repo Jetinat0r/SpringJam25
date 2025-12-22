@@ -6569,6 +6569,7 @@ MonoBehaviour:
   activeTabDisplay: {fileID: 1464044465}
   tabContent: {fileID: 2135577044}
   firstNavigableElement: {fileID: 1794485471}
+  soundPlayer: {fileID: 2020560074}
 --- !u!1 &170210313
 GameObject:
   m_ObjectHideFlags: 0
@@ -10266,6 +10267,7 @@ MonoBehaviour:
   activeTabDisplay: {fileID: 956398891}
   tabContent: {fileID: 2141741169}
   firstNavigableElement: {fileID: 1460171550}
+  soundPlayer: {fileID: 2020560074}
 --- !u!114 &278848778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18715,6 +18717,7 @@ MonoBehaviour:
   lightsOutDisabledText: {fileID: 1306712731}
   spectralShuffleEnabledText: {fileID: 1301581823}
   spectralShuffleDisabledText: {fileID: 618689400}
+  soundPlayer: {fileID: 2020560074}
 --- !u!1 &542081556
 GameObject:
   m_ObjectHideFlags: 0
@@ -33170,6 +33173,7 @@ MonoBehaviour:
   activeTabDisplay: {fileID: 237809789}
   tabContent: {fileID: 61472003}
   firstNavigableElement: {fileID: 682215508}
+  soundPlayer: {fileID: 2020560074}
 --- !u!114 &949959826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34594,6 +34598,7 @@ MonoBehaviour:
   activeTabDisplay: {fileID: 1743076170}
   tabContent: {fileID: 2030924560}
   firstNavigableElement: {fileID: 120513257}
+  soundPlayer: {fileID: 2020560074}
 --- !u!114 &971601940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55214,6 +55219,7 @@ MonoBehaviour:
   resetBindingsPopupMenu: {fileID: 865780038}
   resetBindingsPopupFirstSelected: {fileID: 824258422}
   resetBindingsButton: {fileID: 1373894880}
+  soundPlayer: {fileID: 2020560074}
 --- !u!1 &1547757145
 GameObject:
   m_ObjectHideFlags: 0

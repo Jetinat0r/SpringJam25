@@ -78,7 +78,6 @@ public class ScreenWipe : MonoBehaviour
         if (ShaderManager.instance.CheckNeedsPaletteTransition(_levelPaletteIndex))
         {
             //Swap palettes
-            //TODO: STOP MUSIC TRACK
             curSequence.AppendCallback(() => ShaderManager.instance.SetupPaletteTransition(_levelPaletteIndex));
             curSequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteMixAmount(.33f); });
             curSequence.AppendInterval(secondsPerPaletteOperation);
@@ -86,7 +85,6 @@ public class ScreenWipe : MonoBehaviour
             curSequence.AppendInterval(secondsPerPaletteOperation);
             curSequence.AppendCallback(() => { ShaderManager.instance.UpdatePaletteMixAmount(1f); });
             curSequence.AppendInterval(secondsPerPaletteOperation * 2f);
-            //TODO: START NEW MUSIC TRACK
             curSequence.AppendCallback(() => { ShaderManager.instance.EndPaletteTransition(); });
         }
 
