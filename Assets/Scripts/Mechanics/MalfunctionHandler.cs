@@ -6,7 +6,7 @@ public class MalfunctionHandler : MonoBehaviour
     public IToggleable toggleable;
 
     public int numFlickers = 3;
-    public float flickerPeriod = 0.05f;
+    public float flickerPeriod = 0.1f;
     public float downTime = 1f;
 
     private Sequence flickerSequence;

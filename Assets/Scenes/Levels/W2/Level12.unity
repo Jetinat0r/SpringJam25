@@ -4444,6 +4444,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6473461939702629203, guid: 1144a5027bce9174c96a889988675f23, type: 3}
   m_PrefabInstance: {fileID: 1123254471}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &545941657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545941656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8360f77daf99a14caff3efd1f3f17af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MalfunctionHandler
+  numFlickers: 0
+  flickerPeriod: 0.1
+  downTime: 1.4
 --- !u!1 &552027392
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,8 +5195,57 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6473461939702629203, guid: 1144a5027bce9174c96a889988675f23, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1961020121}
   m_SourcePrefab: {fileID: 100100000, guid: 1144a5027bce9174c96a889988675f23, type: 3}
+--- !u!1 &707347429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 707347431}
+  - component: {fileID: 707347430}
+  m_Layer: 0
+  m_Name: MalfunctionAnnouncer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &707347430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707347429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e168900b68beff74c88a05fefa012958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpectralShuffleChallengeAnnouncer
+  levelMenuManager: {fileID: 1641930601}
+  challengeName: MALFUNCTION
+--- !u!4 &707347431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707347429}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &815359497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5350,6 +5414,7 @@ MonoBehaviour:
   firstPatrolRight: 0
   patrolDistanceFromCenter: 4
   patrolPeriod: 12
+  makeCosine: 0
 --- !u!4 &982439641
 Transform:
   m_ObjectHideFlags: 0
@@ -5371,6 +5436,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6473461939702629203, guid: 1144a5027bce9174c96a889988675f23, type: 3}
   m_PrefabInstance: {fileID: 1040564452}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1012330119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012330118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8360f77daf99a14caff3efd1f3f17af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MalfunctionHandler
+  numFlickers: 0
+  flickerPeriod: 0.1
+  downTime: 1.4
 --- !u!1 &1040561641
 GameObject:
   m_ObjectHideFlags: 0
@@ -6075,7 +6155,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6473461939702629203, guid: 1144a5027bce9174c96a889988675f23, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1012330119}
   m_SourcePrefab: {fileID: 100100000, guid: 1144a5027bce9174c96a889988675f23, type: 3}
 --- !u!1001 &1051446227
 PrefabInstance:
@@ -6282,7 +6365,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6473461939702629203, guid: 1144a5027bce9174c96a889988675f23, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 545941657}
   m_SourcePrefab: {fileID: 100100000, guid: 1144a5027bce9174c96a889988675f23, type: 3}
 --- !u!4 &1217404216 stripped
 Transform:
@@ -6351,6 +6437,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6473461939702629203, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
   m_PrefabInstance: {fileID: 1309213722}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1282295205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282295204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8360f77daf99a14caff3efd1f3f17af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MalfunctionHandler
+  numFlickers: 0
+  flickerPeriod: 0.1
+  downTime: 1.7
 --- !u!1001 &1309213722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6414,7 +6515,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6473461939702629203, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1282295205}
   m_SourcePrefab: {fileID: 100100000, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
 --- !u!1001 &1391739150
 PrefabInstance:
@@ -7041,7 +7145,7 @@ Tilemap:
       - {fileID: -1881133030138643150, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -8035304731177095645, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -6266161475285700000, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 0, y: -6, z: 0}
@@ -7221,7 +7325,7 @@ Tilemap:
       - {fileID: 5097835944376697235, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -4807704676763458266, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -6051028654464453215, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: -1, z: 0}
@@ -7231,7 +7335,7 @@ Tilemap:
       - {fileID: -7073110359072914169, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -5999132610181422918, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -3884477281039024349, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -7, y: -1, z: 0}
@@ -7472,6 +7576,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f08bce282531a6e42ac34c270a3c0be0, type: 3}
+--- !u!114 &1641930601 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5629337836985145464, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
+  m_PrefabInstance: {fileID: 474705716}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0f265191728ec439b50b194ba2e3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1672875557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7615,6 +7730,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6473461939702629203, guid: 1144a5027bce9174c96a889988675f23, type: 3}
   m_PrefabInstance: {fileID: 646225233}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1961020121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961020120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8360f77daf99a14caff3efd1f3f17af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MalfunctionHandler
+  numFlickers: 0
+  flickerPeriod: 0.1
+  downTime: 1.55
 --- !u!1001 &1987128134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21333,3 +21463,4 @@ SceneRoots:
   - {fileID: 815359497}
   - {fileID: 1987128134}
   - {fileID: 264487434}
+  - {fileID: 707347431}
