@@ -75,6 +75,9 @@ public class LevelSelectMenu : MonoBehaviour
     public GameObject spectralShuffleEnabledText;
     public GameObject spectralShuffleDisabledText;
 
+    [SerializeField]
+    private SoundPlayer soundPlayer;
+
     private void Awake()
     {
         for (int i = 0; i < levelContainerPanels.Count; i++)
@@ -260,7 +263,7 @@ public class LevelSelectMenu : MonoBehaviour
     {
         if (activeLevelPage == 0)
         {
-            //TODO: play bad sound
+            soundPlayer.PlaySound("UI.Back");
             return;
         }
 
@@ -271,7 +274,7 @@ public class LevelSelectMenu : MonoBehaviour
     {
         if (activeLevelPage == 3)
         {
-            //TODO: play bad sound
+            soundPlayer.PlaySound("UI.Back");
             return;
         }
 
@@ -364,7 +367,7 @@ public class LevelSelectMenu : MonoBehaviour
         }
         else
         {
-            //TODO: Play sound
+            soundPlayer.PlaySound("UI.Select");
             pageSlideTween = worldContainerPanel.DOAnchorPosX(-levelContainerPanelInitialAnchoredPositions[activeLevelPage].x, tweenMoveTime).SetEase(tweenEaseType);
             worldNameSlideTween = worldNameContainerPanel.DOAnchorPosX(-worldNamePanelInitialAnchoredPositions[activeLevelPage].x, tweenMoveTime).SetEase(tweenEaseType);
         }
@@ -390,22 +393,22 @@ public class LevelSelectMenu : MonoBehaviour
 
     public void ToggleEctoplasmMode()
     {
-        //TODO: Play sound. Sound should be dependent on resultant state (good sound for enabled, bad for disabled)
         ChallengeManager.instance.ectoplasmEnabled = !ChallengeManager.instance.ectoplasmEnabled;
+        soundPlayer.PlaySound(ChallengeManager.instance.ectoplasmEnabled ? "UI.Select" : "UI.Back");
         UpdateChallengeButtonDisplayStates();
     }
 
     public void ToggleLightsOutMode()
     {
-        //TODO: Play sound. Sound should be dependent on resultant state (good sound for enabled, bad for disabled)
         ChallengeManager.instance.lightsOutEnabled = !ChallengeManager.instance.lightsOutEnabled;
+        soundPlayer.PlaySound(ChallengeManager.instance.lightsOutEnabled ? "UI.Select" : "UI.Back");
         UpdateChallengeButtonDisplayStates();
     }
 
     public void ToggleSpectralShuffleMode()
     {
-        //TODO: Play sound. Sound should be dependent on resultant state (good sound for enabled, bad for disabled)
         ChallengeManager.instance.spectralShuffleEnabled = !ChallengeManager.instance.spectralShuffleEnabled;
+        soundPlayer.PlaySound(ChallengeManager.instance.spectralShuffleEnabled ? "UI.Select" : "UI.Back");
         UpdateChallengeButtonDisplayStates();
     }
 

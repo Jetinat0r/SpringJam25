@@ -170,9 +170,6 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO add states for these
-        //if (GameManager.instance.paused || GameManager.instance.gameOver) return;
-
         if (instance == null)
         {
             instance = this;

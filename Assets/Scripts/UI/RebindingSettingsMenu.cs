@@ -22,6 +22,8 @@ public class RebindingSettingsMenu : MonoBehaviour
     public Button resetBindingsPopupFirstSelected;
     [SerializeField]
     public Button resetBindingsButton;
+    [SerializeField]
+    public SoundPlayer soundPlayer;
 
 
     public void RebindControl(InputOverlord.INPUT_ACTION _inputAction, InputOverlord.SUPPORTED_CONTROL_TYPE _controlType, Selectable _returnTarget)
@@ -85,20 +87,20 @@ public class RebindingSettingsMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         MenuPanelWatcher.instance.activePanel = MenuPanel.POPUP;
 
-        //TODO: Play Rebinding Start Sound
+        soundPlayer.PlaySound("UI.Move");
 
         //Start Rebind Operation
         InputOverlord.instance.RebindControl(_inputAction, _controlType,
             () =>
             {
                 //Success Operation
-                //TODO: Play success sound
+                soundPlayer.PlaySound("UI.Select");
                 ClosePopupMenu(_returnTarget);
             },
             () =>
             {
                 //Failure Operation
-                //TODO: Play failure sound
+                soundPlayer.PlaySound("UI.Back");
                 ClosePopupMenu(_returnTarget);
             });
     }
@@ -113,7 +115,7 @@ public class RebindingSettingsMenu : MonoBehaviour
 
     public void ResetBindings()
     {
-        //TODO: Play Success sound
+        soundPlayer.PlaySound("UI.Select");
         InputOverlord.instance.ResetBindings();
     }
 
