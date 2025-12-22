@@ -72,7 +72,6 @@ public class ShaderManager : MonoBehaviour
             {
                 return 3;
             }
-            
             else
             {
                 Debug.LogWarning($"Unknown Level [{_sceneName}] Loading! Reverting to palette 0");
