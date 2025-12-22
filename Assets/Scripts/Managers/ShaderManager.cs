@@ -48,6 +48,12 @@ public class ShaderManager : MonoBehaviour
             return curPaletteIndex;
         }
 
+        //Credits forces world 1
+        if (_sceneName == "Credits")
+        {
+            return 0;
+        }
+
         if (int.TryParse(Regex.Match(_sceneName, @"\d+").Value, out int _level))
         {
             if (_level >= 1 && _level <= 8)
