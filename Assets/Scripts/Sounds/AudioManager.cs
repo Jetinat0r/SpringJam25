@@ -104,6 +104,11 @@ public class AudioManager : MonoBehaviour
                 return true;
             }
         }
+        else if (_levelName == "Credits")
+        {
+            Stop();
+            return true;
+        }
 
         return false;
     }

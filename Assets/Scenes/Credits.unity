@@ -1695,10 +1695,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2931945224631859722, guid: 145890db8ea77af42994f7661ea4dc5d, type: 3}
-      propertyPath: autoWipeOut
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3094882671754754662, guid: 145890db8ea77af42994f7661ea4dc5d, type: 3}
       propertyPath: m_Name
       value: ScreenWipe
