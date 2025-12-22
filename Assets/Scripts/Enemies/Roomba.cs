@@ -18,14 +18,11 @@ public class Roomba : MonoBehaviour
     public float spdBoost;
     public PhysicsMaterial2D friction, slippery;
 
-    Animator myAnim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         EnemyRB = GetComponent<Rigidbody2D>();
         home = transform.position;
-
-        myAnim = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
     }
 
     // Update is called once per frame
