@@ -38,7 +38,7 @@ public class SpeedrunManager : MonoBehaviour
 
     private void Update()
     {
-        if (timerActive && !LevelMenuManager.isMenuOpen)
+        if (timerActive)
         {
             timer += Time.unscaledDeltaTime;
             // Debug.Log("Timer at " + timer);
