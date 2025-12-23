@@ -839,6 +839,10 @@ PrefabInstance:
       propertyPath: DEBUG_SHOW_LEVEL_GRID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
+      propertyPath: spectralEctoplasmTime
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5980513364741979909, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: data
       value: TFFFTFFFTFFF*FFF
@@ -20851,7 +20855,7 @@ Tilemap:
       - {fileID: -1881133030138643150, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -8035304731177095645, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -6266161475285700000, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 10, z: 0}
