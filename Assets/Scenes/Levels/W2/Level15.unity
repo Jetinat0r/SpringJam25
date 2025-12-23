@@ -18607,7 +18607,7 @@ Tilemap:
       - {fileID: -1881133030138643150, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -8035304731177095645, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -6266161475285700000, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 28, y: 3, z: 0}
@@ -19261,6 +19261,83 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34132f20332a66345a207a76d8038c02, type: 3}
+--- !u!1001 &1971004618
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6477462219131922576, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_Name
+      value: LightsOutCandle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6477462219131922576, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1971004620}
+  m_SourcePrefab: {fileID: 100100000, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+--- !u!1 &1971004619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6477462219131922576, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+  m_PrefabInstance: {fileID: 1971004618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1971004620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971004619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798c253393d8b10488bdfd3bfcb42d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EctoplasmObject
 --- !u!1001 &1976084337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58634,3 +58711,4 @@ SceneRoots:
   - {fileID: 1197542030}
   - {fileID: 1818610629}
   - {fileID: 1254396286}
+  - {fileID: 1971004618}

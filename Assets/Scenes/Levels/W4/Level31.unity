@@ -645,6 +645,84 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
+--- !u!1001 &300100607
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6477462219131922576, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_Name
+      value: LightsOutCandle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6477462219131922576, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 300100609}
+  m_SourcePrefab: {fileID: 100100000, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+--- !u!1 &300100608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6477462219131922576, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+  m_PrefabInstance: {fileID: 300100607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &300100609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300100608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a031ddba70a50834ca2f8b0f58844226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpectralShuffleObject
+  destroyInSpectralShuffle: 0
 --- !u!1001 &353157593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55302,3 +55380,4 @@ SceneRoots:
   - {fileID: 1010915539}
   - {fileID: 53136308}
   - {fileID: 1298258285}
+  - {fileID: 300100607}
