@@ -57,7 +57,6 @@ namespace JetEngine
         {
             if (!IsSteamApiLoaded())
             {
-                //TODO: Save achievements locally?
                 return false;
             }
 
@@ -106,11 +105,21 @@ namespace JetEngine
         {
             if (!IsSteamApiLoaded())
             {
-                //TODO: Save achievements locally?
                 return false;
             }
 
             return Steamworks.SteamUtils.IsSteamRunningOnSteamDeck();
+        }
+
+        public static bool ResetAchievements()
+        {
+            if (!IsSteamApiLoaded())
+            {
+                return false;
+            }
+
+            Debug.Log("Reset All Steam Achievements!");
+            return Steamworks.SteamUserStats.ResetAllStats(true);
         }
 
         /*

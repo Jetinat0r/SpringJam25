@@ -1,3 +1,4 @@
+using JetEngine;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -34,5 +35,17 @@ public class ToggleSteamUsage : MonoBehaviour
         EditorPrefs.SetBool("noSteam", true);
 
         Debug.Log("Steam API Usage set to false; Restart Editor to guarantee this takes effect!");
+    }
+
+    [MenuItem("PhantomFeline/Steam/Reset Achievements")]
+    static void ResetAchievements()
+    {
+        SteamUtils.ResetAchievements();
+    }
+
+    [MenuItem("PhantomFeline/Steam/Reset Achievements", true)]
+    static bool ValidateResetAchievements()
+    {
+        return Application.isPlaying && SteamUtils.IsSteamApiLoaded();
     }
 }
