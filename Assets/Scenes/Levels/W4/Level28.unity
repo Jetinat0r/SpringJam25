@@ -546,6 +546,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
+--- !u!114 &474705717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5629337836985145464, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
+  m_PrefabInstance: {fileID: 474705716}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0f265191728ec439b50b194ba2e3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &506048768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7236,6 +7247,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2993255736945064512, guid: d80a3bd03471c7046a0f5699ca6554c1, type: 3}
   m_PrefabInstance: {fileID: 970613960}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1630673511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630673513}
+  - component: {fileID: 1630673512}
+  m_Layer: 0
+  m_Name: MalfunctionAnnouncer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1630673512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630673511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e168900b68beff74c88a05fefa012958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpectralShuffleChallengeAnnouncer
+  levelMenuManager: {fileID: 474705717}
+  challengeName: MALFUNCTION
+--- !u!4 &1630673513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630673511}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1830985956 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2993255736945064512, guid: d80a3bd03471c7046a0f5699ca6554c1, type: 3}
@@ -7361,8 +7418,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3762205280560866231, guid: 9554ae7a90aef0a46877e2609954923e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1875984588}
   m_SourcePrefab: {fileID: 100100000, guid: 9554ae7a90aef0a46877e2609954923e, type: 3}
+--- !u!1 &1875984587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3762205280560866231, guid: 9554ae7a90aef0a46877e2609954923e, type: 3}
+  m_PrefabInstance: {fileID: 1875984586}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1875984588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875984587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375ef8e9bc932594caeb2f8da9129c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BetterMalfunction
+  numFlickers: 3
+  flickerPeriod: 0.1
+  downATime: 3.5
+  downBTime: 0.4
 --- !u!1001 &1956852634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20663,3 +20744,4 @@ SceneRoots:
   - {fileID: 1861217187}
   - {fileID: 264295152}
   - {fileID: 2139265168}
+  - {fileID: 1630673513}
