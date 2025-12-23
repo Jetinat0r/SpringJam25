@@ -316,8 +316,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3645929282881694188, guid: e24dd6e0ac6f75444a260d475440451b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 243321640}
   m_SourcePrefab: {fileID: 100100000, guid: e24dd6e0ac6f75444a260d475440451b, type: 3}
+--- !u!1 &243321639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3645929282881694188, guid: e24dd6e0ac6f75444a260d475440451b, type: 3}
+  m_PrefabInstance: {fileID: 243321638}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &243321640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243321639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a031ddba70a50834ca2f8b0f58844226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpectralShuffleObject
+  destroyInSpectralShuffle: 0
+--- !u!4 &320498474 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6247794686570262604, guid: ea148c70cba7db64286c484aa6f84a57, type: 3}
+  m_PrefabInstance: {fileID: 610425747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &353157593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1586,8 +1612,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4435394746808665341, guid: 2c2127e5193a135409b2e0b3bf452f28, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 607699939}
   m_SourcePrefab: {fileID: 100100000, guid: 2c2127e5193a135409b2e0b3bf452f28, type: 3}
+--- !u!1 &607699938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4435394746808665341, guid: 2c2127e5193a135409b2e0b3bf452f28, type: 3}
+  m_PrefabInstance: {fileID: 607699937}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &607699939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607699938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a031ddba70a50834ca2f8b0f58844226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpectralShuffleObject
+  destroyInSpectralShuffle: 0
 --- !u!1001 &610425747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1642,7 +1689,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6247794686570262604, guid: ea148c70cba7db64286c484aa6f84a57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1785379597}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea148c70cba7db64286c484aa6f84a57, type: 3}
 --- !u!1001 &663122424
@@ -8060,8 +8110,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4435394746808665341, guid: 2c2127e5193a135409b2e0b3bf452f28, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1463972682}
   m_SourcePrefab: {fileID: 100100000, guid: 2c2127e5193a135409b2e0b3bf452f28, type: 3}
+--- !u!1 &1463972681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4435394746808665341, guid: 2c2127e5193a135409b2e0b3bf452f28, type: 3}
+  m_PrefabInstance: {fileID: 1463972680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1463972682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463972681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a031ddba70a50834ca2f8b0f58844226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpectralShuffleObject
+  destroyInSpectralShuffle: 0
 --- !u!1 &1482538034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6477462219131922576, guid: 6a5d150d002441e498fa51df445173a6, type: 3}
@@ -8208,8 +8279,91 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3645929282881694188, guid: e24dd6e0ac6f75444a260d475440451b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1733192579}
   m_SourcePrefab: {fileID: 100100000, guid: e24dd6e0ac6f75444a260d475440451b, type: 3}
+--- !u!1 &1733192578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3645929282881694188, guid: e24dd6e0ac6f75444a260d475440451b, type: 3}
+  m_PrefabInstance: {fileID: 1733192577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1733192579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733192578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a031ddba70a50834ca2f8b0f58844226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpectralShuffleObject
+  destroyInSpectralShuffle: 0
+--- !u!1001 &1785379596
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 320498474}
+    m_Modifications:
+    - target: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7362737471267029942, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+      propertyPath: m_Name
+      value: LightsOutCircleLight
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+--- !u!4 &1785379597 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6718512894693216396, guid: d47369e021ec27240b87cb2c39fe0fe4, type: 3}
+  m_PrefabInstance: {fileID: 1785379596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1961132680
 PrefabInstance:
   m_ObjectHideFlags: 0

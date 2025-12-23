@@ -20851,7 +20851,7 @@ Tilemap:
       - {fileID: -1881133030138643150, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -8035304731177095645, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
       - {fileID: -6266161475285700000, guid: 9455e1ea4fa3f6147b51ac69bfe8ba4f, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 10, z: 0}
@@ -21190,6 +21190,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6735271595836201446, guid: 6a5d150d002441e498fa51df445173a6, type: 3}
   m_PrefabInstance: {fileID: 975572327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1005176828
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1804372064}
+    m_Modifications:
+    - target: {fileID: 6477462219131922576, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_Name
+      value: LightsOutCandle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+--- !u!4 &1005176829 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6735271595836201446, guid: 7112d3f696369714bbcf466a5f503567, type: 3}
+  m_PrefabInstance: {fileID: 1005176828}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1032132405
 PrefabInstance:
@@ -35028,6 +35090,7 @@ Transform:
   m_Children:
   - {fileID: 559355699}
   - {fileID: 246315209}
+  - {fileID: 1005176829}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1837299112
