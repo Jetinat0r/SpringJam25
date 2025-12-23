@@ -737,6 +737,10 @@ PrefabInstance:
       propertyPath: currentLevelNumber
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
+      propertyPath: spectralEctoplasmTime
+      value: 38
+      objectReference: {fileID: 0}
     - target: {fileID: 6364925609594288239, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

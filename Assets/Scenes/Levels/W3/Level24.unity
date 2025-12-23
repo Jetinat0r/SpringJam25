@@ -9165,6 +9165,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
+      propertyPath: spectralEctoplasmTime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467659291085243353, guid: fdb661295a72a7044ae1cc00fa65495c, type: 3}
       propertyPath: DEBUG_LEVEL_GRID_SCALE
       value: 0.99
       objectReference: {fileID: 0}

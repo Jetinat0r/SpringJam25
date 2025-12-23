@@ -42,6 +42,7 @@ public class LevelManager : MonoBehaviour
     public static bool isResetting = false;
 
     public float ectoplasmTime = 5f;
+    public float spectralEctoplasmTime = 10f;
     private int initialBottleCount; // Used for Stay Dehydrated achievement
 
     float clearTime = 1;

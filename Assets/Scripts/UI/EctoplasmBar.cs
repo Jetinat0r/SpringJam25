@@ -44,7 +44,14 @@ public class EctoplasmBar : MonoBehaviour
         }
 
         // Always start bar at full
-        maxTime = LevelManager.instance.ectoplasmTime;
+        if (ChallengeManager.instance.spectralShuffleEnabled)
+        {
+            maxTime = LevelManager.instance.spectralEctoplasmTime;
+        }
+        else
+        {
+            maxTime = LevelManager.instance.ectoplasmTime;
+        }
         timeRemaining = maxTime;
     }
 
