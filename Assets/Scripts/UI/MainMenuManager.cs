@@ -171,6 +171,11 @@ public class MainMenuManager : MonoBehaviour
         mainLogo.timer = startScreenLogo.timer;
     }
 
+    public void PlayInteractSound()
+    {
+        soundPlayer.PlaySound("UI.Select");
+    }
+
     //Sets up the input to allow standard menu interactions
     //  Seperated to allow boot splash, corrupted save popups, and start screen to exist in varying states without exploding logic
     public void EnterMainMenu()
