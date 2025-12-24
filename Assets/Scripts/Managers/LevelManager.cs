@@ -164,7 +164,8 @@ public class LevelManager : MonoBehaviour
             ProgramManager.instance.saveData.AnonymousAlcoholic = true;
         }
 
-        if (AudioManager.instance.CheckChangeWorlds(nextLevelName))
+        //if (AudioManager.instance.CheckChangeWorlds(nextLevelName))
+        if (currentLevelNumber % 8 == 0)
         {
             // Completed last level of the world
             if (SpeedrunManager.instance != null)
