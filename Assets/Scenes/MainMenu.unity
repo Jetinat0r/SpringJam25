@@ -21998,7 +21998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6980293509410089851, guid: 6ad1a2c1d0d700e4688e471b2ffd2a52, type: 3}
       propertyPath: levelName
-      value: Level14
+      value: Level14b
       objectReference: {fileID: 0}
     - target: {fileID: 8010921912469818439, guid: 6ad1a2c1d0d700e4688e471b2ffd2a52, type: 3}
       propertyPath: m_Pivot.x
@@ -51297,8 +51297,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.99907833
-    height: 0.9985229
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
