@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using System.Collections;
 
 public class RebindingSettingsMenu : MonoBehaviour
 {
@@ -24,7 +26,8 @@ public class RebindingSettingsMenu : MonoBehaviour
     public Button resetBindingsButton;
     [SerializeField]
     public SoundPlayer soundPlayer;
-
+    [SerializeField]
+    private float postRebindDelayTime = 0.1f;
 
     public void RebindControl(InputOverlord.INPUT_ACTION _inputAction, InputOverlord.SUPPORTED_CONTROL_TYPE _controlType, Selectable _returnTarget)
     {
@@ -107,10 +110,21 @@ public class RebindingSettingsMenu : MonoBehaviour
 
     public void ClosePopupMenu(Selectable _returnTarget)
     {
+        //TODO: Check if this fixes the instant rebing issue on steam deck
+        Button _targetBindingButton = _returnTarget.GetComponent<Button>();
+        _targetBindingButton.interactable = false;
+        StartCoroutine(ReenableBindingButton(_targetBindingButton));
+
         MenuPanelWatcher.instance.activePanel = MenuPanel.SETTINGS;
         EventSystem.current.SetSelectedGameObject(_returnTarget.gameObject);
 
         rebindingPopupMenu.SetActive(false);
+    }
+
+    public IEnumerator ReenableBindingButton(Button _buttonToEnable)
+    {
+        yield return new WaitForSeconds(postRebindDelayTime);
+        _buttonToEnable.interactable = true;
     }
 
     public void ResetBindings()
