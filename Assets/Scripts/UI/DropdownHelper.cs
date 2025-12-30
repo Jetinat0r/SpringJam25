@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(SelectOnHover))]
 public class DropdownHelper : TMP_Dropdown
@@ -24,5 +26,17 @@ public class DropdownHelper : TMP_Dropdown
     {
         _selectOnHover.SetEnabled(true);
         base.DestroyDropdownList(dropdownList);
+    }
+
+    protected override GameObject CreateBlocker(Canvas rootCanvas)
+    {
+        GameObject blocker = base.CreateBlocker(rootCanvas);
+        blocker.GetComponent<Button>().onClick.AddListener(ClickedBlocker);
+        return blocker;
+    }
+
+    void ClickedBlocker()
+    {
+        MainMenuManager.menuSoundPlayer.PlaySound("UI.Back");
     }
 }
