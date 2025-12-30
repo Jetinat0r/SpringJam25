@@ -118,6 +118,8 @@ public class SaveData
         public bool SkipIntro = false;
         //Whether or not "Dry Ectoplasm" has been completed
         public bool AnonymousAlcoholic = false;
+        //Whether or not "Concussion" has been completed
+        public bool Concussed = false;
 
         //Expects world number 1 indexed
         public WorldSaveData GetWorldSaveData(int _worldNumber)

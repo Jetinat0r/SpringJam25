@@ -50,6 +50,7 @@ public class ChallengeManager : MonoBehaviour
             JetEngine.SteamUtils.TrySetStat("ep_count", _ectoplasmCompleted);
             if (_ectoplasmCompleted == 32)
             {
+                Debug.Log("Achievement Unlocked: Challenge Clear Ectoplasm");
                 JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_EP");
             }
         }
@@ -59,6 +60,7 @@ public class ChallengeManager : MonoBehaviour
             JetEngine.SteamUtils.TrySetStat("lo_count", _lightsOutCompleted);
             if (_lightsOutCompleted == 32)
             {
+                Debug.Log("Achievement Unlocked: Challenge Clear Lights Out");
                 JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_LO");
             }
         }
@@ -68,6 +70,7 @@ public class ChallengeManager : MonoBehaviour
             JetEngine.SteamUtils.TrySetStat("ss_count", _spectralShuffleCompleted);
             if (_spectralShuffleCompleted == 32)
             {
+                Debug.Log("Achievement Unlocked: Challenge Clear Spectral Shuffle");
                 JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_SS");
             }
         }
@@ -77,6 +80,7 @@ public class ChallengeManager : MonoBehaviour
             JetEngine.SteamUtils.TrySetStat("crown_count", _crowned);
             if (_crowned == 32)
             {
+                Debug.Log("Achievement Unlocked: Challenge Clear All");
                 JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_ALL");
             }
         }

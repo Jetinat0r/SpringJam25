@@ -176,9 +176,11 @@ public class LevelSelectMenu : MonoBehaviour
             }
             if (_completedAllWorldLevels)
             {
+                Debug.Log($"(Menu Safeguard) Achievement Unlocked: Clear W{w + 1}");
                 JetEngine.SteamUtils.TryGetAchievement($"CLEAR_W{w + 1}");
                 if (ProgramManager.instance.saveData.WorldSaveData[w].fastestTime <= speedrunTimes[w])
                 {
+                    Debug.Log($"(Menu Safeguard) Achievement Unlocked: Speedrun W{w + 1}");
                     JetEngine.SteamUtils.TryGetAchievement($"SPEEDRUN_W{w + 1}");
                 }
             }
@@ -189,30 +191,40 @@ public class LevelSelectMenu : MonoBehaviour
         JetEngine.SteamUtils.TrySetStat("ep_count", _ectoplasmCompleted);
         if (_ectoplasmCompleted == 32)
         {
+            Debug.Log("(Menu Safeguard) Achievement Unlocked: Challenge Clear Ectoplasm");
             JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_EP");
         }
         int _lightsOutCompleted = ProgramManager.instance.saveData.GetNumCompletedLightsOut();
         JetEngine.SteamUtils.TrySetStat("lo_count", _lightsOutCompleted);
         if (_lightsOutCompleted == 32)
         {
+            Debug.Log("(Menu Safeguard) Achievement Unlocked: Challenge Clear Lights Out");
             JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_LO");
         }
         int _spectralShuffleCompleted = ProgramManager.instance.saveData.GetNumCompletedSpectralShuffle();
         JetEngine.SteamUtils.TrySetStat("ss_count", _spectralShuffleCompleted);
         if (_spectralShuffleCompleted == 32)
         {
+            Debug.Log("(Menu Safeguard) Achievement Unlocked: Challenge Clear Spectral Shuffle");
             JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_SS");
         }
         int _crowned = ProgramManager.instance.saveData.GetNumCrownedLevels();
         JetEngine.SteamUtils.TrySetStat("crown_count", _crowned);
         if (_crowned == 32)
         {
+            Debug.Log("(Menu Safeguard) Achievement Unlocked: Challenge Clear All");
             JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_ALL");
         }
 
         if (ProgramManager.instance.saveData.AnonymousAlcoholic)
         {
+            Debug.Log("(Menu Safeguard) Achievement Unlocked: Ectoplasm Dry");
             JetEngine.SteamUtils.TryGetAchievement("ECTOPLASM_DRY");
+        }
+        if (ProgramManager.instance.saveData.Concussed)
+        {
+            Debug.Log("(Menu Safeguard) Achievement Unlocked: Concussion");
+            JetEngine.SteamUtils.TryGetAchievement("CONCUSSION");
         }
 
         UpdateChallengeButtonDisplayStates();
