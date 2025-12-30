@@ -101,4 +101,10 @@ public class SelectOnHover : MonoBehaviour, /*IPointerMoveHandler,*/ ISelectHand
         }
         MainMenuManager.menuSoundPlayer.PlaySound("UI.Move");
     }
+
+    public void SetEnabled(bool _state)
+    {
+        eventTrigger.enabled = _state;
+        enabled = _state;
+    }
 }
