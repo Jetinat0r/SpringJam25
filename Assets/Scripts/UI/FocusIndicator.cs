@@ -11,6 +11,7 @@ public class FocusIndicator : MonoBehaviour
     [SerializeField]
     public GameObject focusTarget;
     private EventTrigger eventTrigger;
+    private bool _queuedMoveSound = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -83,4 +84,18 @@ public class FocusIndicator : MonoBehaviour
         }
     }
     */
+
+    public void QueueMoveSound()
+    {
+        _queuedMoveSound = true;
+    }
+
+    public void LateUpdate()
+    {
+        if (_queuedMoveSound && focusIndicator.activeSelf)
+        {
+            _queuedMoveSound = false;
+            MainMenuManager.menuSoundPlayer.PlaySound("UI.Move");
+        }
+    }
 }

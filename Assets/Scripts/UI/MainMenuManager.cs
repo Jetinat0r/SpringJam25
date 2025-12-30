@@ -93,6 +93,7 @@ public class MainMenuManager : MonoBehaviour
 
     public static bool inMenu = false;
     public static bool muteFirstButtonSound = true;
+    private bool _dropdownSoundPlayed = false;
 
     void Awake()
     {
@@ -174,6 +175,25 @@ public class MainMenuManager : MonoBehaviour
     public void PlayInteractSound()
     {
         soundPlayer.PlaySound("UI.Select");
+    }
+
+    public void PlayDropDownSound()
+    {
+        if (!_dropdownSoundPlayed)
+        {
+            soundPlayer.PlaySound("UI.Select");
+            _dropdownSoundPlayed = true;
+        }
+    }
+
+    public void PlayMoveSound()
+    {
+        soundPlayer.PlaySound("UI.Move");
+    }
+
+    public void LateUpdate()
+    {
+        _dropdownSoundPlayed = false;
     }
 
     //Sets up the input to allow standard menu interactions
@@ -383,4 +403,10 @@ public class MainMenuManager : MonoBehaviour
         soundPlayer.PlaySound(backSound);
         AudioManager.instance.FadeOutCurrent();
     }
+
+    public void PlayToggleSound(bool _toggleState)
+    {
+        soundPlayer.PlaySound(_toggleState ? "UI.Select" : "UI.Back");
+    }
+    
 }
