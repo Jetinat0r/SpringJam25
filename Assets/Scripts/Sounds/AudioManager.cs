@@ -537,4 +537,11 @@ public class AudioManager : MonoBehaviour
         Debug.LogError("Invalid sound path provided!");
         return null;
     }
+
+    public void ResetPlayer()
+    {
+        Stop();
+        firstSongPlayed = false;
+        currentSong = null;
+    }
 }
