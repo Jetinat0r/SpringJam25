@@ -433,5 +433,6 @@
 	"LastPlayedLevel": 1,
 	"UseCustomPalette": true,
 	"SkipIntro": false,
-	"AnonymousAlcoholic": false
+	"AnonymousAlcoholic": false,
+	"Concussed": false
 }
