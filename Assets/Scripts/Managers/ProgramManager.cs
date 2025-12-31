@@ -12,6 +12,8 @@ public class ProgramManager : MonoBehaviour
     //Determines whether or not to load the boot splash and start screen when Main Menu is entered
     //  Should only ever be true when the game opens, then false forever more
     public bool firstOpen = true;
+    //Determines whether or not to display the challenge unlock at the end of the credits sequence
+    public bool showChallengeUnlock = false;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     public static void InitDOTween()

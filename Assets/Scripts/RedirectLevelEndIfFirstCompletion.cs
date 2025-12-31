@@ -12,6 +12,7 @@ public class RedirectLevelEndIfFirstCompletion : MonoBehaviour
         if (!ProgramManager.instance.saveData.WorldSaveData[3].levels[7].completed)
         {
             levelManager.nextLevelName = redirectedSceneName;
+            ProgramManager.instance.showChallengeUnlock = true;
             Debug.Log("Redirected Victory!");
         }
         else

@@ -121,6 +121,8 @@ public class MainMenuManager : MonoBehaviour
         resetProgress.Enable();
         resetProgress.started += UnlockAll;
 
+        ProgramManager.instance.showChallengeUnlock = false;
+
         /*
         toggleEP = debugInput.actions["ToggleEctoplasm"];
         toggleEP.Enable();
