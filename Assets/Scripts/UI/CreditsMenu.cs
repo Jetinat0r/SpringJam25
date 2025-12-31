@@ -52,4 +52,9 @@ public class CreditsMenu : MonoBehaviour
         sequence.AppendCallback(() => popupBox.SetActive(true));
         sequence.Play();
     }
+
+    public void PlayToggleSound()
+    {
+        soundPlayer.PlaySound("Game.Lever");
+    }
 }
