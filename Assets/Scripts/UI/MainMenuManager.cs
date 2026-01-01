@@ -95,6 +95,13 @@ public class MainMenuManager : MonoBehaviour
     public static bool muteFirstButtonSound = true;
     private bool _dropdownSoundPlayed = false;
 
+    [Header("Credits Menu")]
+    public bool canAccessCreditsSequence = false;
+    public GameObject creditsUnlockedText;
+    public GameObject creditsLockedIcons;
+    public GameObject creditsLockedTextParent;
+    public GameObject creditsLockedText;
+
     void Awake()
     {
         inMenu = true;
@@ -115,6 +122,7 @@ public class MainMenuManager : MonoBehaviour
         anchoredInstructionsPanelPos = instructionsPanel.anchoredPosition;
         anchoredCreditsPanelPos = creditsPanel.anchoredPosition;
 
+        UpdateCreditsMenuState();
         levelSelectMenu.UpdateMenuState();
 
         resetProgress = debugInput.actions["ResetProgress"];
@@ -208,6 +216,7 @@ public class MainMenuManager : MonoBehaviour
         startScreen.SetActive(false);
 
         //Just in case this needs changed last second
+        UpdateCreditsMenuState();
         levelSelectMenu.UpdateMenuState();
 
         MenuPanelWatcher.instance.activePanel = MenuPanel.MAIN;
@@ -233,6 +242,7 @@ public class MainMenuManager : MonoBehaviour
         //SettingsManager.completedLevels = 17;
         //SettingsManager.SaveSettings();
         ProgramManager.instance.LoadFullCompleteSaveData();
+        UpdateCreditsMenuState();
         levelSelectMenu.UpdateMenuState();
         //ResetProgress();
     }
@@ -245,6 +255,7 @@ public class MainMenuManager : MonoBehaviour
         ProgramManager.instance.ResetSaveData();
         int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
 
+        UpdateCreditsMenuState();
         levelSelectMenu.UpdateMenuState();
 
         corruptedSaveDataScreen.SetActive(false);
@@ -264,7 +275,43 @@ public class MainMenuManager : MonoBehaviour
         ChallengeManager.instance.lightsOutEnabled = false;
         ChallengeManager.instance.spectralShuffleEnabled = false;
 
+        UpdateCreditsMenuState();
         levelSelectMenu.UpdateMenuState();
+    }
+
+    public void ToggleCreditsLockedText(bool _active)
+    {
+        creditsLockedText.SetActive(_active);
+    }
+
+    public void UpdateCreditsMenuState()
+    {
+        if (ProgramManager.instance.saveData.GetNumCompletedLevels() >= 32)
+        {
+            canAccessCreditsSequence = true;
+            creditsUnlockedText.SetActive(true);
+            creditsLockedIcons.SetActive(false);
+            creditsLockedTextParent.SetActive(false);
+        }
+        else
+        {
+            canAccessCreditsSequence = false;
+            creditsUnlockedText.SetActive(false);
+            creditsLockedIcons.SetActive(true);
+            creditsLockedTextParent.SetActive(true);
+        }
+    }
+
+    public void TryMoveToCreditsSequence()
+    {
+        if (canAccessCreditsSequence)
+        {
+            EnterLevel("Credits");
+        }
+        else
+        {
+            soundPlayer.PlaySound(backSound);
+        }
     }
 
     public void MoveToMainMenu(bool _isXMove)

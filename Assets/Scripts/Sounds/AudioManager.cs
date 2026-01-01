@@ -104,7 +104,7 @@ public class AudioManager : MonoBehaviour
                 return true;
             }
         }
-        else if (_levelName == "Credits")
+        else if (_levelName == "Credits" && currentWorld != World.WORLD1)
         {
             Stop();
             return true;
