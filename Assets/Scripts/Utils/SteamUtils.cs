@@ -62,16 +62,16 @@ namespace JetEngine
 
             if (SteamManager.Initialized)
             {
-                Steamworks.SteamUserStats.GetAchievement(API_NAME, out var completed);
+                bool _gotData = Steamworks.SteamUserStats.GetAchievement(API_NAME, out var completed);
 
-                if (!completed)
+                if (_gotData && !completed)
                 {
                     Steamworks.SteamUserStats.SetAchievement(API_NAME);
                     Steamworks.SteamUserStats.StoreStats();
                     return true;
                 }
 
-                return false;
+                return _gotData;
             }
 
             return false;
@@ -89,8 +89,7 @@ namespace JetEngine
                 bool gotData = Steamworks.SteamUserStats.GetStat(API_NAME, out int currentValue);
                 if (!gotData) return false;
 
-                //currentValue++;
-
+                if (currentValue == _value) return true;
                 bool setData = Steamworks.SteamUserStats.SetStat(API_NAME, _value);
                 if (!setData) return false;
 
