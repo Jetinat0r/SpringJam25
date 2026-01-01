@@ -45139,7 +45139,7 @@ MonoBehaviour:
   backSound: {fileID: 11400000, guid: 9cc15da6fce9c488fbf245998920ef1e, type: 2}
   soundPlayer: {fileID: 2020560074}
   debugInput: {fileID: 1256944912}
-  allowDebugFullComplete: 1
+  allowDebugFullComplete: 0
   canAccessCreditsSequence: 0
   creditsUnlockedText: {fileID: 794240595}
   creditsLockedIcons: {fileID: 1995160663}
