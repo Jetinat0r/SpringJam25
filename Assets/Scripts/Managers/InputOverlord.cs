@@ -1,3 +1,4 @@
+using JetEngine;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -160,6 +161,10 @@ public class InputOverlord : MonoBehaviour
         }
         else
         {
+            if (SteamUtils.IsOnSteamDeck())
+            {
+                return SUPPORTED_CONTROL_TYPE.XBOX;
+            }
             return SUPPORTED_CONTROL_TYPE.GENERIC_GAMEPAD;
         }
     }
