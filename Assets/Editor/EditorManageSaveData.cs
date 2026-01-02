@@ -23,7 +23,7 @@ public class EditorManageSaveData : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Couldn't Delete Save File");
+            Debug.Log($"Couldn't Delete Save");
         }
     }
 
