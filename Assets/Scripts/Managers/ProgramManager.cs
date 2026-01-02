@@ -117,7 +117,7 @@ public class ProgramManager : MonoBehaviour
                     saveData.DisplaySettings.fullScreenMode = 0;
                 }
 
-                Screen.fullScreenMode = IndexToFullScreenMode(saveData.DisplaySettings.fullScreenMode);
+                Screen.fullScreenMode = FullScreenMode.Windowed;
                 QualitySettings.vSyncCount = saveData.DisplaySettings.vsync ? 1 : 0;
             }
 

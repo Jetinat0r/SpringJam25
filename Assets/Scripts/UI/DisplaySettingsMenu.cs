@@ -34,10 +34,10 @@ public class DisplaySettingsMenu : MonoBehaviour
 
     public void UpdateFullScreenMode(System.Int32 _newIndex)
     {
-        ProgramManager.instance.saveData.DisplaySettings.fullScreenMode = _newIndex;
-        Screen.fullScreenMode = ProgramManager.IndexToFullScreenMode(_newIndex);
+        // ProgramManager.instance.saveData.DisplaySettings.fullScreenMode = _newIndex;
+        // Screen.fullScreenMode = ProgramManager.IndexToFullScreenMode(_newIndex);
 
-        ProgramManager.instance.saveData.SaveSaveData();
+        // ProgramManager.instance.saveData.SaveSaveData();
     }
 
     public void UpdateVSync(bool _newVSync)
