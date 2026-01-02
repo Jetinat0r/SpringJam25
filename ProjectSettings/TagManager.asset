@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Mirror
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - Light
   - Interactable
   - Wall
-  - 
-  - 
+  - Pushable
+  - ConveyorBelt
   - 
   - 
   - 
@@ -65,6 +66,9 @@ TagManager:
   - name: Player
     uniqueID: 2288622893
     locked: 0
+  - name: Ectoplasm
+    uniqueID: 590126533
+    locked: 0
   - name: LightMask
     uniqueID: 3563305641
     locked: 0
@@ -72,3 +76,4 @@ TagManager:
   - Default
   - Shadow
   - Light
+  - Ectoplasm

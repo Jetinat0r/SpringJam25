@@ -1,0 +1,36 @@
+using TMPro;
+using UnityEditor;
+using UnityEngine;
+
+public class ToggleShaders : MonoBehaviour
+{
+    [MenuItem("PhantomFeline/Shaders/Enable Shaders")]
+    static void EnableShaders()
+    {
+        AssetDatabase.LoadAssetAtPath<Material>("Assets/Resources/Shaders/FullscreenPaletteSwapperShader.mat").SetFloat("_usePalette", 1f);
+        if (Application.isPlaying)
+        {
+            Canvas.GetDefaultCanvasMaterial().SetFloat("_usePalette", 1f);
+        }
+        else
+        {
+            AssetDatabase.LoadAssetAtPath<Material>("Assets/Resources/Shaders/UI_Palette.mat").SetFloat("_usePalette", 1f);
+        }
+        AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/Resources/Fonts/Early GameBoy SDF.asset").material.SetFloat("_usePalette", 1f);
+    }
+
+    [MenuItem("PhantomFeline/Shaders/Disable Shaders")]
+    static void DisableShaders()
+    {
+        AssetDatabase.LoadAssetAtPath<Material>("Assets/Resources/Shaders/FullscreenPaletteSwapperShader.mat").SetFloat("_usePalette", 0f);
+        if (Application.isPlaying)
+        {
+            Canvas.GetDefaultCanvasMaterial().SetFloat("_usePalette", 0f);
+        }
+        else
+        {
+            AssetDatabase.LoadAssetAtPath<Material>("Assets/Resources/Shaders/UI_Palette.mat").SetFloat("_usePalette", 0f);
+        }
+        AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/Resources/Fonts/Early GameBoy SDF.asset").material.SetFloat("_usePalette", 0f);
+    }
+}

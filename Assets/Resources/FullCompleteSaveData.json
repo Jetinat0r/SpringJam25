@@ -1,0 +1,449 @@
+{
+	"SaveDataVersion": 0,
+	"AudioSettings":
+	{
+		"musicVolume": 32,
+		"sfxVolume": 50
+	},
+	"DisplaySettings":
+	{
+		"fullScreenMode": 0,
+		"vsync": true
+	},
+	"WorldSaveData":
+	[
+		{
+			"worldNumber": 1,
+			"unlockedChallenges": true,
+			"levels":
+			[
+				{
+					"levelNumber": 1,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 2,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 3,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 4,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 5,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 6,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 7,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 8,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				}
+			],
+			"fastestTime": 40.0
+		},
+		{
+			"worldNumber": 2,
+			"unlockedChallenges": true,
+			"levels":
+			[
+				{
+					"levelNumber": 9,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 10,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 11,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 12,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 13,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 14,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 15,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 16,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				}
+			],
+			"fastestTime": 40.0
+		},
+		{
+			"worldNumber": 3,
+			"unlockedChallenges": true,
+			"levels":
+			[
+				{
+					"levelNumber": 17,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 18,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 19,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 20,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 21,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 22,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 23,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 24,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				}
+			],
+			"fastestTime": 40.0
+		},
+		{
+			"worldNumber": 4,
+			"unlockedChallenges": true,
+			"levels":
+			[
+				{
+					"levelNumber": 25,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 26,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 27,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 28,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 29,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 30,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 31,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				},
+				{
+					"levelNumber": 32,
+					"completed": true,
+					"fastestTime": 5.0,
+					"challenges":
+					{
+						"beatEctoplasm": true,
+						"beatLightsOut": true,
+						"beatSpectralShuffle": true,
+						"beatPoltergeist": true
+					}
+				}
+			],
+			"fastestTime": 40.0
+		}
+	],
+	"ChallengeSaveData":
+	{
+		"EctoplasmSaveData":
+		{
+			"beatW1": true,
+			"beatW2": true,
+			"beatW3": true,
+			"beatW4": true,
+			"beatMarathon": true
+		}
+	},
+	"CustomBindings": "",
+	"LastPlayedLevel": 1,
+	"UseCustomPalette": true,
+	"SkipIntro": false,
+	"AnonymousAlcoholic": true,
+	"Concussed": true
+}

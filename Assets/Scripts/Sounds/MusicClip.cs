@@ -5,16 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Music Clip", menuName = "AudioAssets/Music Clip")]
 public class MusicClip : SoundPlayable
 {
-    public AudioClip clip;
+    public AudioClip menuSong, levelSong;
+    public AudioManager.World world;
     public float BPM;
-    public int timeSignature, timeSignatureBottom = 4, barsLength;
-    public AudioManager.GameArea area;
+    public int sampleRate = 44100;
+    public int beatFrequency = 1;
     public override AudioClip GetClip()
     {
-        return clip;
-    }
-    public float length()
-    {
-        return clip.length;
+        return MainMenuManager.inMenu ? menuSong : levelSong;
     }
 }

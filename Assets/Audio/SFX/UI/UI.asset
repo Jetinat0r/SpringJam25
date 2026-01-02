@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: UI
   m_EditorClassIdentifier: 
   children:
-  - {fileID: 11400000, guid: 05160ec723370a64eb092feb9a2303a0, type: 2}
-  - {fileID: 11400000, guid: 5ae8e2dfafa27234fad2d92cadaf7694, type: 2}
+  - {fileID: 11400000, guid: da7802216da1049a3bb3a5ba7c7c3405, type: 2}
+  - {fileID: 11400000, guid: 9cc15da6fce9c488fbf245998920ef1e, type: 2}
+  - {fileID: 11400000, guid: ba402f33e84b04a7ba071278c3b4d63d, type: 2}
+  - {fileID: 11400000, guid: 9978ca9b1975840abb63268d6e7b93ff, type: 2}
+  - {fileID: 11400000, guid: 89965877aa34647469188fa45341f4f1, type: 2}
+  - {fileID: 11400000, guid: e3af163584fc0bd4f8c1ae750718d675, type: 2}

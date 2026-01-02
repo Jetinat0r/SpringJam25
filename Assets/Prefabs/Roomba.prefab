@@ -56,6 +56,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -77,6 +79,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -721040269
   m_SortingLayer: 7
   m_SortingOrder: 0
@@ -113,6 +116,9 @@ MonoBehaviour:
   isGrounded: 0
   rightDist: 3
   leftDist: 3
+  spdBoost: 0
+  friction: {fileID: 6200000, guid: 83f5deb1c6b3a4621b76822ac7a3b759, type: 2}
+  slippery: {fileID: 6200000, guid: 43bc07a684bfe45f89322810a08e3ce4, type: 2}
 --- !u!50 &2426319323427192376
 Rigidbody2D:
   serializedVersion: 5
@@ -139,7 +145,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &5184900442543642669
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,7 +190,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.501, y: 0.18999553}
+  m_Size: {x: 0.5, y: 0.18999553}
   m_EdgeRadius: 0
 --- !u!95 &1179193246207103183
 Animator:

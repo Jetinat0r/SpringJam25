@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce0f28d8c20041688f5a354ba0b5f0d, type: 3}
+  m_Name: Move
+  m_EditorClassIdentifier: 
+  clip:
+  - {fileID: 8300000, guid: 05bb5e08c048e4e6aa1d35cc47b18dd0, type: 3}
+  - {fileID: 8300000, guid: 4aa4a43bd34974789bfd8f916eda32c3, type: 3}
+  - {fileID: 8300000, guid: 4aa4a43bd34974789bfd8f916eda32c3, type: 3}
+  - {fileID: 8300000, guid: 79a0cb381f7a85d4c84dc699cb94429e, type: 3}
