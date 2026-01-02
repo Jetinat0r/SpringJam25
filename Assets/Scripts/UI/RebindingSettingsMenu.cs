@@ -26,8 +26,6 @@ public class RebindingSettingsMenu : MonoBehaviour
     public Button resetBindingsButton;
     [SerializeField]
     public SoundPlayer soundPlayer;
-    [SerializeField]
-    private float postRebindDelayTime = 0.1f;
 
     public void RebindControl(InputOverlord.INPUT_ACTION _inputAction, InputOverlord.SUPPORTED_CONTROL_TYPE _controlType, Selectable _returnTarget)
     {
