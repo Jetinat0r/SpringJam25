@@ -48,27 +48,7 @@ public class SoundPlayer : MonoBehaviour
     public void PlaySound(AudioClip clip, float volume = 1, bool loop = false, float pitch = 1)
     {
         if (clip == null) return;
-
-        // foreach (AudioSource source in sources)
-        // {
-        //     if (source != null && source.gameObject.activeInHierarchy && source.clip == clip && source.isPlaying)
-        //     {
-        //         if (source.time / source.clip.length < 0.2f) return;
-        //         else source.Stop();
-        //     }
-        // }
-        for (int index = sources.Length - 1; index >= 0; index--)
-        {
-            if (sources[index] != null && sources[index].gameObject.activeInHierarchy && !sources[index].isPlaying)
-            {
-                sources[index].clip = clip;
-                sources[index].loop = loop;
-                sources[index].volume = volume;
-                sources[index].pitch = pitch;
-                sources[index].Play();
-                return;
-            }
-        }
+        sources[0].PlayOneShot(clip, volume);
     }
 
     public void EndSound(string path = null)
