@@ -56741,7 +56741,6 @@ MonoBehaviour:
   resetBindingsPopupFirstSelected: {fileID: 824258422}
   resetBindingsButton: {fileID: 1373894880}
   soundPlayer: {fileID: 2020560074}
-  postRebindDelayTime: 0.1
 --- !u!1 &1547757145
 GameObject:
   m_ObjectHideFlags: 0
