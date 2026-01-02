@@ -1,4 +1,5 @@
 using JetEngine;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,9 @@ public class DisplaySettingsMenu : MonoBehaviour
     public TMP_Dropdown windowModeDropdown;
     [SerializeField]
     public Toggle vsyncToggle;
+
+    [SerializeField]
+    public List<Button> inactiveTabs;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,6 +41,18 @@ public class DisplaySettingsMenu : MonoBehaviour
             RectTransform _toggleTransform = vsyncToggle.gameObject.GetComponent<RectTransform>();
             //Hard coded so it doesn't look like trash and so I don't have to work for it :)
             _toggleTransform.localPosition = new Vector3(_toggleTransform.localPosition.x, 0, _toggleTransform.localPosition.z);
+
+            //Update nav
+            inactiveTabs[0].GetComponent<TabButtonBehavior>().firstNavigableElement = vsyncToggle;
+            foreach (Button tab in inactiveTabs)
+            {
+                Navigation n = tab.navigation;
+                n.selectOnDown = vsyncToggle;
+                tab.navigation = n;
+            }
+            Navigation vn = vsyncToggle.navigation;
+            vn.selectOnUp = inactiveTabs[0];
+            vsyncToggle.navigation = vn;
         }
         QualitySettings.vSyncCount = ProgramManager.instance.saveData.DisplaySettings.vsync ? 1 : 0;
     }
