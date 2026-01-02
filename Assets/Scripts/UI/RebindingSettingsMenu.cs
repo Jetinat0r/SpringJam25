@@ -81,6 +81,9 @@ public class RebindingSettingsMenu : MonoBehaviour
             case InputOverlord.INPUT_ACTION.RESTART:
                 popupActionName.SetText("RESTART");
                 break;
+            case InputOverlord.INPUT_ACTION.UI_ACCEPT:
+                popupActionName.SetText("UI SUBMIT");
+                break;
             default:
                 popupActionName.SetText("???");
                 break;

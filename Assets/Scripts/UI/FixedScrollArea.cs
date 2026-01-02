@@ -9,7 +9,7 @@ public class FixedScrollArea : ScrollRect
     private ScrollRect scrollRect;
 
     [SerializeField]
-    private int numScrollPositions = 5;
+    private int numScrollPositions = 7;
     [SerializeField]
     private float elementHeight = 16f;
     [SerializeField]
@@ -50,5 +50,11 @@ public class FixedScrollArea : ScrollRect
 
         content.anchoredPosition = content.anchoredPosition.NewY(scrollPos * anchoredScrollDelta);
         Canvas.ForceUpdateCanvases();
+    }
+
+    public void UpdateScrollViaBar(System.Single _scrollVal)
+    {
+        _scrollVal *= (numScrollPositions - 1);
+        scrollPos = (numScrollPositions - 1) - Mathf.RoundToInt(_scrollVal);
     }
 }

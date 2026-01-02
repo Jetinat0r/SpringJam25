@@ -45,6 +45,11 @@ public class FocusIndicator : MonoBehaviour
         eventTrigger.triggers.Add(_onDeselect);
     }
 
+    private void OnDisable()
+    {
+        focusIndicator.SetActive(false);
+    }
+
     private void OnDestroy()
     {
         //This happens for the dropdown menu, for whatever reason

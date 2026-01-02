@@ -29,7 +29,8 @@ public class InputOverlord : MonoBehaviour
         SHADOW,
         INTERACT,
         PAUSE,
-        RESTART
+        RESTART,
+        UI_ACCEPT
     }
 
     public static InputOverlord instance;
@@ -181,6 +182,8 @@ public class InputOverlord : MonoBehaviour
                 return playerInput.actions["ToggleUI"];
             case INPUT_ACTION.RESTART:
                 return playerInput.actions["RestartLevel"];
+            case INPUT_ACTION.UI_ACCEPT:
+                return playerInput.actions["UiAccept"];
             default:
                 return null;
         }
@@ -208,6 +211,8 @@ public class InputOverlord : MonoBehaviour
             case INPUT_ACTION.PAUSE:
                 return 0 + _indexBump;
             case INPUT_ACTION.RESTART:
+                return 0 + _indexBump;
+            case INPUT_ACTION.UI_ACCEPT:
                 return 0 + _indexBump;
             default:
                 return -1;
