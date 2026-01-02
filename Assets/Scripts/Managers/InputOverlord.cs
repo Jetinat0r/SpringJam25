@@ -61,7 +61,6 @@ public class InputOverlord : MonoBehaviour
 
         SceneManager.activeSceneChanged += OnSceneChanged;
         playerInput.onControlsChanged += OnControlsChanged;
-
         LoadBindingOverrides();
         //RebindControl(INPUT_ACTION.SHADOW, SUPPORTED_CONTROL_TYPE.KEYBOARD, () => { }, () => { });
     }
@@ -101,6 +100,7 @@ public class InputOverlord : MonoBehaviour
     void Start()
     {
         //If no devices are plugged in (how did the game start?) default to Generic gamepad
+        /*
         if (InputSystem.devices.Count == 0)
         {
             currentInputDeviceType = SUPPORTED_CONTROL_TYPE.GENERIC_GAMEPAD;
@@ -134,6 +134,8 @@ public class InputOverlord : MonoBehaviour
                 currentInputDeviceType = SUPPORTED_CONTROL_TYPE.GENERIC_GAMEPAD;
             }
         }
+        */
+        currentInputDeviceType = SUPPORTED_CONTROL_TYPE.KEYBOARD;
     }
 
     public SUPPORTED_CONTROL_TYPE GetControlTypeByName(string _name)
