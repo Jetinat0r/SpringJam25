@@ -55562,6 +55562,11 @@ MonoBehaviour:
   windowModeSettingParent: {fileID: 0}
   windowModeDropdown: {fileID: 0}
   vsyncToggle: {fileID: 1641384819}
+  inactiveTabs:
+  - {fileID: 278848774}
+  - {fileID: 971601936}
+  - {fileID: 949959822}
+  - {fileID: 168149106}
 --- !u!114 &1545512958
 MonoBehaviour:
   m_ObjectHideFlags: 0
