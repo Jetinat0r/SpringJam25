@@ -6,12 +6,11 @@ using NUnit.Framework;
 
 public class SaveData
 {
-    public const string SAVE_DATA_FILE_NAME = "/PF_FLASH.json";
+    public const string SAVE_KEY = "PF_FLASH";
 
     public static RootSaveDataObject LoadSaveData()
     {
-        string _saveDataPath = Application.persistentDataPath + SAVE_DATA_FILE_NAME;
-        if (!File.Exists(_saveDataPath))
+        if (!PlayerPrefs.HasKey(SAVE_KEY))
         {
             Debug.LogWarning("Save data not found, creating new save data!");
             RootSaveDataObject _defaultSaveData = LoadDefaultSaveData();
@@ -19,10 +18,10 @@ public class SaveData
             return _defaultSaveData;
         }
 
-        Debug.Log($"Loaded save data from {_saveDataPath}");
+        Debug.Log($"Loaded save data from {SAVE_KEY}");
         try
         {
-            return JsonUtility.FromJson<RootSaveDataObject>(File.ReadAllText(_saveDataPath));
+            return JsonUtility.FromJson<RootSaveDataObject>(PlayerPrefs.GetString(SAVE_KEY));
         }
         catch
         {
@@ -229,12 +228,10 @@ public class SaveData
 
         public void SaveSaveData()
         {
-            string _saveDataPath = Application.persistentDataPath + SAVE_DATA_FILE_NAME;
-
             string _jsonString = JsonUtility.ToJson(this);
-            File.WriteAllText(_saveDataPath, _jsonString);
+            PlayerPrefs.SetString(SAVE_KEY, _jsonString);
 
-            Debug.Log($"Saved Data to {_saveDataPath}");
+            Debug.Log($"Saved Data to {SAVE_KEY}");
         }
 
         //Attempts to upgrade save data from PlayerPrefs to the new Json format

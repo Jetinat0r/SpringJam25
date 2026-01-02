@@ -16,30 +16,28 @@ public class EditorManageSaveData : MonoBehaviour
     [MenuItem("PhantomFeline/SaveData/Delete Save Data")]
     static void DeleteSaveData()
     {
-        string _saveFilePath = Application.persistentDataPath + "/PF_FLASH.json";
-        if (File.Exists(_saveFilePath))
+        if (PlayerPrefs.HasKey(SAVE_KEY))
         {
-            File.Delete(_saveFilePath);
-            Debug.Log($"Deleted Save File: {_saveFilePath}");
+            PlayerPrefs.DeleteKey(SAVE_KEY);
+            Debug.Log($"Deleted Save");
         }
         else
         {
-            Debug.Log($"Couldn't Delete Save File: {_saveFilePath}");
+            Debug.Log($"Couldn't Delete Save File");
         }
     }
 
     [MenuItem("PhantomFeline/SaveData/Reset Custom Bindings")]
     static void ResetCustomBindings()
     {
-        string _saveFilePath = Application.persistentDataPath + "/PF_FLASH.json";
-        if (File.Exists(_saveFilePath))
+        if (PlayerPrefs.HasKey(SAVE_KEY))
         {
             try
             {
-                RootSaveDataObject _saveData = JsonUtility.FromJson<RootSaveDataObject>(File.ReadAllText(_saveFilePath));
+                RootSaveDataObject _saveData = JsonUtility.FromJson<RootSaveDataObject>(PlayerPrefs.GetString(SAVE_KEY));
                 _saveData.CustomBindings = string.Empty;
                 string _jsonString = JsonUtility.ToJson(_saveData);
-                File.WriteAllText(_saveFilePath, _jsonString);
+                PlayerPrefs.SetString(SAVE_KEY, _jsonString);
                 Debug.Log($"Reset Bindings");
             }
             catch (Exception e)
@@ -49,7 +47,7 @@ public class EditorManageSaveData : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Couldn't Delete Save File: {_saveFilePath}");
+            Debug.Log($"Couldn't Delete Save");
         }
     }
 }

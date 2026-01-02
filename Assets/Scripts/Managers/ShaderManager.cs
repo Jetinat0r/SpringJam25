@@ -101,19 +101,20 @@ public class ShaderManager : MonoBehaviour
         fontShaderMat = Resources.Load<TMP_FontAsset>("Fonts/Early GameBoy SDF").material;
         defaultPalette = Resources.Load<Texture2D>("Shaders/ScreenPalette");
 
-        if (File.Exists(Application.persistentDataPath + "/CustomPalette.png"))
-        {
-            Texture2D _newPalette = new Texture2D(1, 1, TextureFormat.RGBA32, false);
-            ImageConversion.LoadImage(_newPalette, File.ReadAllBytes(Application.persistentDataPath + "/CustomPalette.png"));
-            _newPalette.filterMode = FilterMode.Point;
-            _newPalette.wrapMode = TextureWrapMode.Clamp;
-            //customPalette = Sprite.Create(_newPalette, new Rect(0, 0, _newPalette.width, _newPalette.height), Vector2.zero, 100, 0, SpriteMeshType.Tight);
+        // No custom palettes on web
+        // if (File.Exists(Application.persistentDataPath + "/CustomPalette.png"))
+        // {
+        //     Texture2D _newPalette = new Texture2D(1, 1, TextureFormat.RGBA32, false);
+        //     ImageConversion.LoadImage(_newPalette, File.ReadAllBytes(Application.persistentDataPath + "/CustomPalette.png"));
+        //     _newPalette.filterMode = FilterMode.Point;
+        //     _newPalette.wrapMode = TextureWrapMode.Clamp;
+        //     //customPalette = Sprite.Create(_newPalette, new Rect(0, 0, _newPalette.width, _newPalette.height), Vector2.zero, 100, 0, SpriteMeshType.Tight);
 
-            customPalette = _newPalette;
-            hasCustomPalette = true;
+        //     customPalette = _newPalette;
+        //     hasCustomPalette = true;
 
-            Debug.Log($"Loaded Custom Palette: {Application.persistentDataPath + "/CustomPalette.png"}");
-        }
+        //     Debug.Log($"Loaded Custom Palette: {Application.persistentDataPath + "/CustomPalette.png"}");
+        // }
 
 #if UNITY_EDITOR
         debugPalette = new Texture2D(4, 1, TextureFormat.RGBA32, false);
