@@ -126,7 +126,8 @@ public class RebindingSettingsMenu : MonoBehaviour
 
     public IEnumerator ReenableBindingButton(Button _buttonToEnable)
     {
-        yield return new WaitForSeconds(postRebindDelayTime);
+        //yield return new WaitForSeconds(postRebindDelayTime);
+        yield return null;
         _buttonToEnable.interactable = true;
     }
 
