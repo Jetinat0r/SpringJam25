@@ -607,7 +607,7 @@ PlayerSettings:
     PS5: DOTWEEN
     QNX: DOTWEEN
     ReservedCFE: DOTWEEN
-    Standalone: DOTWEEN;STEAMWORKS_NET
+    Standalone: DOTWEEN;STEAMWORKS_NET;DISABLESTEAMWORKS
     VisionOS: DOTWEEN
     WebGL: DOTWEEN
     Windows Store Apps: DOTWEEN
