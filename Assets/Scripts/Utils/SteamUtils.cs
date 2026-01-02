@@ -1,4 +1,6 @@
+#if !DISABLESTEAMWORKS
 using Steamworks;
+#endif
 using System;
 using System.Linq;
 using UnityEngine;
@@ -17,6 +19,7 @@ namespace JetEngine
         //  Returns false if Steam fails to load or if "-noSteam" is defined as a command line arg
         public static bool TryInitSteam()
         {
+#if !DISABLESTEAMWORKS
             noSteam = false;
 #if UNITY_EDITOR
             if (UnityEditor.EditorPrefs.HasKey("noSteam"))
@@ -46,6 +49,11 @@ namespace JetEngine
                 successfullyLoadedSteamApi = false;
                 return false;
             }
+#else
+            noSteam = true;
+            successfullyLoadedSteamApi = false;
+            return false;
+#endif
         }
 
         public static bool IsSteamApiLoaded()
@@ -55,6 +63,7 @@ namespace JetEngine
         
         public static bool TryGetAchievement(string API_NAME)
         {
+#if !DISABLESTEAMWORKS
             if (!IsSteamApiLoaded())
             {
                 return false;
@@ -75,10 +84,14 @@ namespace JetEngine
             }
 
             return false;
+#else
+            return false;
+#endif
         }
 
         public static bool TrySetStat(string API_NAME, int _value)
         {
+#if !DISABLESTEAMWORKS
             if (!IsSteamApiLoaded())
             {
                 return false;
@@ -98,20 +111,28 @@ namespace JetEngine
             }
 
             return false;
+#else
+            return false;
+#endif
         }
 
         public static bool IsOnSteamDeck()
         {
+#if !DISABLESTEAMWORKS
             if (!IsSteamApiLoaded())
             {
                 return false;
             }
 
             return Steamworks.SteamUtils.IsSteamRunningOnSteamDeck();
+#else
+            return false;
+#endif
         }
 
         public static bool ResetAchievements()
         {
+#if !DISABLESTEAMWORKS
             if (!IsSteamApiLoaded())
             {
                 return false;
@@ -119,6 +140,9 @@ namespace JetEngine
 
             Debug.Log("Reset All Steam Achievements!");
             return Steamworks.SteamUserStats.ResetAllStats(true);
+#else
+            return false;
+#endif
         }
 
         /*
