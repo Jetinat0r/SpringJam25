@@ -100,22 +100,11 @@ public class InputOverlord : MonoBehaviour
     void Start()
     {
         //If no devices are plugged in (how did the game start?) default to Generic gamepad
-        /*
         if (InputSystem.devices.Count == 0)
         {
+           
             currentInputDeviceType = SUPPORTED_CONTROL_TYPE.GENERIC_GAMEPAD;
         }
-        //If there's any gamepads, select the first one as default
-        else if (Gamepad.all.Count > 0)
-        {
-            currentInputDeviceType = GetControlTypeByName(Gamepad.all[0].name);
-        }
-        //If there's any unknown gamepads, select the first one as generic
-        else if (Joystick.all.Count > 0)
-        {
-            currentInputDeviceType = GetControlTypeByName(Joystick.all[0].name);
-        }
-        //No controllers detected. Likely keyboard, but check that one is connected, and if not display generic gamepad
         else
         {
             bool _foundKeyboard = false;
@@ -131,11 +120,22 @@ public class InputOverlord : MonoBehaviour
 
             if (!_foundKeyboard)
             {
-                currentInputDeviceType = SUPPORTED_CONTROL_TYPE.GENERIC_GAMEPAD;
+                //If there's any gamepads, select the first one as default
+                if (Gamepad.all.Count > 0)
+                {
+                    currentInputDeviceType = GetControlTypeByName(Gamepad.all[0].name);
+                }
+                //If there's any unknown gamepads, select the first one as generic
+                else if (Joystick.all.Count > 0)
+                {
+                    currentInputDeviceType = GetControlTypeByName(Joystick.all[0].name);
+                }
+                else
+                {
+                    currentInputDeviceType = SUPPORTED_CONTROL_TYPE.GENERIC_GAMEPAD;
+                }
             }
         }
-        */
-        currentInputDeviceType = SUPPORTED_CONTROL_TYPE.KEYBOARD;
     }
 
     public SUPPORTED_CONTROL_TYPE GetControlTypeByName(string _name)
