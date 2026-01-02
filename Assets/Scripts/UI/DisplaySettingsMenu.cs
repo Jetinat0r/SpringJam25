@@ -7,8 +7,8 @@ public class DisplaySettingsMenu : MonoBehaviour
 {
     [SerializeField]
     public GameObject windowModeSettingParent;
-    [SerializeField]
-    public TMP_Dropdown windowModeDropdown;
+    // [SerializeField]
+    // public TMP_Dropdown windowModeDropdown;
     [SerializeField]
     public Toggle vsyncToggle;
 
@@ -21,23 +21,14 @@ public class DisplaySettingsMenu : MonoBehaviour
             ProgramManager.instance.saveData.DisplaySettings.fullScreenMode = 0;
         }
 
-        windowModeDropdown.SetValueWithoutNotify(ProgramManager.instance.saveData.DisplaySettings.fullScreenMode);
+        // windowModeDropdown.SetValueWithoutNotify(ProgramManager.instance.saveData.DisplaySettings.fullScreenMode);
         vsyncToggle.SetIsOnWithoutNotify(ProgramManager.instance.saveData.DisplaySettings.vsync);
 
-        if (!SteamUtils.IsOnSteamDeck())
-        {
-            Screen.fullScreenMode = ProgramManager.IndexToFullScreenMode(ProgramManager.instance.saveData.DisplaySettings.fullScreenMode);
-            windowModeSettingParent.SetActive(true);
-        }
-        else
-        {
-            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-            windowModeSettingParent.SetActive(false);
-            //Shift down so it doesn't look gross
-            RectTransform _toggleTransform = vsyncToggle.gameObject.GetComponent<RectTransform>();
-            //Hard coded so it doesn't look like trash and so I don't have to work for it :)
-            _toggleTransform.localPosition = new Vector3(_toggleTransform.localPosition.x, 0, _toggleTransform.localPosition.z);
-        }
+        //Shift down so it doesn't look gross
+        RectTransform _toggleTransform = vsyncToggle.gameObject.GetComponent<RectTransform>();
+        //Hard coded so it doesn't look like trash and so I don't have to work for it :)
+        _toggleTransform.localPosition = new Vector3(_toggleTransform.localPosition.x, 0, _toggleTransform.localPosition.z);
+        
         QualitySettings.vSyncCount = ProgramManager.instance.saveData.DisplaySettings.vsync ? 1 : 0;
     }
 
