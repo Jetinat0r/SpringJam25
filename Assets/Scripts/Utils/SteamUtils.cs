@@ -1,3 +1,5 @@
+#define DISABLESTEAMWORKS // for Web build
+
 #if !DISABLESTEAMWORKS
 using Steamworks;
 #endif
