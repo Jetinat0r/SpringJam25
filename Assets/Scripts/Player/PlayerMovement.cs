@@ -108,6 +108,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     public Transform cameraTarget;
 
+    private float timeSinceShadowPressed = 1f;
+    private bool shadowLocked = false;
+
+    [SerializeField, Range(0f, 1f)]
+    private float shadowBufferTime = 0.1f;
+
     // Singleton
     public static PlayerMovement instance;
 
@@ -198,9 +204,24 @@ public class PlayerMovement : MonoBehaviour
         
         //Debug.Log($"MOVE: {moveX}, {moveY}");
 
+        // Input buffering for shadow control
+        if (actionShadow.WasPressedThisFrame() || (actionShadow.IsPressed() && !isShadow && !shadowLocked))
+        {
+            timeSinceShadowPressed = 0f;
+        }
+        else if (timeSinceShadowPressed < 1f && !isShadow)
+        {
+            timeSinceShadowPressed += Time.deltaTime;
+        }
+
+        if (actionShadow.WasReleasedThisFrame())
+        {
+            shadowLocked = false;
+        }
+
         //These things are why we can de-shadow mid camera transition lol
         if (actionInteract.WasPressedThisFrame()) interacted = true;
-        if (actionShadow.WasPressedThisFrame()) toggledShadow = true;
+        if (actionShadow.WasPressedThisFrame() || (!isShadow && timeSinceShadowPressed < shadowBufferTime && !shadowLocked)) toggledShadow = true;
     }
 
     // Update is called once per frame
@@ -529,6 +550,7 @@ public class PlayerMovement : MonoBehaviour
 
     void SetShadow()
     {
+        timeSinceShadowPressed = 1f;
         if (isShadow) return;
 
         shadowSprite.SetActive(true);
@@ -555,6 +577,7 @@ public class PlayerMovement : MonoBehaviour
 
     void SetGhost()
     {
+        timeSinceShadowPressed = 1f;
         if (!isShadow) return;
 
         shadowSprite.SetActive(false);
@@ -577,6 +600,7 @@ public class PlayerMovement : MonoBehaviour
             shadowAnimator.Play("ShadowAnimation", 0, 1);
         }
         isShadow = false;
+        shadowLocked = true;
     }
 
     public void EnterVent(Vent _vent)
