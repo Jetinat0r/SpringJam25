@@ -32,7 +32,7 @@ public class Roomba : MonoBehaviour
         if (LevelMenuManager.isMenuOpen) return;
 
         // If the player is resetting, pretend like it flipped when it "touches"
-        if (PlayerMovement.instance != null && LevelManager.isResetting || PlayerMovement.instance.hasWon)
+        if (PlayerMovement.instance != null && (LevelManager.isResetting || PlayerMovement.instance.hasWon))
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), PlayerMovement.instance.GetComponent<Collider2D>());
             if (Vector2.Distance(PlayerMovement.instance.transform.position, transform.position) < 0.5)
