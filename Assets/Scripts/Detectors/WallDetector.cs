@@ -12,12 +12,12 @@ public class WallDetector : MonoBehaviour
     //Called when the collider was under 1 or more lights last physics tick, but is now under 0 lights
     public WallStateChange onWallExit;
 
-    public List<Collider2D> activeWallCollisions = new List<Collider2D>();
+    public List<Collider2D> activeWallCollisions = new();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         bool _broadcastEnterEvent = false;
-        if(activeWallCollisions.Count == 0)
+        if (activeWallCollisions.Count == 0)
         {
             _broadcastEnterEvent = true;
         }

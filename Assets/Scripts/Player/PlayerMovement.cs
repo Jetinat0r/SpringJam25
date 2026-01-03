@@ -114,6 +114,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float shadowBufferTime = 0.1f;
 
+    [SerializeField]
+    private Vector2Int lightSampleResolution = new(20, 20);
+    private readonly List<Vector2> lightSamplePoints = new();
+
     // Singleton
     public static PlayerMovement instance;
 
@@ -234,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
         {
             checkIsForcedOutShadow = false;
 
-            if (!onWall || !inLight)
+            if (!CanBeShadow())
             {
                 ExitShadow();
             }
@@ -347,7 +351,7 @@ public class PlayerMovement : MonoBehaviour
             SetGhost();
         }
 
-        if (toggledShadow && inLight && onWall)
+        if (toggledShadow && CanBeShadow())
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
@@ -389,7 +393,7 @@ public class PlayerMovement : MonoBehaviour
             currState = PlayerStates.Falling;
         }
 
-        if (toggledShadow && inLight && onWall)
+        if (toggledShadow && CanBeShadow())
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
@@ -418,7 +422,7 @@ public class PlayerMovement : MonoBehaviour
             SetGhost();
         }
 
-        if (toggledShadow && inLight && onWall)
+        if (toggledShadow && CanBeShadow())
         {
             // Zero out velocity to ensure it is reset on state change
             rb.linearVelocity = Vector2.zero;
@@ -758,5 +762,46 @@ public class PlayerMovement : MonoBehaviour
         ChallengeManager.instance.TryCompleteChallenges();
         LevelManager.instance.CompleteLevel();
         ProgramManager.instance.saveData.SaveSaveData();
+    }
+
+    private void GetLightSamplePoints()
+    {
+        lightSamplePoints.Clear();
+        
+        Vector2 sample;
+        for (int x = 0; x < lightSampleResolution.x; x++)
+        {
+            for (int y = 0; y < lightSampleResolution.y; y++)
+            {
+                sample.x = (x + 0.5f) / lightSampleResolution.x - 0.5f;
+                sample.y = (y + 0.5f) / lightSampleResolution.y - 0.5f;
+
+                Vector2 localPoint = lightCollision.offset + lightCollision.size * sample;
+
+                lightSamplePoints.Add(lightCollision.transform.TransformPoint(localPoint));
+            }
+        }
+    }
+
+    public bool CanBeShadow()
+    {
+        // Naive check filters out most of the expensive sampling
+        if (!inLight || !onWall) return false;
+
+        // Ensure there is at least one pixel touching both light and wall
+        GetLightSamplePoints();
+        foreach (Collider2D light in lightDetector.activeLightCollisions)
+        {
+            foreach (Vector2 point in lightSamplePoints)
+            {
+                // It is safe to use activeWallCollisions[0] because there is only one shadow wall tilemap
+                if (light.OverlapPoint(point) && wallDetector.activeWallCollisions[0].OverlapPoint(point))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

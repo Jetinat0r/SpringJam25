@@ -12,12 +12,12 @@ public class LightDetector : MonoBehaviour
     //Called when the collider was under 1 or more lights last physics tick, but is now under 0 lights
     public LightStateChange onLightExit;
 
-    public List<Collider2D> activeLightCollisions = new List<Collider2D>();
+    public List<Collider2D> activeLightCollisions = new();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         bool _broadcastEnterEvent = false;
-        if(activeLightCollisions.Count == 0)
+        if (activeLightCollisions.Count == 0)
         {
             _broadcastEnterEvent = true;
         }
