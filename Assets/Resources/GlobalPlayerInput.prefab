@@ -171,15 +171,15 @@ MonoBehaviour:
   - inputPath: w
     glyph: {fileID: 8502469127130004407, guid: 438e461c44764394ea50a7924d2e5bc7, type: 3}
   - inputPath: x
-    glyph: {fileID: 3290773590391931726, guid: 543b4e6b365fbdd44b7273f1ddc55975, type: 3}
+    glyph: {fileID: -8070010104199377974, guid: aa0acea899296114086c86a33806455d, type: 3}
   - inputPath: y
     glyph: {fileID: 834430511312592703, guid: ba7c00966d2bba14085dded79d4a17b6, type: 3}
   - inputPath: z
-    glyph: {fileID: -8228751825728113428, guid: 4ec00366eed9b9743b469db0688f2985, type: 3}
+    glyph: {fileID: 8804646276779413558, guid: 489b1e004ddb3a3458c1f25ee425c607, type: 3}
   - inputPath: '#(X)'
-    glyph: {fileID: 3290773590391931726, guid: 543b4e6b365fbdd44b7273f1ddc55975, type: 3}
+    glyph: {fileID: -8070010104199377974, guid: aa0acea899296114086c86a33806455d, type: 3}
   - inputPath: '#(Z)'
-    glyph: {fileID: -8228751825728113428, guid: 4ec00366eed9b9743b469db0688f2985, type: 3}
+    glyph: {fileID: 8804646276779413558, guid: 489b1e004ddb3a3458c1f25ee425c607, type: 3}
   - inputPath: 0
     glyph: {fileID: -2514698208951956304, guid: 0b253cd56383c1341a67cf575a4666f2, type: 3}
   - inputPath: 1
@@ -312,11 +312,11 @@ MonoBehaviour:
   - inputPath: buttonNorth
     glyph: {fileID: -2387022029367388428, guid: 0828472bbc3ddf949a928211c60c12fd, type: 3}
   - inputPath: buttonSouth
-    glyph: {fileID: -7957231483821635067, guid: cf97d405b35fb8643939986481723509, type: 3}
+    glyph: {fileID: -8070010104199377974, guid: aa0acea899296114086c86a33806455d, type: 3}
   - inputPath: buttonWest
     glyph: {fileID: -9029083894172840260, guid: 6f0142bac7fb7854f859663e075bd2aa, type: 3}
   - inputPath: buttonEast
-    glyph: {fileID: 933917687536966540, guid: 9d859ff520a2e24409a0d67ce66885c4, type: 3}
+    glyph: {fileID: 8804646276779413558, guid: 489b1e004ddb3a3458c1f25ee425c607, type: 3}
   - inputPath: dpad/up
     glyph: {fileID: 4723066583106916422, guid: 39c30a6f5725dc6449763415af746c5c, type: 3}
   - inputPath: dpad/down

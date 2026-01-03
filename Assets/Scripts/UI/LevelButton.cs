@@ -21,10 +21,10 @@ public class LevelButton : MonoBehaviour
     {
         HideChallengeBadges();
 
-        if (_isUnlocked || _levelSaveData.completed)
+        if (_isUnlocked || (_levelSaveData != null && _levelSaveData.completed))
         {
             UnlockLevel();
-            ShowCompletedChallengeBadges(_levelSaveData);
+            //ShowCompletedChallengeBadges(_levelSaveData);
         }
         else
         {

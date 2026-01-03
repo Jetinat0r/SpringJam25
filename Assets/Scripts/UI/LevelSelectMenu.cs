@@ -78,6 +78,9 @@ public class LevelSelectMenu : MonoBehaviour
     [SerializeField]
     private SoundPlayer soundPlayer;
 
+    [Header("MAGFEST")]
+    public List<int> demoLevels;
+
     private void Awake()
     {
         for (int i = 0; i < levelContainerPanels.Count; i++)
@@ -101,136 +104,31 @@ public class LevelSelectMenu : MonoBehaviour
     //Locks and unlocks proper levels, challenges, and badges
     public void UpdateMenuState()
     {
-        int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
-
-        bool _allLevelsCompleted = true;
-        int _fullClearedWorlds = 0;
-        bool _levelUnlocked = true;
-        for (int i = 0; i < 4; i++)
+        //Remove world crowns
+        for (int i = 0; i < worldCompletionCrowns.Count; i++)
         {
-            int _worldEctoplasmCompleted = 0;
-            int _worldLightsOutCompleted = 0;
-            int _worldSpectralShuffleCompleted = 0;
-            for (int j = 0; j < 8; j++)
-            {
-                SaveData.LevelSaveData _curLevelSaveData = ProgramManager.instance.saveData.WorldSaveData[i].levels[j];
-
-                //Update button state
-                levelButtonCollections[i].levelButtons[j].UpdateState(_levelUnlocked, _curLevelSaveData);
-                if (_curLevelSaveData.completed)
-                {
-                    //Unlock button
-                    _levelUnlocked = true;
-                }
-                else
-                {
-                    //Lock button
-                    _levelUnlocked = false;
-
-                    //We can't unlock challenges
-                    _allLevelsCompleted = false;
-                }
-
-                //Update badge completeness
-                if (_curLevelSaveData.challenges.beatEctoplasm) _worldEctoplasmCompleted++;
-                if (_curLevelSaveData.challenges.beatLightsOut) _worldLightsOutCompleted++;
-                if (_curLevelSaveData.challenges.beatSpectralShuffle) _worldSpectralShuffleCompleted++;
-            }
-
-            //Check for total challenge completion
-            if (_worldEctoplasmCompleted == 8 && _worldLightsOutCompleted == 8 && _worldSpectralShuffleCompleted == 8)
-            {
-                //Reveal world crowns
-                worldCompletionCrowns[i].SetActive(true);
-
-                _fullClearedWorlds++;
-            }
-            else
-            {
-                worldCompletionCrowns[i].SetActive(false);
-            }
+            worldCompletionCrowns[i].SetActive(false);
         }
 
-
-        if (_allLevelsCompleted)
+        for (int i = 0; i < 32; i++)
         {
-            UnlockChallenges();
-        }
-        else
-        {
-            LockChallenges();
+            //Init button state
+            levelButtonCollections[i / 8].levelButtons[i % 8].UpdateState(false, null);
         }
 
-        //Achievement Checks:
-        //World Completion
-        for (int w = 0; w < 4; w++)
+        for (int i = 0; i < demoLevels.Count; i++)
         {
-            bool _completedAllWorldLevels = true;
-            for (int i = 0; i < 8; i++)
-            {
-                if (!ProgramManager.instance.saveData.WorldSaveData[w].levels[i].completed)
-                {
-                    _completedAllWorldLevels = false;
-                    break;
-                }
-            }
-            if (_completedAllWorldLevels)
-            {
-                Debug.Log($"(Menu Safeguard) Achievement Unlocked: Clear W{w + 1}");
-                JetEngine.SteamUtils.TryGetAchievement($"CLEAR_W{w + 1}");
-                if (ProgramManager.instance.saveData.WorldSaveData[w].fastestTime <= speedrunTimes[w])
-                {
-                    Debug.Log($"(Menu Safeguard) Achievement Unlocked: Speedrun W{w + 1}");
-                    JetEngine.SteamUtils.TryGetAchievement($"SPEEDRUN_W{w + 1}");
-                }
-            }
-        }
+            int _demoLevel = demoLevels[i] - 1;
 
-        //Challenge Completion
-        int _ectoplasmCompleted = ProgramManager.instance.saveData.GetNumCompletedEctoplasm();
-        JetEngine.SteamUtils.TrySetStat("ep_count", _ectoplasmCompleted);
-        if (_ectoplasmCompleted == 32)
-        {
-            Debug.Log("(Menu Safeguard) Achievement Unlocked: Challenge Clear Ectoplasm");
-            JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_EP");
+            //Update button state
+            levelButtonCollections[_demoLevel / 8].levelButtons[_demoLevel % 8].UpdateState(true, null);
         }
-        int _lightsOutCompleted = ProgramManager.instance.saveData.GetNumCompletedLightsOut();
-        JetEngine.SteamUtils.TrySetStat("lo_count", _lightsOutCompleted);
-        if (_lightsOutCompleted == 32)
-        {
-            Debug.Log("(Menu Safeguard) Achievement Unlocked: Challenge Clear Lights Out");
-            JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_LO");
-        }
-        int _spectralShuffleCompleted = ProgramManager.instance.saveData.GetNumCompletedSpectralShuffle();
-        JetEngine.SteamUtils.TrySetStat("ss_count", _spectralShuffleCompleted);
-        if (_spectralShuffleCompleted == 32)
-        {
-            Debug.Log("(Menu Safeguard) Achievement Unlocked: Challenge Clear Spectral Shuffle");
-            JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_SS");
-        }
-        int _crowned = ProgramManager.instance.saveData.GetNumCrownedLevels();
-        JetEngine.SteamUtils.TrySetStat("crown_count", _crowned);
-        if (_crowned == 32)
-        {
-            Debug.Log("(Menu Safeguard) Achievement Unlocked: Challenge Clear All");
-            JetEngine.SteamUtils.TryGetAchievement("CHALLENGECLEAR_ALL");
-        }
-
-        if (ProgramManager.instance.saveData.AnonymousAlcoholic)
-        {
-            Debug.Log("(Menu Safeguard) Achievement Unlocked: Ectoplasm Dry");
-            JetEngine.SteamUtils.TryGetAchievement("ECTOPLASM_DRY");
-        }
-        if (ProgramManager.instance.saveData.Concussed)
-        {
-            Debug.Log("(Menu Safeguard) Achievement Unlocked: Concussion");
-            JetEngine.SteamUtils.TryGetAchievement("CONCUSSION");
-        }
-
+        
+        UnlockChallenges();
         UpdateChallengeButtonDisplayStates();
 
         //Init Level Select Page
-        ScrollToPage((ProgramManager.instance.saveData.LastPlayedLevel - 1) / 8, true);
+        ScrollToPage(0, true);
     }
 
     public void UnlockChallenges()

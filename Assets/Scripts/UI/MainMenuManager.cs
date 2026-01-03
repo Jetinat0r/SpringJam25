@@ -380,6 +380,7 @@ public class MainMenuManager : MonoBehaviour
     public void ContinuePlaying()
     {
 
+        /*
         int _completedLevels = ProgramManager.instance.saveData.GetNumCompletedLevels();
         //Clamp to play last level if all have been completed
         if (_completedLevels >= 32)
@@ -394,7 +395,8 @@ public class MainMenuManager : MonoBehaviour
 
         //Play next level
         EnterLevel(levelSelectMenu.levelButtonCollections[_completedLevels / 8].levelButtons[_completedLevels % 8].levelName);
-        
+        */
+        EnterLevel("Level1");
         //Enter level itself plays the sound
         //soundPlayer.PlaySound(selectSound);
     }
