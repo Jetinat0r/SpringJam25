@@ -89,7 +89,7 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Allows Right Shift + R to Reset all progress. Save for Debug and Showcase builds!")]
-    public bool allowDebugFullComplete = false;
+    public bool allowDebugGoToSettingsMenu = false;
 
     public static bool inMenu = false;
     public static bool muteFirstButtonSound = true;
@@ -127,7 +127,7 @@ public class MainMenuManager : MonoBehaviour
 
         resetProgress = debugInput.actions["ResetProgress"];
         resetProgress.Enable();
-        resetProgress.started += UnlockAll;
+        resetProgress.started += GoToSettingsMenu;
 
         ProgramManager.instance.showChallengeUnlock = false;
 
@@ -226,14 +226,14 @@ public class MainMenuManager : MonoBehaviour
     private void OnDestroy()
     {
         curTween?.Kill();
-        resetProgress.started -= UnlockAll;
+        resetProgress.started -= GoToSettingsMenu;
         muteFirstButtonSound = true;
     }
 
-    //Has been morphed into UnlockAll
-    public void UnlockAll(InputAction.CallbackContext _context)
+    //Has been morphed into GoToSettingsMenu
+    public void GoToSettingsMenu(InputAction.CallbackContext _context)
     {
-        if (!allowDebugFullComplete)
+        if (!allowDebugGoToSettingsMenu)
         {
             return;
         }
@@ -241,10 +241,11 @@ public class MainMenuManager : MonoBehaviour
         soundPlayer.PlaySound(selectSound);
         //SettingsManager.completedLevels = 17;
         //SettingsManager.SaveSettings();
-        ProgramManager.instance.LoadFullCompleteSaveData();
-        UpdateCreditsMenuState();
-        levelSelectMenu.UpdateMenuState();
+        //ProgramManager.instance.LoadFullCompleteSaveData();
+        //UpdateCreditsMenuState();
+        //levelSelectMenu.UpdateMenuState();
         //ResetProgress();
+        MoveToSettingsPanel();
     }
 
     //Mostly duplicated ResetProgress so we could play a different sound :P
@@ -396,6 +397,12 @@ public class MainMenuManager : MonoBehaviour
         //Play next level
         EnterLevel(levelSelectMenu.levelButtonCollections[_completedLevels / 8].levelButtons[_completedLevels % 8].levelName);
         */
+
+        //Disable challenges if playing from here
+        ChallengeManager.instance.ectoplasmEnabled = false;
+        ChallengeManager.instance.lightsOutEnabled = false;
+        ChallengeManager.instance.spectralShuffleEnabled = false;
+
         EnterLevel("Level1");
         //Enter level itself plays the sound
         //soundPlayer.PlaySound(selectSound);

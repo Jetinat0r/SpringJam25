@@ -239,13 +239,13 @@ MonoBehaviour:
   - inputPath: rightCtrl
     glyph: {fileID: 597497745070065996, guid: 2c72b805bd71df14bb81c4640d6fe9d6, type: 3}
   - inputPath: upArrow
-    glyph: {fileID: -8778027604432948253, guid: fb51d4485c83ec244b4e10b6e9d32644, type: 3}
+    glyph: {fileID: 4723066583106916422, guid: 39c30a6f5725dc6449763415af746c5c, type: 3}
   - inputPath: downArrow
-    glyph: {fileID: -8387304691967000764, guid: 439c692cbc33bbe4d89e42ad6d0d4bb5, type: 3}
+    glyph: {fileID: 6212914745707789498, guid: 872fdd2f55cd6e44fabf75d3711f4f46, type: 3}
   - inputPath: leftArrow
-    glyph: {fileID: -861516373737725364, guid: c5c9c25c13787d140a3b258dd37a7ad1, type: 3}
+    glyph: {fileID: -7429442475343095068, guid: 78bdaaebc7aed0d478e423dfc9f49b7d, type: 3}
   - inputPath: rightArrow
-    glyph: {fileID: -5332486705905676251, guid: 7e67fa6e89c113d479bfcacbf1f9e5f6, type: 3}
+    glyph: {fileID: -4535333867812540386, guid: 72623fde6f9083741800fee7d2699152, type: 3}
   - inputPath: f1
     glyph: {fileID: -3323680052950792602, guid: 54a40c372d1a5f64687317b98f1787a7, type: 3}
   - inputPath: f2
@@ -310,7 +310,7 @@ MonoBehaviour:
     glyph: {fileID: -2675021241385580073, guid: f8f30cc2802b7554bad27ff78686313f, type: 3}
   genericGlyphMap:
   - inputPath: buttonNorth
-    glyph: {fileID: -2387022029367388428, guid: 0828472bbc3ddf949a928211c60c12fd, type: 3}
+    glyph: {fileID: -8070010104199377974, guid: aa0acea899296114086c86a33806455d, type: 3}
   - inputPath: buttonSouth
     glyph: {fileID: -8070010104199377974, guid: aa0acea899296114086c86a33806455d, type: 3}
   - inputPath: buttonWest
@@ -347,7 +347,7 @@ MonoBehaviour:
     glyph: {fileID: -899724866091441795, guid: 08e72088057d94d4ea54f899828842bf, type: 3}
   nintendoGlyphMap:
   - inputPath: buttonNorth
-    glyph: {fileID: -876340183637453798, guid: 054ccd48ae3509a46ae15953debc8fa6, type: 3}
+    glyph: {fileID: -8070010104199377974, guid: aa0acea899296114086c86a33806455d, type: 3}
   - inputPath: buttonSouth
     glyph: {fileID: -8070010104199377974, guid: aa0acea899296114086c86a33806455d, type: 3}
   - inputPath: buttonWest
