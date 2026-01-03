@@ -5171,7 +5171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.4375, y: 9.53125}
+  m_AnchoredPosition: {x: -4.4375, y: 9.6}
   m_SizeDelta: {x: 3.5, y: 1}
   m_Pivot: {x: 0, y: 1}
 --- !u!95 &181209028
@@ -7061,7 +7061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 15.53125}
+  m_AnchoredPosition: {x: 1, y: 15.93125}
   m_SizeDelta: {x: 3.5, y: 1}
   m_Pivot: {x: 0, y: 1}
 --- !u!95 &403134302
@@ -7106,7 +7106,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tony Li
+  m_text: 'Tess
+
+    McRae'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -8433,7 +8435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.4375, y: 23.5}
+  m_AnchoredPosition: {x: -4.4375, y: 23.3}
   m_SizeDelta: {x: 3.5, y: 1}
   m_Pivot: {x: 0, y: 1}
 --- !u!95 &504068714
@@ -9952,7 +9954,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.4375, y: 21.53125}
+  m_AnchoredPosition: {x: -4.4375, y: 21.6}
   m_SizeDelta: {x: 3.5, y: 1}
   m_Pivot: {x: 0, y: 1}
 --- !u!95 &692395216
@@ -10498,7 +10500,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.5625, y: 27.59375}
+  m_AnchoredPosition: {x: -4.5625, y: 27.65}
   m_SizeDelta: {x: 3.75, y: 1}
   m_Pivot: {x: 0, y: 1}
 --- !u!95 &740643242
@@ -40181,9 +40183,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Tess
-
-    McRae'
+  m_text: Tony Li
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -84610,7 +84610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.4375, y: 19.6875}
+  m_AnchoredPosition: {x: -4.4375, y: 19.6}
   m_SizeDelta: {x: 3.5, y: 1}
   m_Pivot: {x: 0, y: 1}
 --- !u!95 &1515041637
@@ -85744,7 +85744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.153125
+      value: 0.18750001
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -85752,7 +85752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.6944445
+      value: 0.62500006
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
@@ -86010,7 +86010,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.1, y: 3}
+  m_AnchoredPosition: {x: -4.1, y: 2.9}
   m_SizeDelta: {x: 3, y: 1}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1669541357
@@ -130097,7 +130097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.4375, y: 25.5}
+  m_AnchoredPosition: {x: -4.4375, y: 25.9}
   m_SizeDelta: {x: 3.5, y: 1}
   m_Pivot: {x: 0, y: 1}
 --- !u!95 &1908828593
