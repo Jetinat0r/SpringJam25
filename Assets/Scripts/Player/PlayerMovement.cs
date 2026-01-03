@@ -93,9 +93,10 @@ public class PlayerMovement : MonoBehaviour
     private float grav;
     [SerializeField] private float groundAcceleration;
 
-    private Vector2 ghostSize = new(0.6875f, 0.8125f);
-    private Vector2 ghostOffset = new(0f, 0.40625f);
-    private Vector2 ghostDetectSize = new(0.6875f, 1f);
+    private Vector2 ghostSize = 0.6875f * Vector2.right + 0.8125f * Vector2.up;
+    private Vector2 ghostOffset = 0.40625f * Vector2.up;
+    private Vector2 shadowSize = 0.59375f * Vector2.one;
+    private Vector2 shadowOffset = 0.5f * Vector2.up;
 
     //Layers to exclude on death to prevent interactions (pushing blocks & being pushed by conveyors; etc.)
     [SerializeField] private LayerMask deathExcludeLayers = 0;
@@ -533,14 +534,11 @@ public class PlayerMovement : MonoBehaviour
         shadowSprite.SetActive(true);
         ghostSprite.SetActive(false);
 
-        collision.size = 0.59375f * Vector2.one;
-        collision.offset = 0.5f * Vector2.up;
+        collision.size = shadowSize;
+        collision.offset = shadowOffset;
 
-        lightCollision.size = collision.size;
-        lightCollision.offset = collision.offset;
-
-        wallCollision.size = collision.size;
-        wallCollision.offset = collision.offset;
+        lightCollision.offset += Vector2.up * 0.2f;
+        wallCollision.offset += Vector2.up * 0.2f;
 
         Vector2 newPos = transform.position;
         newPos.y -= 0.2f;
@@ -569,11 +567,8 @@ public class PlayerMovement : MonoBehaviour
         collision.size = ghostSize;
         collision.offset = ghostOffset;
 
-        lightCollision.size = ghostDetectSize;
-        lightCollision.offset = Vector2.up * 0.5f;
-
-        wallCollision.size = ghostDetectSize;
-        wallCollision.offset = lightCollision.offset;
+        lightCollision.offset -= Vector2.up * 0.2f;
+        wallCollision.offset -= Vector2.up * 0.2f;
 
         shadowAnimator.SetFloat("Speed", -2);
         soundPlayer.PlaySound("Game.ShadowOut");
