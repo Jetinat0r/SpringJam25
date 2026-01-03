@@ -107,12 +107,17 @@ public class PlayerMovement : MonoBehaviour
     //Camera Target
     [SerializeField]
     public Transform cameraTarget;
-
     private float timeSinceShadowPressed = 1f;
     private bool shadowLocked = false;
 
     [SerializeField, Range(0f, 1f)]
-    private float shadowBufferTime = 0.1f;
+    private float shadowBufferTime = 0.2f;
+
+    [SerializeField]
+    private bool shadowCanBePreemptivelyHeld = true;
+
+    [SerializeField]
+    private bool shadowCanBePersistentlyHeld = false;
 
     [SerializeField]
     private Vector2Int lightSampleResolution = new(20, 20);
@@ -208,8 +213,8 @@ public class PlayerMovement : MonoBehaviour
         
         //Debug.Log($"MOVE: {moveX}, {moveY}");
 
-        // Input buffering for shadow control
-        if (actionShadow.WasPressedThisFrame() || (actionShadow.IsPressed() && !isShadow && !shadowLocked))
+        // Input buffering and held control responses for shadow input
+        if (actionShadow.WasPressedThisFrame() || ((shadowCanBePersistentlyHeld || shadowCanBePreemptivelyHeld) && actionShadow.IsPressed() && !isShadow && !shadowLocked))
         {
             timeSinceShadowPressed = 0f;
         }
@@ -218,14 +223,19 @@ public class PlayerMovement : MonoBehaviour
             timeSinceShadowPressed += Time.deltaTime;
         }
 
-        if (actionShadow.WasReleasedThisFrame())
+        if (shadowLocked && (actionShadow.WasReleasedThisFrame() || (shadowCanBePersistentlyHeld && !isShadow && !CanBeShadow())))
         {
             shadowLocked = false;
         }
 
         //These things are why we can de-shadow mid camera transition lol
         if (actionInteract.WasPressedThisFrame()) interacted = true;
-        if (actionShadow.WasPressedThisFrame() || (!isShadow && timeSinceShadowPressed < shadowBufferTime && !shadowLocked)) toggledShadow = true;
+
+        // Handle input buffering and held control options for shadow control
+        if (actionShadow.WasPressedThisFrame() || (!isShadow && !shadowLocked
+            && (timeSinceShadowPressed < shadowBufferTime
+            || ((shadowCanBePersistentlyHeld || shadowCanBePreemptivelyHeld) && actionShadow.IsPressed()))))
+            toggledShadow = true;
     }
 
     // Update is called once per frame
