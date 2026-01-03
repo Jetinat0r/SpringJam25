@@ -732,14 +732,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0f;
         collision.excludeLayers |= deathExcludeLayers;
-        shadowSprite.SetActive(false);
-        ghostSprite.SetActive(true);
-        if (isShadow)
-        {
-            Vector2 newPos = transform.position;
-            newPos.y += 0.2f;
-            transform.position = newPos;
-        }
+        SetGhost();
         spriteAnimator.SetTrigger("win");
         soundPlayer.PlaySound("Game.LevelClear", 0.6f);
         hasWon = true;
