@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TabButtonBehavior : MonoBehaviour
+public class TabButtonBehavior : MonoBehaviour, ISelectHandler
 {
     [SerializeField]
     public Button tabButton;
@@ -17,6 +18,9 @@ public class TabButtonBehavior : MonoBehaviour
 
     [SerializeField]
     private SoundPlayer soundPlayer;
+
+    [SerializeField]
+    private Selectable backButton;
 
     public void ShowTab()
     {
@@ -50,4 +54,17 @@ public class TabButtonBehavior : MonoBehaviour
         tabContent.SetActive(false);
         activeTabDisplay.SetActive(false);
     }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        // Set vertical navigation to the most recently selected tab
+        Navigation _nav = tabButton.navigation.selectOnDown.navigation;
+        _nav.selectOnUp = tabButton;
+        tabButton.navigation.selectOnDown.navigation = _nav;
+
+        _nav = backButton.navigation;
+        _nav.selectOnDown = tabButton;
+        backButton.navigation = _nav;
+    }
+
 }

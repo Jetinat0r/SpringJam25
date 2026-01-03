@@ -6896,6 +6896,7 @@ MonoBehaviour:
   tabContent: {fileID: 2135577044}
   firstNavigableElement: {fileID: 1794485471}
   soundPlayer: {fileID: 2020560074}
+  backButton: {fileID: 991314004}
 --- !u!1 &170210313
 GameObject:
   m_ObjectHideFlags: 0
@@ -10706,6 +10707,7 @@ MonoBehaviour:
   tabContent: {fileID: 2141741169}
   firstNavigableElement: {fileID: 1460171553}
   soundPlayer: {fileID: 2020560074}
+  backButton: {fileID: 991314004}
 --- !u!114 &278848778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34025,6 +34027,7 @@ MonoBehaviour:
   tabContent: {fileID: 61472003}
   firstNavigableElement: {fileID: 1949906504}
   soundPlayer: {fileID: 2020560074}
+  backButton: {fileID: 991314004}
 --- !u!114 &949959826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35451,6 +35454,7 @@ MonoBehaviour:
   tabContent: {fileID: 2030924560}
   firstNavigableElement: {fileID: 120513257}
   soundPlayer: {fileID: 2020560074}
+  backButton: {fileID: 991314004}
 --- !u!114 &971601940
 MonoBehaviour:
   m_ObjectHideFlags: 0
