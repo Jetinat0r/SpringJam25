@@ -109,8 +109,13 @@ public class AudioManager : MonoBehaviour
             Stop();
             return true;
         }
+        else if (_levelName == "MainMenu" && currentWorld != World.WORLD1)
+        {
+            Stop();
+            return true;
+        }
 
-        return false;
+            return false;
     }
 
     /// <summary>

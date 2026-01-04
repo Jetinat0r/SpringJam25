@@ -4,11 +4,13 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static SaveData;
+using static DemoData;
 
 public class ProgramManager : MonoBehaviour
 {
     public static ProgramManager instance;
     public SaveData.RootSaveDataObject saveData = null;
+    public DemoData.RootDemoData demoData = null;
     //Determines whether or not to load the boot splash and start screen when Main Menu is entered
     //  Should only ever be true when the game opens, then false forever more
     public bool firstOpen = true;
@@ -52,10 +54,16 @@ public class ProgramManager : MonoBehaviour
             return;
         }
 
+        //Load Demo Settings
+        demoData = LoadDemoData();
+        //TODO: Load demo video
+
         //Match Gameboy Framerate
         Application.targetFrameRate = 60;
+        //Screen.SetResolution(1920, 1080, false);
         LoadSettings();
         //SaveSettings();
+
     }
 
     private void Start()

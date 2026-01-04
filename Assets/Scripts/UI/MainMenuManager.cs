@@ -136,6 +136,10 @@ public class MainMenuManager : MonoBehaviour
         toggleEP.Enable();
         toggleEP.started += ToggleEP;
         */
+
+        ChallengeManager.instance.ectoplasmEnabled = false;
+        ChallengeManager.instance.lightsOutEnabled = false;
+        ChallengeManager.instance.spectralShuffleEnabled = false;
     }
 
     public void StartupMainMenu()

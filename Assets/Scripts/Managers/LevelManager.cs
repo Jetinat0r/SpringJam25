@@ -93,6 +93,17 @@ public class LevelManager : MonoBehaviour
         // speedrunManager = FindFirstObjectByType<SpeedrunManager>();
 
         initialBottleCount = FindObjectsByType<Ectoplasm>(FindObjectsSortMode.None).Length;
+
+        //Carve out special case for title level
+        if (currentLevelName != "TitleLevel")
+        {
+            nextLevelName = ProgramManager.instance.demoData.GetNextLevelName(currentLevelNumber);
+
+            if (ProgramManager.instance.demoData.IsLastPlayableLevel(currentLevelNumber) && (ChallengeManager.instance.ectoplasmEnabled || ChallengeManager.instance.lightsOutEnabled || ChallengeManager.instance.spectralShuffleEnabled))
+            {
+                nextLevelName = "MainMenu";
+            }
+        }
     }
 
     private void GetZeroRoomReferenceCell()
@@ -255,6 +266,7 @@ public class LevelManager : MonoBehaviour
     {
         if (!ScreenWipe.current.WipeIn(() => { SceneManager.LoadScene("MainMenu"); })) return false;
         //ScreenWipe.current.PostWipe += () => { SceneManager.LoadScene("MainMenu"); };
+        AudioManager.instance.CheckChangeWorlds("MainMenu");
         return true;
     }
 

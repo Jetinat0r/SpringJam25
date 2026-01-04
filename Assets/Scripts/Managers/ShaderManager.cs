@@ -45,7 +45,8 @@ public class ShaderManager : MonoBehaviour
         //Main menu keeps current active palette
         if (_sceneName == "MainMenu")
         {
-            return curPaletteIndex;
+            //return curPaletteIndex;
+            return 0;
         }
 
         //Credits forces world 1
@@ -142,7 +143,8 @@ public class ShaderManager : MonoBehaviour
             usingCustomPalette = ProgramManager.instance.saveData.UseCustomPalette;
         }
 
-        curPaletteIndex = GetWorldPaletteIndex(ProgramManager.instance.saveData.LastPlayedLevel.ToString());
+        //curPaletteIndex = GetWorldPaletteIndex(ProgramManager.instance.saveData.LastPlayedLevel.ToString());
+        curPaletteIndex = 0;
 
         //Init shader state
         UpdateAllShaderMaterialsTexture();
@@ -335,6 +337,9 @@ public class ShaderManager : MonoBehaviour
     //NOTE: DOES NOT SUPPORT DEBUG PALETTE!
     public Color GetActiveColor(int _colorIndex)
     {
+        return defaultPalette.GetPixel(Mathf.Min((int)((_colorIndex / 3f) * defaultPalette.width), defaultPalette.width - 1),
+                Mathf.Min(curPaletteIndex, defaultPalette.height - 1));
+        /*
         if (hasCustomPalette && usingCustomPalette)
         {
             return customPalette.GetPixel(Mathf.Min((int)((_colorIndex / 3f) * customPalette.width), customPalette.width - 1),
@@ -345,5 +350,6 @@ public class ShaderManager : MonoBehaviour
             return defaultPalette.GetPixel(Mathf.Min((int)((_colorIndex / 3f) * defaultPalette.width), defaultPalette.width - 1),
                 Mathf.Min(curPaletteIndex, defaultPalette.height - 1));
         }
+        */
     }
 }

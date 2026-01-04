@@ -78,8 +78,8 @@ public class LevelSelectMenu : MonoBehaviour
     [SerializeField]
     private SoundPlayer soundPlayer;
 
-    [Header("MAGFEST")]
-    public List<int> demoLevels;
+    //[Header("MAGFEST")]
+    //public List<int> demoLevels;
 
     private void Awake()
     {
@@ -116,6 +116,7 @@ public class LevelSelectMenu : MonoBehaviour
             levelButtonCollections[i / 8].levelButtons[i % 8].UpdateState(false, null);
         }
 
+        /*
         for (int i = 0; i < demoLevels.Count; i++)
         {
             int _demoLevel = demoLevels[i] - 1;
@@ -123,7 +124,16 @@ public class LevelSelectMenu : MonoBehaviour
             //Update button state
             levelButtonCollections[_demoLevel / 8].levelButtons[_demoLevel % 8].UpdateState(true, null);
         }
-        
+        */
+        for (int i = 0; i < ProgramManager.instance.demoData.demoLevels.Length; i++)
+        {
+            int _demoLevel = ProgramManager.instance.demoData.demoLevels[i] - 1;
+
+            //Update button state
+            levelButtonCollections[_demoLevel / 8].levelButtons[_demoLevel % 8].UpdateState(true, null);
+        }
+
+
         UnlockChallenges();
         UpdateChallengeButtonDisplayStates();
 

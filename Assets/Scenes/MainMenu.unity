@@ -19504,7 +19504,6 @@ MonoBehaviour:
   spectralShuffleEnabledText: {fileID: 1301581823}
   spectralShuffleDisabledText: {fileID: 618689400}
   soundPlayer: {fileID: 2020560074}
-  demoLevels: 0100000002000000070000000a0000000d0000000f000000110000001200000017000000190000001c0000001e000000
 --- !u!1 &542081556
 GameObject:
   m_ObjectHideFlags: 0
