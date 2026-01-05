@@ -427,9 +427,8 @@ GameObject:
   - component: {fileID: 1256944909}
   - component: {fileID: 1256944908}
   - component: {fileID: 1256944907}
-  - component: {fileID: 1256944911}
-  - component: {fileID: 1256944912}
   - component: {fileID: 1256944913}
+  - component: {fileID: 1256944914}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -525,83 +524,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1256944911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256944906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59addac7f4e520d4ab9a37b8b27290f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSystem: {fileID: 0}
-  corruptedSaveDataScreen: {fileID: 0}
-  corruptedSaveDataScreenFirstSelected: {fileID: 0}
-  startScreen: {fileID: 0}
-  mainLogo: {fileID: 0}
-  startScreenLogo: {fileID: 0}
-  startScreenHiddenButton: {fileID: 0}
-  panelContainer: {fileID: 0}
-  mainPanel: {fileID: 0}
-  mainPanelFirstSelected: {fileID: 0}
-  levelSelectMenu: {fileID: 0}
-  levelSelectPanel: {fileID: 0}
-  levelSelectPanelFirstSelecteds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  settingsPanel: {fileID: 0}
-  settingsPanelFirstSelected: {fileID: 0}
-  instructionsPanel: {fileID: 0}
-  instructionsPanelFirstSelected: {fileID: 0}
-  creditsPanel: {fileID: 0}
-  creditsPanelFirstSelected: {fileID: 0}
-  tweenMoveTime: 1
-  tweenEaseType: 15
-  selectSound: {fileID: 11400000, guid: da7802216da1049a3bb3a5ba7c7c3405, type: 2}
-  backSound: {fileID: 11400000, guid: 9cc15da6fce9c488fbf245998920ef1e, type: 2}
-  soundPlayer: {fileID: 2020560074}
-  debugInput: {fileID: 1256944912}
-  allowDebugGoToSettingsMenu: 1
-  canAccessCreditsSequence: 0
-  creditsUnlockedText: {fileID: 0}
-  creditsLockedIcons: {fileID: 0}
-  creditsLockedTextParent: {fileID: 0}
-  creditsLockedText: {fileID: 0}
---- !u!114 &1256944912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256944906}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 3
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: UI
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &1256944913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +536,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d046c4a05c7014b5d9e10e4ab316c4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1256944914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256944906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18917f0ad195c3419c200920da4541c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdleMenu
+  videoPlayer: {fileID: 2120786561}
 --- !u!1 &1437576553
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,10 +604,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0009302326
-    y: 0.0016286644
-    width: 0.9972093
-    height: 0.99674267
+    x: 0.0009300596
+    y: 0.0016281342
+    width: 0.9970239
+    height: 0.9964181
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -999,17 +934,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017847654}
   m_CullTransparentMesh: 1
---- !u!114 &2020560074 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 886362805277679126, guid: 31f61b2904bb9a741aa14e2b2976413a, type: 3}
-  m_PrefabInstance: {fileID: 892930007}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13c645889cf1ca84b8b4eca6f2938f51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2025023940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1140,10 +1064,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1256944910}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 288}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!328 &2120786561
 VideoPlayer:
@@ -1162,15 +1086,15 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 2
-  m_AspectRatio: 2
-  m_DataSource: 0
+  m_AspectRatio: 1
+  m_DataSource: 1
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
+  m_AudioOutputMode: 0
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 1
+  - 0
   m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 01

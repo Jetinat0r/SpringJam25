@@ -13,7 +13,6 @@ public class DemoData
         {
             Debug.LogWarning("Demo data not found, creating new demo data!");
             RootDemoData _defaultSaveData = new RootDemoData();
-            _defaultSaveData.SaveDemoData();
             return _defaultSaveData;
         }
 
@@ -26,7 +25,6 @@ public class DemoData
         {
             Debug.LogWarning("Demo data corrupted beyond repair, creating new demo data!");
             RootDemoData _defaultSaveData = new RootDemoData();
-            _defaultSaveData.SaveDemoData();
             return _defaultSaveData;
         }
     }
@@ -74,6 +72,7 @@ public class DemoData
             "Level32",
         };
 
+        public float idleTimeoutSeconds = 180f;
         public int[] demoLevels = { 0 };
         public string idleVideoName = "IdleVideo.webm";
 

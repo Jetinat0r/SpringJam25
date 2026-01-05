@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static SaveData;
 using static DemoData;
+using UnityEngine.Video;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+using System.Collections;
 
 public class ProgramManager : MonoBehaviour
 {
@@ -16,6 +20,8 @@ public class ProgramManager : MonoBehaviour
     public bool firstOpen = true;
     //Determines whether or not to display the challenge unlock at the end of the credits sequence
     public bool showChallengeUnlock = false;
+
+    public Coroutine idleCoroutine = null;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     public static void InitDOTween()
@@ -56,7 +62,7 @@ public class ProgramManager : MonoBehaviour
 
         //Load Demo Settings
         demoData = LoadDemoData();
-        //TODO: Load demo video
+        demoData.SaveDemoData();
 
         //Match Gameboy Framerate
         Application.targetFrameRate = 60;
@@ -73,6 +79,32 @@ public class ProgramManager : MonoBehaviour
         {
             Debug.Log("Game didn't start in Main Menu; disabling First Open logic!");
             firstOpen = false;
+        }
+
+        InputSystem.onAnyButtonPress.Call((_eventPtr) => ResetIdleRoutine());
+        idleCoroutine = StartCoroutine(IdleCoroutine());
+    }
+
+    void ResetIdleRoutine()
+    {
+        if (idleCoroutine != null)
+        {
+            StopCoroutine(idleCoroutine);
+        }
+
+        idleCoroutine = StartCoroutine(IdleCoroutine());
+    }
+
+    public IEnumerator IdleCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(demoData.idleTimeoutSeconds);
+            //Send to Idle Scene
+            if (SceneManager.GetActiveScene().name != "IdleScene")
+            {
+                ScreenWipe.current.WipeIn(() => SceneManager.LoadScene("IdleScene"));
+            }
         }
     }
 

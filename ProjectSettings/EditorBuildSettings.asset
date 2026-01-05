@@ -143,6 +143,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UnlockedChallenges.unity
     guid: 7090af79adb2ca546ad018e9943bf55f
+  - enabled: 1
+    path: Assets/Scenes/IdleScene.unity
+    guid: 40782ae281de2bc40b10477434a0359b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1156737c387183f48816901dcaec6507, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
