@@ -73,7 +73,7 @@ public class DemoData
         };
 
         public float idleTimeoutSeconds = 180f;
-        public int[] demoLevels = { 0 };
+        public int[] demoLevels = { 1, 2, 7, 10, 13, 15, 17, 18, 23, 25, 28, 30 };
         public string idleVideoName = "IdleVideo.webm";
 
         public bool IsLastPlayableLevel(int _curLevelNumber)
