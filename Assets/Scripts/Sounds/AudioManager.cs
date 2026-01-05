@@ -114,6 +114,11 @@ public class AudioManager : MonoBehaviour
             Stop();
             return true;
         }
+        else if (_levelName == "TitleLevel" && currentWorld != World.WORLD1)
+        {
+            Stop();
+            return true;
+        }
 
             return false;
     }
