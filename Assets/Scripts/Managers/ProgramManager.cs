@@ -103,6 +103,8 @@ public class ProgramManager : MonoBehaviour
             //Send to Idle Scene
             if (SceneManager.GetActiveScene().name != "IdleScene")
             {
+                AudioManager.instance.CheckChangeWorlds("IdleScene");
+                PlayerMovement.instance.soundPlayer.PlaySound("Game.Stairs");
                 ScreenWipe.current.WipeIn(() => SceneManager.LoadScene("IdleScene"));
             }
         }

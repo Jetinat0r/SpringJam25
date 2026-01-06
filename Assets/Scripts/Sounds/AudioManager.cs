@@ -119,6 +119,12 @@ public class AudioManager : MonoBehaviour
             Stop();
             return true;
         }
+        else if (_levelName == "IdleScene" && currentWorld != World.WORLD1)
+        {
+            Stop();
+            ResetPlayer();
+            return true;
+        }
 
         return false;
     }
