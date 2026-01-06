@@ -551,6 +551,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f61b2904bb9a741aa14e2b2976413a, type: 3}
+--- !u!114 &892930008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 886362805277679126, guid: 31f61b2904bb9a741aa14e2b2976413a, type: 3}
+  m_PrefabInstance: {fileID: 892930007}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c645889cf1ca84b8b4eca6f2938f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1256944906
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IdleMenu
   videoPlayer: {fileID: 2120786561}
+  soundPlayer: {fileID: 892930008}
 --- !u!1 &1437576553
 GameObject:
   m_ObjectHideFlags: 0

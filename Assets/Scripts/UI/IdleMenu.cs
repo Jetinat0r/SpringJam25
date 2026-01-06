@@ -7,6 +7,7 @@ public class IdleMenu : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     private bool subscribed = false;
+    [SerializeField] private SoundPlayer soundPlayer;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class IdleMenu : MonoBehaviour
     private void ReturnToMainMenu(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         subscribed = false;
+        soundPlayer.PlaySound("UI.Select");
         InputOverlord.instance.playerInput.actions["Interact"].started -= ReturnToMainMenu;
         ScreenWipe.current.WipeIn(() => { SceneManager.LoadScene("MainMenu"); });
         ShaderManager.instance.EnableShaders();
