@@ -43,7 +43,7 @@ public class ShaderManager : MonoBehaviour
     public int GetWorldPaletteIndex(string _sceneName)
     {
         //Main menu keeps current active palette
-        if (_sceneName == "MainMenu")
+        if (_sceneName == "MainMenu" || _sceneName == "IdleScene")
         {
             //return curPaletteIndex;
             return 0;

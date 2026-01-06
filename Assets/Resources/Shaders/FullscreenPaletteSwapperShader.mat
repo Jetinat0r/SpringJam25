@@ -58,7 +58,7 @@ Material:
     - _nextPaletteIndex: 0
     - _paletteCondenseAmount: 0
     - _paletteMixAmount: 0
-    - _usePalette: 0
+    - _usePalette: 1
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _paletteImageTexelSize: {r: 0.25, g: 0.25, b: 0, a: 0}
