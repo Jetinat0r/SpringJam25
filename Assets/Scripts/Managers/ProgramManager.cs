@@ -105,6 +105,7 @@ public class ProgramManager : MonoBehaviour
             {
                 AudioManager.instance.CheckChangeWorlds("IdleScene");
                 PlayerMovement.instance.soundPlayer.PlaySound("Game.Stairs");
+                MainMenuManager.inMenu = true;
                 ScreenWipe.current.WipeIn(() => SceneManager.LoadScene("IdleScene"));
             }
         }

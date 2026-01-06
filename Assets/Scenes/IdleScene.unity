@@ -1020,7 +1020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1171581960070588738, guid: e80fcde0e5ed5a84a841be0422cd4685, type: 3}
       propertyPath: fromMenu
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1171581960070588738, guid: e80fcde0e5ed5a84a841be0422cd4685, type: 3}
       propertyPath: newTrack
@@ -1028,6 +1028,10 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 1b1b9a04a18dd4d5a86f1a9b732aa8a3, type: 2}
     - target: {fileID: 1171581960070588738, guid: e80fcde0e5ed5a84a841be0422cd4685, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171581960070588738, guid: e80fcde0e5ed5a84a841be0422cd4685, type: 3}
+      propertyPath: spoofMenu
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7063382920539804015, guid: e80fcde0e5ed5a84a841be0422cd4685, type: 3}

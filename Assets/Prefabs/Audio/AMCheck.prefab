@@ -58,6 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2625dd5de6172439ab6cc98292415b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newTrack: {fileID: 11400000, guid: 44c61c252f92f476f881370fa8197c55, type: 2}
-  newArea: 0
-  delay: 0
+  world: 0
+  fromMenu: 0
+  spoofMenu: 0
