@@ -71,6 +71,7 @@ public class EctoplasmBar : MonoBehaviour
         {
             if (!playerScript.isDead)
             {
+                ProgramManager.instance.WriteLineToLogFile("DEATH,ECTOPLASM");
                 playerScript.Die();
             }
 

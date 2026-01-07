@@ -80,6 +80,7 @@ public class VerrticalRoomba : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            ProgramManager.instance.WriteLineToLogFile("DEATH,ROOMBA");
             PlayerMovement.instance.Die();
         }
     }

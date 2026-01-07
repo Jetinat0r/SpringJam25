@@ -124,6 +124,7 @@ public class Roomba : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            ProgramManager.instance.WriteLineToLogFile("DEATH,ROOMBA");
             PlayerMovement.instance.Die();
         }
     }
