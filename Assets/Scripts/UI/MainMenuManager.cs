@@ -407,6 +407,8 @@ public class MainMenuManager : MonoBehaviour
         ChallengeManager.instance.lightsOutEnabled = false;
         ChallengeManager.instance.spectralShuffleEnabled = false;
 
+        ProgramManager.instance.WriteLineToLogFile("PLAY,START,Level1");
+
         EnterLevel("Level1");
         //Enter level itself plays the sound
         //soundPlayer.PlaySound(selectSound);
@@ -434,6 +436,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void EnterLevel(LevelButton _levelButton)
     {
+        ProgramManager.instance.WriteLineToLogFile($"PLAY,BUTTON,{_levelButton.levelName}");
         EnterLevel(_levelButton.levelName);
     }
 

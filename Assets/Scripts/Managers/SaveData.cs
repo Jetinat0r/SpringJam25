@@ -105,6 +105,8 @@ public class SaveData
     [Serializable]
     public class RootSaveDataObject
     {
+        //Global Counter to ensure no file collisions, and as a back-up in case time gets reset after power outage
+        public int NextLogFileIndex = 0;
         //Track Save data revision for automatic replacement / upgrading
         public int SaveDataVersion = -1;
         public AudioSettings AudioSettings;

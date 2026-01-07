@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static SaveData;
 using static DemoData;
-using UnityEngine.Video;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 using System.Collections;
+using System.IO;
 
 public class ProgramManager : MonoBehaviour
 {
@@ -22,6 +22,9 @@ public class ProgramManager : MonoBehaviour
     public bool showChallengeUnlock = false;
 
     public Coroutine idleCoroutine = null;
+
+    private StreamWriter curLogFile = null;
+    private int writtenLines = 0;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
     public static void InitDOTween()
@@ -69,8 +72,24 @@ public class ProgramManager : MonoBehaviour
         //Screen.SetResolution(1920, 1080, false);
         LoadSettings();
         //SaveSettings();
-
+        CreateNewLogFile();
+        WriteLineToLogFile("BOOT");
+        SceneManager.sceneLoaded += OnSceneLoad;
+        
     }
+
+    private void OnSceneLoad(Scene _scene, LoadSceneMode _sceneMode)
+    {
+        WriteLineToLogFile($"SCENE,{_scene.name}");
+    }
+
+    private void OnApplicationQuit()
+    {
+        WriteLineToLogFile($"QUIT");
+        curLogFile.Close();
+        curLogFile = null;
+    }
+
 
     private void Start()
     {
@@ -99,10 +118,14 @@ public class ProgramManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(demoData.idleTimeoutSeconds);
+            yield return new WaitForSecondsRealtime(demoData.idleTimeoutSeconds);
             //Send to Idle Scene
             if (SceneManager.GetActiveScene().name != "IdleScene")
             {
+                Time.timeScale = 1f;
+
+                WriteLineToLogFile("IDLE");
+
                 AudioManager.instance.CheckChangeWorlds("IdleScene");
                 PlayerMovement.instance.soundPlayer.PlaySound("Game.Stairs");
                 MainMenuManager.inMenu = true;
@@ -207,6 +230,9 @@ public class ProgramManager : MonoBehaviour
         //Keep Resolution Settings
         _newSaveData.DisplaySettings.fullScreenMode = _oldSaveData.DisplaySettings.fullScreenMode;
         _newSaveData.DisplaySettings.vsync = _oldSaveData.DisplaySettings.vsync;
+
+        //Keep Log Index
+        _newSaveData.NextLogFileIndex = _oldSaveData.NextLogFileIndex;
     }
 
     public void SaveSettings()
@@ -237,5 +263,42 @@ public class ProgramManager : MonoBehaviour
         saveData = _fullCompleteSaveData;
 
         SaveSettings();
+    }
+
+    public string GetNewLogFileName()
+    {
+        return $"{DateTime.UtcNow.ToString("yyyy-MM-ddTHH-mm-ss")}_{saveData.NextLogFileIndex:00000}.csv";
+    }
+
+    public void CreateNewLogFile()
+    {
+        //Close current file if open
+        curLogFile?.Close();
+        writtenLines = 0;
+
+        string _logFileDir = Application.persistentDataPath + "/MagfestLogs";
+        if (!Directory.Exists(_logFileDir))
+        {
+            Directory.CreateDirectory(_logFileDir);
+        }
+
+        
+        curLogFile = new StreamWriter(_logFileDir + "/" + GetNewLogFileName(), true, System.Text.Encoding.ASCII); ;
+        saveData.NextLogFileIndex++;
+        saveData.SaveSaveData();
+    }
+
+    public void WriteLineToLogFile(string _line)
+    {
+        //Just in case!
+        if (curLogFile == null) { Debug.LogError("No Log File Open!");  return; }
+
+        curLogFile.WriteLine(DateTime.UtcNow.ToString("yyyy-MM-ddTHH-mm-ss") + "," + _line);
+        writtenLines++;
+
+        if (writtenLines >= demoData.linesPerLogFile)
+        {
+            CreateNewLogFile();
+        }
     }
 }

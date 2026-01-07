@@ -104,6 +104,8 @@ public class LevelManager : MonoBehaviour
                 nextLevelName = "MainMenu";
             }
         }
+
+        ProgramManager.instance.WriteLineToLogFile($"LEVEL,{currentLevelNumber},{currentLevelName},{ChallengeManager.instance.ectoplasmEnabled},{ChallengeManager.instance.lightsOutEnabled},{ChallengeManager.instance.spectralShuffleEnabled}");
     }
 
     private void GetZeroRoomReferenceCell()

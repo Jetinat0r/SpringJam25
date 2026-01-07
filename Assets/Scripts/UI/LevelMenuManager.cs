@@ -74,10 +74,12 @@ public class LevelMenuManager : MonoBehaviour
         playerSoundPlayer = player.soundPlayer;
         if (!isMenuOpen)
         {
+            ProgramManager.instance.WriteLineToLogFile($"PAUSE");
             OpenMenu();
         }
         else
         {
+            ProgramManager.instance.WriteLineToLogFile($"UNPAUSE,SHORTCUT");
             CloseMenu();
         }
     }
@@ -118,11 +120,16 @@ public class LevelMenuManager : MonoBehaviour
 
     public void PlayBackSound()
     {
+        //TODO: Guarantee this is the only place this is played. This is so stupid XP
+        ProgramManager.instance.WriteLineToLogFile("UNPAUSE,MENU");
+
         soundPlayer.PlaySound("UI.Back");
     }
 
     public void RestartLevel()
     {
+        ProgramManager.instance.WriteLineToLogFile($"RESTART,MENU,{LevelManager.instance.currentLevelNumber}");
+
         isTransitioningFromMenu = true;
 
         EventSystem.current.gameObject.SetActive(false);
@@ -138,6 +145,8 @@ public class LevelMenuManager : MonoBehaviour
     public void ExitToMainMenu()
     {
         if (!LevelManager.instance.ReturnToMainMenu()) return;
+        ProgramManager.instance.WriteLineToLogFile($"QUIT,{LevelManager.instance.currentLevelNumber},MENU");
+
         isTransitioningFromMenu = true;
         EventSystem.current.gameObject.SetActive(false);
 

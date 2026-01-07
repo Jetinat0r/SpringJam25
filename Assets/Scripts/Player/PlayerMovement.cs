@@ -173,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (actionResetLevel.WasPressedThisFrame() && ScreenWipe.over && !isDead && !hasWon)
         {
+            ProgramManager.instance.WriteLineToLogFile($"RESTART,KEYBIND,{LevelManager.instance.currentLevelNumber}");
             soundPlayer.PlaySound("UI.Back");
             LevelManager.instance.ResetScene();
         }
@@ -746,5 +747,7 @@ public class PlayerMovement : MonoBehaviour
         ChallengeManager.instance.TryCompleteChallenges();
         LevelManager.instance.CompleteLevel();
         ProgramManager.instance.saveData.SaveSaveData();
+
+        ProgramManager.instance.WriteLineToLogFile($"WIN,{LevelManager.instance.currentLevelNumber}");
     }
 }
