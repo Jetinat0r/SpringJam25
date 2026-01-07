@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
@@ -16,6 +17,36 @@ public class LevelButton : MonoBehaviour
     public GameObject lightsOutIcon;
     public GameObject spectralShuffleIcon;
     public GameObject poltergeistIcon;
+
+    private EventTrigger selectTrigger;
+    private LevelSelectMenu levelSelectMenu;
+
+    private void CreateEventTrigger()
+    {
+        if (selectTrigger != null) return;
+
+        selectTrigger = gameObject.AddComponent<EventTrigger>();
+        EventTrigger.Entry _onSelect = new EventTrigger.Entry()
+        {
+            eventID = EventTriggerType.Select
+        };
+        _onSelect.callback.AddListener(OnSelect);
+        selectTrigger.triggers.Add(_onSelect);
+
+        EventTrigger.Entry _onDeselect = new EventTrigger.Entry()
+        {
+            eventID = EventTriggerType.Deselect
+        };
+        _onDeselect.callback.AddListener(OnDeselect);
+        selectTrigger.triggers.Add(_onDeselect);
+    }
+
+    public void UpdateState(bool _isUnlocked, SaveData.LevelSaveData _levelSaveData, LevelSelectMenu _levelSelectMenu)
+    {
+        levelSelectMenu = _levelSelectMenu;
+        CreateEventTrigger();
+        UpdateState(_isUnlocked, _levelSaveData);
+    }
 
     public void UpdateState(bool _isUnlocked, SaveData.LevelSaveData _levelSaveData)
     {
@@ -77,6 +108,22 @@ public class LevelButton : MonoBehaviour
         if (_levelSaveData.challenges.beatEctoplasm && _levelSaveData.challenges.beatLightsOut && _levelSaveData.challenges.beatSpectralShuffle)
         {
             poltergeistIcon.SetActive(true);
+        }
+    }
+
+    public void OnSelect(BaseEventData _eventData)
+    {
+        if (isLocked)
+        {
+            levelSelectMenu.UpdateHoverCounter(1);
+        }
+    }
+
+    public void OnDeselect(BaseEventData _eventData)
+    {
+        if (isLocked)
+        {
+            levelSelectMenu.UpdateHoverCounter(-1);
         }
     }
 }

@@ -78,8 +78,10 @@ public class LevelSelectMenu : MonoBehaviour
     [SerializeField]
     private SoundPlayer soundPlayer;
 
-    //[Header("MAGFEST")]
+    [Header("MAGFEST")]
     //public List<int> demoLevels;
+    private int hoverCounter = 0;
+    public GameObject lockedLevelText;
 
     private void Awake()
     {
@@ -113,7 +115,7 @@ public class LevelSelectMenu : MonoBehaviour
         for (int i = 0; i < 32; i++)
         {
             //Init button state
-            levelButtonCollections[i / 8].levelButtons[i % 8].UpdateState(false, null);
+            levelButtonCollections[i / 8].levelButtons[i % 8].UpdateState(false, null, this);
         }
 
         /*
@@ -346,5 +348,11 @@ public class LevelSelectMenu : MonoBehaviour
     {
         pageSlideTween?.Kill();
         worldNameSlideTween?.Kill();
+    }
+
+    public void UpdateHoverCounter(int val)
+    {
+        hoverCounter += val;
+        lockedLevelText.SetActive(val > 0);
     }
 }
