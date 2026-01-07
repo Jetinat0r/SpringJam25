@@ -85,7 +85,7 @@ public class ProgramManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        WriteLineToLogFile($"QUIT");
+        WriteLineToLogFile($"TERMINATED");
         curLogFile.Close();
         curLogFile = null;
     }
