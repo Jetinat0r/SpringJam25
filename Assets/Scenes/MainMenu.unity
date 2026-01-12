@@ -13356,7 +13356,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -120}
-  m_SizeDelta: {x: 254, y: 23}
+  m_SizeDelta: {x: 256, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &351729715
 MonoBehaviour:
@@ -66147,7 +66147,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -2, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1837672118
 MonoBehaviour:
@@ -66169,7 +66169,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play the full game free on steam
+  m_text: Play the full game free on steam!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
