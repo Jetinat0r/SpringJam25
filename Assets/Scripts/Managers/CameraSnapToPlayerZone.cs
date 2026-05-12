@@ -47,15 +47,19 @@ public class CameraSnapToPlayerZone : MonoBehaviour
         {
             currentZone = _newZone;
             changeZone?.Invoke(currentZone);
+            if (panTween == null)
+            {
+                oldTimeScale = Time.timeScale;
+                //Else oldTimeScale is already set
+            }
             panTween?.Kill();
             
             Vector2 _newPos = _newZone * LevelManager.instance.zoneSize;
             
-            oldTimeScale = Time.timeScale;
             Time.timeScale = 0f;
             LevelMenuManager.roomScrollTransitionOverride = true;
             panTween = transform.DOMove(new Vector3(_newPos.x, _newPos.y, transform.position.z), scrollTime).SetEase(Ease.OutQuad).SetUpdate(true);
-            panTween.onComplete = () => { Time.timeScale = oldTimeScale; LevelMenuManager.roomScrollTransitionOverride = false; };
+            panTween.onComplete = () => { Time.timeScale = oldTimeScale; LevelMenuManager.roomScrollTransitionOverride = false; panTween = null; };
         }
     }
 }
