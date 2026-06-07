@@ -28,4 +28,14 @@ public class MinaAudioHelper : MonoBehaviour
     {
         soundPlayer.PlaySound("EasterEgg.Typewriter");
     }
+
+    public void PlayItemGetSound()
+    {
+        soundPlayer.PlaySound("EasterEgg.ItemGet");
+    }
+
+    public void PlayItemGetShortSound()
+    {
+        soundPlayer.PlaySound("EasterEgg.ItemGetShort");
+    }
 }
