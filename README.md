@@ -12,12 +12,10 @@ This branch is for me (Evan) to test fixes to things that bother me, pending pos
 ## Minor/Miscellaneous Tweaks
 - Added missing unshadow effects for level clearing as a shadow (this has always bothered me)
 - Fixed no sound feedback for musical machines toggling objects
-- Adjusted vertical keyboard/controller navigation behavior for inactive tabs in the settings menu
-  - The back button goes down to the most recently selected tab, and the first navigable element goes up to the most recently selected tab. (Note selected != active)
 - Fixed Shady getting nudged by robo-vacs while dying, resetting, or winning (because Shady is immune in these states, and it looks dumb particularly during resets + can cause clipping outside the wall)
   - Instead the robo-vacs ignore collision with Shady, and flip if they are within 0.5 units of Shady (unless he is dying)
 
-## Controversial Player Changes
+## Controversial Changes
 - Fixed "can shadow" checks not ensuring light and wall actually intersect
 - Standardized wall/light detector hitboxes in an attempt to fix instant unshadowing. Caveats:
   - Leftover downward velocity can still push you out of the can shadow zone
@@ -31,11 +29,22 @@ This branch is for me (Evan) to test fixes to things that bother me, pending pos
       - The persistent hold has some obvious problems when holding the shadow control and crawling up - you can get into a loop where you are force unshadowed, fall down back into the light, reshadow, crawl up, rinse and repeat
       - It's also not preferable for accessibility according to MicalPixel, but I figured I'd at the very least try implementing it as an option
   - The most accessible combination is 0.2 input buffer time and allowing preemptively held shadow, which is what MicalPixel also landed on. We can do some testing with this at a later time, and it may be worth including an accessibility settings panel in settings later down the line to configure things like this
+- Adjusted vertical keyboard/controller navigation behavior for inactive tabs in the settings menu
+  - The back button goes down to the most recently selected tab, and the first navigable element goes up to the most recently selected tab. (Note selected != active)
+  - The prior behavior was intentional by Jet: "oh right, the settings tabs always bringing you back to the active tab was intentional. right idea? who knows, but it makes sense and will always bring you back to the right place"
+    - Also Jet: "on the other side of the coin you could misinput while trying to go down, then 20 seconds later you nav back to the bar and end up not on the tab you think you should be in. no real winning here"
 
 -----
 
-## Future Targets
-- Toggling shadow at cam zone boundary triggers it (we know about this)
+## Possible Future Targets
+- Toggling shadow at cam zone boundary triggers it
+  - Connected to (if not directly caused by) instant unshadow fix
 - Toggling shadow faces shady a different way than ghost shady, whichever one shadow shady had been facing most recently
+  - Unclear how to reconcile diagonals
+  - Jet: "rotating shadow shady & flipping ghost shady isn't impossible to do, but also people are usually moving so they don't even notice"
 - Level select vertical navigation from world stepper buttons doesn’t remember the most recently selected level
+  - Jet thinks this opens up a pandora's box of problems and it is probably way too insignificant to invest time into, which is fair enough
+    - "i completely understand (and the same would be done to the bottom challenge buttons) but it would have to also properly account for what happens when you change worlds, and deal with the mouse trying to fight all of these systems simultaneously"
+    - "what happens if we nav to the bottom row and mouse onto the world change buttons? we don't want to go back to the bottom row, etc. just tiny little things of patches upon patches when our game already works"
 - Opening new settings tab with keyboard/controller navigation while cursor is hovering an element focuses that element even if the cursor has not moved recently
+  - Jet: "that mouse thing is whatever, people don't usually do keyboard nav while using the mouse, and if you're doing keyboard nav, you shove your mouse offscreen bc it gets in the way (it's also really hard to solve based on how our nav works!)"
