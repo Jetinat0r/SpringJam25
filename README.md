@@ -37,13 +37,17 @@ This branch is for me (Evan) to test fixes to things that bother me, pending pos
 -----
 
 ## Possible Future Targets
-- Toggling shadow at cam zone boundary triggers it
+- Add accessibility tab to configure the input buffering/holding behavior of the shadow control
+- Fix menu play button sending you to your highest level (aka always 32 if you beat the game), not your most recently played level
+- Fix menu play button nuking challenge preferences
+  - Potentially store challenge preferences between game sessions if that's not already done
+- Fix toggling shadow at cam zone boundary triggering it
   - Connected to (if not directly caused by) instant unshadow fix
-- Toggling shadow faces Shady a different way than ghost Shady, whichever one shadow Shady had been facing most recently
+- Fix toggling shadow facing Shady a different way than ghost Shady, whichever one shadow Shady had been facing most recently
   - Jet: "rotating shadow shady & flipping ghost shady isn't impossible to do, but also people are usually moving so they don't even notice"
-- Level select vertical navigation from world stepper buttons doesn’t remember the most recently selected level
+- Fix level select vertical navigation from world stepper buttons and challenge buttons not remembering the most recently selected level
   - Jet thinks this opens up a pandora's box of problems and it is probably way too insignificant to invest time into, which is fair enough
     - "i completely understand (and the same would be done to the bottom challenge buttons) but it would have to also properly account for what happens when you change worlds, and deal with the mouse trying to fight all of these systems simultaneously"
     - "what happens if we nav to the bottom row and mouse onto the world change buttons? we don't want to go back to the bottom row, etc. just tiny little things of patches upon patches when our game already works"
-- Opening new settings tab with keyboard/controller navigation while cursor is hovering an element focuses that element even if the cursor has not moved recently
+- Fix opening new settings tab with keyboard/controller navigation while cursor is hovering an element focusing that element even if the cursor has not moved recently
   - Jet: "that mouse thing is whatever, people don't usually do keyboard nav while using the mouse, and if you're doing keyboard nav, you shove your mouse offscreen bc it gets in the way (it's also really hard to solve based on how our nav works!)"
