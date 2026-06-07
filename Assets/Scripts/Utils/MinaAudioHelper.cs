@@ -38,4 +38,19 @@ public class MinaAudioHelper : MonoBehaviour
     {
         soundPlayer.PlaySound("EasterEgg.ItemGetShort");
     }
+
+    public void PlayHitWhipSound()
+    {
+        soundPlayer.PlaySound("EasterEgg.HitWhip");
+    }
+
+    public void PlayHitWhipFullSound()
+    {
+        soundPlayer.PlaySound("EasterEgg.HitWhipFull");
+    }
+
+    public void PlayHitBatBustSound()
+    {
+        soundPlayer.PlaySound("EasterEgg.HitBatBust");
+    }
 }
