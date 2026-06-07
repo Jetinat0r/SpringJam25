@@ -17,7 +17,7 @@ This branch is for Evan to test fixes to things that bother him, pending possibl
 - Fixed Shady getting nudged by robo-vacs while resetting or winning (because they are immune in this state, and it looks dumb particularly during resets + can cause clipping outside the wall)
   - Instead the robo-vacs ignore collision with Shady and flip if they are within 0.5 units of Shady in these states
 
-# Controversial Player Changes
+## Controversial Player Changes
 - Fixed "can shadow" checks not ensuring light and wall actually intersect
 - Standardized wall/light detector hitboxes in an attempt to fix instant unshadowing. Caveats:
   - Leftover downward velocity can still push you out of the can shadow zone
