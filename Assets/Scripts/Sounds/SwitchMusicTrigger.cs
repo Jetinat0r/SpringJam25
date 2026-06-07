@@ -7,6 +7,8 @@ public class SwitchMusicTrigger : MonoBehaviour
     public MusicClip newTrack;
     private MusicClip oldTrack;
     private AudioManager theAM;
+    private AudioManager.Environment oldEnvironment;
+    [SerializeField] private AudioManager.Environment environment;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,7 +16,13 @@ public class SwitchMusicTrigger : MonoBehaviour
         {
             theAM = FindFirstObjectByType<AudioManager>();
             oldTrack = theAM.currentSong;
-            theAM.ChangeBGM(newTrack, theAM.currentWorld, false);
+            oldEnvironment = theAM.currentEnvironment;
+
+            // hacked in but don't mind it :)
+            if (environment == AudioManager.Environment.EASTEREGG)
+                MinaAudioHelper.InEasterEgg = true;
+
+            theAM.ChangeBGM(newTrack, theAM.currentWorld, environment);
         }
     }
 
@@ -23,7 +31,12 @@ public class SwitchMusicTrigger : MonoBehaviour
         if (other.CompareTag("Player") && oldTrack != null)
         {
             theAM = FindFirstObjectByType<AudioManager>();
-            theAM.ChangeBGM(oldTrack, theAM.currentWorld, false);
+
+            // hacked in but don't mind it :)
+            if (oldEnvironment == AudioManager.Environment.EASTEREGG)
+                MinaAudioHelper.InEasterEgg = true;
+
+            theAM.ChangeBGM(oldTrack, theAM.currentWorld, oldEnvironment);
         }
     }
 }

@@ -29,17 +29,25 @@ public class AudioManager : MonoBehaviour
     public AudioMixerSnapshot normal, hurt;
     public SoundCategory soundDatabase;
     public MusicCategory musicDatabase;
-    public bool playingMenuMusic = false;
+    public Environment currentEnvironment = Environment.LEVEL;
 
     private int beatLength, lastTime, absoluteTime, currentBeat;
     public Action<int> OnBeat;
 
     /// <summary>
-    /// List of all different game areas that may have different sets of music
+    /// List of all different worlds that may have different sets of music
     /// </summary>
     public enum World
     {
         CURRENT, WORLD1, WORLD2, WORLD3, WORLD4
+    }
+
+    /// <summary>
+    /// List of all different variants of world music
+    /// </summary>
+    public enum Environment
+    {
+        MENU, LEVEL, EASTEREGG
     }
 
     /// <summary>
@@ -255,20 +263,20 @@ public class AudioManager : MonoBehaviour
         sfxMixer.SetFloat("Volume", sfxVolume);
     }
 
-    public void ChangeBGM(World newWorld, bool fromMenu, float duration = 1f)
+    public void ChangeBGM(World newWorld, Environment environment, float duration = 1f)
     {
         if (newWorld == World.CURRENT) newWorld = currentWorld;
         int worldIndex = (int)newWorld - 1;
         worldIndex = Mathf.Min(worldIndex, musicDatabase.children.Count - 1); // Clamp to # of worlds that actually exist
-        ChangeBGM((MusicClip)musicDatabase.children[worldIndex], newWorld, fromMenu, duration);
+        ChangeBGM((MusicClip)musicDatabase.children[worldIndex], newWorld, environment, duration);
     }
 
-    public void ChangeBGM(MusicClip music, bool fromMenu, float duration = 1f)
+    public void ChangeBGM(MusicClip music, Environment environment, float duration = 1f)
     {
-        ChangeBGM(music, music.world, fromMenu, duration);
+        ChangeBGM(music, music.world, environment, duration);
     }
 
-    public void ChangeBGM(MusicClip music, World newWorld, bool fromMenu, float duration = 1f)
+    public void ChangeBGM(MusicClip music, World newWorld, Environment environment, float duration = 1f)
     {
         if (newWorld == World.CURRENT) newWorld = currentWorld;
 
@@ -277,9 +285,9 @@ public class AudioManager : MonoBehaviour
         currentWorld = newWorld;
 
         //Prevent fading the same clip on both players
-        if (firstSongPlayed && carryOn && playingMenuMusic == fromMenu)
+        if (firstSongPlayed && carryOn && currentEnvironment == environment)
             return;
-        playingMenuMusic = fromMenu;
+        currentEnvironment = environment;
 
         //Kill all playing
         foreach (IEnumerator i in fader)

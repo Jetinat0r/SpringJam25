@@ -161,7 +161,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void EnterStartScreen()
     {
-        FindFirstObjectByType<AudioManager>().ChangeBGM(AudioManager.World.CURRENT, true);
+        FindFirstObjectByType<AudioManager>().ChangeBGM(World.CURRENT, Environment.MENU);
         //TODO: Make sure this behaves
         ScreenWipe.current.WipeOut();
 
