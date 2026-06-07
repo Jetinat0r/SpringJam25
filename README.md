@@ -39,8 +39,7 @@ This branch is for me (Evan) to test fixes to things that bother me, pending pos
 ## Possible Future Targets
 - Toggling shadow at cam zone boundary triggers it
   - Connected to (if not directly caused by) instant unshadow fix
-- Toggling shadow faces shady a different way than ghost shady, whichever one shadow shady had been facing most recently
-  - Unclear how to reconcile diagonals/verticals
+- Toggling shadow faces Shady a different way than ghost Shady, whichever one shadow Shady had been facing most recently
   - Jet: "rotating shadow shady & flipping ghost shady isn't impossible to do, but also people are usually moving so they don't even notice"
 - Level select vertical navigation from world stepper buttons doesn’t remember the most recently selected level
   - Jet thinks this opens up a pandora's box of problems and it is probably way too insignificant to invest time into, which is fair enough
