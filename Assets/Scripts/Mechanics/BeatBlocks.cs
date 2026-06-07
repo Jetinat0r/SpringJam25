@@ -47,6 +47,7 @@ public class BeatBlocks : MonoBehaviour
                 TriggerObjects();
                 numBeatsSinceActivation = 0;
                 hasFirstActivation = true;
+                PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
             }
         }
         else
@@ -55,6 +56,7 @@ public class BeatBlocks : MonoBehaviour
             {
                 TriggerObjects();
                 numBeatsSinceActivation = 0;
+                PlayerMovement.instance.soundPlayer.PlaySound("Game.Lever");
             }
         }
     }
