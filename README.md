@@ -1,6 +1,6 @@
 # SpringJam25
  
-This branch is for Evan to test fixes to things that bother him, pending possible future addition into the main game.
+This branch is for me (Evan) to test fixes to things that bother me, pending possible future addition into the main game.
 
 ## Credits Improvements
 - Fixed flickering I's in special credits
