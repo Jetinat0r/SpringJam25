@@ -14,7 +14,7 @@ This branch is for me (Evan) to test fixes to things that bother me, pending pos
 - Fixed no sound feedback for musical machines toggling objects
 - Adjusted vertical keyboard/controller navigation behavior for inactive tabs in the settings menu
   - The back button goes down to the most recently selected tab, and the first navigable element goes up to the most recently selected tab. (Note selected != active)
-- Fixed Shady getting nudged by robo-vacs while dying, resetting, or winning (because Shady is immune in this state, and it looks dumb particularly during resets + can cause clipping outside the wall)
+- Fixed Shady getting nudged by robo-vacs while dying, resetting, or winning (because Shady is immune in these states, and it looks dumb particularly during resets + can cause clipping outside the wall)
   - Instead the robo-vacs ignore collision with Shady, and flip if they are within 0.5 units of Shady (unless he is dying)
 
 ## Controversial Player Changes
