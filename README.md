@@ -1,4 +1,4 @@
-# SpringJam25
+# EvanFixes
  
 This branch is for me (Evan) to test fixes to things that bother me, pending possible future addition into the main game.
 
