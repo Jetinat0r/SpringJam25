@@ -10,10 +10,23 @@ public class MusicClip : SoundPlayable
     public float BPM;
     public int sampleRate = 44100;
     public int beatFrequency = 1;
+    public AudioClip GetClip(AudioManager.Environment environment)
+    {
+        switch (environment)
+        {
+            case AudioManager.Environment.MENU:
+                return menuSong;
+            case AudioManager.Environment.LEVEL:
+                return levelSong;
+            case AudioManager.Environment.EASTEREGG:
+                return easterEggSong;
+        }
+        return levelSong; // default fallback
+    }
+
     public override AudioClip GetClip()
     {
-        if (MinaAudioHelper.InEasterEgg)
-            return easterEggSong;
-        return MainMenuManager.inMenu ? menuSong : levelSong;
+        return GetClip(AudioManager.Environment.LEVEL);
     }
+
 }

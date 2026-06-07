@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class MinaAudioHelper : MonoBehaviour
 {
-    public static bool InEasterEgg = false;
-
     [SerializeField] private SoundPlayer soundPlayer;
 
     public void PlayLandingSound()

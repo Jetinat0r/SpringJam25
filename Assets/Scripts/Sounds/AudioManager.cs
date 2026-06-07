@@ -228,7 +228,7 @@ public class AudioManager : MonoBehaviour
             int delta = currentTime - lastTime;
             if (currentTime < lastTime)
             {
-                delta += currentSong.GetClip().samples;
+                delta += currentSong.GetClip(currentEnvironment).samples;
                 currentBeat = 0;
             }
             absoluteTime += delta;
@@ -319,7 +319,7 @@ public class AudioManager : MonoBehaviour
             BGM1[1 - activePlayer].Stop();
 
             //Fade-in the new clip
-            BGM2[activePlayer].clip = music.GetClip();
+            BGM2[activePlayer].clip = music.GetClip(currentEnvironment);
             if (carryOn && BGM1[activePlayer].isPlaying)
             {
                 BGM2[activePlayer].timeSamples = BGM1[activePlayer].timeSamples; // syncs up time
@@ -353,7 +353,7 @@ public class AudioManager : MonoBehaviour
             BGM2[1 - activePlayer].Stop();
 
             //Fade-in the new clip
-            BGM1[activePlayer].clip = music.GetClip();
+            BGM1[activePlayer].clip = music.GetClip(currentEnvironment);
             if (carryOn && BGM2[activePlayer].isPlaying)
             {
                 BGM1[activePlayer].timeSamples = BGM2[activePlayer].timeSamples; // syncs up time

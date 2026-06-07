@@ -17,11 +17,6 @@ public class SwitchMusicTrigger : MonoBehaviour
             theAM = FindFirstObjectByType<AudioManager>();
             oldTrack = theAM.currentSong;
             oldEnvironment = theAM.currentEnvironment;
-
-            // hacked in but don't mind it :)
-            if (environment == AudioManager.Environment.EASTEREGG)
-                MinaAudioHelper.InEasterEgg = true;
-
             theAM.ChangeBGM(newTrack, theAM.currentWorld, environment);
         }
     }
@@ -31,11 +26,6 @@ public class SwitchMusicTrigger : MonoBehaviour
         if (other.CompareTag("Player") && oldTrack != null)
         {
             theAM = FindFirstObjectByType<AudioManager>();
-
-            // hacked in but don't mind it :)
-            if (oldEnvironment != AudioManager.Environment.EASTEREGG)
-                MinaAudioHelper.InEasterEgg = false;
-
             theAM.ChangeBGM(oldTrack, theAM.currentWorld, oldEnvironment);
         }
     }
