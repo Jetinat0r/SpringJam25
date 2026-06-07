@@ -33,8 +33,8 @@ public class SwitchMusicTrigger : MonoBehaviour
             theAM = FindFirstObjectByType<AudioManager>();
 
             // hacked in but don't mind it :)
-            if (oldEnvironment == AudioManager.Environment.EASTEREGG)
-                MinaAudioHelper.InEasterEgg = true;
+            if (oldEnvironment != AudioManager.Environment.EASTEREGG)
+                MinaAudioHelper.InEasterEgg = false;
 
             theAM.ChangeBGM(oldTrack, theAM.currentWorld, oldEnvironment);
         }
