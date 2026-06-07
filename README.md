@@ -14,8 +14,8 @@ This branch is for me (Evan) to test fixes to things that bother me, pending pos
 - Fixed no sound feedback for musical machines toggling objects
 - Adjusted vertical keyboard/controller navigation behavior for inactive tabs in the settings menu
   - The back button goes down to the most recently selected tab, and the first navigable element goes up to the most recently selected tab. (Note selected != active)
-- Fixed Shady getting nudged by robo-vacs while resetting or winning (because they are immune in this state, and it looks dumb particularly during resets + can cause clipping outside the wall)
-  - Instead the robo-vacs ignore collision with Shady and flip if they are within 0.5 units of Shady in these states
+- Fixed Shady getting nudged by robo-vacs while dying, resetting, or winning (because Shady is immune in this state, and it looks dumb particularly during resets + can cause clipping outside the wall)
+  - Instead the robo-vacs ignore collision with Shady, and flip if they are within 0.5 units of Shady (unless he is dying)
 
 ## Controversial Player Changes
 - Fixed "can shadow" checks not ensuring light and wall actually intersect
@@ -31,3 +31,11 @@ This branch is for me (Evan) to test fixes to things that bother me, pending pos
       - The persistent hold has some obvious problems when holding the shadow control and crawling up - you can get into a loop where you are force unshadowed, fall down back into the light, reshadow, crawl up, rinse and repeat
       - It's also not preferable for accessibility according to MicalPixel, but I figured I'd at the very least try implementing it as an option
   - The most accessible combination is 0.2 input buffer time and allowing preemptively held shadow, which is what MicalPixel also landed on. We can do some testing with this at a later time, and it may be worth including an accessibility settings panel in settings later down the line to configure things like this
+
+-----
+
+## Future Targets
+- Toggling shadow at cam zone boundary triggers it (we know about this)
+- Toggling shadow faces shady a different way than ghost shady, whichever one shadow shady had been facing most recently
+- Level select vertical navigation from world stepper buttons doesn’t remember the most recently selected level
+- Opening new settings tab with keyboard/controller navigation while cursor is hovering an element focuses that element even if the cursor has not moved recently
