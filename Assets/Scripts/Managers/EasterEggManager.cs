@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 
-public class EasterEggManager : MonoBehaviour
+public class EasterEggManager : SignalReceiver
 {
     public static EasterEggManager instance = null;
 
@@ -29,6 +29,18 @@ public class EasterEggManager : MonoBehaviour
 
     bool enteredSecretRoom = false;
     #endregion
+
+    [SerializeField]
+    EasterEggTrigger startCutsceneTrigger;
+
+    [SerializeField]
+    RectTransform dialogueBoxTransform;
+    [SerializeField]
+    TextRevealer[] minaDialogues;
+    private int curDialogue = 0;
+
+    [SerializeField]
+    GameObject societalConvention;
 
     #region Persistant Cutscene Intro Skip
     bool completedIntroCutscene = false;
@@ -69,7 +81,6 @@ public class EasterEggManager : MonoBehaviour
         }
         else if (completedIntroCutscene)
         {
-            //TODO: Set timeline to past intro sequence (and play looping waiting mina)
 
             //Open the secret wall without particles
             OpenSecretWallSilent();
@@ -77,6 +88,10 @@ public class EasterEggManager : MonoBehaviour
             //Connect to proper signals
             enteredSecretRoomTrigger.onTriggerEnter += OnSecretRoomEntered;
             exitedSecretRoomTrigger.onTriggerEnter += OnSecretRoomExited;
+
+            //TODO: Set timeline to past intro sequence (and play looping waiting mina)
+            societalConvention.SetActive(false);
+            startCutsceneTrigger.onTriggerEnter += StartCutscenePlayback;
         }
         else if (enteredSecretRoom)
         {
@@ -86,6 +101,7 @@ public class EasterEggManager : MonoBehaviour
             //Connect to proper signals
             enteredSecretRoomTrigger.onTriggerEnter += OnSecretRoomEntered;
             exitedSecretRoomTrigger.onTriggerEnter += OnSecretRoomExited;
+            startCutsceneTrigger.onTriggerEnter += StartCutscenePlayback;
         }
         else
         {
@@ -126,6 +142,37 @@ public class EasterEggManager : MonoBehaviour
         completedSecretRoom = true;
     }
 
+    private void StartCutscenePlayback()
+    {
+        easterEggTimeline.director.Play();
+    }
+
+    public void StartDialogue()
+    {
+        //TODO: Use some magic to lower the box (DOTween?)
+        PlayNextDialogue();
+    }
+
+    public void PlayNextDialogue()
+    {
+        if (curDialogue >= minaDialogues.Length)
+        {
+            Debug.LogError($"Trying to play dialogue [{curDialogue}] that doesn't exist!");
+            return;
+        }
+
+        if (curDialogue + 1 < minaDialogues.Length)
+        {
+            minaDialogues[curDialogue].onTextFullyRevealed += PlayNextDialogue;
+        }
+        minaDialogues[curDialogue].Play();
+    }
+
+    public void EndDialogue()
+    {
+        //TODO: Use some magic to raise the box (DOTween?)
+    }
+
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoad;
@@ -140,5 +187,4 @@ public class EasterEggManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }

@@ -14,6 +14,10 @@ public class TextRevealer : MonoBehaviour
     public bool isRevealing = false;
     private float t = 0f;
 
+    public float postRevealHangTime = 1f;
+
+    public delegate void TextRevealerEndEvent();
+    public event TextRevealerEndEvent onTextFullyRevealed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,9 +61,19 @@ public class TextRevealer : MonoBehaviour
                 }
             }
         }
+        else if (isRevealing)
+        {
+            t += Time.deltaTime;
+
+            if (t >= postRevealHangTime)
+            {
+                isRevealing = false;
+                onTextFullyRevealed?.Invoke();
+            }
+        }
     }
 
-    void StartReveal()
+    public void Play()
     {
         isRevealing = true;
     }
