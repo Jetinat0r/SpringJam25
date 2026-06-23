@@ -863,8 +863,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '          While I don''t fear much of anything, I cannot be in the shadows
-    for long, lest I am stalked by a mysterious evil.'
+  m_text: '          While I don''t fear much, I cannot be in the shadows for long,
+    lest I am stalked by a mysterious evil.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -7011,7 +7011,6 @@ MonoBehaviour:
   minaDialogues:
   - {fileID: 765706842}
   - {fileID: 208924457}
-  - {fileID: 1113664128}
   - {fileID: 1865464127}
   - {fileID: 390291377}
   - {fileID: 1271968134}
@@ -19137,8 +19136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '          Unless that conveyor belt changes direction, you are trapped
-    here as well, right?'
+  m_text: '          You are trapped here as well, it seems.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -19297,7 +19295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1113664127
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37701,7 +37699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1414344098
 RectTransform:
   m_ObjectHideFlags: 0
