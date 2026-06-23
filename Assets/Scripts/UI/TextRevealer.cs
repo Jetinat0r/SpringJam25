@@ -19,6 +19,9 @@ public class TextRevealer : MonoBehaviour
     public delegate void TextRevealerEndEvent();
     public event TextRevealerEndEvent onTextFullyRevealed;
 
+    [SerializeField]
+    public MinaAudioHelper soundPlayer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -49,6 +52,7 @@ public class TextRevealer : MonoBehaviour
                 while (revealedCharacters < textMeshPro.text.Length)
                 {
                     revealedCharacters += 1;
+
                     textMeshPro.maxVisibleCharacters = revealedCharacters;
                     if (skipSpaces && textMeshPro.text[revealedCharacters - 1] == ' ')
                     {
@@ -56,6 +60,7 @@ public class TextRevealer : MonoBehaviour
                     }
                     else
                     {
+                        soundPlayer.PlayTypewriterSound();
                         break;
                     }
                 }

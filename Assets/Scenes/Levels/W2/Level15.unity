@@ -630,7 +630,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Greena:'
+  m_text: 'Mina:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -842,6 +842,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &179870529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,8 +863,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              While I don''t fear much of anything, I cannot be in the
-    shadows for long, lest I am stalked by a mysterious evil.'
+  m_text: '          While I don''t fear much of anything, I cannot be in the shadows
+    for long, lest I am stalked by a mysterious evil.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -6115,6 +6116,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &208924458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6135,8 +6137,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              Had I not known any better, I would have assumed you were
-    a member of my town''s choir!'
+  m_text: '          Had I not known any better, I would have assumed you were a
+    member of my town''s choir!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -6246,6 +6248,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2139075048}
+  - {fileID: 1229564827}
   - {fileID: 1255031216}
   m_Father: {fileID: 1927041830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6990,6 +6993,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &390291378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7010,7 +7014,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              ...'
+  m_text: '          ...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -10080,7 +10084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.15553522
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -10088,7 +10092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.68923455
       objectReference: {fileID: 0}
     - target: {fileID: 7493375513482455101, guid: 7a3066dc3e0dda940a0578e219f2ada6, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
@@ -10803,7 +10807,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              A stray cat? I see you''re an apparition too, no less!'
+  m_text: '          A stray cat? I see you''re an apparition too, no less!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -10900,6 +10904,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!1001 &773059537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19020,6 +19025,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &1061974124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19040,7 +19046,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              Unless that conveyor belt changes direction, you are trapped
+  m_text: '          Unless that conveyor belt changes direction, you are trapped
     here as well, right?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -19238,6 +19244,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &1113664129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19258,7 +19265,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              Fear not, that infernal device has been dealt with.'
+  m_text: '          Fear not, that infernal device has been dealt with.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -19663,6 +19670,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &1186453384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19683,7 +19691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              It seems you can tolerate the dark. '
+  m_text: '          It seems you can tolerate the dark. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -20354,6 +20362,163 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1229564823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229564827}
+  - component: {fileID: 1229564825}
+  - component: {fileID: 1229564824}
+  - component: {fileID: 1229564826}
+  m_Layer: 0
+  m_Name: TypewriterSoundPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1229564824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229564823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c52e731fecda074286d4213388ee46d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinaAudioHelper
+  soundPlayer: {fileID: 1229564825}
+--- !u!114 &1229564825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229564823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c645889cf1ca84b8b4eca6f2938f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
+  sources: []
+--- !u!82 &1229564826
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229564823}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2fb86d5d0a3982d48942d16bb0d88023, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1229564827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229564823}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 224337502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1238402273
 GameObject:
   m_ObjectHideFlags: 0
@@ -37109,6 +37274,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &1271968135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37129,7 +37295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              Shady?'
+  m_text: '          Shady?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -37481,6 +37647,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &1414344100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37501,8 +37668,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              I would climb this wall myself, but I left the trinket I
-    need to do so in a lab of mine deep underground.'
+  m_text: '          I would climb this wall myself, but I left the trinket I need
+    to do so in a lab of mine deep underground.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -38292,7 +38459,7 @@ Tilemap:
       - {fileID: -7073110359072914169, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -5999132610181422918, guid: cec4c092b92c001488180b8b61ede554, type: 3}
       - {fileID: -3884477281039024349, guid: cec4c092b92c001488180b8b61ede554, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -11, y: -3, z: 0}
@@ -38781,6 +38948,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &1664773643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38801,8 +38969,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              If you can help me reach that ledge, then I may be able
-    to assist you in return!'
+  m_text: '          If you can help me reach that ledge, then I may be able to assist
+    you in return!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -38964,7 +39132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2148804808345387933, guid: 20ee9167c89a241cebb5f91bf3f005fb, type: 3}
       propertyPath: localSound
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2148804808345387933, guid: 20ee9167c89a241cebb5f91bf3f005fb, type: 3}
       propertyPath: affectedObjects.Array.size
@@ -39362,6 +39530,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &1865464128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39382,7 +39551,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              My name is Mina, what''s yours?'
+  m_text: '          My name is Mina, what''s yours?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
@@ -40106,6 +40275,7 @@ MonoBehaviour:
   initialRevealedCharacters: 0
   isRevealing: 0
   postRevealHangTime: 1
+  soundPlayer: {fileID: 1229564824}
 --- !u!114 &2074790618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40126,7 +40296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '              It''s a pleasure, Shady. Perhaps you can help me?'
+  m_text: '          It''s a pleasure, Shady. Perhaps you can help me?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
   m_sharedMaterial: {fileID: -5315587091442618884, guid: 668c8d20fc407454ebaec2ce436f3b77, type: 2}
