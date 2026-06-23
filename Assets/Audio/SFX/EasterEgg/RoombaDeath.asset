@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a913750643e7984d8ea61409649b0da, type: 3}
-  m_Name: KillEnemy
+  m_Name: RoombaDeath
   m_EditorClassIdentifier: Assembly-CSharp::SoundClip
-  clip: {fileID: 8300000, guid: c28a89c9326e17c46ad2f966564b0041, type: 3}
+  clip: {fileID: 8300000, guid: 22f540eb525670c41980f3cb5ff216e9, type: 3}

@@ -54,8 +54,8 @@ public class MinaAudioHelper : MonoBehaviour
         soundPlayer.PlaySound("EasterEgg.HitBatBust");
     }
 
-    public void PlayKillEnemySound()
+    public void PlayRoombaDeathSound()
     {
-        soundPlayer.PlaySound("EasterEgg.KillEnemy");
+        soundPlayer.PlaySound("EasterEgg.RoombaDeath");
     }
 }
