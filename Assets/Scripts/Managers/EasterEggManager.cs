@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
@@ -149,8 +150,8 @@ public class EasterEggManager : SignalReceiver
 
     public void StartDialogue()
     {
-        //TODO: Use some magic to lower the box (DOTween?)
-        PlayNextDialogue();
+        Tween _tween = dialogueBoxTransform.DOAnchorPos(new Vector2(0, -4), 1.2f).SetEase(Ease.OutQuart);
+        _tween.onComplete += PlayNextDialogue;
     }
 
     public void PlayNextDialogue()
@@ -165,12 +166,26 @@ public class EasterEggManager : SignalReceiver
         {
             minaDialogues[curDialogue].onTextFullyRevealed += PlayNextDialogue;
         }
+        else
+        {
+            minaDialogues[curDialogue].onTextFullyRevealed += EndDialogue;
+        }
+
+        foreach (TextRevealer t in minaDialogues)
+        {
+            t.gameObject.SetActive(false);
+        }
+
+        minaDialogues[curDialogue].gameObject.SetActive(true);
         minaDialogues[curDialogue].Play();
+
+        curDialogue++;
     }
 
     public void EndDialogue()
     {
-        //TODO: Use some magic to raise the box (DOTween?)
+        dialogueBoxTransform.DOAnchorPos(new Vector2(0, 60), 1.2f).SetEase(Ease.InQuart);
+        societalConvention.SetActive(false);
     }
 
     private void OnDestroy()
