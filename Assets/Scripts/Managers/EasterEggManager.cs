@@ -22,7 +22,6 @@ public class EasterEggManager : SignalReceiver
     [SerializeField]
     ParticleSystem wallExplosionParticles;
 
-    bool openedSecretRoom = false;
     #endregion
 
     #region Persistant Open Wall
@@ -136,8 +135,6 @@ public class EasterEggManager : SignalReceiver
 
     private void OpenSecretWall()
     {
-        openedSecretRoom = true;
-
         darkSecretWall.SetActive(false);
         lightSecretWall.SetActive(false);
 
@@ -147,8 +144,6 @@ public class EasterEggManager : SignalReceiver
 
     private void OpenSecretWallSilent()
     {
-        openedSecretRoom = true;
-
         darkSecretWall.SetActive(false);
         lightSecretWall.SetActive(false);
     }

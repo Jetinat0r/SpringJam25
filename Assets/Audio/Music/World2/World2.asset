@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuSong: {fileID: 8300000, guid: 09f0b3f26463c904f8a7aa2621d7c6f6, type: 3}
   levelSong: {fileID: 8300000, guid: 708b46646b2cc9e44a5c5d584720fb9c, type: 3}
+  easterEggSong: {fileID: 8300000, guid: c2265f5ec380d6b43a223091935b98c6, type: 3}
   world: 2
   BPM: 94.26316
   sampleRate: 44100

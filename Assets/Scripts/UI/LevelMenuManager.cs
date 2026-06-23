@@ -143,7 +143,10 @@ public class LevelMenuManager : MonoBehaviour
 
         Time.timeScale = 1;
         soundPlayer.PlaySound("UI.Select");
-        AudioManager.instance.UnPauseCurrent();
+        if (AudioManager.instance.currentEnvironment == AudioManager.Environment.LEVEL)
+            AudioManager.instance.UnPauseCurrent();
+        else // We are likely in easter egg and don't want that music to crossfade
+            AudioManager.instance.ResetPlayer();
         if (SpeedrunManager.instance)
             Destroy(SpeedrunManager.instance);
         isMenuOpen = false;

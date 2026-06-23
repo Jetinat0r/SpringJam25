@@ -1897,6 +1897,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 3.89
+    functionName: PlayEasterEggMusic
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 17.99
     functionName: PlayItemGetSound
     data: 
@@ -1927,6 +1934,20 @@ AnimationClip:
     messageOptions: 0
   - time: 20.89
     functionName: PlayLandingSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 22.93
+    functionName: FadeOutMusic
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 24.31
+    functionName: PlayLevelMusic
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

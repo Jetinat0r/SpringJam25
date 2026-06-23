@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MinaAudioHelper : MonoBehaviour
 {
+    [SerializeField] private MusicClip world2Music;
     [SerializeField] private SoundPlayer soundPlayer;
 
     public void PlayLandingSound()
@@ -57,5 +58,26 @@ public class MinaAudioHelper : MonoBehaviour
     public void PlayRoombaDeathSound()
     {
         soundPlayer.PlaySound("EasterEgg.RoombaDeath");
+    }
+
+    public void PlayEasterEggMusic()
+    {
+        AudioManager.instance.ChangeBGM(world2Music, AudioManager.World.WORLD2, AudioManager.Environment.EASTEREGG);
+    }
+
+    public void FadeOutMusic()
+    {
+        AudioManager.instance.FadeOutCurrent(1f);
+        Invoke(nameof(ResetAudioPlayer), 1.1f);
+    }
+
+    void ResetAudioPlayer()
+    {
+        AudioManager.instance.ResetPlayer();
+    }
+
+    public void PlayLevelMusic()
+    {
+        AudioManager.instance.ChangeBGM(world2Music, AudioManager.World.WORLD2, AudioManager.Environment.LEVEL);
     }
 }
