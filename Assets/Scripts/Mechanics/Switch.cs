@@ -8,6 +8,7 @@ public class Switch : MonoBehaviour
     private MagicInteractionLine[] magicInteractionLines;
     public GameObject[] affectedObjects;
     public CrankableObject[] crankableObjects;
+    [SerializeField]
     private PlayerMovement playerScript;
     [SerializeField] private SpriteRenderer sprite;
     public Sprite active, inactive;

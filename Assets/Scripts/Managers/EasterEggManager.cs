@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 
@@ -8,7 +9,7 @@ public class EasterEggManager : SignalReceiver
     public static EasterEggManager instance = null;
 
     [SerializeField]
-    DirectorControlPlayable easterEggTimeline;
+    PlayableDirector easterEggTimeline;
 
     #region Open Secret Wall
     [SerializeField]
@@ -41,13 +42,29 @@ public class EasterEggManager : SignalReceiver
     private int curDialogue = 0;
 
     [SerializeField]
+    float talkingBlinkLoopStartTime = 3f;
+    [SerializeField]
+    float postTalkWalkAwayStartTime = 5f;
+    [SerializeField]
+    float waitingBlinkLoopStartTime = 7f;
+    [SerializeField]
+    float victoryStartTime = 10f;
+
+    [SerializeField]
     GameObject societalConvention;
+
 
     #region Persistant Cutscene Intro Skip
     bool completedIntroCutscene = false;
     #endregion
 
     #region Persistant Completed Secret
+    [SerializeField]
+    EasterEggTrigger winEasterEggTrigger;
+
+    [SerializeField]
+    Switch easterEggCompleteSwitch;
+
     [SerializeField]
     EasterEggTrigger exitedSecretRoomTrigger;
 
@@ -82,7 +99,6 @@ public class EasterEggManager : SignalReceiver
         }
         else if (completedIntroCutscene)
         {
-
             //Open the secret wall without particles
             OpenSecretWallSilent();
 
@@ -90,9 +106,11 @@ public class EasterEggManager : SignalReceiver
             enteredSecretRoomTrigger.onTriggerEnter += OnSecretRoomEntered;
             exitedSecretRoomTrigger.onTriggerEnter += OnSecretRoomExited;
 
-            //TODO: Set timeline to past intro sequence (and play looping waiting mina)
             societalConvention.SetActive(false);
+            //Set timeline to past intro sequence (and play looping waiting mina)
+            easterEggTimeline.initialTime = waitingBlinkLoopStartTime;
             startCutsceneTrigger.onTriggerEnter += StartCutscenePlayback;
+            winEasterEggTrigger.onTriggerEnter += WinEasterEgg;
         }
         else if (enteredSecretRoom)
         {
@@ -103,6 +121,7 @@ public class EasterEggManager : SignalReceiver
             enteredSecretRoomTrigger.onTriggerEnter += OnSecretRoomEntered;
             exitedSecretRoomTrigger.onTriggerEnter += OnSecretRoomExited;
             startCutsceneTrigger.onTriggerEnter += StartCutscenePlayback;
+            winEasterEggTrigger.onTriggerEnter += WinEasterEgg;
         }
         else
         {
@@ -110,6 +129,8 @@ public class EasterEggManager : SignalReceiver
             secretWallTrigger.onTriggerEnter += OpenSecretWall;
             enteredSecretRoomTrigger.onTriggerEnter += OnSecretRoomEntered;
             exitedSecretRoomTrigger.onTriggerEnter += OnSecretRoomExited;
+            startCutsceneTrigger.onTriggerEnter += StartCutscenePlayback;
+            winEasterEggTrigger.onTriggerEnter += WinEasterEgg;
         }
     }
 
@@ -145,7 +166,7 @@ public class EasterEggManager : SignalReceiver
 
     private void StartCutscenePlayback()
     {
-        easterEggTimeline.director.Play();
+        easterEggTimeline.Play();
     }
 
     public void StartDialogue()
@@ -186,6 +207,11 @@ public class EasterEggManager : SignalReceiver
     {
         dialogueBoxTransform.DOAnchorPos(new Vector2(0, 60), 1.2f).SetEase(Ease.InQuart);
         societalConvention.SetActive(false);
+
+        completedIntroCutscene = true;
+        easterEggTimeline.Pause();
+        easterEggTimeline.time = postTalkWalkAwayStartTime;
+        easterEggTimeline.Resume();
     }
 
     private void OnDestroy()
@@ -201,5 +227,27 @@ public class EasterEggManager : SignalReceiver
             instance = null;
             Destroy(gameObject);
         }
+    }
+
+    public void MovePlayheadToTalkingLoopPoint()
+    {
+        easterEggTimeline.time = talkingBlinkLoopStartTime + Random.Range(0f, 0.5f);
+    }
+
+    public void MovePlayheadToWaitingLoopPoint()
+    {
+        easterEggTimeline.time = waitingBlinkLoopStartTime + Random.Range(0f, 0.5f);
+    }
+
+    public void WinEasterEgg()
+    {
+        easterEggTimeline.Pause();
+        easterEggTimeline.time = victoryStartTime;
+        easterEggTimeline.Resume();
+    }
+
+    public void FlipCompletionSwitch()
+    {
+        easterEggCompleteSwitch.MyInteraction();
     }
 }
