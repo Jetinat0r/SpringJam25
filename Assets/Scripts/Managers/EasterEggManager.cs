@@ -8,6 +8,8 @@ public class EasterEggManager : SignalReceiver
 {
     public static EasterEggManager instance = null;
 
+    [SerializeField] private SoundPlayer soundPlayer;
+
     [SerializeField]
     PlayableDirector easterEggTimeline;
 
@@ -140,6 +142,10 @@ public class EasterEggManager : SignalReceiver
 
         //Play particles
         wallExplosionParticles.Play();
+
+        // Play special sound
+        soundPlayer?.PlaySound("EasterEgg.Door");
+        
     }
 
     private void OpenSecretWallSilent()
